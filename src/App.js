@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import { Container, Grid } from '@mui/material';
 import './App.css';
+import Burned from './components/Burned';
+import Hero from './components/Hero';
+import PriceInfo from './components/PriceInfo';
+import Tax from './components/Tax';
+import TopBar from './components/TopBar';
+import TreasuryInfo from './components/TreasuryInfo';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TopBar />
+        <Container maxWidth="xl">
+          <Grid container spacing={5}>
+          <Hero />
+          <PriceInfo />
+          <Tax />
+          <TreasuryInfo />
+          <Burned />
+          </Grid>
+        </Container>
     </div>
   );
 }
