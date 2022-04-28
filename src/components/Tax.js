@@ -12,52 +12,52 @@ const Tax = () => {
         <Typography variant="h4" component="h2" style={{
           paddingTop: 10,
           paddingBottom: 10,
-          color: "yellow"
+          color: "red"
         }}>
           Buy Tax
         </Typography>
         <Typography variant="h4" component="h2" style={{
           paddingBottom: 10,
-          color: "red"
+          color: "white"
         }}>
           13%
         </Typography>
 
         <Typography variant="h4" component="h2" style={{
           paddingBottom: 10,
-          color: "yellow"
+          color: "red"
         }}>
           Sell Tax
         </Typography>
         <Typography variant="h4" component="h2" style={{
           paddingBottom: 10,
-          color: "red"
+          color: "white"
         }}>
           20%
         </Typography>
 
         <Typography variant="h4" component="h2" style={{
           paddingBottom: 10,
-          color: "yellow"
+          color: "red"
         }}>
           Transfer Tax
         </Typography>
         <Typography variant="h4" component="h2" style={{
           paddingBottom: 10,
-          color: "red"
+          color: "white"
         }}>
           13%
         </Typography>
 
         <Typography variant="h4" component="h2" style={{
           paddingBottom: 10,
-          color: "yellow"
+          color: "red"
         }}>
         Max Tokens Per Buy / Sell
         </Typography>
         <Typography variant="h4" component="h2" style={{
           paddingBottom: 10,
-          color: "red"
+          color: "white"
         }}>
         869.23B / 1.50M
         </Typography>

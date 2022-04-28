@@ -5,7 +5,7 @@ const TreasuryInfo = () => {
   <>
       <Grid item xs={4}>
       <Paper elevation={10} style={{
-        marginTop: -240,
+        marginTop: -220,
         background:"rgba(0, 21, 66, 0.651)"
       }}>
         <Box sx={{
@@ -27,7 +27,7 @@ const TreasuryInfo = () => {
     </Grid>
     <Grid item xs={4}>
     <Paper elevation={10} style={{
-        marginTop: -240,
+        marginTop: -220,
         background:"rgba(0, 21, 66, 0.651)"
       }}>
         <Box sx={{
