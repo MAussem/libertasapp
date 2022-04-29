@@ -39,7 +39,7 @@ const Hero = () => {
               }}>
                 Not Connected
               </Typography>
-              <a href="https://app.yuzu-swap.com/#/swap" target="_blank">
+              <a href="https://app.yuzu-swap.com/#/swap" target="_blank" rel="noreferrer">
                 <Button variant="contained">
                   Buy XLB
                 </Button>
@@ -49,7 +49,7 @@ const Hero = () => {
                 Connect Wallet
               </Button>
               <br />
-              <a href="https://www.dextools.io/" target="_blank">
+              <a href="https://www.dextools.io/" target="_blank" rel="noreferrer">
                 <Button variant="outlined">
                   View Chart
                 </Button>

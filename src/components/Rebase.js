@@ -1,5 +1,4 @@
 import { Box, Typography } from '@mui/material';
-import { textAlign } from '@mui/system';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 // import {useContext, useState, useEffect, useRef} from "react";

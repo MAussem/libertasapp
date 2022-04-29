@@ -1,26 +1,19 @@
-import { Container, Grid } from '@mui/material';
 import './App.css';
-import Burned from './components/Burned';
-import Hero from './components/Hero';
-import PriceInfo from './components/PriceInfo';
-import Tax from './components/Tax';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
 import TopBar from './components/TopBar';
-import TreasuryInfo from './components/TreasuryInfo';
+import Calculator from './pages/Calculator';
 
-function App() {
+
+const App = () => {
   return (
-    <div className="App">
+    <BrowserRouter>
       <TopBar />
-        <Container maxWidth="xl">
-          <Grid container spacing={5}>
-          <Hero />
-          <PriceInfo />
-          <Tax />
-          <TreasuryInfo />
-          <Burned />
-          </Grid>
-        </Container>
-    </div>
+      <Routes>
+        <Route path='/' element={<Home />}/>
+        <Route path='/calc' element={<Calculator />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

@@ -1,5 +1,8 @@
 import { Paper, Typography, Box, Button } from "@mui/material"
 
+import { Link } from "react-router-dom"
+
+
 const TopBar = () => {
  return (
   <>
@@ -20,6 +23,7 @@ const TopBar = () => {
         <img 
         src="../flame.png" 
         className="imgT"
+        alt=""
         />
         <Typography style={{
             fontSize: 30,
@@ -35,13 +39,17 @@ const TopBar = () => {
           Finance
         </Typography>
         </Box>
+        <Link to='/'>
         <Typography className="dash">
           Dashboard
         </Typography>
+        </Link>
+        <Link to='/calc'>
         <Typography className="dash">
           Calculator
         </Typography>
-        <a href="https://app.yuzu-swap.com/#/swap" target="_blank">
+        </Link>
+        <a href="https://app.yuzu-swap.com/#/swap" target="_blank" rel="noreferrer">
           <Typography className="dash">
             Swap
           </Typography>
@@ -60,7 +68,7 @@ const TopBar = () => {
           coming soon
         </Typography>
         </Box>
-        <a href="https://www.gitbook.com/" target="_blank">
+        <a href="https://www.gitbook.com/" target="_blank" rel="noreferrer">
           <Typography className="dash">
            Docs
           </Typography>
