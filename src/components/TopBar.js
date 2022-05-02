@@ -1,9 +1,31 @@
 import { Paper, Typography, Box, Button } from "@mui/material"
-
 import { Link } from "react-router-dom"
+import { injected } from './connectors'
+import { useWeb3React } from '@web3-react/core'
+
+
 
 
 const TopBar = () => {
+
+  const { active, account, activate, deactivate } = useWeb3React()
+
+  const connectMeta = async () => {
+      try {
+          await activate(injected)
+      } catch (ex) {
+          console.log(ex)
+      }
+  }
+
+  const disconnectMeta = async () => {
+      try {
+          deactivate(injected)
+      } catch (ex) {
+          console.log(ex)
+      }
+  }
+
  return (
   <>
     <Paper elevation={10} style={{
@@ -34,7 +56,7 @@ const TopBar = () => {
         <Typography className="title" style={{
             fontSize: 30,
             fontWeight: 700,
-          color: "rgba(0, 21, 66, 0.651)"
+            color: "rgba(0, 21, 66, 0.651)"
         }}>
           Finance
         </Typography>
@@ -63,19 +85,25 @@ const TopBar = () => {
         </Typography>
         <Typography variant="body3" className="dash" style={{
           marginLeft: 2,
-          color: "red"
+          color: "rgb(167, 230, 255)"
         }}>
           coming soon
         </Typography>
         </Box>
-        <a href="https://www.gitbook.com/" target="_blank" rel="noreferrer">
+        <a href="https://libertas-finance.gitbook.io/libertasfinance/" target="_blank" rel="noreferrer">
           <Typography className="dash">
-           Docs
+           Whitepaper
           </Typography>
         </a>
-        <Button variant="outlined">
-          Connect Wallet
-        </Button>
+        {active ? 
+          <Button variant="outlined" onClick={disconnectMeta}> 
+            Disconnect 
+          </Button> : 
+          <Button variant="outlined" onClick={connectMeta}>
+            Connect Wallet
+          </Button>
+        }
+        {active ? <div className='privatize'>{account}</div> : <></>}
       </Box>
     </Paper>
 

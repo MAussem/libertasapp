@@ -5,14 +5,17 @@ import TopBar from './components/TopBar';
 import Calculator from './pages/Calculator';
 
 
+
+
 const App = () => {
+
   return (
     <BrowserRouter>
       <TopBar />
       <Routes>
         <Route path='/' element={<Home />}/>
         <Route path='/calc' element={<Calculator />} />
-      </Routes>
+      </Routes> 
     </BrowserRouter>
   );
 }

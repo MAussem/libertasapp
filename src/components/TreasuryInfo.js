@@ -13,7 +13,7 @@ const TreasuryInfo = () => {
           textAlign: 'center'
         }}>
         <Typography variant="h5" component="h2" style={{
-          color: "red"
+          color: "rgb(167, 230, 255)"
         }}>
           Treasury Balance
         </Typography>
@@ -35,7 +35,7 @@ const TreasuryInfo = () => {
           textAlign: 'center'
         }}>
         <Typography variant="h5" component="h2" style={{
-          color: "red"
+          color: "rgb(167, 230, 255)"
         }}>
           Total Wallets
         </Typography>

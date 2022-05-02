@@ -6,7 +6,7 @@
 }
 
 body {
-  background: url(".././public/bgh.jpeg");
+  background: url("./background-image/bgh.jpeg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -24,18 +24,21 @@ a:link {
   text-decoration: none;
 }
 
-/* a:hover {
-  color: red;
+.dash:hover {
+  color: rgb(167, 230, 255);
+  cursor: pointer;
   text-decoration: underline;
 }
 
-a:active {
-  color: red;
-  text-decoration: underline;
-} */
+.privatize {
+  width: 5.3ch;
+  overflow: hidden;
+  white-space: nowrap;
+}
 
-.dash:hover {
-  color: red;
-  cursor: pointer;
-  text-decoration: underline;
+.privatize2 {
+  margin: 10px 0;
+  width: 5.3ch;
+  overflow: hidden;
+  white-space: nowrap;
 }

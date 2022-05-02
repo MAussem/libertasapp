@@ -18,7 +18,7 @@ const PriceInfo = () => {
             flexDirection: "column"
           }}>
             <Typography variant="h5" component="h2" style={{
-              color: "red"
+              color: "rgb(167, 230, 255)"
             }}>
               XLB PRICE
             </Typography>
@@ -33,7 +33,7 @@ const PriceInfo = () => {
             flexDirection: "column"
           }}>
             <Typography variant="h5" component="h2" style={{
-              color: "red"
+              color: "rgb(167, 230, 255)"
             }}>
               Market Cap
             </Typography>
@@ -48,7 +48,7 @@ const PriceInfo = () => {
             flexDirection: "column"
           }}>
             <Typography variant="h5" component="h2" style={{
-              color: "red"
+              color: "rgb(167, 230, 255)"
             }}>
               Daily ROI
             </Typography>
@@ -58,17 +58,17 @@ const PriceInfo = () => {
               1.7173%
             </Typography>
             <Typography variant="subtitle1" component="h2" style={{
-              color: "yellow"
+              color: "rgb(167, 230, 255)"
             }}>
               Next Rebase: 0.03548%
             </Typography>
             <Typography variant="subtitle1" component="h2" style={{
-              color: "yellow"
+              color: "rgb(167, 230, 255)"
             }}>
               5-day: 0.1774%
             </Typography>
             <Typography variant="subtitle1" component="h2" style={{
-              color: "yellow"
+              color: "rgb(167, 230, 255)"
             }}>
               Annual Rebase: 50019.28%
             </Typography>

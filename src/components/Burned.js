@@ -14,7 +14,7 @@ const Burned = () => {
           textAlign: 'center'
         }}>
           <Typography variant="h5" component="h2" style={{
-            color: "red"
+            color: "rgb(167, 230, 255)"
           }}>
             &#128293; Total Tokens Burned To Date &#128293;
           </Typography>

@@ -12,7 +12,7 @@ const Tax = () => {
         <Typography variant="h4" component="h2" style={{
           paddingTop: 10,
           paddingBottom: 10,
-          color: "red"
+          color: "rgb(167, 230, 255)"
         }}>
           Buy Tax
         </Typography>
@@ -25,7 +25,7 @@ const Tax = () => {
 
         <Typography variant="h4" component="h2" style={{
           paddingBottom: 10,
-          color: "red"
+          color: "rgb(167, 230, 255)"
         }}>
           Sell Tax
         </Typography>
@@ -38,7 +38,7 @@ const Tax = () => {
 
         <Typography variant="h4" component="h2" style={{
           paddingBottom: 10,
-          color: "red"
+          color: "rgb(167, 230, 255)"
         }}>
           Transfer Tax
         </Typography>
@@ -51,7 +51,7 @@ const Tax = () => {
 
         <Typography variant="h4" component="h2" style={{
           paddingBottom: 10,
-          color: "red"
+          color: "rgb(167, 230, 255)"
         }}>
         Max Tokens Per Buy / Sell
         </Typography>

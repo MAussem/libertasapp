@@ -28,7 +28,7 @@ const Rebase = () => {
         styles={buildStyles ({ 
         textColor:'#fff',
         pathColor:'rgba(255, 0, 0, 0.1)',
-        trailColor:'yellow',
+        trailColor:'rgb(0, 183, 255)',
       })} />
       <Box sx={{
         margin: 1,
@@ -40,7 +40,7 @@ const Rebase = () => {
           NEXT REWARD: 0.03548%
         </Typography>
         <Typography variant='subtitle2' style={{
-          color: "red"
+          color: "rgb(167, 230, 255)"
         }}>
           8,888 XLB
         </Typography>
