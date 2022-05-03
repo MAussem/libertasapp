@@ -28,7 +28,7 @@ const Rebase = () => {
         styles={buildStyles ({ 
         textColor:'#fff',
         pathColor:'rgba(255, 0, 0, 0.1)',
-        trailColor:'rgb(0, 183, 255)',
+        trailColor:'rgb(140, 230, 270)',
       })} />
       <Box sx={{
         margin: 1,

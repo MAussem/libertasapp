@@ -26,6 +26,11 @@ const TopBar = () => {
       }
   }
 
+  const buttonStyles = {
+    fontWeight: 800,
+    background: "linear-gradient(red, yellow);" 
+  }
+
  return (
   <>
     <Paper elevation={10} style={{
@@ -96,10 +101,11 @@ const TopBar = () => {
           </Typography>
         </a>
         {active ? 
-          <Button variant="outlined" onClick={disconnectMeta}> 
+          <Button variant="contained" onClick={disconnectMeta}> 
             Disconnect 
           </Button> : 
-          <Button variant="outlined" onClick={connectMeta}>
+          <Button variant="contained" onClick={connectMeta}
+          sx={buttonStyles}>
             Connect Wallet
           </Button>
         }
