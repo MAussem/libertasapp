@@ -67,7 +67,7 @@ const TopBar = () => {
         </Typography>
         </Box>
         <Link to='/'>
-        <Typography className="dash">
+        <Typography className="dash1">
           Dashboard
         </Typography>
         </Link>

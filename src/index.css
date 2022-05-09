@@ -24,6 +24,11 @@ a:link {
   text-decoration: none;
 }
 
+.dash1 {
+  color: rgb(167, 230, 255);
+  text-decoration: underline;
+}
+
 .dash:hover {
   color: rgb(167, 230, 255);
   cursor: pointer;
