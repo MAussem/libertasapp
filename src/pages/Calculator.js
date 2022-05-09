@@ -1,49 +1,15 @@
-import { Box, TextField } from "@mui/material";
+import { Container, Grid } from "@mui/material";
+import CalculatorInfo from "../components/CalculatorInfo";
+import InterestCalc from '../components/InterestCalc';
 
 const Calculator = () => {
   return (
-    <>
-    <form>
-    <Box
-      component="form"
-      sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <div>
-        <TextField
-          XLB Amount
-          id="outlined-error"
-          label="0"
-          defaultValue="Hello World"
-        />
-        <TextField
-          APY
-          id="outlined-error-helper-text"
-          label="0"
-          defaultValue="Hello World"
-        />
-      </div>
-            <div>
-        <TextField
-          XLB Amount
-          id="outlined-error"
-          label="0"
-          defaultValue="Hello World"
-        />
-        <TextField
-          APY
-          id="outlined-error-helper-text"
-          label="Error"
-          defaultValue="Hello World"
-        />
-      </div>
-
-    </Box>
-    </form>
-  </>
+    <Container maxWidth="xl">
+     <Grid container spacing={5}>
+      <InterestCalc />
+      <CalculatorInfo />
+     </Grid>
+    </Container>
   )
 }
 
