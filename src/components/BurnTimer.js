@@ -47,8 +47,9 @@ const BurnTimer = () => {
       </Box>
       <Typography variant="h5" component="h2" style={{
         margin: 3,
-              color: "rgb(167, 230, 255)"
-            }}>
+        paddingLeft: 4,
+        color: "rgb(167, 230, 255)"
+      }}>
           Count Down to Next Burn
         </Typography>
       </Box>
