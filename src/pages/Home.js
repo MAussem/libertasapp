@@ -5,6 +5,8 @@ import Hero from '../components/Hero';
 import PriceInfo from '../components/PriceInfo';
 import Tax from '../components/Tax';
 import TreasuryInfo from '../components/TreasuryInfo';
+import { useTheme } from "@mui/material/styles"
+import { useMediaQuery } from "@mui/material"
 // import { ThemeProvider, createStyles } from '@material-ui/styles';
 
 // const THEME = createStyles({
@@ -19,6 +21,9 @@ import TreasuryInfo from '../components/TreasuryInfo';
 
 const Home = () => {
 
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('md'));
+
   return (
     // <ThemeProvider theme={THEME}>
         <Container maxWidth="xl">
@@ -26,9 +31,9 @@ const Home = () => {
           <Hero />
           <PriceInfo />
           <Tax />
-          <TreasuryInfo />
+         {!matches && <TreasuryInfo />}
           <Burned />
-          <BurnTimer />
+          {!matches && <BurnTimer />}
           </Grid>
         </Container>
     // </ThemeProvider>

@@ -1,32 +1,39 @@
 import { Grid, Paper, Typography, Box, Button } from "@mui/material"
+import { makeStyles } from "@material-ui/core"
+import { useTheme } from "@mui/material/styles"
+import { useMediaQuery } from "@mui/material"
 import Rebase from "./Rebase";
-// import { injected } from './connectors'
-// import { useWeb3React } from '@web3-react/core'
+
+const fontStyles = makeStyles((theme) => ({
+  hTitle: {
+    padding: theme.spacing(1),
+    [theme.breakpoints.down('md')]: {
+      fontSize: 17,
+    }
+  },
+}));
+
+const buttonSty = makeStyles((theme) => ({
+  buttonS: {
+    padding: theme.spacing(1),
+    [theme.breakpoints.down('md')]: {
+      fontSize: 10,
+    }
+  },
+}));
+
 
 const Hero = () => {
-
-  // const { active, account, activate, deactivate } = useWeb3React()
-
-  // const connectMeta = async () => {
-  //     try {
-  //         await activate(injected)
-  //     } catch (ex) {
-  //         console.log(ex)
-  //     }
-  // }
-
-  // const disconnectMeta = async () => {
-  //     try {
-  //         deactivate(injected)
-  //     } catch (ex) {
-  //         console.log(ex)
-  //     }
-  // }
 
   const buttonStyles = {
     fontWeight: 800,
     background: "linear-gradient(red, yellow);" 
   }
+
+  const classe = buttonSty();
+  const classes = fontStyles();
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down('md'));
 
   return ( 
     <>
@@ -51,7 +58,7 @@ const Hero = () => {
             flexDirection: "column",
             alignItems: "center",
           }}>
-            <Typography variant="h5" component="h2" style={{
+            <Typography className={classes.hTitle} variant="h5" component="h2" style={{
               color: "#fff"
             }}>
               Portfolio
@@ -69,7 +76,7 @@ const Hero = () => {
                 Not Connected
               </Typography>} */}
               <a href="https://app.yuzu-swap.com/#/swap" target="_blank" rel="noreferrer">
-                <Button variant="contained"
+                <Button className={classe.buttonS} variant="contained"
                 sx={buttonStyles}>
                   Buy XLB
                 </Button>
@@ -86,7 +93,7 @@ const Hero = () => {
               </Button>
               } */}
               <a href="https://www.dextools.io/" target="_blank" rel="noreferrer">
-                <Button variant="contained" 
+                <Button className={classe.buttonS} variant="contained" 
                 sx={buttonStyles}>
                   View Chart
                 </Button>
@@ -97,12 +104,12 @@ const Hero = () => {
             flexDirection: "column",
             alignItems: "center",
             }}>
-            <Typography variant="h5" component="h2" style={{
+            <Typography className={classes.hTitle} variant="h5" component="h2" style={{
               color: "rgb(167, 230, 255)"
             }}>
               Holdings
             </Typography>
-            <Typography variant="h2" component="h2" style={{
+            <Typography className={classes.hTitle} variant="h2" component="h2" style={{
               fontWeight: 700
             }}>
               $88,888
@@ -120,12 +127,12 @@ const Hero = () => {
             flexDirection: "column",
             alignItems: "center",
           }}>
-            <Typography variant="h5" component="h2" style={{
+            <Typography className={classes.hTitle} variant="h5" component="h2" style={{
               color: "rgb(167, 230, 255)"
             }}>
               Daily Earnings
             </Typography>
-            <Typography variant="h2" component="h2" style={{
+            <Typography className={classes.hTitle} variant="h2" component="h2" style={{
               fontWeight: 700
             }}>
               $8,888
@@ -142,7 +149,7 @@ const Hero = () => {
             display: "flex",
             flexDirection: "column"
             }}>
-              <Rebase />
+              {!matches && <Rebase />}
             </Box>
         </Box>
       </Paper> 
