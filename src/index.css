@@ -35,6 +35,10 @@ a:link {
   color: rgb(167, 230, 255);
   text-decoration: underline;
 }
+.dashl {
+  padding-bottom: 10px;
+  color: rgb(167, 230, 255);
+}
 .dash {
   padding-bottom: 10px;
 }

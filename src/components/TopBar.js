@@ -45,6 +45,8 @@ const TopBar = () => {
                         onClick={() => setOpen(!open)}
                       />
 
+  // const closeMobileMenu = () => setOpen(false);
+
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('md'));
   
@@ -155,17 +157,17 @@ const TopBar = () => {
         padding: 2
       }}>
         <Link to='/'>
-          <Typography className="dash1">
+          <Typography className="dash1" onClick={() => setOpen(!open)}>
            Dashboard
           </Typography>
         </Link>
         <Link to='/calc'>
-        <Typography className="dash">
+        <Typography className="dash" onClick={() => setOpen(!open)}>
           Calculator
         </Typography>
         </Link>
         <a href="https://app.yuzu-swap.com/#/swap" target="_blank" rel="noreferrer">
-          <Typography className="dash">
+          <Typography className="dash" onClick={() => setOpen(!open)}>
             Swap
           </Typography>
         </a>
@@ -173,10 +175,10 @@ const TopBar = () => {
           display: "flex",
           flexDirection: "column"
         }}>
-        <Typography>
+        <Typography onClick={() => setOpen(!open)}>
           Launch Pad
         </Typography>
-        <Typography variant="body3" className="dash" style={{
+        <Typography variant="body3" className="dashl" style={{
           marginLeft: 2,
           color: "rgb(167, 230, 255)"
         }}>
@@ -184,7 +186,7 @@ const TopBar = () => {
         </Typography>
         </Box>
         <a href="https://libertas-finance.gitbook.io/libertasfinance/" target="_blank" rel="noreferrer">
-          <Typography className="dash">
+          <Typography className="dash" onClick={() => setOpen(!open)}>
            Whitepaper
           </Typography>
         </a>

@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import TopBar from './components/TopBar';
-// import Calculator from './pages/Calculator';
+import Calculator from './pages/Calculator';
 
 
 
@@ -14,7 +14,7 @@ const App = () => {
       <TopBar />
       <Routes>
         <Route path='/' element={<Home />}/>
-        {/* <Route path='/calc' element={<Calculator />} /> */}
+        <Route path='/calc' element={<Calculator />} />
       </Routes> 
     </BrowserRouter>
   );

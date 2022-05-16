@@ -1,28 +1,7 @@
-import { Paper, Box, TextField } from "@mui/material";
+import { Paper, Box, TextField, Grid } from "@mui/material";
 import Slider from '@mui/material/Slider';
-import { styled } from '@mui/material/styles';
 
 const Calculator = () => {
-
-  const CssTextField = styled(TextField)({
-    '& label.Mui-focused': {
-      color: 'green',
-    },
-    '& .MuiInput-underline:after': {
-      borderBottomColor: 'green',
-    },
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'red',
-      },
-      '&:hover fieldset': {
-        borderColor: 'yellow',
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: 'green',
-      },
-    },
-  });
 
   const marks = [
     {
@@ -30,7 +9,7 @@ const Calculator = () => {
       label: 'One Week',
     },
     {
-      value: 14,
+      value: 28,
       label: 'Four Weeks',
     },
     {
@@ -49,9 +28,9 @@ const Calculator = () => {
 
   return (
     <>
-    <form>
+    <Grid item xs={5.5}>
     <Paper elevation={10} style={{
-        marginTop:200,
+        marginTop:160,
         borderStyle: "double",
         borderColor: "rgb(167, 230, 255, 0.2)",
         background:"rgba(0, 21, 66, 0.651)"
@@ -64,35 +43,38 @@ const Calculator = () => {
       noValidate
       autoComplete="off"
     >
-      <div>
-      <CssTextField label="Custom CSS" id="custom-css-outlined-input" />
-        <TextField
-          XLB Amount
-          id="outlined-error"
+      <Box sx={{
+          margin: 8
+        }}>
+      <TextField
+          $XLB Amount
+          id="custom-css-outlined-input"
           label="$XLB Amount"
-          defaultValue="Hello World"
+          defaultValue="0"
         />
         <TextField
           APY
-          id="outlined-error-helper-text"
+          id="custom-css-outlined-input"
           label="APY"
-          defaultValue="Hello World"
+          defaultValue="0"
         />
-      </div>
-            <div>
         <TextField
-          XLB Amount
-          id="outlined-error"
+          $XLB Price at Purchase
+          id="custom-css-outlined-input"
           label="$XLB Price at Purchase"
-          defaultValue="Hello World"
+          defaultValue="0"
         />
+      
         <TextField
-          APY
-          id="outlined-error-helper-text"
-          label="Future $XLB Price ($)"
-          defaultValue="Hello World"
+          Future $XLB Price
+          id="custom-css-outlined-input"
+          label="Future $XLB Price"
+          defaultValue="0"
         />
-      </div>
+        </Box>
+        <Box sx={{
+          margin: 8
+        }}>
       <Slider
         defaultValue={0}
         aria-label="Small"
@@ -101,9 +83,10 @@ const Calculator = () => {
         marks={marks}
         max={120}
       />
-    </Box>
+      </Box>
+      </Box>
     </Paper>
-    </form>
+    </Grid>
   </>
   )
 }

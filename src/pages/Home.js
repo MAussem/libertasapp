@@ -8,17 +8,6 @@ import TreasuryInfo from '../components/TreasuryInfo';
 import { useTheme } from "@mui/material/styles"
 import { useMediaQuery } from "@mui/material"
 import Rebase from '../components/Rebase';
-// import { ThemeProvider, createStyles } from '@material-ui/styles';
-
-// const THEME = createStyles({
-//   typography: {
-//    "fontFamily": `"Poppins", sans-serif`,
-//    "fontSize": 14,
-//    "fontWeightLight": 300,
-//    "fontWeightRegular": 400,
-//    "fontWeightMedium": 500
-//   }
-// });
 
 const Home = () => {
 
@@ -26,7 +15,6 @@ const Home = () => {
   const matches = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    // <ThemeProvider theme={THEME}>
         <Container maxWidth="xl">
           <Grid container spacing={5}>
           <Hero />
@@ -44,7 +32,6 @@ const Home = () => {
           {!matches && <BurnTimer />}
           </Grid>
         </Container>
-    // </ThemeProvider>
   );
 }
 
