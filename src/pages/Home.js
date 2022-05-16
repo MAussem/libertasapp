@@ -31,7 +31,7 @@ const Home = () => {
           <Grid container spacing={5}>
           <Hero />
           {matches && <Box sx={{
-            marginLeft: 14,
+            marginLeft: "33%",
             marginTop: 7,
             marginBottom: 5 
           }}>
