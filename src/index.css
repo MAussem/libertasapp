@@ -5,6 +5,12 @@
   color: #fff;
 }
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   background: url("./background-image/bgh.jpeg");
   background-size: cover;
