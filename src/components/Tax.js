@@ -28,7 +28,7 @@ const Tax = () => {
         padding: 15,
         background:"rgba(0, 21, 66, 0.651)"
       }}>
-        <Typography variant="h6" component="h2" style={{
+        <Typography className={classes.hTitle} variant="h6" component="h2" style={{
           paddingTop: 10,
           paddingBottom: 10,
           color: "rgb(167, 230, 255)"

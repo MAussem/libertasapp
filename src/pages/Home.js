@@ -1,4 +1,4 @@
-import { Container, Grid } from '@mui/material';
+import { Box, Container, Grid } from '@mui/material';
 import Burned from '../components/Burned';
 import BurnTimer from '../components/BurnTimer';
 import Hero from '../components/Hero';
@@ -7,6 +7,7 @@ import Tax from '../components/Tax';
 import TreasuryInfo from '../components/TreasuryInfo';
 import { useTheme } from "@mui/material/styles"
 import { useMediaQuery } from "@mui/material"
+import Rebase from '../components/Rebase';
 // import { ThemeProvider, createStyles } from '@material-ui/styles';
 
 // const THEME = createStyles({
@@ -29,6 +30,13 @@ const Home = () => {
         <Container maxWidth="xl">
           <Grid container spacing={5}>
           <Hero />
+          {matches && <Box sx={{
+            marginLeft: 14,
+            marginTop: 7,
+            marginBottom: 5 
+          }}>
+           <Rebase />
+          </Box>}
           <PriceInfo />
           <Tax />
          {!matches && <TreasuryInfo />}

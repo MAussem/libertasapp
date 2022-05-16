@@ -8,7 +8,7 @@ const fontStyles = makeStyles((theme) => ({
   hTitle: {
     padding: theme.spacing(1),
     [theme.breakpoints.down('md')]: {
-      fontSize: 17,
+      fontSize: [13, "!important"]
     }
   },
 }));
@@ -17,7 +17,7 @@ const buttonSty = makeStyles((theme) => ({
   buttonS: {
     padding: theme.spacing(1),
     [theme.breakpoints.down('md')]: {
-      fontSize: 10,
+      fontSize: [10, "!important"]
     }
   },
 }));
@@ -37,7 +37,7 @@ const Hero = () => {
 
   return ( 
     <>
-    <Grid item xs={12}>
+    <Grid item xs={12} className={classes.hTitle}>
       <Paper elevation={10} style={{
         borderStyle: "double",
         borderColor: "rgb(167, 230, 255, 0.2)",
@@ -58,9 +58,7 @@ const Hero = () => {
             flexDirection: "column",
             alignItems: "center",
           }}>
-            <Typography className={classes.hTitle} variant="h5" component="h2" style={{
-              color: "#fff"
-            }}>
+            <Typography className={classes.hTitle} variant="h5" component="h2" >
               Portfolio
             </Typography>
               <Box paddingX={4} paddingY={1}>
@@ -115,7 +113,7 @@ const Hero = () => {
               $88,888
             </Typography>
             <Box paddingY={2}>
-              <Typography variant="subtitle1" component="h2" style={{
+              <Typography className={classes.hTitle} variant="subtitle1" component="h2" style={{
                 color: "rgb(167, 230, 255)"
               }}>
                 14,562,317 XLB
@@ -138,7 +136,7 @@ const Hero = () => {
               $8,888
             </Typography>
             <Box paddingY={2}>
-              <Typography variant="subtitle1" component="h2" style={{
+              <Typography className={classes.hTitle} variant="subtitle1" component="h2" style={{
                 color: "rgb(167, 230, 255)"
               }}>
                 145,317 XLB

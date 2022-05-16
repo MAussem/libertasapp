@@ -69,6 +69,7 @@ const TopBar = () => {
         <Typography style={{
           fontSize: 30,
           fontWeight: 700,
+          marginLeft: 10
         }}>
           Libertas
         </Typography>

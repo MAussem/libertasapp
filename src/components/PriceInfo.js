@@ -9,7 +9,7 @@ const PriceInfo = () => {
     hTitle: {
       padding: theme.spacing(1),
       [theme.breakpoints.down('md')]: {
-        fontSize: 17,
+        fontSize: [17, "!important"]
       }
     },
   }));
@@ -86,7 +86,7 @@ const PriceInfo = () => {
             }}>
               5-day: 0.1774%
             </Typography> */}
-            <Typography variant="subtitle1" component="h2" style={{
+            <Typography className={classes.hTitle} variant="subtitle1" component="h2" style={{
               color: "rgb(167, 230, 255)"
             }}>
               Annual Rebase: 100016.63%
@@ -136,36 +136,6 @@ const PriceInfo = () => {
               fontWeight: 700
             }}>
               $78.21M
-            </Typography>
-          </Box>
-          <Box sx={{
-            display: "flex",
-            flexDirection: "column"
-          }}>
-            <Typography className={classes.hTitle} variant="h5" component="h2" style={{
-              color: "rgb(167, 230, 255)"
-            }}>
-              Daily ROI
-            </Typography>
-            <Typography className={classes.hTitle} variant="h3" component="h2" style={{
-              fontWeight: 700
-            }}>
-              1.9106%
-            </Typography>
-            <Typography className={classes.hTitle} variant="subtitle1" component="h2" style={{
-              color: "rgb(167, 230, 255)"
-            }}>
-              Next Rebase: 0.03943%
-            </Typography>
-            {/* <Typography variant="subtitle1" component="h2" style={{
-              color: "rgb(167, 230, 255)"
-            }}>
-              5-day: 0.1774%
-            </Typography> */}
-            <Typography variant="subtitle1" component="h2" style={{
-              color: "rgb(167, 230, 255)"
-            }}>
-              Annual Rebase: 100016.63%
             </Typography>
           </Box>
         </Box>

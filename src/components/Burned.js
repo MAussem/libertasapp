@@ -9,7 +9,7 @@ const Burned = () => {
     hTitle: {
       padding: theme.spacing(1),
       [theme.breakpoints.down('md')]: {
-        fontSize: 17
+        fontSize: [17, "!important"]
       }
     },
   }));
