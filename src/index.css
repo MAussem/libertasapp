@@ -31,25 +31,16 @@ a:link {
 }
 
 .dash1 {
+  padding-bottom: 10px;
   color: rgb(167, 230, 255);
   text-decoration: underline;
+}
+.dash {
+  padding-bottom: 10px;
 }
 
 .dash:hover {
   color: rgb(167, 230, 255);
   cursor: pointer;
   text-decoration: underline;
-}
-
-.privatize {
-  width: 5.3ch;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.privatize2 {
-  margin: 10px 0;
-  width: 5.3ch;
-  overflow: hidden;
-  white-space: nowrap;
 }
