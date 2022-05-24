@@ -106,11 +106,25 @@ const TopBar = () => {
            Dashboard
           </Typography>
         </Link>
-        <Link to='/calc'>
+        {/* <Link to='/calc'>
         <Typography className="dash">
           Calculator
         </Typography>
-        </Link>
+        </Link> */}
+        <Box sx={{
+          display: "flex",
+          flexDirection: "column"
+        }}>
+        <Typography onClick={() => setOpen(!open)}>
+          Calculator
+        </Typography>
+        <Typography variant="body3" className="dashl" style={{
+          marginLeft: -2,
+          color: "rgb(167, 230, 255)"
+        }}>
+          coming soon
+        </Typography>
+        </Box>
         <a href="https://app.yuzu-swap.com/#/swap" target="_blank" rel="noreferrer">
           <Typography className="dash">
             Swap
@@ -124,6 +138,7 @@ const TopBar = () => {
           Launch Pad
         </Typography>
         <Typography variant="body3" className="dash" style={{
+          marginTop: -10,
           marginLeft: 2,
           color: "rgb(167, 230, 255)"
         }}>
@@ -161,7 +176,7 @@ const TopBar = () => {
            Dashboard
           </Typography>
         </Link>
-        <Link to='/calc'>
+        {/* <Link to='/calc'>
         <Typography className="dash" onClick={() => setOpen(!open)}>
           Calculator
         </Typography>
@@ -170,7 +185,21 @@ const TopBar = () => {
           <Typography className="dash" onClick={() => setOpen(!open)}>
             Swap
           </Typography>
-        </a>
+        </a> */}
+        <Box sx={{
+          display: "flex",
+          flexDirection: "column"
+        }}>
+        <Typography onClick={() => setOpen(!open)}>
+          Calculator
+        </Typography>
+        <Typography variant="body3" className="dashl" style={{
+          marginLeft: -2,
+          color: "rgb(167, 230, 255)"
+        }}>
+          coming soon
+        </Typography>
+        </Box>
         <Box sx={{
           display: "flex",
           flexDirection: "column"
