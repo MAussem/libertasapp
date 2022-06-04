@@ -61,11 +61,16 @@ const Hero = () => {
             <Typography className={classes.hTitle} variant="h5" component="h2" >
               Portfolio
             </Typography>
-              <Box paddingX={4} paddingY={1}>
+              <Box paddingX={4} paddingY={2} sx={{
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-around",
+        alignItems: "center"
+      }}>
                 <img 
-                  src="../flame.png"
+                  src="../flame.svg"
                   alt=""
-                  className="img" />
+                  className="imgT" />
               </Box>
               {/* {active ? <div className='privatize2'>{account}</div> : <Typography variant="subtitle1" component="h2" style={{
                 marginBottom: 10,

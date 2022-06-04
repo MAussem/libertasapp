@@ -59,7 +59,7 @@ const TopBar = () => {
       <Box sx={{
         display: "flex",
         flexDirection: "row",
-        justifyContent: "space-between",
+        justifyContent: "space-around",
         alignItems: "center"
       }}>
         <img 
@@ -90,13 +90,9 @@ const TopBar = () => {
         justifyContent: "space-around",
         alignItems: "center"
       }}>
-        <Box sx={{
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center"
-        }}>
+        <Box>
         <img 
-          src="../flame.png" 
+          src="../flame.svg" 
           className="imgT"
           alt=""
         />
