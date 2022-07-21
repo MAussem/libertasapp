@@ -1,6 +1,8 @@
 import { Box, Typography } from '@mui/material';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { displayBalance } from './Web3Client';
+import React, { useState } from 'react';
 // import {useContext, useState, useEffect, useRef} from "react";
 
 // const Timer = () => {
@@ -16,6 +18,23 @@ import 'react-circular-progressbar/dist/styles.css';
 const percentage = "30:00";
 
 const Rebase = () => {
+
+  const [balance, setBalance] = useState(0);
+
+  
+  const fetchBalance = () => { 
+    displayBalance().then(balance => {
+      setBalance(balance);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  };
+
+  const rebaseRate = 0.03548;
+
+  const nextReward = (balance / 100) * rebaseRate;
+
   return (
     <div style={{ 
       marginTop: -25,
@@ -42,9 +61,10 @@ const Rebase = () => {
         <Typography variant='subtitle2' style={{
           color: "rgb(167, 230, 255)"
         }}>
-          8,888 XLB
+          {nextReward} XLB
         </Typography>
       </Box>
+      <button onClick={() => fetchBalance()}>click me</button>
     </div>
   )
 }

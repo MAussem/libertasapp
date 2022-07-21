@@ -7,6 +7,9 @@ import { useMediaQuery } from "@mui/material"
 import { useState } from "react"
 import { CgClose } from "react-icons/cg"
 import { CgMenu } from "react-icons/cg"
+// import Web3 from "web3"
+
+// let erc20Contract;
 
 const TopBar = () => {
 
@@ -121,7 +124,7 @@ const TopBar = () => {
           coming soon
         </Typography>
         </Box>
-        <a href="https://app.yuzu-swap.com/#/swap" target="_blank" rel="noreferrer">
+        <a href="https://lib-dex.netlify.app/" target="_blank" rel="noreferrer">
           <Typography className="dash">
             Swap
           </Typography>

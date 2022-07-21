@@ -1,8 +1,10 @@
+import React, { useState } from 'react';
 import { Grid, Paper, Typography, Box, Button } from "@mui/material"
 import { makeStyles } from "@material-ui/core"
 import { useTheme } from "@mui/material/styles"
 import { useMediaQuery } from "@mui/material"
 import Rebase from "./Rebase";
+import { displayBalance } from './Web3Client';
 
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
@@ -25,6 +27,8 @@ const buttonSty = makeStyles((theme) => ({
 
 const Hero = () => {
 
+  const [balance, setBalance] = useState(0);
+
   const buttonStyles = {
     fontWeight: 800,
     background: "linear-gradient(red, yellow);" 
@@ -34,6 +38,19 @@ const Hero = () => {
   const classes = fontStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('md'));
+
+  const fetchBalance = () => { 
+    displayBalance().then(balance => {
+      setBalance(balance);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  };
+
+  const rebaseRate = 1.9106;
+
+  const dailyRoi = (balance / 100) * rebaseRate;
 
   return ( 
     <>
@@ -78,7 +95,7 @@ const Hero = () => {
               }}> 
                 Not Connected
               </Typography>} */}
-              <a href="https://app.yuzu-swap.com/#/swap" target="_blank" rel="noreferrer">
+              <a href="https://lib-dex.netlify.app/" target="_blank" rel="noreferrer">
                 <Button className={classe.buttonS} variant="contained"
                 sx={buttonStyles}>
                   Buy XLB
@@ -118,11 +135,14 @@ const Hero = () => {
               $88,888
             </Typography>
             <Box paddingY={2}>
+            <button onClick={() => fetchBalance()}>click me</button>
               <Typography className={classes.hTitle} variant="subtitle1" component="h2" style={{
                 color: "rgb(167, 230, 255)"
               }}>
-                14,562,317 XLB
+                {balance} XLB
               </Typography>
+
+              
             </Box>
           </Box>
           <Box sx={{
@@ -144,7 +164,7 @@ const Hero = () => {
               <Typography className={classes.hTitle} variant="subtitle1" component="h2" style={{
                 color: "rgb(167, 230, 255)"
               }}>
-                145,317 XLB
+                {dailyRoi} XLB
               </Typography>
             </Box>
           </Box>

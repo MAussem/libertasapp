@@ -22,7 +22,8 @@
     "react-scripts": "4.0.3",
     "walletconnect": "^1.7.8",
     "web-vitals": "^2.1.4",
-    "web3": "^1.7.3"
+    "web3": "^1.7.3",
+    "contracts": "file.../../0623-test/artifacts/contracts/Token.sol"
   },
   "scripts": {
     "start": "react-scripts start",
