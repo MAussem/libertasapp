@@ -7,7 +7,7 @@ const Calculator = () => {
     <Container maxWidth="xl">
      <Grid container spacing={5}>
       <InterestCalc />
-      <CalculatorInfo />
+      {/* <CalculatorInfo /> */}
      </Grid>
     </Container>
   )

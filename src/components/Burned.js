@@ -40,7 +40,7 @@ const Burned = () => {
           <Typography variant="h2" component="h2" style={{
             fontWeight: 700
           }}>
-            888,888,888
+            0
           </Typography>
         </Box>
       </Paper>
@@ -65,7 +65,7 @@ const Burned = () => {
           <Typography className={classes.hTitle} variant="h2" component="h2" style={{
             fontWeight: 700
           }}>
-            888,888,888
+            0
           </Typography>
         </Box>
       </Paper>

@@ -1,6 +1,24 @@
+import { useEffect, useState } from 'react';
 import { Grid, Paper, Typography, Box } from "@mui/material"
+import { displayTreasuryBalance } from './Web3Client';
 
 const TreasuryInfo = () => {
+
+  const [balance, setBalance] = useState(0);
+
+  const fetchBalance = () => { 
+    displayTreasuryBalance().then(balance => {
+      setBalance(balance);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  };
+
+  useEffect(() => {
+    fetchBalance();
+  }, [])
+
  return (
   <>
       <Grid item xs={4}>
@@ -22,8 +40,9 @@ const TreasuryInfo = () => {
         <Typography variant="h3" component="h2" style={{
           fontWeight: 700
         }}>
-          $23,416,789M
+          ${balance}
         </Typography>
+        {/* <button onClick={() => fetchBalance()}>click me</button> */}
         </Box>
       </Paper>
     </Grid>
@@ -46,7 +65,7 @@ const TreasuryInfo = () => {
         <Typography variant="h3" component="h2" style={{
           fontWeight: 700
         }}>
-          88,888
+          0
         </Typography>
         </Box>
       </Paper>

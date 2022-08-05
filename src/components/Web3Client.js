@@ -9,6 +9,10 @@ import Web3 from 'web3';
 
   let erc20Contract;
 
+  let treasury;
+
+  let treasuryContract;
+
 export const init = async () => {
   let provider = window.ethereum;
 
@@ -52,9 +56,36 @@ export const init = async () => {
   },
   ];
 
+  const treasuryABI = [
+    {
+      "constant": true,
+      "inputs": [
+          {
+              "name": "_owner",
+              "type": "address"
+          }
+      ],
+      "name": "balanceOf",
+      "outputs": [
+          {
+              "name": "balance",
+              "type": "uint256"
+          }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+  },
+  ];
+
+  treasuryContract = new web3.eth.Contract(
+    treasuryABI,
+    '0xAcdede90118B3262348ACd961C63EB368d640835'
+  );
+
   erc20Contract = new web3.eth.Contract(
     erc20Abi,
-    '0x7E9BCEC793840C7c37335Bdf667E9198AAe90DB9'
+    '0x4B034645BC8B43A300739f83AEaCdbF0E1a90a38'
   );
 
   isInitialized = true;
@@ -69,6 +100,15 @@ export const displayBalance = async () => {
     await init();
   }
   return erc20Contract.methods.balanceOf(selectedAccount).call().then(balance => {
+    return Web3.utils.fromWei(balance);
+  });
+}
+
+export const displayTreasuryBalance = async () => {
+  if(!isInitialized) {
+    await init();
+  }
+  return treasuryContract.methods.balanceOf(treasury).call().then(balance => {
     return Web3.utils.fromWei(balance);
   });
 }

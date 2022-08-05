@@ -18,6 +18,8 @@ const PriceInfo = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('md'));
 
+  const rebaseRate = 0.0302487;
+
  return (
   <>
     {!matches && <Grid item xs={8}>
@@ -44,7 +46,7 @@ const PriceInfo = () => {
             <Typography className={classes.hTitle} variant="h3" component="h2" style={{
               fontWeight: 700
             }}>
-              $0.8888
+              $0
             </Typography>
           </Box>
           <Box sx={{
@@ -59,7 +61,7 @@ const PriceInfo = () => {
             <Typography className={classes.hTitle} variant="h3" component="h2" style={{
               fontWeight: 700
             }}>
-              $78.21M
+              $0
             </Typography>
           </Box>
           <Box sx={{
@@ -74,12 +76,12 @@ const PriceInfo = () => {
             <Typography className={classes.hTitle} variant="h3" component="h2" style={{
               fontWeight: 700
             }}>
-              1.9106%
+              1.462306651%
             </Typography>
             <Typography className={classes.hTitle} variant="subtitle1" component="h2" style={{
               color: "rgb(167, 230, 255)"
             }}>
-              Next Rebase: 0.03943%
+              Next Rebase: {rebaseRate}
             </Typography>
             {/* <Typography variant="subtitle1" component="h2" style={{
               color: "rgb(167, 230, 255)"
@@ -89,7 +91,7 @@ const PriceInfo = () => {
             <Typography className={classes.hTitle} variant="subtitle1" component="h2" style={{
               color: "rgb(167, 230, 255)"
             }}>
-              Annual Rebase: 100016.63%
+              Annual Rebase: 20009.07%
             </Typography>
           </Box>
         </Box>
@@ -120,7 +122,7 @@ const PriceInfo = () => {
             <Typography className={classes.hTitle} variant="h3" component="h2" style={{
               fontWeight: 700
             }}>
-              $0.8888
+              $0
             </Typography>
           </Box>
           <Box sx={{
@@ -135,7 +137,7 @@ const PriceInfo = () => {
             <Typography className={classes.hTitle} variant="h3" component="h2" style={{
               fontWeight: 700
             }}>
-              $78.21M
+              $0
             </Typography>
           </Box>
         </Box>

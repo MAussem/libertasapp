@@ -13,6 +13,9 @@ import { CgMenu } from "react-icons/cg"
 
 const TopBar = () => {
 
+  const [isActiveD, setIsActiveD] = useState(true);
+  const [isActiveC, setIsActiveC] = useState(false);
+
   const [open, setOpen] = useState(false);
   
   const { active, account, activate, deactivate } = useWeb3React()
@@ -32,6 +35,16 @@ const TopBar = () => {
           console.log(ex)
       }
   }
+
+  const handleClickD = () => {
+    setIsActiveD(true);
+    setIsActiveC(false);
+  };
+
+  const handleClickC = () => {
+    setIsActiveC(true);
+    setIsActiveD(false);
+  };
 
   const buttonStyles = {
     fontWeight: 800,
@@ -62,7 +75,7 @@ const TopBar = () => {
       <Box sx={{
         display: "flex",
         flexDirection: "row",
-        justifyContent: "space-around",
+        justifyContent: "space-between",
         alignItems: "center"
       }}>
         <img 
@@ -100,30 +113,24 @@ const TopBar = () => {
           alt=""
         />
         </Box>
-        <Link to='/'>
-          <Typography className="dash1">
+        <Link to='/' >
+          <Typography className="dash1" style={{
+            textDecoration: isActiveD ? 'underline' : 'none',
+            color: isActiveD ? 'rgb(167, 230, 255)' : 'white',
+          }} 
+          onClick={handleClickD} >
            Dashboard
           </Typography>
         </Link>
-        {/* <Link to='/calc'>
-        <Typography className="dash">
+        <Link to='/calc'>
+        <Typography className="dash" style={{
+            textDecoration: isActiveC ? 'underline' : 'none',
+            color: isActiveC ? 'rgb(167, 230, 255)' : 'white',
+          }} 
+          onClick={handleClickC}>
           Calculator
         </Typography>
-        </Link> */}
-        <Box sx={{
-          display: "flex",
-          flexDirection: "column"
-        }}>
-        <Typography onClick={() => setOpen(!open)}>
-          Calculator
-        </Typography>
-        <Typography variant="body3" className="dashl" style={{
-          marginLeft: -2,
-          color: "rgb(167, 230, 255)"
-        }}>
-          coming soon
-        </Typography>
-        </Box>
+        </Link>
         <a href="https://lib-dex.netlify.app/" target="_blank" rel="noreferrer">
           <Typography className="dash">
             Swap

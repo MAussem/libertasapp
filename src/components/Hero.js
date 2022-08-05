@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Grid, Paper, Typography, Box, Button } from "@mui/material"
 import { makeStyles } from "@material-ui/core"
 import { useTheme } from "@mui/material/styles"
@@ -24,10 +24,44 @@ const buttonSty = makeStyles((theme) => ({
   },
 }));
 
+let selectedAccount;
+
 
 const Hero = () => {
 
   const [balance, setBalance] = useState(0);
+
+  useEffect(() => {
+
+  const loadAccounts = async () => {
+    let provider = window.ethereum;
+  
+    if(typeof provider !== 'undefined') {
+      provider.request({method: 'eth_requestAccounts' }).then(accounts => {
+        selectedAccount = accounts[0];
+        console.log({selectedAccount});
+      }).catch(err => {
+        console.log(err);
+      });
+  
+      window.ethereum.on('accountsChanged', function (accounts) {
+        selectedAccount = accounts[0];
+        console.log({selectedAccount});
+      });
+    }
+}
+const fetchBalance = async () => {
+  displayBalance().then(balance => {
+  setBalance(balance);
+  console.log({balance});
+})
+.catch(err => {
+  console.log(err);
+});
+}
+  loadAccounts();
+  fetchBalance();
+}, [selectedAccount])
 
   const buttonStyles = {
     fontWeight: 800,
@@ -39,16 +73,7 @@ const Hero = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down('md'));
 
-  const fetchBalance = () => { 
-    displayBalance().then(balance => {
-      setBalance(balance);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-  };
-
-  const rebaseRate = 1.9106;
+  const rebaseRate = 1.462306651;
 
   const dailyRoi = (balance / 100) * rebaseRate;
 
@@ -132,10 +157,10 @@ const Hero = () => {
             <Typography className={classes.hTitle} variant="h2" component="h2" style={{
               fontWeight: 700
             }}>
-              $88,888
+              $0
             </Typography>
             <Box paddingY={2}>
-            <button onClick={() => fetchBalance()}>click me</button>
+            {/* <button onClick={() => fetchBalance()}>click me</button> */}
               <Typography className={classes.hTitle} variant="subtitle1" component="h2" style={{
                 color: "rgb(167, 230, 255)"
               }}>
@@ -158,7 +183,7 @@ const Hero = () => {
             <Typography className={classes.hTitle} variant="h2" component="h2" style={{
               fontWeight: 700
             }}>
-              $8,888
+              $0
             </Typography>
             <Box paddingY={2}>
               <Typography className={classes.hTitle} variant="subtitle1" component="h2" style={{
