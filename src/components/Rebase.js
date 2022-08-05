@@ -3,7 +3,6 @@ import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import { displayBalance } from './Web3Client';
 import React, { useState, useEffect } from 'react';
-import {useRef} from "react";
 
 // const Timer = () => {
 //   const [secondsLeft, setSecondsLeft] = useState(0);
