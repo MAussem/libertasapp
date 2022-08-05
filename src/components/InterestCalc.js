@@ -1,4 +1,4 @@
-import { Paper, Box, Typography, Grid } from "@mui/material";
+import { Paper, Typography, Grid } from "@mui/material";
 import './InterestCalc.css'
 
 const Calculator = () => {

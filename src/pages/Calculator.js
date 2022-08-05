@@ -1,5 +1,5 @@
 import { Container, Grid } from "@mui/material";
-import CalculatorInfo from "../components/CalculatorInfo";
+// import CalculatorInfo from "../components/CalculatorInfo";
 import InterestCalc from '../components/InterestCalc';
 
 const Calculator = () => {

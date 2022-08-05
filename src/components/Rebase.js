@@ -5,15 +5,15 @@ import { displayBalance } from './Web3Client';
 import React, { useState, useEffect } from 'react';
 import {useRef} from "react";
 
-const Timer = () => {
-  const [secondsLeft, setSecondsLeft] = useState(0);
-  const secondsLeftRef = useRef(secondsLeft);
+// const Timer = () => {
+//   const [secondsLeft, setSecondsLeft] = useState(0);
+//   const secondsLeftRef = useRef(secondsLeft);
 
-  function tick() {
-    secondsLeftRef.current--;
-    setSecondsLeft(secondsLeftRef.current);
-  }
-}
+//   function tick() {
+//     secondsLeftRef.current--;
+//     setSecondsLeft(secondsLeftRef.current);
+//   }
+// }
 
 const percentage = "30:00";
 let selectedAccount;
@@ -53,7 +53,7 @@ const Rebase = () => {
   }
     loadAccounts();
     fetchBalance();
-  }, [selectedAccount])
+  }, [])
 
   const rebaseRate = 0.0302487;
 
