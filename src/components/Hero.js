@@ -61,7 +61,7 @@ const fetchBalance = async () => {
 }
   loadAccounts();
   fetchBalance();
-}, [selectedAccount])
+}, [])
 
   const buttonStyles = {
     fontWeight: 800,
