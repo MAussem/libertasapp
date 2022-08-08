@@ -1,32 +1,34 @@
-import Web3 from 'web3';
+import Web3 from "web3";
 
 // import XLB from 'contracts/Token.json';
-  
-  
-  let selectedAccount;
 
-  let isInitialized = false;
+let selectedAccount;
 
-  let erc20Contract;
+let isInitialized = false;
 
-  let treasury;
+let erc20Contract;
 
-  let treasuryContract;
+let treasury;
+
+let treasuryContract;
 
 export const init = async () => {
   let provider = window.ethereum;
 
-  if(typeof provider !== 'undefined') {
-    provider.request({method: 'eth_requestAccounts' }).then(accounts => {
-      selectedAccount = accounts[0];
-      console.log({selectedAccount});
-    }).catch(err => {
-      console.log(err);
-    });
+  if (typeof provider !== "undefined") {
+    provider
+      .request({ method: "eth_requestAccounts" })
+      .then((accounts) => {
+        selectedAccount = accounts[0];
+        console.log({ selectedAccount });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-    window.ethereum.on('accountsChanged', function (accounts) {
+    window.ethereum.on("accountsChanged", function (accounts) {
       selectedAccount = accounts[0];
-      console.log({selectedAccount});
+      console.log({ selectedAccount });
     });
   }
 
@@ -34,58 +36,58 @@ export const init = async () => {
 
   // const networkId = await web3.eth.net.getId();
 
-    const erc20Abi = [
+  const erc20Abi = [
     {
-      "constant": true,
-      "inputs": [
-          {
-              "name": "_owner",
-              "type": "address"
-          }
+      constant: true,
+      inputs: [
+        {
+          name: "_owner",
+          type: "address",
+        },
       ],
-      "name": "balanceOf",
-      "outputs": [
-          {
-              "name": "balance",
-              "type": "uint256"
-          }
+      name: "balanceOf",
+      outputs: [
+        {
+          name: "balance",
+          type: "uint256",
+        },
       ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-  },
+      payable: false,
+      stateMutability: "view",
+      type: "function",
+    },
   ];
 
   const treasuryABI = [
     {
-      "constant": true,
-      "inputs": [
-          {
-              "name": "_owner",
-              "type": "address"
-          }
+      constant: true,
+      inputs: [
+        {
+          name: "_owner",
+          type: "address",
+        },
       ],
-      "name": "balanceOf",
-      "outputs": [
-          {
-              "name": "balance",
-              "type": "uint256"
-          }
+      name: "balanceOf",
+      outputs: [
+        {
+          name: "balance",
+          type: "uint256",
+        },
       ],
-      "payable": false,
-      "stateMutability": "view",
-      "type": "function"
-  },
+      payable: false,
+      stateMutability: "view",
+      type: "function",
+    },
   ];
 
   treasuryContract = new web3.eth.Contract(
     treasuryABI,
-    '0xAcdede90118B3262348ACd961C63EB368d640835'
+    "0xAcdede90118B3262348ACd961C63EB368d640835"
   );
 
   erc20Contract = new web3.eth.Contract(
     erc20Abi,
-    '0x4B034645BC8B43A300739f83AEaCdbF0E1a90a38'
+    "0x4B034645BC8B43A300739f83AEaCdbF0E1a90a38"
   );
 
   isInitialized = true;
@@ -96,19 +98,25 @@ export const init = async () => {
 // }
 
 export const displayBalance = async () => {
-  if(!isInitialized) {
+  if (!isInitialized) {
     await init();
   }
-  return erc20Contract.methods.balanceOf(selectedAccount).call().then(balance => {
-    return Web3.utils.fromWei(balance);
-  });
-}
+  return erc20Contract.methods
+    .balanceOf(selectedAccount)
+    .call()
+    .then((balance) => {
+      return Web3.utils.fromWei(balance);
+    });
+};
 
 export const displayTreasuryBalance = async () => {
-  if(!isInitialized) {
+  if (!isInitialized) {
     await init();
   }
-  return treasuryContract.methods.balanceOf(treasury).call().then(balance => {
-    return Web3.utils.fromWei(balance);
-  });
-}
+  return treasuryContract.methods
+    .balanceOf(treasury)
+    .call()
+    .then((balance) => {
+      return Web3.utils.fromWei(balance);
+    });
+};
