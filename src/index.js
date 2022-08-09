@@ -22,6 +22,7 @@ const { provider, webSocketProvider } = configureChains(chains, [
 const client = createClient({
   provider,
   webSocketProvider,
+  autoConnect: true,
 });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
