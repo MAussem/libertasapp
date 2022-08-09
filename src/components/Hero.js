@@ -51,7 +51,7 @@ const Hero = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
 
-  const rebaseRate = 1.462306651;
+  //const rebaseRate = 1.462306651;
 
   const dailyRoi = useMemo(() => {
     if (!balanceRaw) return "n/a";

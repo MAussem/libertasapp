@@ -1,7 +1,6 @@
 import { Grid, Paper, Typography, Box } from "@mui/material";
-import { useAddresses, useContractXLBRead } from "../hooks/libertas";
+import { useAddresses } from "../hooks/libertas";
 import { useMemo } from "react";
-import { ethers } from "ethers";
 import { useBalance } from "wagmi";
 
 const TreasuryInfo = () => {

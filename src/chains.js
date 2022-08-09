@@ -1,5 +1,3 @@
-import { MetaMaskConnector } from "wagmi/connectors/metaMask";
-
 export const chains = [
   /*{
 		id: 42262,

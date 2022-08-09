@@ -1,6 +1,6 @@
 import { Container } from "@mui/system";
 import { useAccount } from "wagmi";
-import { Paper, Typography, Box, Button } from "@mui/material";
+import { Typography } from "@mui/material";
 
 export default function Test() {
   const { address } = useAccount();
