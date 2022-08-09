@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Grid, Paper, Typography, Box, Button } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import Rebase from "./Rebase";
-import { displayBalance } from "./Web3Client";
+
+import { useAccount } from "wagmi";
+import { useContractXLBRead } from "../hooks/libertas";
+import { useMemo } from "react";
+import { ethers } from "ethers";
 
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
@@ -24,45 +28,18 @@ const buttonSty = makeStyles((theme) => ({
   },
 }));
 
-let selectedAccount;
-
 const Hero = () => {
-  const [balance, setBalance] = useState(0);
+  const { address } = useAccount();
+  const { data: balanceRaw } = useContractXLBRead("balanceOf", address);
 
-  useEffect(() => {
-    const loadAccounts = async () => {
-      let provider = window.ethereum;
-
-      if (typeof provider !== "undefined") {
-        provider
-          .request({ method: "eth_requestAccounts" })
-          .then((accounts) => {
-            selectedAccount = accounts[0];
-            console.log({ selectedAccount });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-
-        window.ethereum.on("accountsChanged", function (accounts) {
-          selectedAccount = accounts[0];
-          console.log({ selectedAccount });
-        });
-      }
-    };
-    const fetchBalance = async () => {
-      displayBalance()
-        .then((balance) => {
-          setBalance(balance);
-          console.log({ balance });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
-    loadAccounts();
-    fetchBalance();
-  }, []);
+  const balance = useMemo(
+    () =>
+      balanceRaw
+        ? ethers.utils.formatEther(balanceRaw.sub(balanceRaw.mod(1e14))) +
+          " XLB"
+        : "n/a",
+    [balanceRaw]
+  );
 
   const buttonStyles = {
     fontWeight: 800,
@@ -76,7 +53,13 @@ const Hero = () => {
 
   const rebaseRate = 1.462306651;
 
-  const dailyRoi = (balance / 100) * rebaseRate;
+  const dailyRoi = useMemo(() => {
+    if (!balanceRaw) return "n/a";
+    const daily = balanceRaw
+      .div(ethers.BigNumber.from("100000000000"))
+      .mul(ethers.BigNumber.from("1462306651"));
+    return ethers.utils.formatEther(daily.sub(daily.mod(1e14)));
+  }, [balanceRaw]);
 
   return (
     <>

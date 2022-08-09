@@ -1,19 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import { Web3ReactProvider } from '@web3-react/core';
-import Web3 from 'web3';
+import React from "react";
+import ReactDOM from "react-dom/client";
 
-const getLibrary = (provider) => {
-  return new Web3(provider)
-}
+import { createClient, configureChains, WagmiConfig } from "wagmi";
+import { publicProvider } from "wagmi/providers/public";
+import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+import { chains } from "./chains";
+import App from "./App";
+
+import "./index.css";
+
+const { provider, webSocketProvider } = configureChains(chains, [
+  jsonRpcProvider({
+    rpc: (chain) => ({
+      http: "https://testnet.emerald.oasis.dev",
+    }),
+  }),
+  publicProvider(),
+]);
+
+const client = createClient({
+  provider,
+  webSocketProvider,
+});
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Web3ReactProvider getLibrary={getLibrary}>
+  <WagmiConfig client={client}>
     <App />
-  </Web3ReactProvider>
+  </WagmiConfig>
 );
-
-

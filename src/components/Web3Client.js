@@ -1,41 +1,20 @@
+import { useEffect, useCallback, useState, useMemo } from "react";
+
 import Web3 from "web3";
 
-// import XLB from 'contracts/Token.json';
+export const useDisplayBalance = async () => {
+  const account = useAccount();
+  const balance = useXLBBalance(account);
+  return !!balance ? Web3.utils.fromWei(balance) : "n/a";
+};
 
-let selectedAccount;
+export const useDisplayTreasuryBalance = async () => {
+  const balance = useXLBBalance("0xAcdede90118B3262348ACd961C63EB368d640835");
+  return !!balance ? Web3.utils.fromWei(balance) : "n/a";
+};
 
-let isInitialized = false;
-
-let erc20Contract;
-
-let treasury;
-
-let treasuryContract;
-
-export const init = async () => {
-  let provider = window.ethereum;
-
-  if (typeof provider !== "undefined") {
-    provider
-      .request({ method: "eth_requestAccounts" })
-      .then((accounts) => {
-        selectedAccount = accounts[0];
-        console.log({ selectedAccount });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-
-    window.ethereum.on("accountsChanged", function (accounts) {
-      selectedAccount = accounts[0];
-      console.log({ selectedAccount });
-    });
-  }
-
-  const web3 = new Web3(provider);
-
-  // const networkId = await web3.eth.net.getId();
-
+export function useXLB() {
+  const web3 = useWeb3();
   const erc20Abi = [
     {
       constant: true,
@@ -58,6 +37,29 @@ export const init = async () => {
     },
   ];
 
+  return new web3.eth.Contract(
+    erc20Abi,
+    "0x4B034645BC8B43A300739f83AEaCdbF0E1a90a38"
+  );
+}
+
+export function useXLBBalance(address) {
+  const xlb = useXLB();
+  const [balance, setBalance] = useState(null);
+
+  if (!address) return null;
+
+  xlb.methods
+    .balanceOf(address)
+    .call()
+    .then((balance) => {
+      setBalance(balance);
+    });
+  return balance;
+}
+
+export function useTreasury() {
+  const web3 = useWeb3();
   const treasuryABI = [
     {
       constant: true,
@@ -80,43 +82,31 @@ export const init = async () => {
     },
   ];
 
-  treasuryContract = new web3.eth.Contract(
+  return new web3.eth.Contract(
     treasuryABI,
     "0xAcdede90118B3262348ACd961C63EB368d640835"
   );
+}
 
-  erc20Contract = new web3.eth.Contract(
-    erc20Abi,
-    "0x4B034645BC8B43A300739f83AEaCdbF0E1a90a38"
-  );
+export function useAccount() {
+  const [account, setAccount] = useState(null);
 
-  isInitialized = true;
-};
+  const handleAccountsChange = useCallback((accounts) => {
+    setAccount(accounts[0]);
+  }, []);
 
-//   xlbContract = new web3.eth.Contract(XLB.abi, XLB.networks[networkId].address);
-//   isInitialized = true;
-// }
+  useEffect(() => {
+    window.ethereum.on("accountsChanged", handleAccountsChange);
+  }, []);
 
-export const displayBalance = async () => {
-  if (!isInitialized) {
-    await init();
-  }
-  return erc20Contract.methods
-    .balanceOf(selectedAccount)
-    .call()
-    .then((balance) => {
-      return Web3.utils.fromWei(balance);
-    });
-};
+  return account;
+}
 
-export const displayTreasuryBalance = async () => {
-  if (!isInitialized) {
-    await init();
-  }
-  return treasuryContract.methods
-    .balanceOf(treasury)
-    .call()
-    .then((balance) => {
-      return Web3.utils.fromWei(balance);
-    });
-};
+export function useWeb3() {
+  const provider = window.ethereum || null;
+  const web3 = useMemo(() => {
+    if (!provider) return null;
+    return new Web3(provider);
+  }, [provider]);
+  return web3;
+}
