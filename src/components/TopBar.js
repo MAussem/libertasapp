@@ -13,7 +13,7 @@ import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 const TopBar = () => {
   const { address, isConnected } = useAccount();
   const { disconnect } = useDisconnect();
-  const { connect, connectors} = useConnect({
+  const { connect, connector} = useConnect({
     connector: [
       new InjectedConnector(),
       new WalletConnectConnector({
@@ -125,7 +125,6 @@ const TopBar = () => {
             }}
           >
             <Box>
-            <img src="../flame.png" className="imgT" alt="" />
             </Box>
             <Link to="/">
               <Typography
@@ -189,7 +188,7 @@ const TopBar = () => {
                 Disconnect
               </Button>
             ) : (
-              <Button variant="contained" onClick={connect({connectors})} sx={buttonStyles}>
+              <Button variant="contained" onClick={connect} sx={buttonStyles}>
                 Connect Wallet
               </Button>
             )}
@@ -211,6 +210,7 @@ const TopBar = () => {
               padding: 2,
             }}
           >
+            <img src="../flame.png" className="imgT" alt="" />
             <Link to="/">
               <Typography className="dash1" onClick={handleClickD} style={{
                   textDecoration: isActiveD ? "underline" : "none",
@@ -278,7 +278,7 @@ const TopBar = () => {
                 Disconnect
               </Button>
             ) : (
-              <Button variant="contained" onClick={connect} sx={buttonStyles}>
+              <Button variant="contained" onClick={connect({connector})} sx={buttonStyles}>
                 Connect Wallet
               </Button>
             )}
