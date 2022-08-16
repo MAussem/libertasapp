@@ -191,7 +191,7 @@ const Hero = () => {
                     color: "rgb(167, 230, 255)",
                   }}
                 >
-                  {balance} XLB
+                  {balance}
                 </Typography>
               </Box>
             </Box>

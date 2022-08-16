@@ -177,7 +177,7 @@ const TopBar = () => {
               <Typography className="dash">Whitepaper</Typography>
             </a>
             {isConnected ? (
-              <Button variant="contained" onClick={disconnect}>
+              <Button variant="contained" onClick={disconnect} sx={buttonStyles}>
                 Disconnect
               </Button>
             ) : (
@@ -204,7 +204,10 @@ const TopBar = () => {
             }}
           >
             <Link to="/">
-              <Typography className="dash1" onClick={() => setOpen(!open)}>
+              <Typography className="dash1" onClick={handleClickD} style={{
+                  textDecoration: isActiveD ? "underline" : "none",
+                  color: isActiveD ? "rgb(167, 230, 255)" : "white",
+                }}>
                 Dashboard
               </Typography>
             </Link>
@@ -224,19 +227,14 @@ const TopBar = () => {
                 flexDirection: "column",
               }}
             >
-              <Typography onClick={() => setOpen(!open)}>Calculator</Typography>
-              <Typography
-                variant="body3"
-                className="dashl"
-                style={{
-                  marginLeft: -2,
-                  color: "rgb(167, 230, 255)",
-                }}
-              >
-                coming soon
-              </Typography>
+              <Link to="/calc">
+              <Typography onClick={handleClickC} style={{
+                  textDecoration: isActiveC ? "underline" : "none",
+                  color: isActiveC ? "rgb(167, 230, 255)" : "white",
+                }}>Calculator</Typography>
+              </Link>
             </Box>
-            <Box
+            {/* <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
@@ -253,7 +251,7 @@ const TopBar = () => {
               >
                 coming soon
               </Typography>
-            </Box>
+            </Box> */}
             <a
               href="https://libertas-finance.gitbook.io/libertasfinance/"
               target="_blank"
