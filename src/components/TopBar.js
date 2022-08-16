@@ -8,20 +8,14 @@ import { CgMenu } from "react-icons/cg";
 
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
-import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
+// import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 
 const TopBar = () => {
   const { address, isConnected } = useAccount();
   const { disconnect } = useDisconnect();
-  const { connect, connector} = useConnect({
-    connector: [
-      new InjectedConnector(),
-      new WalletConnectConnector({
-        options: {
-          qrcode: true,
-        },
-      }),
-    ]
+  const { connect } = useConnect({
+    connector:
+      new InjectedConnector()
   });
 
   const addressFormatted = useMemo(
@@ -92,12 +86,13 @@ const TopBar = () => {
               alignItems: "center",
             }}
           >
-            <img src="../flame.png" className="imgT" alt="" />
+            <img src="../flame.svg" className="imgT" alt="" />
             <Typography
               style={{
                 fontSize: 30,
                 fontWeight: 700,
                 marginLeft: 10,
+                marginRight:-50
               }}
             >
               Libertas
@@ -125,6 +120,7 @@ const TopBar = () => {
             }}
           >
             <Box>
+              <img src="../flame.svg" className="imgM" alt="" />
             </Box>
             <Link to="/">
               <Typography
@@ -210,7 +206,6 @@ const TopBar = () => {
               padding: 2,
             }}
           >
-            <img src="../flame.png" className="imgT" alt="" />
             <Link to="/">
               <Typography className="dash1" onClick={handleClickD} style={{
                   textDecoration: isActiveD ? "underline" : "none",
@@ -278,7 +273,7 @@ const TopBar = () => {
                 Disconnect
               </Button>
             ) : (
-              <Button variant="contained" onClick={connect({connector})} sx={buttonStyles}>
+              <Button variant="contained" onClick={connect} sx={buttonStyles}>
                 Connect Wallet
               </Button>
             )}

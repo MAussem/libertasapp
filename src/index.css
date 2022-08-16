@@ -23,6 +23,11 @@ body {
 }
 
 .imgT {
+  width: 5%;
+  margin: 5px;
+}
+
+.imgM {
   width: 9%;
   margin: 5px;
 }
