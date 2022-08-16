@@ -8,12 +8,20 @@ import { CgMenu } from "react-icons/cg";
 
 import { useAccount, useConnect, useDisconnect } from "wagmi";
 import { InjectedConnector } from "wagmi/connectors/injected";
+import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 
 const TopBar = () => {
   const { address, isConnected } = useAccount();
   const { disconnect } = useDisconnect();
   const { connect } = useConnect({
-    connector: new InjectedConnector(),
+    connector: [
+      new InjectedConnector(),
+      new WalletConnectConnector({
+        options: {
+          qrcode: true,
+        },
+      }),
+    ]
   });
 
   const addressFormatted = useMemo(

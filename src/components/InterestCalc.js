@@ -9,6 +9,7 @@ import { ethers } from "ethers";
 const Calculator = () => {
 
   const [daysFromCurrent, setDaysFromCurrent] = useState("0.0");
+  // const [changeBalance, setChangeBalance] = useState("0.0");
 
   const { address } = useAccount();
   const { data: balanceRaw } = useContractXLBRead("balanceOf", address);
@@ -160,8 +161,11 @@ const Calculator = () => {
         borderColor: "rgb(167, 230, 255, 0.2)",
         background:"rgba(0, 21, 66, 0.651)"
       }}>
-              <Typography className="hTitle" variant="h5" component="h2" style={{color: "rgb(167, 230, 255)"}}>
-        APY 20009.07%
+      <Typography className="hTitle" variant="h5" component="h2" style={{color: "rgb(167, 230, 255)"}}>
+        APY 
+      </Typography>
+      <Typography className="hTitle" variant="h5" component="h2" >
+        20009.07%
       </Typography>
           </Paper> 
 
@@ -176,7 +180,7 @@ const Calculator = () => {
       <Typography className="hTitle" variant="h5" component="h2" style={{color: "rgb(167, 230, 255)"}}>
         Initial Investment
       </Typography>
-      <Typography className="hTitle" variant="h5" component="h2" style={{color: "rgb(167, 230, 255)"}}>
+      <Typography className="hTitle" variant="h5" component="h2">
         $0.00 USD
       </Typography>
           </Paper> 
@@ -208,7 +212,7 @@ const Calculator = () => {
       <Typography className="hTitle" variant="h5" component="h2" style={{color: "rgb(167, 230, 255)"}}>
         Potential Return 
       </Typography>
-      <Typography className="hTitle" variant="h5" component="h2" style={{color: "rgb(167, 230, 255)"}}>
+      <Typography className="hTitle" variant="h5" component="h2">
         $0.00 USD
       </Typography>
           </Paper> 
