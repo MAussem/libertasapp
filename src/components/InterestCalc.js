@@ -1,4 +1,6 @@
-import { Paper, Typography, Grid } from "@mui/material";
+import { Paper, Typography, Grid, Box } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import { useMediaQuery } from "@mui/material";
 import './InterestCalc.css'
 
 import { useAccount } from "wagmi";
@@ -9,7 +11,7 @@ import { ethers } from "ethers";
 const Calculator = () => {
 
   const [daysFromCurrent, setDaysFromCurrent] = useState("0.0");
-  // const [changeBalance, setChangeBalance] = useState("0.0");
+
 
   const { address } = useAccount();
   const { data: balanceRaw } = useContractXLBRead("balanceOf", address);
@@ -19,7 +21,7 @@ const Calculator = () => {
       balanceRaw
         ? ethers.utils.formatEther(balanceRaw.sub(balanceRaw.mod(1e14))) +
           " XLB"
-        : "n/a",
+        : "0.0",
     [balanceRaw]
   );
 
@@ -31,15 +33,209 @@ const Calculator = () => {
     return ethers.utils.formatEther(daily.sub(daily.mod(1e14)));
   }, [balanceRaw]);
 
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <>
     <Grid item xs={12}>
-    <Paper elevation={10} style={{
+      {matches && (
+        <Paper elevation={10} style={{
+          marginTop:50,
+          marginBottom:50,
+          display: "flex",
+          justifyContent:"center",
+          alignItems:"center",
+          flexDirection:"column",
+          borderStyle: "double",
+          borderColor: "rgb(167, 230, 255, 0.2)",
+          background:"rgba(0, 21, 66, 0.651)"
+        }}>
+        <Typography className="hTitle" variant="h5" component="h2" style={{
+          textDecoration:"underline",
+          marginTop:50,
+          textAlign:"center",
+          color: "rgb(167, 230, 255)"
+        }}>
+          Estimate Your Returns
+        </Typography>
+          
+        <Paper elevation={10} style={{
+          width: "300px",
+          textAlign:"center",
+          marginTop:50,
+          borderStyle: "double",
+          borderColor: "rgb(167, 230, 255, 0.2)",
+          background:"rgba(0, 21, 66, 0.651)"
+        }}>
+            <Typography className="hTitle" variant="h5" component="h2" style={{color: "rgb(167, 230, 255)"}}>
+                $XLB Amount Balance:
+            </Typography>
+          <form style={{
+            textAlign:"center"
+          }}>
+            <input type="text" defaultValue={balance} onChange={(e) => (e.target.value)} 
+            style={{
+              textAlign:"center",
+              borderStyle: "double",
+              borderColor: "rgb(167, 230, 255, 0.2)",
+              background:"rgba(0, 21, 66, 0.651)"
+            }}></input>
+        </form>
+            </Paper>
+          
+        <Paper elevation={10} style={{
+          width: "300px",
+          textAlign:"center",
+          marginTop:50,
+          borderStyle: "double",
+          borderColor: "rgb(167, 230, 255, 0.2)",
+          background:"rgba(0, 21, 66, 0.651)"
+        }}>
+        <Typography className="hTitle" variant="h5" component="h2" style={{color: "rgb(167, 230, 255)"}}>
+          Purchase Price:
+        </Typography>
+        <form style={{
+            textAlign:"center"
+          }}>
+            <input type="text" defaultValue="0.0" style={{
+              textAlign:"center",
+              borderStyle: "double",
+              borderColor: "rgb(167, 230, 255, 0.2)",
+              background:"rgba(0, 21, 66, 0.651)"
+            }}></input>
+        </form>
+            </Paper>
+          
+        <Paper elevation={10} style={{
+          width: "300px",
+          textAlign:"center",
+          marginTop:50,
+          borderStyle: "double",
+          borderColor: "rgb(167, 230, 255, 0.2)",
+          background:"rgba(0, 21, 66, 0.651)"
+        }}>
+                <Typography className="hTitle" variant="h5" component="h2" style={{color: "rgb(167, 230, 255)"}}>
+                Future Price:
+        </Typography>
+        <form style={{
+            textAlign:"center"
+          }}>
+            <input type="text" defaultValue="0.0" style={{
+              textAlign:"center",
+              borderStyle: "double",
+              borderColor: "rgb(167, 230, 255, 0.2)",
+              background:"rgba(0, 21, 66, 0.651)"
+            }}></input>
+        </form>
+            </Paper> 
+          
+        <Paper elevation={10} style={{
+          width: "300px",
+          textAlign:"center",
+          marginTop:50,
+          display: "flex",
+          flexDirection:"column",
+          justifyContent: "space-between",
+          borderStyle: "double",
+          borderColor: "rgb(167, 230, 255, 0.2)",
+          background:"rgba(0, 21, 66, 0.651)"
+        }}>
+  
+        <Typography className="hTitle" variant="h5" component="h2" style={{color: "rgb(167, 230, 255)"}}>
+          How Many Days From Current? 
+        </Typography>
+        <form style={{
+            textAlign:"center"
+          }}>
+            <input type="text" defaultValue={daysFromCurrent} onChange={(e) => setDaysFromCurrent(e.target.value)} style={{
+              textAlign:"center",
+              borderStyle: "double",
+              borderColor: "rgb(167, 230, 255, 0.2)",
+              background:"rgba(0, 21, 66, 0.651)"
+            }}></input>
+        </form>
+            </Paper> 
+          
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-around",
+            alignItems:"flex-end"
+          }}
+            padding={1}
+        >
+        <Paper elevation={10} style={{
+          width: "300px",
+          textAlign:"center",
+          marginTop:50,
+          borderStyle: "double",
+          borderColor: "rgb(167, 230, 255, 0.2)",
+          background:"rgba(0, 21, 66, 0.651)"
+        }}>
+        <Typography className="hTitle" variant="h5" component="h2" style={{color: "rgb(167, 230, 255)"}}>
+          APY 
+        </Typography>
+        <Typography className="hTitle" variant="h5" component="h2" >
+          20009.07%
+        </Typography>
+            </Paper> 
+        <Paper elevation={10} style={{
+          width: "300px",
+          textAlign:"center",
+          marginTop:50,
+          borderStyle: "double",
+          borderColor: "rgb(167, 230, 255, 0.2)",
+          background:"rgba(0, 21, 66, 0.651)"
+        }}>
+        <Typography className="hTitle" variant="h5" component="h2" style={{color: "rgb(167, 230, 255)"}}>
+          Initial Investment
+        </Typography>
+        <Typography className="hTitle" variant="h5" component="h2">
+          $0.00 USD
+        </Typography>
+            </Paper> 
+  
+        <Paper elevation={10} style={{
+          width: "300px",
+          textAlign:"center",
+          marginTop:50,
+          borderStyle: "double",
+          borderColor: "rgb(167, 230, 255, 0.2)",
+          background:"rgba(0, 21, 66, 0.651)"
+        }}>
+        <Typography className="hTitle" variant="h5" component="h2" style={{color: "rgb(167, 230, 255)"}}>
+          Estimated Rewards
+        </Typography>
+        <Typography className="hTitle" variant="h5" component="h2">
+          {dailyRoi * daysFromCurrent} XLB
+        </Typography>
+            </Paper> 
+        <Paper elevation={10} style={{
+          width: "300px",
+          textAlign:"center",
+          marginTop:50,
+          borderStyle: "double",
+          borderColor: "rgb(167, 230, 255, 0.2)",
+          background:"rgba(0, 21, 66, 0.651)"
+        }}>
+        <Typography className="hTitle" variant="h5" component="h2" style={{color: "rgb(167, 230, 255)"}}>
+          Potential Return 
+        </Typography>
+        <Typography className="hTitle" variant="h5" component="h2">
+          $0.00 USD
+        </Typography>
+            </Paper> 
+            </Box>
+      </Paper>
+      )}
+
+      {!matches && (
+      <Paper elevation={10} style={{
         marginTop:110,
         display: "flex",
         flexDirection:"column",
-        alignItems:"center",
-        justifyContent:"center",
         borderStyle: "double",
         borderColor: "rgb(167, 230, 255, 0.2)",
         background:"rgba(0, 21, 66, 0.651)"
@@ -47,6 +243,7 @@ const Calculator = () => {
       <Typography className="hTitle" variant="h5" component="h2" style={{
         textDecoration:"underline",
         marginTop:50,
+        textAlign:"center",
         color: "rgb(167, 230, 255)"
       }}>
         Estimate Your Returns
@@ -56,6 +253,7 @@ const Calculator = () => {
         width: "400px",
         textAlign:"center",
         marginTop:50,
+        marginLeft:210,
         borderStyle: "double",
         borderColor: "rgb(167, 230, 255, 0.2)",
         background:"rgba(0, 21, 66, 0.651)"
@@ -66,27 +264,27 @@ const Calculator = () => {
         <form style={{
           textAlign:"center"
         }}>
-          <input type="text" defaultValue={balance} style={{
+          <input type="text" defaultValue={balance} onChange={(e) => (e.target.value)} 
+          style={{
             textAlign:"center",
             borderStyle: "double",
             borderColor: "rgb(167, 230, 255, 0.2)",
             background:"rgba(0, 21, 66, 0.651)"
           }}></input>
       </form>
-          </Paper> 
-        
-
+          </Paper>
         
       <Paper elevation={10} style={{
         width: "400px",
         textAlign:"center",
         marginTop:50,
+        marginLeft:210,
         borderStyle: "double",
         borderColor: "rgb(167, 230, 255, 0.2)",
         background:"rgba(0, 21, 66, 0.651)"
       }}>
-              <Typography className="hTitle" variant="h5" component="h2" style={{color: "rgb(167, 230, 255)"}}>
-              Purchase Price:
+      <Typography className="hTitle" variant="h5" component="h2" style={{color: "rgb(167, 230, 255)"}}>
+        Purchase Price:
       </Typography>
       <form style={{
           textAlign:"center"
@@ -98,14 +296,13 @@ const Calculator = () => {
             background:"rgba(0, 21, 66, 0.651)"
           }}></input>
       </form>
-          </Paper> 
-        
-
+          </Paper>
         
       <Paper elevation={10} style={{
         width: "400px",
         textAlign:"center",
         marginTop:50,
+        marginLeft:210,
         borderStyle: "double",
         borderColor: "rgb(167, 230, 255, 0.2)",
         background:"rgba(0, 21, 66, 0.651)"
@@ -129,6 +326,7 @@ const Calculator = () => {
         width: "400px",
         textAlign:"center",
         marginTop:50,
+        marginLeft:210,
         display: "flex",
         flexDirection:"column",
         justifyContent: "space-between",
@@ -137,7 +335,7 @@ const Calculator = () => {
         background:"rgba(0, 21, 66, 0.651)"
       }}>
 
-<Typography className="hTitle" variant="h5" component="h2" style={{color: "rgb(167, 230, 255)"}}>
+      <Typography className="hTitle" variant="h5" component="h2" style={{color: "rgb(167, 230, 255)"}}>
         How Many Days From Current? 
       </Typography>
       <form style={{
@@ -152,11 +350,21 @@ const Calculator = () => {
       </form>
           </Paper> 
         
-        
-          <Paper elevation={10} style={{
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-around",
+          alignItems:"flex-end"
+        }}
+          padding={1}
+      >
+      <Paper elevation={10} style={{
+        marginTop:-395,
+        marginRight:210,
+        marginBottom:36,
         width: "400px",
         textAlign:"center",
-        marginTop:50,
         borderStyle: "double",
         borderColor: "rgb(167, 230, 255, 0.2)",
         background:"rgba(0, 21, 66, 0.651)"
@@ -168,11 +376,11 @@ const Calculator = () => {
         20009.07%
       </Typography>
           </Paper> 
-
-          <Paper elevation={10} style={{
+      <Paper elevation={10} style={{
+        marginRight:210,
+        marginBottom:36,
         width: "400px",
         textAlign:"center",
-        marginTop:50,
         borderStyle: "double",
         borderColor: "rgb(167, 230, 255, 0.2)",
         background:"rgba(0, 21, 66, 0.651)"
@@ -185,10 +393,11 @@ const Calculator = () => {
       </Typography>
           </Paper> 
 
-          <Paper elevation={10} style={{
+      <Paper elevation={10} style={{
+        marginRight:210,
+        marginBottom:36,
         width: "400px",
         textAlign:"center",
-        marginTop:50,
         borderStyle: "double",
         borderColor: "rgb(167, 230, 255, 0.2)",
         background:"rgba(0, 21, 66, 0.651)"
@@ -200,11 +409,11 @@ const Calculator = () => {
         {dailyRoi * daysFromCurrent} XLB
       </Typography>
           </Paper> 
-          <Paper elevation={10} style={{
+      <Paper elevation={10} style={{
+        marginRight:210,
+        marginBottom:36,
         width: "400px",
         textAlign:"center",
-        marginTop:50,
-        marginBottom:50,
         borderStyle: "double",
         borderColor: "rgb(167, 230, 255, 0.2)",
         background:"rgba(0, 21, 66, 0.651)"
@@ -216,8 +425,9 @@ const Calculator = () => {
         $0.00 USD
       </Typography>
           </Paper> 
-
+          </Box>
     </Paper>
+    )}
     </Grid>
   </>
   )

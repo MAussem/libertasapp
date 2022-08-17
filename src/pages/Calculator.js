@@ -3,10 +3,8 @@ import InterestCalc from '../components/InterestCalc';
 
 const Calculator = () => {
   return (
-    <Container maxWidth="sm">
-     <Grid container spacing={5} 
-      direction="column"
-      justifyContent="center">
+    <Container maxWidth="xl">
+     <Grid spacing={5}>
       <InterestCalc />
      </Grid>
     </Container>

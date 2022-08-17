@@ -126,6 +126,7 @@ const TopBar = () => {
               <Typography
                 className="dash1"
                 style={{
+                  marginLeft:-100,
                   textDecoration: isActiveD ? "underline" : "none",
                   color: isActiveD ? "rgb(167, 230, 255)" : "white",
                 }}

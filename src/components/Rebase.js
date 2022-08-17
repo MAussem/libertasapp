@@ -63,7 +63,7 @@ const Rebase = () => {
       />
       <Box
         sx={{
-          margin: 1,
+          marginTop: 2,
           display: "flex",
           flexDirection: "column",
           textAlign: "center",
