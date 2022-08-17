@@ -37,7 +37,7 @@ const Hero = () => {
       balanceRaw
         ? ethers.utils.formatEther(balanceRaw.sub(balanceRaw.mod(1e14))) +
           " XLB"
-        : "n/a",
+        : "n/a XLB",
     [balanceRaw]
   );
 
