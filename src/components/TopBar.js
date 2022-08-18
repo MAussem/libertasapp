@@ -91,8 +91,7 @@ const TopBar = () => {
               style={{
                 fontSize: 30,
                 fontWeight: 700,
-                marginLeft: 10,
-                marginRight:-50
+                marginRight:-40
               }}
             >
               Libertas
