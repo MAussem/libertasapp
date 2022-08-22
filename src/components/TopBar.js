@@ -162,7 +162,6 @@ const TopBar = () => {
               <Typography className="dash">Launch Pad</Typography>
               <Typography
                 variant="body3"
-                className="dash"
                 style={{
                   marginTop: -10,
                   marginLeft: 2,
@@ -172,13 +171,25 @@ const TopBar = () => {
                 coming soon
               </Typography>
             </Box>
-            <a
-              href="https://libertas-finance.gitbook.io/libertasfinance/"
-              target="_blank"
-              rel="noreferrer"
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+              }}
             >
-              <Typography className="dash">Whitepaper</Typography>
-            </a>
+            <Typography
+                variant="body3"
+                style={{
+                  textAlign:"center",
+                  marginTop: -10,
+                  marginLeft: 2,
+                  color: "rgb(167, 230, 255)",
+                }}
+              >
+                Token Address
+              </Typography>
+              <Typography >0x4B034645BC8B43A300739f83AEaCdbF0E1a90a38</Typography>
+              </Box>
             {isConnected ? (
               <Button variant="contained" onClick={disconnect} sx={buttonStyles}>
                 Disconnect
@@ -255,15 +266,30 @@ const TopBar = () => {
                 coming soon
               </Typography>
             </Box> */}
-            <a
-              href="https://libertas-finance.gitbook.io/libertasfinance/"
-              target="_blank"
-              rel="noreferrer"
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+              }}
             >
-              <Typography className="dash" onClick={() => setOpen(!open)}>
-                Whitepaper
+            <Typography
+                variant="body3"
+                style={{
+                  marginTop: -10,
+                  marginLeft: 2,
+                  color: "rgb(167, 230, 255)",
+                }}
+              >
+                Token Address
               </Typography>
-            </a>
+              <Typography 
+              variant="subtitle"
+              style={{
+                marginBottom: 10,
+              }}
+              >
+                0x4B034645BC8B43A300739f83AEaCdbF0E1a90a38</Typography>
+              </Box>
             {isConnected ? (
               <Button
                 variant="contained"
