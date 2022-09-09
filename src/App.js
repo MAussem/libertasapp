@@ -5,6 +5,10 @@ import TopBar from "./components/TopBar";
 import Calculator from "./pages/Calculator";
 import { useState } from "react";
 import Test from "./pages/Test";
+// import BuyForm from "./components/exchange/BuyForm";
+import Exchange from "./pages/Exchange";
+import DIP from "./pages/DAO/DeFiInvestmentPool";
+import Governance from "./pages/DAO/Governance";
 
 const App = () => {
   const [reloadBalance, setReloadBalance] = useState(0);
@@ -15,6 +19,9 @@ const App = () => {
         <Route path="/" element={<Home reloadBalance={reloadBalance} />} />
         <Route path="/calc" element={<Calculator />} />
         <Route path="/test" element={<Test />}></Route>
+        <Route path="/swap" element={<Exchange />}></Route>
+        <Route path="/dip" element={<DIP />}></Route>
+        <Route path="/governance" element={<Governance />}></Route>
       </Routes>
     </BrowserRouter>
   );

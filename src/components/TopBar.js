@@ -14,8 +14,7 @@ const TopBar = () => {
   const { address, isConnected } = useAccount();
   const { disconnect } = useDisconnect();
   const { connect } = useConnect({
-    connector:
-      new InjectedConnector()
+    connector: new InjectedConnector(),
   });
 
   const addressFormatted = useMemo(
@@ -30,38 +29,70 @@ const TopBar = () => {
 
   const [isActiveD, setIsActiveD] = useState(true);
   const [isActiveC, setIsActiveC] = useState(false);
+  const [isActiveS, setIsActiveS] = useState(false);
+  const [isActiveI, setIsActiveI] = useState(false);
+  const [isActiveG, setIsActiveG] = useState(false);
 
   const [open, setOpen] = useState(false);
 
   const handleClickD = () => {
     setIsActiveD(true);
     setIsActiveC(false);
+    setIsActiveS(false);
+    setIsActiveI(false);
+    setIsActiveG(false);
   };
 
   const handleClickC = () => {
     setIsActiveC(true);
     setIsActiveD(false);
+    setIsActiveS(false);
+    setIsActiveI(false);
+    setIsActiveG(false);
   };
 
+  const handleClickS = () => {
+    setIsActiveS(true);
+    setIsActiveD(false);
+    setIsActiveC(false);
+    setIsActiveI(false);
+    setIsActiveG(false);
+  };
+
+  const handleClickI = () => {
+    setIsActiveI(true);
+    setIsActiveD(false);
+    setIsActiveC(false);
+    setIsActiveS(false);
+    setIsActiveG(false);
+  };
+
+  const handleClickG = () => {
+    setIsActiveG(true);
+    setIsActiveD(false);
+    setIsActiveC(false);
+    setIsActiveS(false);
+    setIsActiveI(false);
+  };
   const buttonStyles = {
     fontWeight: 800,
-    background: "linear-gradient(red, yellow);",
+    color: "black",
+    borderRadius: "10px",
+    background: "linear-gradient(to right, #fa8128, #C8E9E9);",
+    "&:hover": {
+      background: "linear-gradient(to right, #C8E9E9, #fa8128);",
+      transition: ".4s",
+      boxShadow: "0 8px 24px 0 rgba(0, 0, 0, 0.26)",
+      borderRadius: "15px",
+    },
   };
 
   const hamburger = (
-    <CgMenu
-      size="40px"
-      color="rgb(167, 230, 255)"
-      onClick={() => setOpen(!open)}
-    />
+    <CgMenu size="40px" color="#C8E9E9" onClick={() => setOpen(!open)} />
   );
 
   const closeButton = (
-    <CgClose
-      size="40px"
-      color="rgb(167, 230, 255)"
-      onClick={() => setOpen(!open)}
-    />
+    <CgClose size="40px" color="#C8E9E9" onClick={() => setOpen(!open)} />
   );
 
   // const closeMobileMenu = () => setOpen(false);
@@ -91,7 +122,7 @@ const TopBar = () => {
               style={{
                 fontSize: 30,
                 fontWeight: 700,
-                marginRight:-40
+                marginRight: -40,
               }}
             >
               Libertas
@@ -125,9 +156,9 @@ const TopBar = () => {
               <Typography
                 className="dash1"
                 style={{
-                  marginLeft:-100,
+                  marginLeft: -100,
                   textDecoration: isActiveD ? "underline" : "none",
-                  color: isActiveD ? "rgb(167, 230, 255)" : "white",
+                  color: isActiveD ? "#C8E9E9" : "white",
                 }}
                 onClick={handleClickD}
               >
@@ -139,20 +170,25 @@ const TopBar = () => {
                 className="dash"
                 style={{
                   textDecoration: isActiveC ? "underline" : "none",
-                  color: isActiveC ? "rgb(167, 230, 255)" : "white",
+                  color: isActiveC ? "#C8E9E9" : "white",
                 }}
                 onClick={handleClickC}
               >
                 Calculator
               </Typography>
             </Link>
-            <a
-              href="https://lib-dex.netlify.app/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Typography className="dash">Swap</Typography>
-            </a>
+            <Link to="./swap">
+              <Typography
+                className="dash"
+                onClick={handleClickS}
+                style={{
+                  textDecoration: isActiveS ? "underline" : "none",
+                  color: isActiveS ? "#C8E9E9" : "white",
+                }}
+              >
+                Swap
+              </Typography>
+            </Link>
             <Box
               sx={{
                 display: "flex",
@@ -165,7 +201,7 @@ const TopBar = () => {
                 style={{
                   marginTop: -10,
                   marginLeft: 2,
-                  color: "rgb(167, 230, 255)",
+                  color: "#C8E9E9",
                 }}
               >
                 coming soon
@@ -177,21 +213,87 @@ const TopBar = () => {
                 flexDirection: "column",
               }}
             >
-            <Typography
+              <Link to="./dip">
+                <Typography
+                  className="dash"
+                  onClick={handleClickI}
+                  style={{
+                    textDecoration: isActiveI ? "underline" : "none",
+                    color: isActiveI ? "#C8E9E9" : "white",
+                  }}
+                >
+                  Investment Pool
+                </Typography>
+              </Link>
+              <Typography
                 variant="body3"
                 style={{
-                  textAlign:"center",
                   marginTop: -10,
                   marginLeft: 2,
-                  color: "rgb(167, 230, 255)",
+                  color: "#C8E9E9",
+                  textAlign: "center",
+                }}
+              >
+                coming soon
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <Link to="./governance">
+                <Typography
+                  className="dash"
+                  onClick={handleClickG}
+                  style={{
+                    textDecoration: isActiveG ? "underline" : "none",
+                    color: isActiveG ? "#C8E9E9" : "white",
+                  }}
+                >
+                  Governance
+                </Typography>
+              </Link>
+              <Typography
+                variant="body3"
+                style={{
+                  marginTop: -10,
+                  marginLeft: 2,
+                  color: "#C8E9E9",
+                  textAlign: "center",
+                }}
+              >
+                coming soon
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <Typography
+                variant="body3"
+                style={{
+                  textAlign: "center",
+                  marginTop: -10,
+                  marginLeft: 2,
+                  color: "#C8E9E9",
                 }}
               >
                 Token Address
               </Typography>
-              <Typography >0x4B034645BC8B43A300739f83AEaCdbF0E1a90a38</Typography>
-              </Box>
+              <Typography>
+                0x4B034645BC8B43A300739f83AEaCdbF0E1a90a38
+              </Typography>
+            </Box>
             {isConnected ? (
-              <Button variant="contained" onClick={disconnect} sx={buttonStyles}>
+              <Button
+                variant="contained"
+                onClick={disconnect}
+                sx={buttonStyles}
+              >
                 Disconnect
               </Button>
             ) : (
@@ -218,10 +320,14 @@ const TopBar = () => {
             }}
           >
             <Link to="/">
-              <Typography className="dash1" onClick={handleClickD} style={{
+              <Typography
+                className="dash1"
+                onClick={handleClickD}
+                style={{
                   textDecoration: isActiveD ? "underline" : "none",
                   color: isActiveD ? "rgb(167, 230, 255)" : "white",
-                }}>
+                }}
+              >
                 Dashboard
               </Typography>
             </Link>
@@ -242,10 +348,15 @@ const TopBar = () => {
               }}
             >
               <Link to="/calc">
-              <Typography onClick={handleClickC} style={{
-                  textDecoration: isActiveC ? "underline" : "none",
-                  color: isActiveC ? "rgb(167, 230, 255)" : "white",
-                }}>Calculator</Typography>
+                <Typography
+                  onClick={handleClickC}
+                  style={{
+                    textDecoration: isActiveC ? "underline" : "none",
+                    color: isActiveC ? "rgb(167, 230, 255)" : "white",
+                  }}
+                >
+                  Calculator
+                </Typography>
               </Link>
             </Box>
             {/* <Box
@@ -272,7 +383,7 @@ const TopBar = () => {
                 flexDirection: "column",
               }}
             >
-            <Typography
+              <Typography
                 variant="body3"
                 style={{
                   marginTop: -10,
@@ -282,14 +393,15 @@ const TopBar = () => {
               >
                 Token Address
               </Typography>
-              <Typography 
-              variant="subtitle"
-              style={{
-                marginBottom: 10,
-              }}
+              <Typography
+                variant="subtitle"
+                style={{
+                  marginBottom: 10,
+                }}
               >
-                0x4B034645BC8B43A300739f83AEaCdbF0E1a90a38</Typography>
-              </Box>
+                0x4B034645BC8B43A300739f83AEaCdbF0E1a90a38
+              </Typography>
+            </Box>
             {isConnected ? (
               <Button
                 variant="contained"

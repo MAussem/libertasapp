@@ -57,8 +57,8 @@ const Rebase = () => {
         text={`${percentage}`}
         styles={buildStyles({
           textColor: "#fff",
-          pathColor: "rgba(255, 0, 0, 0.1)",
-          trailColor: "rgb(140, 230, 270)",
+          pathColor: "#C8E9E9",
+          trailColor: "#C8E9E9",
         })}
       />
       <Box
@@ -69,11 +69,19 @@ const Rebase = () => {
           textAlign: "center",
         }}
       >
-        <Typography variant="subtitle2">NEXT REWARD: {rebaseRate}%</Typography>
         <Typography
           variant="subtitle2"
           style={{
-            color: "rgb(167, 230, 255)",
+            fontWeight: 700,
+            color: "#000",
+          }}
+        >
+          NEXT REWARD: {rebaseRate}%
+        </Typography>
+        <Typography
+          variant="subtitle2"
+          style={{
+            color: "#C8E9E9",
           }}
         >
           {nextReward} XLB

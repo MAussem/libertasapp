@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { useContractRead, useContractWrite } from "wagmi";
 
 import { XLBAbi } from "../abi/xlb";
+import { RouterAbi } from "../abi/router";
 
 export function useAddresses() {
   return useMemo(() => {
@@ -39,5 +40,28 @@ export function useContractXLBWrite(functionName, args) {
     contractInterface: XLBAbi,
     functionName,
     args,
+  });
+}
+
+export function useContractRouterRead(functionName, args, options) {
+  const addresses = useAddresses();
+  console.log(RouterAbi);
+  return useContractRead({
+    addressOrName: addresses?.router,
+    contractInterface: RouterAbi,
+    functionName,
+    args,
+    ...options,
+  });
+}
+
+export function useContractRouterWrite(functionName, args, options) {
+  const addresses = useAddresses();
+  return useContractWrite({
+    addressOrName: addresses?.router,
+    contractInterface: RouterAbi,
+    functionName,
+    args,
+    ...options,
   });
 }

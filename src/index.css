@@ -50,7 +50,14 @@ a:link {
 } */
 
 .dash:hover {
-  color: rgb(167, 230, 255);
+  color: #93f7f7;
   cursor: pointer;
   text-decoration: underline;
+}
+
+.paper:hover {
+  color: rgb(167, 230, 255);
+}
+img {
+  color: #fa8128;
 }

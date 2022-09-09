@@ -22,10 +22,11 @@ const TreasuryInfo = () => {
         <Paper
           elevation={10}
           style={{
-            borderStyle: "double",
-            borderColor: "rgb(167, 230, 255, 0.2)",
             marginTop: -175,
-            background: "rgba(0, 21, 66, 0.651)",
+            borderStyle: "double",
+            borderColor: "#fa8128",
+            borderRadius: "10px",
+            background: "rgba(255,255,255, 0.5)",
           }}
         >
           <Box
@@ -38,7 +39,7 @@ const TreasuryInfo = () => {
               variant="h5"
               component="h2"
               style={{
-                color: "rgb(167, 230, 255)",
+                color: "#C8E9E9",
               }}
             >
               Treasury Balance
@@ -48,6 +49,7 @@ const TreasuryInfo = () => {
               component="h2"
               style={{
                 fontWeight: 700,
+                color: "#000",
               }}
             >
               {balanceFormatted}
@@ -59,10 +61,11 @@ const TreasuryInfo = () => {
         <Paper
           elevation={10}
           style={{
-            borderStyle: "double",
-            borderColor: "rgb(167, 230, 255, 0.2)",
             marginTop: -175,
-            background: "rgba(0, 21, 66, 0.651)",
+            borderStyle: "double",
+            borderColor: "#fa8128",
+            borderRadius: "10px",
+            background: "rgba(255,255,255, 0.5)",
           }}
         >
           <Box
@@ -75,7 +78,7 @@ const TreasuryInfo = () => {
               variant="h5"
               component="h2"
               style={{
-                color: "rgb(167, 230, 255)",
+                color: "#C8E9E9",
               }}
             >
               Total Wallets
@@ -85,6 +88,7 @@ const TreasuryInfo = () => {
               component="h2"
               style={{
                 fontWeight: 700,
+                color: "#000",
               }}
             >
               0
