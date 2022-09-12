@@ -9,12 +9,10 @@ import { useAccount } from "wagmi";
 import { useContractXLBRead } from "../hooks/libertas";
 import { useMemo } from "react";
 import { ethers } from "ethers";
-import { Link } from "react-router-dom";
 
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
     padding: theme.spacing(1),
-    color: "#000",
     [theme.breakpoints.down("md")]: {
       fontSize: [13, "!important"],
     },
@@ -44,7 +42,6 @@ const Hero = () => {
   );
 
   const buttonStyles = {
-    width: 150,
     fontWeight: 800,
     color: "black",
     borderRadius: "10px",
@@ -79,13 +76,12 @@ const Hero = () => {
           <Paper
             elevation={10}
             style={{
+              borderStyle: "double",
+              borderColor: "rgb(167, 230, 255, 0.2)",
+              background: "rgba(0, 21, 66, 0.651)",
               marginTop: 40,
               paddingTop: 30,
               paddingBottom: 30,
-              borderStyle: "double",
-              borderColor: "#fa8128",
-              borderRadius: "10px",
-              background: "rgba(255,255,255, 0.5)",
             }}
           >
             <Box
@@ -130,7 +126,17 @@ const Hero = () => {
                     }}
                   />
                 </Box>
-                <Link to="./swap">
+                {/* {active ? <div className='privatize2'>{account}</div> : <Typography variant="subtitle1" component="h2" style={{
+                marginBottom: 10,
+                color: "grey"
+              }}> 
+                Not Connected
+              </Typography>} */}
+                <a
+                  href="https://lib-dex.netlify.app/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <Button
                     className={classe.buttonS}
                     variant="contained"
@@ -138,8 +144,18 @@ const Hero = () => {
                   >
                     Buy XLB
                   </Button>
-                </Link>
+                </a>
                 <br />
+                {/* {active ? 
+              <Button variant="outlined" onClick={disconnectMeta} 
+              sx={buttonStyles}> 
+                Disconnect 
+              </Button> :
+              <Button variant="contained" onClick={connectMeta}
+              sx={buttonStyles}>
+                Connect Wallet
+              </Button>
+              } */}
                 <a
                   href="https://www.dextools.io/"
                   target="_blank"
@@ -167,7 +183,7 @@ const Hero = () => {
                   component="h2"
                   style={{
                     marginRight: 5,
-                    color: "#C8E9E9",
+                    color: "rgb(167, 230, 255)",
                   }}
                 >
                   Holdings
@@ -184,13 +200,14 @@ const Hero = () => {
                   $0
                 </Typography>
                 <Box paddingY={2}>
+                  {/* <button onClick={() => fetchBalance()}>click me</button> */}
                   <Typography
                     className={classes.hTitle}
                     variant="subtitle2"
                     component="h2"
                     style={{
                       textAlign: "center",
-                      color: "#C8E9E9",
+                      color: "rgb(167, 230, 255)",
                     }}
                   >
                     {balance}
@@ -209,7 +226,7 @@ const Hero = () => {
                   variant="h5"
                   component="h2"
                   style={{
-                    color: "#C8E9E9",
+                    color: "rgb(167, 230, 255)",
                   }}
                 >
                   Daily Earnings
@@ -232,7 +249,7 @@ const Hero = () => {
                     component="h2"
                     style={{
                       textAlign: "center",
-                      color: "#C8E9E9",
+                      color: "rgb(167, 230, 255)",
                     }}
                   >
                     {dailyRoi} XLB
@@ -255,9 +272,8 @@ const Hero = () => {
             elevation={10}
             style={{
               borderStyle: "double",
-              borderColor: "#fa8128",
-              borderRadius: "10px",
-              background: "rgba(255,255,255, 0.5)",
+              borderColor: "rgb(167, 230, 255, 0.2)",
+              background: "rgba(0, 21, 66, 0.651)",
               marginTop: 40,
               paddingTop: 30,
               paddingBottom: 30,
@@ -298,7 +314,17 @@ const Hero = () => {
                 >
                   <img src="../flame.svg" alt="" className="imgT" />
                 </Box>
-                <Link to="./swap">
+                {/* {active ? <div className='privatize2'>{account}</div> : <Typography variant="subtitle1" component="h2" style={{
+                marginBottom: 10,
+                color: "grey"
+              }}> 
+                Not Connected
+              </Typography>} */}
+                <a
+                  href="https://lib-dex.netlify.app/"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <Button
                     className={classe.buttonS}
                     variant="contained"
@@ -306,8 +332,18 @@ const Hero = () => {
                   >
                     Buy XLB
                   </Button>
-                </Link>
+                </a>
                 <br />
+                {/* {active ? 
+              <Button variant="outlined" onClick={disconnectMeta} 
+              sx={buttonStyles}> 
+                Disconnect 
+              </Button> :
+              <Button variant="contained" onClick={connectMeta}
+              sx={buttonStyles}>
+                Connect Wallet
+              </Button>
+              } */}
                 <a
                   href="https://www.dextools.io/"
                   target="_blank"
@@ -334,7 +370,7 @@ const Hero = () => {
                   variant="h5"
                   component="h2"
                   style={{
-                    color: "#C8E9E9",
+                    color: "rgb(167, 230, 255)",
                   }}
                 >
                   Holdings
@@ -356,7 +392,7 @@ const Hero = () => {
                     variant="subtitle1"
                     component="h2"
                     style={{
-                      color: "#C8E9E9",
+                      color: "rgb(167, 230, 255)",
                     }}
                   >
                     {balance}
@@ -375,7 +411,7 @@ const Hero = () => {
                   variant="h5"
                   component="h2"
                   style={{
-                    color: "#C8E9E9",
+                    color: "rgb(167, 230, 255)",
                   }}
                 >
                   Daily Earnings
@@ -386,7 +422,6 @@ const Hero = () => {
                   component="h2"
                   style={{
                     fontWeight: 700,
-                    color: "#000",
                   }}
                 >
                   $0
@@ -397,7 +432,7 @@ const Hero = () => {
                     variant="subtitle1"
                     component="h2"
                     style={{
-                      color: "#C8E9E9",
+                      color: "rgb(167, 230, 255)",
                     }}
                   >
                     {dailyRoi} XLB

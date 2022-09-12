@@ -28,8 +28,9 @@ body {
 }
 
 .imgM {
-  width: 9%;
+  width: 11%;
   margin: 5px;
+  margin-right: -80px;
 }
 
 a:link {
@@ -50,7 +51,7 @@ a:link {
 } */
 
 .dash:hover {
-  color: #93f7f7;
+  color: #c8e9e9;
   cursor: pointer;
   text-decoration: underline;
 }

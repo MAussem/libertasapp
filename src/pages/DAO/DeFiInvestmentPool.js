@@ -1,16 +1,9 @@
 import { Box, Paper, Typography, Container, Grid, Button } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
-import { useState } from "react";
 import ProtocolInfo from "./ProtocolInfo";
+import { Link } from "react-router-dom";
 
 const DIP = () => {
-  const [isShown, setIsShown] = useState(false);
-
-  const handleClick = (event) => {
-    // toggle shown state
-    setIsShown((current) => !current);
-  };
-
   const buttonSty = makeStyles((theme) => ({
     buttonS: {
       padding: theme.spacing(1),
@@ -21,10 +14,10 @@ const DIP = () => {
   }));
 
   const buttonStyles = {
-    marginRight: "2%",
-    width: 150,
+    marginRight: "1%",
+    width: 120,
     fontWeight: 800,
-    color: "black",
+    color: "#fff",
     borderRadius: "10px",
     background: "linear-gradient(to right, #fa8128, #C8E9E9);",
     "&:hover": {
@@ -39,7 +32,7 @@ const DIP = () => {
 
   return (
     <>
-      {isShown && <ProtocolInfo />}
+      <ProtocolInfo />
       <Container maxWidth="xl">
         <Typography
           variant="h5"
@@ -47,9 +40,10 @@ const DIP = () => {
           sx={{
             marginTop: "5%",
             color: "#fff",
+            fontWeight: "700",
           }}
         >
-          Defi Protocols
+          DeFi Protocols
         </Typography>
         <Grid xs={8}>
           <Paper
@@ -58,13 +52,13 @@ const DIP = () => {
             style={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "space-between",
+              justifyContent: "space-around",
               alignItems: "center",
               marginTop: "2%",
               borderStyle: "double",
               borderColor: "#fa8128",
               borderRadius: "10px",
-              background: "rgba(255,255,255, 0.5)",
+              background: "rgba(0, 21, 66, 0.651)",
             }}
           >
             <Box
@@ -85,16 +79,18 @@ const DIP = () => {
                 variant="h5"
                 component="h2"
                 sx={{
-                  color: "black",
+                  color: "#fff",
+                  fontWeight: "700",
                 }}
               >
-                Sharpen
+                DeFi Aggregator
               </Typography>
               <Typography
                 variant="subtitle1"
                 component="h2"
                 sx={{
-                  color: "black",
+                  color: "#fff",
+                  fontWeight: "700",
                 }}
               >
                 some.text.about.company
@@ -104,41 +100,54 @@ const DIP = () => {
               variant="h5"
               component="h2"
               sx={{
-                color: "black",
+                color: "#fff",
+                fontWeight: "700",
               }}
             >
-              9.47% ROSE
+              Amount Invested: $1.5M
             </Typography>
             <Typography
               variant="h5"
               component="h2"
               sx={{
-                color: "black",
+                color: "#fff",
+                fontWeight: "700",
               }}
             >
-              21.42% with $XLB
+              Expected Returns: x7
             </Typography>
-            <Button
-              className={classe.buttonS}
-              variant="contained"
-              sx={buttonStyles}
-              onClick={handleClick}
+            <Typography
+              variant="h5"
+              component="h2"
+              sx={{
+                color: "#fff",
+                fontWeight: "700",
+              }}
             >
-              Open
-            </Button>
+              Funding Round: Pre-Seed
+            </Typography>
+            <Link to="/defi-agg">
+              <Button
+                className={classe.buttonS}
+                variant="contained"
+                sx={buttonStyles}
+              >
+                Open
+              </Button>
+            </Link>
           </Paper>
           <Paper
             elevation={10}
             style={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "space-between",
+              justifyContent: "space-around",
               alignItems: "center",
               marginTop: "5%",
               borderStyle: "double",
               borderColor: "#fa8128",
               borderRadius: "10px",
-              background: "rgba(255,255,255, 0.5)",
+              background: "rgba(0, 21, 66, 0.651)",
             }}
           >
             <Box
@@ -159,16 +168,18 @@ const DIP = () => {
                 variant="h5"
                 component="h2"
                 sx={{
-                  color: "black",
+                  color: "#fff",
+                  fontWeight: "700",
                 }}
               >
-                RETT
+                Decentralised Exchange
               </Typography>
               <Typography
                 variant="subtitle1"
                 component="h2"
                 sx={{
-                  color: "black",
+                  color: "#fff",
+                  fontWeight: "700",
                 }}
               >
                 some.text.about.company
@@ -178,27 +189,41 @@ const DIP = () => {
               variant="h5"
               component="h2"
               sx={{
-                color: "black",
+                color: "#fff",
+                fontWeight: "700",
               }}
             >
-              13.68% ROSE
+              Amount Invested: $2.2M
             </Typography>
             <Typography
               variant="h5"
               component="h2"
               sx={{
-                color: "black",
+                color: "#fff",
+                fontWeight: "700",
               }}
             >
-              28.32% with $XLB
+              Expected Returns: x5
             </Typography>
-            <Button
-              className={classe.buttonS}
-              variant="contained"
-              sx={buttonStyles}
+            <Typography
+              variant="h5"
+              component="h2"
+              sx={{
+                color: "#fff",
+                fontWeight: "700",
+              }}
             >
-              Open
-            </Button>
+              Funding Round: Pre-Seed
+            </Typography>
+            <Link to="/dex">
+              <Button
+                className={classe.buttonS}
+                variant="contained"
+                sx={buttonStyles}
+              >
+                Open
+              </Button>
+            </Link>
           </Paper>
 
           <Typography
@@ -207,6 +232,7 @@ const DIP = () => {
             sx={{
               marginTop: "5%",
               color: "#fff",
+              fontWeight: "700",
             }}
           >
             DAOs & Web3 Protocols
@@ -216,13 +242,13 @@ const DIP = () => {
             style={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "space-between",
+              justifyContent: "space-around",
               alignItems: "center",
               marginTop: "2%",
               borderStyle: "double",
               borderColor: "#fa8128",
               borderRadius: "10px",
-              background: "rgba(255,255,255, 0.5)",
+              background: "rgba(0, 21, 66, 0.651)",
             }}
           >
             <Box
@@ -243,16 +269,18 @@ const DIP = () => {
                 variant="h5"
                 component="h2"
                 sx={{
-                  color: "black",
+                  color: "#fff",
+                  fontWeight: "700",
                 }}
               >
-                My First Protocol
+                Dao Protocol
               </Typography>
               <Typography
                 variant="subtitle1"
                 component="h2"
                 sx={{
-                  color: "black",
+                  color: "#fff",
+                  fontWeight: "700",
                 }}
               >
                 some.text.about.company
@@ -262,40 +290,54 @@ const DIP = () => {
               variant="h5"
               component="h2"
               sx={{
-                color: "black",
+                color: "#fff",
+                fontWeight: "700",
               }}
             >
-              7.77% ROSE
+              Amount Invested: $1.3M
             </Typography>
             <Typography
               variant="h5"
               component="h2"
               sx={{
-                color: "black",
+                color: "#fff",
+                fontWeight: "700",
               }}
             >
-              15.34% with $XLB
+              Expected Returns: x7
             </Typography>
-            <Button
-              className={classe.buttonS}
-              variant="contained"
-              sx={buttonStyles}
+            <Typography
+              variant="h5"
+              component="h2"
+              sx={{
+                color: "#fff",
+                fontWeight: "700",
+              }}
             >
-              Open
-            </Button>
+              Funding Round: Seed-funding
+            </Typography>
+            <Link to="/dao">
+              <Button
+                className={classe.buttonS}
+                variant="contained"
+                sx={buttonStyles}
+              >
+                Open
+              </Button>
+            </Link>
           </Paper>
           <Paper
             elevation={10}
             style={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "space-between",
+              justifyContent: "space-around",
               alignItems: "center",
               marginTop: "5%",
               borderStyle: "double",
               borderColor: "#fa8128",
               borderRadius: "10px",
-              background: "rgba(255,255,255, 0.5)",
+              background: "rgba(0, 21, 66, 0.651)",
             }}
           >
             <Box
@@ -316,16 +358,18 @@ const DIP = () => {
                 variant="h5"
                 component="h2"
                 sx={{
-                  color: "black",
+                  color: "#fff",
+                  fontWeight: "700",
                 }}
               >
-                Lucky Lad
+                Layer 1 Protocol
               </Typography>
               <Typography
                 variant="subtitle1"
                 component="h2"
                 sx={{
-                  color: "black",
+                  color: "#fff",
+                  fontWeight: "700",
                 }}
               >
                 some.text.about.company
@@ -335,40 +379,54 @@ const DIP = () => {
               variant="h5"
               component="h2"
               sx={{
-                color: "black",
+                color: "#fff",
+                fontWeight: "700",
               }}
             >
-              8.74% ROSE
+              Amount Invested: $1.2M
             </Typography>
             <Typography
               variant="h5"
               component="h2"
               sx={{
-                color: "black",
+                color: "#fff",
+                fontWeight: "700",
               }}
             >
-              19.97% with $XLB
+              Expected Returns: x9
             </Typography>
-            <Button
-              className={classe.buttonS}
-              variant="contained"
-              sx={buttonStyles}
+            <Typography
+              variant="h5"
+              component="h2"
+              sx={{
+                color: "#fff",
+                fontWeight: "700",
+              }}
             >
-              Open
-            </Button>
+              Funding Round: Series A
+            </Typography>
+            <Link to="/layer1">
+              <Button
+                className={classe.buttonS}
+                variant="contained"
+                sx={buttonStyles}
+              >
+                Open
+              </Button>
+            </Link>
           </Paper>
           <Paper
             elevation={10}
             style={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "space-between",
+              justifyContent: "space-around",
               alignItems: "center",
               marginTop: "5%",
               borderStyle: "double",
               borderColor: "#fa8128",
               borderRadius: "10px",
-              background: "rgba(255,255,255, 0.5)",
+              background: "rgba(0, 21, 66, 0.651)",
             }}
           >
             <Box
@@ -389,16 +447,18 @@ const DIP = () => {
                 variant="h5"
                 component="h2"
                 sx={{
-                  color: "black",
+                  color: "#fff",
+                  fontWeight: "700",
                 }}
               >
-                Exausted Pups
+                GameFi
               </Typography>
               <Typography
                 variant="subtitle1"
                 component="h2"
                 sx={{
-                  color: "black",
+                  color: "#fff",
+                  fontWeight: "700",
                 }}
               >
                 some.text.about.company
@@ -408,27 +468,41 @@ const DIP = () => {
               variant="h5"
               component="h2"
               sx={{
-                color: "black",
+                color: "#fff",
+                fontWeight: "700",
               }}
             >
-              9.88% ROSE
+              Amount Invested: $1.4M
             </Typography>
             <Typography
               variant="h5"
               component="h2"
               sx={{
-                color: "black",
+                color: "#fff",
+                fontWeight: "700",
               }}
             >
-              20.18% with $XLB
+              Expected Returns: x7
             </Typography>
-            <Button
-              className={classe.buttonS}
-              variant="contained"
-              sx={buttonStyles}
+            <Typography
+              variant="h5"
+              component="h2"
+              sx={{
+                color: "#fff",
+                fontWeight: "700",
+              }}
             >
-              Open
-            </Button>
+              Funding Round: Pre-Seed
+            </Typography>
+            <Link to="/gamefi">
+              <Button
+                className={classe.buttonS}
+                variant="contained"
+                sx={buttonStyles}
+              >
+                Open
+              </Button>
+            </Link>
           </Paper>
 
           <Typography
@@ -437,6 +511,7 @@ const DIP = () => {
             sx={{
               marginTop: "5%",
               color: "#fff",
+              fontWeight: "700",
             }}
           >
             Scaling Solutions
@@ -447,13 +522,13 @@ const DIP = () => {
             style={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "space-between",
+              justifyContent: "space-around",
               alignItems: "center",
               marginTop: "2%",
               borderStyle: "double",
               borderColor: "#fa8128",
               borderRadius: "10px",
-              background: "rgba(255,255,255, 0.5)",
+              background: "rgba(0, 21, 66, 0.651)",
             }}
           >
             <Box
@@ -474,16 +549,18 @@ const DIP = () => {
                 variant="h5"
                 component="h2"
                 sx={{
-                  color: "black",
+                  color: "#fff",
+                  fontWeight: "700",
                 }}
               >
-                Lady Justice
+                Layer 2
               </Typography>
               <Typography
                 variant="subtitle1"
                 component="h2"
                 sx={{
-                  color: "black",
+                  color: "#fff",
+                  fontWeight: "700",
                 }}
               >
                 some.text.about.company
@@ -493,40 +570,54 @@ const DIP = () => {
               variant="h5"
               component="h2"
               sx={{
-                color: "black",
+                color: "#fff",
+                fontWeight: "700",
               }}
             >
-              11.39% ROSE
+              Amount Invested: $1.9M
             </Typography>
             <Typography
               variant="h5"
               component="h2"
               sx={{
-                color: "black",
+                color: "#fff",
+                fontWeight: "700",
               }}
             >
-              24.65% with $XLB
+              Expected Returns: x6
             </Typography>
-            <Button
-              className={classe.buttonS}
-              variant="contained"
-              sx={buttonStyles}
+            <Typography
+              variant="h5"
+              component="h2"
+              sx={{
+                color: "#fff",
+                fontWeight: "700",
+              }}
             >
-              Open
-            </Button>
+              Funding Round: Series B
+            </Typography>
+            <Link to="/layer2">
+              <Button
+                className={classe.buttonS}
+                variant="contained"
+                sx={buttonStyles}
+              >
+                Open
+              </Button>
+            </Link>
           </Paper>
           <Paper
             elevation={10}
             style={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "space-between",
+              justifyContent: "space-around",
               alignItems: "center",
               marginTop: "5%",
               borderStyle: "double",
               borderColor: "#fa8128",
               borderRadius: "10px",
-              background: "rgba(255,255,255, 0.5)",
+              background: "rgba(0, 21, 66, 0.651)",
             }}
           >
             <Box
@@ -547,16 +638,18 @@ const DIP = () => {
                 variant="h5"
                 component="h2"
                 sx={{
-                  color: "black",
+                  color: "#fff",
+                  fontWeight: "700",
                 }}
               >
-                Red Snow
+                Optimistic Rollup Scaling
               </Typography>
               <Typography
                 variant="subtitle1"
                 component="h2"
                 sx={{
-                  color: "black",
+                  color: "#fff",
+                  fontWeight: "700",
                 }}
               >
                 some.text.about.company
@@ -566,27 +659,41 @@ const DIP = () => {
               variant="h5"
               component="h2"
               sx={{
-                color: "black",
+                color: "#fff",
+                fontWeight: "700",
               }}
             >
-              6.67% ROSE
+              Amount Invested: $1.1M
             </Typography>
             <Typography
               variant="h5"
               component="h2"
               sx={{
-                color: "black",
+                color: "#fff",
+                fontWeight: "700",
               }}
             >
-              13.11% with $XLB
+              Expected Returns: x8
             </Typography>
-            <Button
-              className={classe.buttonS}
-              variant="contained"
-              sx={buttonStyles}
+            <Typography
+              variant="h5"
+              component="h2"
+              sx={{
+                color: "#fff",
+                fontWeight: "700",
+              }}
             >
-              Open
-            </Button>
+              Funding Round: Series C
+            </Typography>
+            <Link to="/ors">
+              <Button
+                className={classe.buttonS}
+                variant="contained"
+                sx={buttonStyles}
+              >
+                Open
+              </Button>
+            </Link>
           </Paper>
         </Grid>
       </Container>

@@ -147,6 +147,7 @@ const TopBar = () => {
               flexDirection: "row",
               justifyContent: "space-around",
               alignItems: "center",
+              marginRight: 1,
             }}
           >
             <Box>
@@ -154,11 +155,12 @@ const TopBar = () => {
             </Box>
             <Link to="/">
               <Typography
-                className="dash1"
+                className="dash"
                 style={{
                   marginLeft: -100,
                   textDecoration: isActiveD ? "underline" : "none",
                   color: isActiveD ? "#C8E9E9" : "white",
+                  fontWeight: 700,
                 }}
                 onClick={handleClickD}
               >
@@ -171,6 +173,7 @@ const TopBar = () => {
                 style={{
                   textDecoration: isActiveC ? "underline" : "none",
                   color: isActiveC ? "#C8E9E9" : "white",
+                  fontWeight: 700,
                 }}
                 onClick={handleClickC}
               >
@@ -184,6 +187,7 @@ const TopBar = () => {
                 style={{
                   textDecoration: isActiveS ? "underline" : "none",
                   color: isActiveS ? "#C8E9E9" : "white",
+                  fontWeight: 700,
                 }}
               >
                 Swap
@@ -195,12 +199,19 @@ const TopBar = () => {
                 flexDirection: "column",
               }}
             >
-              <Typography className="dash">Launch Pad</Typography>
+              <Typography
+                className="dash"
+                style={{
+                  fontWeight: 700,
+                }}
+              >
+                Launch Pad
+              </Typography>
               <Typography
                 variant="body3"
                 style={{
                   marginTop: -10,
-                  marginLeft: 2,
+                  textAlign: "center",
                   color: "#C8E9E9",
                 }}
               >
@@ -220,22 +231,12 @@ const TopBar = () => {
                   style={{
                     textDecoration: isActiveI ? "underline" : "none",
                     color: isActiveI ? "#C8E9E9" : "white",
+                    fontWeight: 700,
                   }}
                 >
-                  Investment Pool
+                  Investments
                 </Typography>
               </Link>
-              <Typography
-                variant="body3"
-                style={{
-                  marginTop: -10,
-                  marginLeft: 2,
-                  color: "#C8E9E9",
-                  textAlign: "center",
-                }}
-              >
-                coming soon
-              </Typography>
             </Box>
             <Box
               sx={{
@@ -250,22 +251,12 @@ const TopBar = () => {
                   style={{
                     textDecoration: isActiveG ? "underline" : "none",
                     color: isActiveG ? "#C8E9E9" : "white",
+                    fontWeight: 700,
                   }}
                 >
                   Governance
                 </Typography>
               </Link>
-              <Typography
-                variant="body3"
-                style={{
-                  marginTop: -10,
-                  marginLeft: 2,
-                  color: "#C8E9E9",
-                  textAlign: "center",
-                }}
-              >
-                coming soon
-              </Typography>
             </Box>
             <Box
               sx={{
@@ -280,11 +271,16 @@ const TopBar = () => {
                   marginTop: -10,
                   marginLeft: 2,
                   color: "#C8E9E9",
+                  fontWeight: 700,
                 }}
               >
                 Token Address
               </Typography>
-              <Typography>
+              <Typography
+                style={{
+                  fontWeight: 700,
+                }}
+              >
                 0x4B034645BC8B43A300739f83AEaCdbF0E1a90a38
               </Typography>
             </Box>
@@ -302,7 +298,14 @@ const TopBar = () => {
               </Button>
             )}
             {isConnected ? (
-              <div className="privatize">{addressFormatted}</div>
+              <div
+                className="privatize"
+                style={{
+                  fontWeight: 700,
+                }}
+              >
+                {addressFormatted}
+              </div>
             ) : (
               <></>
             )}

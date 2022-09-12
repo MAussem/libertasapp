@@ -23,9 +23,8 @@ const BurnTimer = () => {
         style={{
           marginTop: -30,
           borderStyle: "double",
-          borderColor: "#fa8128",
-          borderRadius: "10px",
-          background: "rgba(255,255,255, 0.5)",
+          borderColor: "rgb(167, 230, 255, 0.2)",
+          background: "rgba(0, 21, 66, 0.651)",
         }}
       >
         <Box
@@ -48,9 +47,9 @@ const BurnTimer = () => {
               value={percentage}
               text={`${percentage}`}
               styles={buildStyles({
-                textColor: "#000",
-                pathColor: "#C8E9E9",
-                trailColor: "#C8E9E9",
+                textColor: "#fff",
+                pathColor: "rgba(255, 0, 0, 0.1)",
+                trailColor: "rgb(140, 230, 270)",
               })}
             />
           </Box>
@@ -60,7 +59,7 @@ const BurnTimer = () => {
             style={{
               margin: 3,
               paddingLeft: 4,
-              color: "#C8E9E9",
+              color: "rgb(167, 230, 255)",
             }}
           >
             Count Down to Next Burn

@@ -27,9 +27,8 @@ const PriceInfo = () => {
             elevation={10}
             style={{
               borderStyle: "double",
-              borderColor: "#fa8128",
-              borderRadius: "10px",
-              background: "rgba(255,255,255, 0.5)",
+              borderColor: "rgb(167, 230, 255, 0.2)",
+              background: "rgba(0, 21, 66, 0.651)",
             }}
           >
             <Box
@@ -51,7 +50,7 @@ const PriceInfo = () => {
                   variant="h5"
                   component="h2"
                   style={{
-                    color: "#C8E9E9",
+                    color: "rgb(167, 230, 255)",
                   }}
                 >
                   XLB PRICE
@@ -62,7 +61,6 @@ const PriceInfo = () => {
                   component="h2"
                   style={{
                     fontWeight: 700,
-                    color: "#000",
                   }}
                 >
                   $0
@@ -79,7 +77,7 @@ const PriceInfo = () => {
                   variant="h5"
                   component="h2"
                   style={{
-                    color: "#C8E9E9",
+                    color: "rgb(167, 230, 255)",
                   }}
                 >
                   Market Cap
@@ -90,7 +88,6 @@ const PriceInfo = () => {
                   component="h2"
                   style={{
                     fontWeight: 700,
-                    color: "#000",
                   }}
                 >
                   $0
@@ -107,7 +104,7 @@ const PriceInfo = () => {
                   variant="h5"
                   component="h2"
                   style={{
-                    color: "#C8E9E9",
+                    color: "rgb(167, 230, 255)",
                   }}
                 >
                   Daily ROI
@@ -118,7 +115,6 @@ const PriceInfo = () => {
                   component="h2"
                   style={{
                     fontWeight: 700,
-                    color: "#000",
                   }}
                 >
                   1.462306651%
@@ -128,17 +124,22 @@ const PriceInfo = () => {
                   variant="subtitle1"
                   component="h2"
                   style={{
-                    color: "#C8E9E9",
+                    color: "rgb(167, 230, 255)",
                   }}
                 >
                   Next Rebase: {rebaseRate}
                 </Typography>
+                {/* <Typography variant="subtitle1" component="h2" style={{
+              color: "rgb(167, 230, 255)"
+            }}>
+              5-day: 0.1774%
+            </Typography> */}
                 <Typography
                   className={classes.hTitle}
                   variant="subtitle1"
                   component="h2"
                   style={{
-                    color: "#C8E9E9",
+                    color: "rgb(167, 230, 255)",
                   }}
                 >
                   Annual Rebase: 20009.07%
@@ -155,9 +156,8 @@ const PriceInfo = () => {
             elevation={10}
             style={{
               borderStyle: "double",
-              borderColor: "#fa8128",
-              borderRadius: "10px",
-              background: "rgba(255,255,255, 0.5)",
+              borderColor: "rgb(167, 230, 255, 0.2)",
+              background: "rgba(0, 21, 66, 0.651)",
             }}
           >
             <Box
@@ -179,7 +179,7 @@ const PriceInfo = () => {
                   variant="h5"
                   component="h2"
                   style={{
-                    color: "#C8E9E9",
+                    color: "rgb(167, 230, 255)",
                   }}
                 >
                   XLB PRICE
@@ -206,7 +206,7 @@ const PriceInfo = () => {
                   variant="h5"
                   component="h2"
                   style={{
-                    color: "#C8E9E9",
+                    color: "rgb(167, 230, 255)",
                   }}
                 >
                   Market Cap

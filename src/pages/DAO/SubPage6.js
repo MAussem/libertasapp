@@ -1,7 +1,7 @@
 import { Box, Container, Paper, Typography, Button } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 
-const ProtocolInfo = () => {
+const SubPage6 = () => {
   const buttonSty = makeStyles((theme) => ({
     buttonS: {
       padding: theme.spacing(1),
@@ -33,7 +33,7 @@ const ProtocolInfo = () => {
       <Paper
         elevation={10}
         style={{
-          marginTop: 40,
+          marginTop: 120,
           paddingTop: 30,
           paddingBottom: 30,
           borderStyle: "double",
@@ -73,7 +73,7 @@ const ProtocolInfo = () => {
               fontWeight: "800",
             }}
           >
-            Investment Summary
+            Layer 2
           </Typography>
           <Box
             style={{
@@ -98,7 +98,7 @@ const ProtocolInfo = () => {
                   color: "#C8E9E9",
                 }}
               >
-                Total Treasury Investment: <br /> $652,432,412
+                Amount Invested <br /> $4200
               </Typography>
               <Typography
                 variant="h5"
@@ -109,7 +109,7 @@ const ProtocolInfo = () => {
                   color: "#C8E9E9",
                 }}
               >
-                Restricted Reserves: 7.5M
+                Launch Date: 88/88/8888
               </Typography>
             </Box>
             <Box
@@ -127,7 +127,7 @@ const ProtocolInfo = () => {
                   color: "#C8E9E9",
                 }}
               >
-                Average Expected Returns: <br /> x12
+                Expected Returns: <br /> x6
               </Typography>
               <Typography
                 variant="h5"
@@ -138,7 +138,7 @@ const ProtocolInfo = () => {
                   color: "#C8E9E9",
                 }}
               >
-                Stable Coin Holdings: 8M
+                Funding Round: Series B
               </Typography>
             </Box>
           </Box>
@@ -170,4 +170,4 @@ const ProtocolInfo = () => {
   );
 };
 
-export default ProtocolInfo;
+export default SubPage6;

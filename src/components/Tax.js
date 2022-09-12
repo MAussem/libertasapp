@@ -24,12 +24,11 @@ const Tax = () => {
           <Paper
             elevation={10}
             style={{
+              borderStyle: "double",
+              borderColor: "rgb(167, 230, 255, 0.2)",
               textAlign: "center",
               padding: 15,
-              borderStyle: "double",
-              borderColor: "#fa8128",
-              borderRadius: "10px",
-              background: "rgba(255,255,255, 0.5)",
+              background: "rgba(0, 21, 66, 0.651)",
             }}
           >
             <Typography
@@ -39,8 +38,7 @@ const Tax = () => {
               style={{
                 paddingTop: 10,
                 paddingBottom: 10,
-                color: "#C8E9E9",
-                fontWeight: 700,
+                color: "rgb(167, 230, 255)",
               }}
             >
               Buy Tax
@@ -50,8 +48,7 @@ const Tax = () => {
               component="h2"
               style={{
                 paddingBottom: 10,
-                color: "#000",
-                fontWeight: 700,
+                color: "white",
               }}
             >
               13%
@@ -62,8 +59,7 @@ const Tax = () => {
               component="h2"
               style={{
                 paddingBottom: 10,
-                color: "#C8E9E9",
-                fontWeight: 700,
+                color: "rgb(167, 230, 255)",
               }}
             >
               Sell Tax
@@ -73,8 +69,7 @@ const Tax = () => {
               component="h2"
               style={{
                 paddingBottom: 10,
-                color: "#000",
-                fontWeight: 700,
+                color: "white",
               }}
             >
               20%
@@ -85,8 +80,7 @@ const Tax = () => {
               component="h2"
               style={{
                 paddingBottom: 10,
-                color: "#C8E9E9",
-                fontWeight: 700,
+                color: "rgb(167, 230, 255)",
               }}
             >
               Transfer Tax
@@ -96,8 +90,7 @@ const Tax = () => {
               component="h2"
               style={{
                 paddingBottom: 10,
-                color: "#000",
-                fontWeight: 700,
+                color: "white",
               }}
             >
               13%
@@ -108,8 +101,7 @@ const Tax = () => {
               component="h2"
               style={{
                 paddingBottom: 10,
-                color: "#C8E9E9",
-                fontWeight: 700,
+                color: "rgb(167, 230, 255)",
               }}
             >
               Max Tokens Per Buy / Sell
@@ -119,8 +111,7 @@ const Tax = () => {
               component="h2"
               style={{
                 paddingBottom: 10,
-                color: "#000",
-                fontWeight: 700,
+                color: "white",
               }}
             >
               869.23B / 1.50M
@@ -133,12 +124,11 @@ const Tax = () => {
           <Paper
             elevation={10}
             style={{
+              borderStyle: "double",
+              borderColor: "rgb(167, 230, 255, 0.2)",
               textAlign: "center",
               padding: 15,
-              borderStyle: "double",
-              borderColor: "#fa8128",
-              borderRadius: "10px",
-              background: "rgba(255,255,255, 0.5)",
+              background: "rgba(0, 21, 66, 0.651)",
             }}
           >
             <Typography
@@ -148,8 +138,7 @@ const Tax = () => {
               style={{
                 paddingTop: 10,
                 paddingBottom: 10,
-                color: "#C8E9E9",
-                fontWeight: 700,
+                color: "rgb(167, 230, 255)",
               }}
             >
               Buy Tax
@@ -160,8 +149,7 @@ const Tax = () => {
               component="h2"
               style={{
                 paddingBottom: 10,
-                color: "#000",
-                fontWeight: 700,
+                color: "white",
               }}
             >
               13%
@@ -173,8 +161,7 @@ const Tax = () => {
               component="h2"
               style={{
                 paddingBottom: 10,
-                color: "#C8E9E9",
-                fontWeight: 700,
+                color: "rgb(167, 230, 255)",
               }}
             >
               Sell Tax
@@ -185,8 +172,7 @@ const Tax = () => {
               component="h2"
               style={{
                 paddingBottom: 10,
-                color: "#000",
-                fontWeight: 700,
+                color: "white",
               }}
             >
               20%
@@ -198,8 +184,7 @@ const Tax = () => {
               component="h2"
               style={{
                 paddingBottom: 10,
-                color: "#C8E9E9",
-                fontWeight: 700,
+                color: "rgb(167, 230, 255)",
               }}
             >
               Transfer Tax
@@ -210,8 +195,7 @@ const Tax = () => {
               component="h2"
               style={{
                 paddingBottom: 10,
-                color: "#000",
-                fontWeight: 700,
+                color: "white",
               }}
             >
               13%
@@ -223,8 +207,7 @@ const Tax = () => {
               component="h2"
               style={{
                 paddingBottom: 10,
-                color: "#C8E9E9",
-                fontWeight: 700,
+                color: "rgb(167, 230, 255)",
               }}
             >
               Max Tokens Per Buy / Sell
@@ -235,8 +218,7 @@ const Tax = () => {
               component="h2"
               style={{
                 paddingBottom: 10,
-                color: "#000",
-                fontWeight: 700,
+                color: "white",
               }}
             >
               869.23B / 1.50M

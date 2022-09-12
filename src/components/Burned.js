@@ -24,12 +24,11 @@ const Burned = () => {
           <Paper
             elevation={10}
             style={{
+              borderStyle: "double",
+              borderColor: "rgb(167, 230, 255, 0.2)",
               marginTop: -30,
               marginBottom: 50,
-              borderStyle: "double",
-              borderColor: "#fa8128",
-              borderRadius: "10px",
-              background: "rgba(255,255,255, 0.5)",
+              background: "rgba(0, 21, 66, 0.651)",
             }}
           >
             <Box
@@ -42,7 +41,7 @@ const Burned = () => {
                 variant="h5"
                 component="h2"
                 style={{
-                  color: "#C8E9E9",
+                  color: "rgb(167, 230, 255)",
                 }}
               >
                 &#128293; Total Tokens Burned To Date &#128293;
@@ -52,7 +51,6 @@ const Burned = () => {
                 component="h2"
                 style={{
                   fontWeight: 700,
-                  color: "#000",
                 }}
               >
                 0
@@ -67,12 +65,10 @@ const Burned = () => {
           <Paper
             elevation={10}
             style={{
-              marginBottom: 50,
-              marginTop: -175,
               borderStyle: "double",
-              borderColor: "#fa8128",
-              borderRadius: "10px",
-              background: "rgba(255,255,255, 0.5)",
+              borderColor: "rgb(167, 230, 255, 0.2)",
+              marginBottom: 50,
+              background: "rgba(0, 21, 66, 0.651)",
             }}
           >
             <Box
@@ -86,7 +82,7 @@ const Burned = () => {
                 variant="h5"
                 component="h2"
                 style={{
-                  color: "#C8E9E9",
+                  color: "rgb(167, 230, 255)",
                 }}
               >
                 &#128293; Total Tokens Burned To Date &#128293;
@@ -97,7 +93,6 @@ const Burned = () => {
                 component="h2"
                 style={{
                   fontWeight: 700,
-                  color: "#000",
                 }}
               >
                 0
