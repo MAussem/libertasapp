@@ -100,6 +100,36 @@ const TopBar = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
 
+  const tokenAddress = "0x4B034645BC8B43A300739f83AEaCdbF0E1a90a38";
+  const tokenSymbol = "XLB";
+  const tokenDecimals = 18;
+  const tokenImage = "../flame.svg";
+
+  async function addTokenFunction() {
+    try {
+      const wasAdded = await window.ethereum.request({
+        method: "wallet_watchAsset",
+        params: {
+          type: "ERC20",
+          options: {
+            address: tokenAddress,
+            symbol: tokenSymbol,
+            decimals: tokenDecimals,
+            image: tokenImage,
+          },
+        },
+      });
+
+      if (wasAdded) {
+        console.log("Thanks for your interest!");
+      } else {
+        console.log("XLB has not been added");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <>
       <Paper
@@ -264,25 +294,9 @@ const TopBar = () => {
                 flexDirection: "column",
               }}
             >
-              <Typography
-                variant="body3"
-                style={{
-                  textAlign: "center",
-                  marginTop: -10,
-                  marginLeft: 2,
-                  color: "#C8E9E9",
-                  fontWeight: 700,
-                }}
-              >
-                Token Address
-              </Typography>
-              <Typography
-                style={{
-                  fontWeight: 700,
-                }}
-              >
-                0x4B034645BC8B43A300739f83AEaCdbF0E1a90a38
-              </Typography>
+              <Button onClick={addTokenFunction} sx={buttonStyles}>
+                Import Token
+              </Button>
             </Box>
             {isConnected ? (
               <Button
@@ -386,24 +400,16 @@ const TopBar = () => {
                 flexDirection: "column",
               }}
             >
-              <Typography
-                variant="body3"
+              <Button
+                onClick={addTokenFunction}
+                sx={buttonStyles}
                 style={{
-                  marginTop: -10,
-                  marginLeft: 2,
-                  color: "rgb(167, 230, 255)",
+                  marginTop: "2%",
+                  marginBottom: "5%",
                 }}
               >
-                Token Address
-              </Typography>
-              <Typography
-                variant="subtitle"
-                style={{
-                  marginBottom: 10,
-                }}
-              >
-                0x4B034645BC8B43A300739f83AEaCdbF0E1a90a38
-              </Typography>
+                Import Token
+              </Button>
             </Box>
             {isConnected ? (
               <Button

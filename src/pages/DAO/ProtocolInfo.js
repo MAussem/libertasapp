@@ -12,7 +12,7 @@ const ProtocolInfo = () => {
   }));
 
   const buttonStyles = {
-    marginLeft: "85%",
+    marginLeft: "79%",
     width: 150,
     fontWeight: 800,
     color: "black",
@@ -29,7 +29,7 @@ const ProtocolInfo = () => {
   const classe = buttonSty();
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="md">
       <Paper
         elevation={10}
         style={{

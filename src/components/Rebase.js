@@ -73,7 +73,7 @@ const Rebase = () => {
           variant="subtitle2"
           style={{
             fontWeight: 700,
-            color: "#000",
+            color: "#fff",
           }}
         >
           NEXT REWARD: {rebaseRate}%

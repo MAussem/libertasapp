@@ -26,6 +26,7 @@ const GovUserInfo = () => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            marginTop: "33%",
             borderStyle: "double",
             borderColor: "#fa8128",
             borderRadius: "10px",

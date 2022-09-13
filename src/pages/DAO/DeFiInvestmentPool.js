@@ -85,16 +85,6 @@ const DIP = () => {
               >
                 DeFi Aggregator
               </Typography>
-              <Typography
-                variant="subtitle1"
-                component="h2"
-                sx={{
-                  color: "#fff",
-                  fontWeight: "700",
-                }}
-              >
-                some.text.about.company
-              </Typography>
             </Box>
             <Typography
               variant="h5"
@@ -173,16 +163,6 @@ const DIP = () => {
                 }}
               >
                 Decentralised Exchange
-              </Typography>
-              <Typography
-                variant="subtitle1"
-                component="h2"
-                sx={{
-                  color: "#fff",
-                  fontWeight: "700",
-                }}
-              >
-                some.text.about.company
               </Typography>
             </Box>
             <Typography
@@ -275,16 +255,6 @@ const DIP = () => {
               >
                 Dao Protocol
               </Typography>
-              <Typography
-                variant="subtitle1"
-                component="h2"
-                sx={{
-                  color: "#fff",
-                  fontWeight: "700",
-                }}
-              >
-                some.text.about.company
-              </Typography>
             </Box>
             <Typography
               variant="h5"
@@ -364,16 +334,6 @@ const DIP = () => {
               >
                 Layer 1 Protocol
               </Typography>
-              <Typography
-                variant="subtitle1"
-                component="h2"
-                sx={{
-                  color: "#fff",
-                  fontWeight: "700",
-                }}
-              >
-                some.text.about.company
-              </Typography>
             </Box>
             <Typography
               variant="h5"
@@ -452,16 +412,6 @@ const DIP = () => {
                 }}
               >
                 GameFi
-              </Typography>
-              <Typography
-                variant="subtitle1"
-                component="h2"
-                sx={{
-                  color: "#fff",
-                  fontWeight: "700",
-                }}
-              >
-                some.text.about.company
               </Typography>
             </Box>
             <Typography
@@ -555,16 +505,6 @@ const DIP = () => {
               >
                 Layer 2
               </Typography>
-              <Typography
-                variant="subtitle1"
-                component="h2"
-                sx={{
-                  color: "#fff",
-                  fontWeight: "700",
-                }}
-              >
-                some.text.about.company
-              </Typography>
             </Box>
             <Typography
               variant="h5"
@@ -614,6 +554,7 @@ const DIP = () => {
               justifyContent: "space-around",
               alignItems: "center",
               marginTop: "5%",
+              marginBottom: "10%",
               borderStyle: "double",
               borderColor: "#fa8128",
               borderRadius: "10px",
@@ -643,16 +584,6 @@ const DIP = () => {
                 }}
               >
                 Optimistic Rollup Scaling
-              </Typography>
-              <Typography
-                variant="subtitle1"
-                component="h2"
-                sx={{
-                  color: "#fff",
-                  fontWeight: "700",
-                }}
-              >
-                some.text.about.company
               </Typography>
             </Box>
             <Typography

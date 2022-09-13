@@ -77,7 +77,7 @@ const Hero = () => {
             elevation={10}
             style={{
               borderStyle: "double",
-              borderColor: "rgb(167, 230, 255, 0.2)",
+              borderColor: "#fa8128",
               background: "rgba(0, 21, 66, 0.651)",
               marginTop: 40,
               paddingTop: 30,
@@ -272,7 +272,7 @@ const Hero = () => {
             elevation={10}
             style={{
               borderStyle: "double",
-              borderColor: "rgb(167, 230, 255, 0.2)",
+              borderColor: "#fa8128",
               background: "rgba(0, 21, 66, 0.651)",
               marginTop: 40,
               paddingTop: 30,

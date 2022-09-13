@@ -25,7 +25,7 @@ const Burned = () => {
             elevation={10}
             style={{
               borderStyle: "double",
-              borderColor: "rgb(167, 230, 255, 0.2)",
+              borderColor: "#fa8128",
               marginTop: -30,
               marginBottom: 50,
               background: "rgba(0, 21, 66, 0.651)",
@@ -66,7 +66,7 @@ const Burned = () => {
             elevation={10}
             style={{
               borderStyle: "double",
-              borderColor: "rgb(167, 230, 255, 0.2)",
+              borderColor: "#fa8128",
               marginBottom: 50,
               background: "rgba(0, 21, 66, 0.651)",
             }}

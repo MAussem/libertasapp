@@ -23,7 +23,7 @@ const BurnTimer = () => {
         style={{
           marginTop: -30,
           borderStyle: "double",
-          borderColor: "rgb(167, 230, 255, 0.2)",
+          borderColor: "#fa8128",
           background: "rgba(0, 21, 66, 0.651)",
         }}
       >
