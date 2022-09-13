@@ -103,7 +103,7 @@ const TopBar = () => {
   const tokenAddress = "0x4B034645BC8B43A300739f83AEaCdbF0E1a90a38";
   const tokenSymbol = "XLB";
   const tokenDecimals = 18;
-  const tokenImage = "../flame.svg";
+  const tokenImage = "https://i.postimg.cc/4N1vYmjT/libertas-torch.png";
 
   async function addTokenFunction() {
     try {
