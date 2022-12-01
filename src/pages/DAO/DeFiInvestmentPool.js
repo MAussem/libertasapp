@@ -17,7 +17,7 @@ const DIP = () => {
     marginRight: "1%",
     width: 120,
     fontWeight: 800,
-    color: "#fff",
+    color: "#000",
     borderRadius: "10px",
     background: "linear-gradient(to right, #fa8128, #C8E9E9);",
     "&:hover": {
