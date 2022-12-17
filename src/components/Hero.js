@@ -1,9 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Grid, Paper, Typography, Box, Button } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
-import Rebase from "./Rebase";
 
 import { useAccount } from "wagmi";
 import { useContractXLBRead } from "../hooks/libertas";
@@ -71,7 +71,7 @@ const Hero = () => {
 
   return (
     <>
-      <Grid item xs={12} className={classes.hTitle}>
+      <Grid item xs={8} className={classes.hTitle}>
         {matches && (
           <Paper
             elevation={10}
@@ -108,7 +108,7 @@ const Hero = () => {
                   Portfolio
                 </Typography>
                 <Box
-                  paddingX={4}
+                  paddingX={1}
                   paddingY={2}
                   sx={{
                     display: "flex",
@@ -261,9 +261,7 @@ const Hero = () => {
                   display: "flex",
                   flexDirection: "column",
                 }}
-              >
-                {!matches && <Rebase />}
-              </Box>
+              ></Box>
             </Box>
           </Paper>
         )}
@@ -275,8 +273,7 @@ const Hero = () => {
               borderColor: "#fa8128",
               background: "rgba(0, 21, 66, 0.651)",
               marginTop: 40,
-              paddingTop: 30,
-              paddingBottom: 30,
+              paddingBottom: 15,
             }}
           >
             <Box
@@ -303,7 +300,7 @@ const Hero = () => {
                   Portfolio
                 </Typography>
                 <Box
-                  paddingX={4}
+                  paddingX={1}
                   paddingY={2}
                   sx={{
                     display: "flex",
@@ -344,19 +341,58 @@ const Hero = () => {
                 Connect Wallet
               </Button>
               } */}
-                <a
-                  href="https://www.dextools.io/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <Link to="./staking">
                   <Button
                     className={classe.buttonS}
                     variant="contained"
                     sx={buttonStyles}
                   >
-                    View Chart
+                    Stake XLB
                   </Button>
-                </a>
+                </Link>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  marginLeft: "-5%",
+                }}
+              >
+                <Typography
+                  className={classes.hTitle}
+                  variant="h5"
+                  component="h2"
+                  style={{
+                    marginTop: "25px",
+                    color: "rgb(167, 230, 255)",
+                  }}
+                >
+                  Staked $XLB
+                </Typography>
+                <Typography
+                  className={classes.hTitle}
+                  variant="h3"
+                  component="h2"
+                  style={{
+                    fontWeight: 700,
+                  }}
+                >
+                  $1000
+                </Typography>
+                <Box paddingY={2}>
+                  {/* <button onClick={() => fetchBalance()}>click me</button> */}
+                  <Typography
+                    className={classes.hTitle}
+                    variant="subtitle1"
+                    component="h2"
+                    style={{
+                      color: "rgb(167, 230, 255)",
+                    }}
+                  >
+                    51294.295 XLB
+                  </Typography>
+                </Box>
               </Box>
               <Box
                 sx={{
@@ -370,20 +406,21 @@ const Hero = () => {
                   variant="h5"
                   component="h2"
                   style={{
+                    marginTop: "25px",
                     color: "rgb(167, 230, 255)",
                   }}
                 >
-                  Holdings
+                  Available $XLB
                 </Typography>
                 <Typography
                   className={classes.hTitle}
-                  variant="h2"
+                  variant="h3"
                   component="h2"
                   style={{
                     fontWeight: 700,
                   }}
                 >
-                  $0
+                  $5,231
                 </Typography>
                 <Box paddingY={2}>
                   {/* <button onClick={() => fetchBalance()}>click me</button> */}
@@ -398,54 +435,6 @@ const Hero = () => {
                     {balance}
                   </Typography>
                 </Box>
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
-                <Typography
-                  className={classes.hTitle}
-                  variant="h5"
-                  component="h2"
-                  style={{
-                    color: "rgb(167, 230, 255)",
-                  }}
-                >
-                  Daily Earnings
-                </Typography>
-                <Typography
-                  className={classes.hTitle}
-                  variant="h2"
-                  component="h2"
-                  style={{
-                    fontWeight: 700,
-                  }}
-                >
-                  $0
-                </Typography>
-                <Box paddingY={2}>
-                  <Typography
-                    className={classes.hTitle}
-                    variant="subtitle1"
-                    component="h2"
-                    style={{
-                      color: "rgb(167, 230, 255)",
-                    }}
-                  >
-                    {dailyRoi} XLB
-                  </Typography>
-                </Box>
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                {!matches && <Rebase />}
               </Box>
             </Box>
           </Paper>

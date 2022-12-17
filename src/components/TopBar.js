@@ -197,19 +197,6 @@ const TopBar = () => {
                 Dashboard
               </Typography>
             </Link>
-            <Link to="/calc">
-              <Typography
-                className="dash"
-                style={{
-                  textDecoration: isActiveC ? "underline" : "none",
-                  color: isActiveC ? "#C8E9E9" : "white",
-                  fontWeight: 700,
-                }}
-                onClick={handleClickC}
-              >
-                Calculator
-              </Typography>
-            </Link>
             <Link to="./swap">
               <Typography
                 className="dash"
@@ -223,31 +210,6 @@ const TopBar = () => {
                 Swap
               </Typography>
             </Link>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <Typography
-                className="dash"
-                style={{
-                  fontWeight: 700,
-                }}
-              >
-                Launch Pad
-              </Typography>
-              <Typography
-                variant="body3"
-                style={{
-                  marginTop: -10,
-                  textAlign: "center",
-                  color: "#C8E9E9",
-                }}
-              >
-                coming soon
-              </Typography>
-            </Box>
             <Box
               sx={{
                 display: "flex",

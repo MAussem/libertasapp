@@ -1,4 +1,4 @@
-import { Grid, Paper, Typography } from "@mui/material";
+import { Grid, Paper, Typography, Box } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
@@ -41,7 +41,7 @@ const Tax = () => {
                 color: "rgb(167, 230, 255)",
               }}
             >
-              Buy Tax
+              Tax
             </Typography>
             <Typography
               variant="h6"
@@ -104,7 +104,7 @@ const Tax = () => {
                 color: "rgb(167, 230, 255)",
               }}
             >
-              Max Tokens Per Buy / Sell
+              Max Tokens Per Sell
             </Typography>
             <Typography
               variant="h6"
@@ -114,7 +114,7 @@ const Tax = () => {
                 color: "white",
               }}
             >
-              869.23B / 1.50M
+              $25,000
             </Typography>
           </Paper>
         </Grid>
@@ -133,7 +133,7 @@ const Tax = () => {
           >
             <Typography
               className={classes.hTitle}
-              variant="h6"
+              variant="h5"
               component="h2"
               style={{
                 paddingTop: 10,
@@ -141,88 +141,138 @@ const Tax = () => {
                 color: "rgb(167, 230, 255)",
               }}
             >
-              Buy Tax
+              Tax
             </Typography>
-            <Typography
-              className={classes.hTitle}
-              variant="h6"
-              component="h2"
+            <hr />
+            <Box
               style={{
+                display: "flex",
+                justifyContent: "space-between",
                 paddingBottom: 10,
                 color: "white",
               }}
             >
-              13%
-            </Typography>
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                Buy Tax
+              </Typography>
 
-            <Typography
-              className={classes.hTitle}
-              variant="h6"
-              component="h2"
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                13%
+              </Typography>
+            </Box>
+            <Box
               style={{
-                paddingBottom: 10,
-                color: "rgb(167, 230, 255)",
-              }}
-            >
-              Sell Tax
-            </Typography>
-            <Typography
-              className={classes.hTitle}
-              variant="h6"
-              component="h2"
-              style={{
+                display: "flex",
+                justifyContent: "space-between",
                 paddingBottom: 10,
                 color: "white",
               }}
             >
-              20%
-            </Typography>
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                Sell Tax
+              </Typography>
 
-            <Typography
-              className={classes.hTitle}
-              variant="h6"
-              component="h2"
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                20%
+              </Typography>
+            </Box>
+            <Box
               style={{
-                paddingBottom: 10,
-                color: "rgb(167, 230, 255)",
-              }}
-            >
-              Transfer Tax
-            </Typography>
-            <Typography
-              className={classes.hTitle}
-              variant="h6"
-              component="h2"
-              style={{
+                display: "flex",
+                justifyContent: "space-between",
                 paddingBottom: 10,
                 color: "white",
               }}
             >
-              13%
-            </Typography>
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                Transfer Tax
+              </Typography>
 
-            <Typography
-              className={classes.hTitle}
-              variant="h6"
-              component="h2"
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                13%
+              </Typography>
+            </Box>
+            <hr />
+            <Box
               style={{
-                paddingBottom: 10,
-                color: "rgb(167, 230, 255)",
-              }}
-            >
-              Max Tokens Per Buy / Sell
-            </Typography>
-            <Typography
-              className={classes.hTitle}
-              variant="h6"
-              component="h2"
-              style={{
+                display: "flex",
+                justifyContent: "space-between",
                 paddingBottom: 10,
                 color: "white",
               }}
             >
-              869.23B / 1.50M
-            </Typography>
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                Max Tokens Per Sell
+              </Typography>
+
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                $25,000
+              </Typography>
+            </Box>
           </Paper>
         </Grid>
       )}

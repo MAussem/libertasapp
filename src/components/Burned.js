@@ -26,8 +26,7 @@ const Burned = () => {
             style={{
               borderStyle: "double",
               borderColor: "#fa8128",
-              marginTop: -30,
-              marginBottom: 50,
+              marginTop: -80,
               background: "rgba(0, 21, 66, 0.651)",
             }}
           >

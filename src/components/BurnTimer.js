@@ -13,7 +13,7 @@ import "react-circular-progressbar/dist/styles.css";
 //   }
 // }
 
-const percentage = "7 days";
+const percentage = "24 hrs";
 
 const BurnTimer = () => {
   return (
@@ -21,7 +21,8 @@ const BurnTimer = () => {
       <Paper
         elevation={10}
         style={{
-          marginTop: -30,
+          marginTop: 10,
+          marginBottom: 50,
           borderStyle: "double",
           borderColor: "#fa8128",
           background: "rgba(0, 21, 66, 0.651)",
@@ -31,7 +32,7 @@ const BurnTimer = () => {
           sx={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "space-around",
+            justifyContent: "space-between",
             alignItems: "center",
           }}
         >
@@ -54,11 +55,10 @@ const BurnTimer = () => {
             />
           </Box>
           <Typography
-            variant="h5"
+            variant="h6"
             component="h2"
             style={{
-              margin: 3,
-              paddingLeft: 4,
+              marginRight: 25,
               color: "rgb(167, 230, 255)",
             }}
           >

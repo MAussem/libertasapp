@@ -16,6 +16,7 @@ import SubPage4 from "./pages/DAO/SubPage4";
 import SubPage5 from "./pages/DAO/SubPage5";
 import SubPage6 from "./pages/DAO/SubPage6";
 import SubPage7 from "./pages/DAO/SubPage7";
+import StakingModal from "./components/StakingModal";
 
 const App = () => {
   const [reloadBalance, setReloadBalance] = useState(0);
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/swap" element={<Exchange />}></Route>
         <Route path="/dip" element={<DIP />}></Route>
         <Route path="/governance" element={<Governance />}></Route>
+        <Route path="/staking" element={<StakingModal />}></Route>
         <Route path="/defi-agg" element={<SubPage1 />}></Route>
         <Route path="/dex" element={<SubPage2 />}></Route>
         <Route path="/dao" element={<SubPage3 />}></Route>

@@ -24,7 +24,7 @@ const TreasuryInfo = () => {
           style={{
             borderStyle: "double",
             borderColor: "#fa8128",
-            marginTop: -175,
+            marginTop: -90,
             background: "rgba(0, 21, 66, 0.651)",
           }}
         >
@@ -41,7 +41,7 @@ const TreasuryInfo = () => {
                 color: "rgb(167, 230, 255)",
               }}
             >
-              Treasury Balance
+              Total Supply
             </Typography>
             <Typography
               variant="h3"
@@ -50,7 +50,7 @@ const TreasuryInfo = () => {
                 fontWeight: 700,
               }}
             >
-              {balanceFormatted}
+              13,000,000
             </Typography>
           </Box>
         </Paper>
@@ -61,7 +61,7 @@ const TreasuryInfo = () => {
           style={{
             borderStyle: "double",
             borderColor: "#fa8128",
-            marginTop: -175,
+            marginTop: -90,
             background: "rgba(0, 21, 66, 0.651)",
           }}
         >
@@ -87,7 +87,7 @@ const TreasuryInfo = () => {
                 fontWeight: 700,
               }}
             >
-              0
+              5,000
             </Typography>
           </Box>
         </Paper>
