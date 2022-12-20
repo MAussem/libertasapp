@@ -61,13 +61,13 @@ const Hero = () => {
 
   //const rebaseRate = 1.462306651;
 
-  const dailyRoi = useMemo(() => {
-    if (!balanceRaw) return "n/a";
-    const daily = balanceRaw
-      .div(ethers.BigNumber.from("100000000000"))
-      .mul(ethers.BigNumber.from("1462306651"));
-    return ethers.utils.formatEther(daily.sub(daily.mod(1e14)));
-  }, [balanceRaw]);
+  // const dailyRoi = useMemo(() => {
+  //   if (!balanceRaw) return "n/a";
+  //   const daily = balanceRaw
+  //     .div(ethers.BigNumber.from("100000000000"))
+  //     .mul(ethers.BigNumber.from("1462306651"));
+  //   return ethers.utils.formatEther(daily.sub(daily.mod(1e14)));
+  // }, [balanceRaw]);
 
   return (
     <>
