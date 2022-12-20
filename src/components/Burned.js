@@ -26,7 +26,7 @@ const Burned = () => {
             style={{
               borderStyle: "double",
               borderColor: "#fa8128",
-              marginTop: -80,
+              marginTop: -20,
               background: "rgba(0, 21, 66, 0.651)",
             }}
           >
@@ -77,8 +77,7 @@ const Burned = () => {
               }}
             >
               <Typography
-                className={classes.hTitle}
-                variant="h5"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   color: "rgb(167, 230, 255)",

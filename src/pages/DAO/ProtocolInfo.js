@@ -1,7 +1,12 @@
 import { Box, Container, Paper, Typography, Button } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
+import { useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const ProtocolInfo = () => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
+
   const buttonSty = makeStyles((theme) => ({
     buttonS: {
       padding: theme.spacing(1),
@@ -30,142 +35,250 @@ const ProtocolInfo = () => {
 
   return (
     <Container maxWidth="md">
-      <Paper
-        elevation={10}
-        style={{
-          marginTop: 40,
-          paddingTop: 30,
-          paddingBottom: 30,
-          borderStyle: "double",
-          borderColor: "#fa8128",
-          borderRadius: "10px",
-          background: "rgba(0, 21, 66, 0.651)",
-        }}
-      >
-        <Box
+      {matches && (
+        <Paper
+          elevation={10}
           style={{
-            display: "flex",
-            flexDirection: "column",
+            marginTop: 40,
+            paddingTop: 30,
+            paddingBottom: 30,
+            borderStyle: "double",
+            borderColor: "#fa8128",
+            borderRadius: "10px",
+            background: "rgba(0, 21, 66, 0.651)",
           }}
         >
-          <Box style={{ justifyContent: "flex-end" }}>
-            <a
-              href="https://testnet.explorer.emerald.oasis.dev/address/0x4B034645BC8B43A300739f83AEaCdbF0E1a90a38/transactions"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Button
-                className={classe.buttonS}
-                variant="contained"
-                sx={buttonStyles}
-              >
-                Contract
-              </Button>
-            </a>
-          </Box>
-          <Typography
-            variant="h2"
-            component="h2"
-            style={{
-              marginTop: "4%",
-              textAlign: "center",
-              color: "#fff",
-              fontWeight: "800",
-            }}
-          >
-            Investment Summary
-          </Typography>
           <Box
             style={{
-              marginTop: "5%",
               display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-around",
+              flexDirection: "column",
             }}
           >
-            <Box
-              style={{
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <Typography
-                variant="h5"
-                component="h6"
-                style={{
-                  marginTop: "10%",
-                  textAlign: "center",
-                  color: "#C8E9E9",
-                }}
+            <Box style={{ justifyContent: "flex-end" }}>
+              <a
+                href="https://testnet.explorer.emerald.oasis.dev/address/0x4B034645BC8B43A300739f83AEaCdbF0E1a90a38/transactions"
+                target="_blank"
+                rel="noreferrer"
               >
-                Total Treasury Investment: <br /> $652,432,412
-              </Typography>
-              <Typography
-                variant="h5"
-                component="h6"
-                style={{
-                  marginTop: "30%",
-                  textAlign: "center",
-                  color: "#C8E9E9",
-                }}
-              >
-                Restricted Reserves: 7.5M
-              </Typography>
+                <Button
+                  className={classe.buttonS}
+                  variant="contained"
+                  sx={buttonStyles}
+                  style={{ marginLeft: "49%" }}
+                >
+                  Contract
+                </Button>
+              </a>
             </Box>
-            <Box
+            <Typography
+              variant="h3"
+              component="h2"
               style={{
-                display: "flex",
-                flexDirection: "column",
+                marginTop: "4%",
+                textAlign: "center",
+                color: "#fff",
+                fontWeight: "800",
               }}
             >
-              <Typography
-                variant="h5"
-                component="h6"
+              Investment Summary
+            </Typography>
+            <Box
+              style={{
+                margin: "5%",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <Box
                 style={{
-                  marginTop: "10%",
-                  textAlign: "center",
-                  color: "#C8E9E9",
+                  display: "flex",
+                  flexDirection: "column",
                 }}
               >
-                Average Expected Returns: <br /> x12
-              </Typography>
-              <Typography
-                variant="h5"
-                component="h6"
+                <Typography
+                  variant="subtitle1"
+                  component="h6"
+                  style={{
+                    marginTop: "10%",
+                    textAlign: "center",
+                    color: "#C8E9E9",
+                  }}
+                >
+                  Total Treasury Investment: <br /> $652,432,412
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  component="h6"
+                  style={{
+                    marginTop: "33%",
+                    textAlign: "center",
+                    color: "#C8E9E9",
+                  }}
+                >
+                  Restricted Reserves: 7.5M
+                </Typography>
+              </Box>
+              <Box
                 style={{
-                  marginTop: "30%",
-                  textAlign: "center",
-                  color: "#C8E9E9",
+                  display: "flex",
+                  flexDirection: "column",
                 }}
               >
-                Stable Coin Holdings: 8M
-              </Typography>
+                <Typography
+                  variant="subtitle1"
+                  component="h6"
+                  style={{
+                    marginTop: "10%",
+                    textAlign: "center",
+                    color: "#C8E9E9",
+                  }}
+                >
+                  Average Expected Returns: <br /> x12
+                </Typography>
+                <Typography
+                  variant="subtitle1"
+                  component="h6"
+                  style={{
+                    marginTop: "30%",
+                    textAlign: "center",
+                    color: "#C8E9E9",
+                  }}
+                >
+                  Stable Coin Holdings: 8M
+                </Typography>
+              </Box>
             </Box>
           </Box>
-          <img
-            src="../flame.svg"
-            alt=""
+        </Paper>
+      )}
+      {!matches && (
+        <Paper
+          elevation={10}
+          style={{
+            marginTop: 40,
+            paddingTop: 30,
+            paddingBottom: 30,
+            borderStyle: "double",
+            borderColor: "#fa8128",
+            borderRadius: "10px",
+            background: "rgba(0, 21, 66, 0.651)",
+          }}
+        >
+          <Box
             style={{
-              width: "8%",
-              zIndex: 100,
-              cursor: "pointer",
-              marginTop: "-20%",
-              marginLeft: "47%",
+              display: "flex",
+              flexDirection: "column",
             }}
-          />
-        </Box>
-      </Paper>
-      <Typography
-        variant="h5"
-        component="h6"
-        style={{
-          marginTop: "1%",
-          textAlign: "center",
-          color: "#fff",
-        }}
-      >
-        This is Ficticious Data
-      </Typography>
+          >
+            <Box style={{ justifyContent: "flex-end" }}>
+              <a
+                href="https://testnet.explorer.emerald.oasis.dev/address/0x4B034645BC8B43A300739f83AEaCdbF0E1a90a38/transactions"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Button
+                  className={classe.buttonS}
+                  variant="contained"
+                  sx={buttonStyles}
+                >
+                  Contract
+                </Button>
+              </a>
+            </Box>
+            <Typography
+              variant="h2"
+              component="h2"
+              style={{
+                marginTop: "4%",
+                textAlign: "center",
+                color: "#fff",
+                fontWeight: "800",
+              }}
+            >
+              Investment Summary
+            </Typography>
+            <Box
+              style={{
+                marginTop: "5%",
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-around",
+              }}
+            >
+              <Box
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <Typography
+                  variant="h5"
+                  component="h6"
+                  style={{
+                    marginTop: "10%",
+                    textAlign: "center",
+                    color: "#C8E9E9",
+                  }}
+                >
+                  Total Treasury Investment: <br /> $652,432,412
+                </Typography>
+                <Typography
+                  variant="h5"
+                  component="h6"
+                  style={{
+                    marginTop: "30%",
+                    textAlign: "center",
+                    color: "#C8E9E9",
+                  }}
+                >
+                  Restricted Reserves: 7.5M
+                </Typography>
+              </Box>
+              <Box
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <Typography
+                  variant="h5"
+                  component="h6"
+                  style={{
+                    marginTop: "10%",
+                    textAlign: "center",
+                    color: "#C8E9E9",
+                  }}
+                >
+                  Average Expected Returns: <br /> x12
+                </Typography>
+                <Typography
+                  variant="h5"
+                  component="h6"
+                  style={{
+                    marginTop: "30%",
+                    textAlign: "center",
+                    color: "#C8E9E9",
+                  }}
+                >
+                  Stable Coin Holdings: 8M
+                </Typography>
+              </Box>
+            </Box>
+            <img
+              src="../flame.svg"
+              alt=""
+              style={{
+                width: "8%",
+                zIndex: 100,
+                cursor: "pointer",
+                marginTop: "-20%",
+                marginLeft: "47%",
+              }}
+            />
+          </Box>
+        </Paper>
+      )}
     </Container>
   );
 };

@@ -1,6 +1,11 @@
 import { Box, Paper, Typography, Grid, Button } from "@mui/material";
+import { useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 const GovUserInfo = () => {
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.down("md"));
+
   const buttonStyles = {
     marginTop: "2%",
     width: 100,
@@ -18,109 +23,216 @@ const GovUserInfo = () => {
 
   return (
     <>
-      <Grid item xs={3}>
-        <Paper
-          className="paper"
-          elevation={10}
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            marginTop: "33%",
-            borderStyle: "double",
-            borderColor: "#fa8128",
-            borderRadius: "10px",
-            background: "rgba(0, 21, 66, 0.651)",
-          }}
-        >
-          <Box
+      {!matches && (
+        <Grid item xs={3}>
+          <Paper
+            className="paper"
+            elevation={10}
             style={{
-              marginTop: "10%",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              marginTop: "33%",
+              borderStyle: "double",
+              borderColor: "#fa8128",
+              borderRadius: "10px",
+              background: "rgba(0, 21, 66, 0.651)",
             }}
           >
-            <img src="../flame.svg" alt="" width={30} />
-          </Box>
-          <Typography
-            variant="h5"
-            component="h2"
-            sx={{
-              margin: "1%",
-              color: "#fff",
-              textAlign: "center",
+            <Box
+              style={{
+                marginTop: "10%",
+              }}
+            >
+              <img src="../flame.svg" alt="" width={30} />
+            </Box>
+            <Typography
+              variant="h5"
+              component="h2"
+              sx={{
+                margin: "1%",
+                color: "#fff",
+                textAlign: "center",
+              }}
+            >
+              Libertas Finance
+            </Typography>
+            <Typography
+              variant="h6"
+              component="h2"
+              sx={{
+                marginTop: "-2%",
+                color: "#808080",
+                textAlign: "center",
+              }}
+            >
+              12K Members
+            </Typography>
+            <Button sx={buttonStyles}>Join</Button>
+            <Typography
+              variant="h5"
+              component="h2"
+              sx={{
+                marginTop: "2%",
+                color: "#fff",
+                textAlign: "center",
+              }}
+            >
+              Proposals
+            </Typography>
+            <Typography
+              variant="h5"
+              component="h2"
+              sx={{
+                margin: "1%",
+                color: "#fff",
+                textAlign: "center",
+              }}
+            >
+              New Proposal
+            </Typography>
+            <Typography
+              variant="h5"
+              component="h2"
+              sx={{
+                margin: "1%",
+                color: "#fff",
+                textAlign: "center",
+              }}
+            >
+              Treasury
+            </Typography>
+            <Typography
+              variant="h5"
+              component="h2"
+              sx={{
+                margin: "1%",
+                color: "#fff",
+                textAlign: "center",
+              }}
+            >
+              About
+            </Typography>
+            <Typography
+              variant="h5"
+              component="h2"
+              sx={{
+                margin: "1%",
+                marginBottom: "10%",
+                color: "#fff",
+                textAlign: "center",
+              }}
+            >
+              Settings
+            </Typography>
+          </Paper>
+        </Grid>
+      )}
+      {matches && (
+        <Grid item xs={12}>
+          <Paper
+            className="paper"
+            elevation={10}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              marginTop: "13%",
+              borderStyle: "double",
+              borderColor: "#fa8128",
+              borderRadius: "10px",
+              background: "rgba(0, 21, 66, 0.651)",
             }}
           >
-            Libertas Finance
-          </Typography>
-          <Typography
-            variant="h6"
-            component="h2"
-            sx={{
-              marginTop: "-2%",
-              color: "#808080",
-              textAlign: "center",
-            }}
-          >
-            12K Members
-          </Typography>
-          <Button sx={buttonStyles}>Join</Button>
-          <Typography
-            variant="h5"
-            component="h2"
-            sx={{
-              marginTop: "2%",
-              color: "#fff",
-              textAlign: "center",
-            }}
-          >
-            Proposals
-          </Typography>
-          <Typography
-            variant="h5"
-            component="h2"
-            sx={{
-              margin: "1%",
-              color: "#fff",
-              textAlign: "center",
-            }}
-          >
-            New Proposal
-          </Typography>
-          <Typography
-            variant="h5"
-            component="h2"
-            sx={{
-              margin: "1%",
-              color: "#fff",
-              textAlign: "center",
-            }}
-          >
-            Treasury
-          </Typography>
-          <Typography
-            variant="h5"
-            component="h2"
-            sx={{
-              margin: "1%",
-              color: "#fff",
-              textAlign: "center",
-            }}
-          >
-            About
-          </Typography>
-          <Typography
-            variant="h5"
-            component="h2"
-            sx={{
-              margin: "1%",
-              marginBottom: "10%",
-              color: "#fff",
-              textAlign: "center",
-            }}
-          >
-            Settings
-          </Typography>
-        </Paper>
-      </Grid>
+            <Box
+              style={{
+                marginTop: "10%",
+              }}
+            >
+              <img src="../flame.svg" alt="" width={30} />
+            </Box>
+            <Typography
+              variant="h5"
+              component="h2"
+              sx={{
+                margin: "1%",
+                color: "#fff",
+                textAlign: "center",
+              }}
+            >
+              Libertas Finance
+            </Typography>
+            <Typography
+              variant="h6"
+              component="h2"
+              sx={{
+                marginTop: "-2%",
+                color: "#808080",
+                textAlign: "center",
+              }}
+            >
+              12K Members
+            </Typography>
+            <Button sx={buttonStyles}>Join</Button>
+            <Typography
+              variant="h5"
+              component="h2"
+              sx={{
+                marginTop: "2%",
+                color: "#fff",
+                textAlign: "center",
+              }}
+            >
+              Proposals
+            </Typography>
+            <Typography
+              variant="h5"
+              component="h2"
+              sx={{
+                margin: "1%",
+                color: "#fff",
+                textAlign: "center",
+              }}
+            >
+              New Proposal
+            </Typography>
+            <Typography
+              variant="h5"
+              component="h2"
+              sx={{
+                margin: "1%",
+                color: "#fff",
+                textAlign: "center",
+              }}
+            >
+              Treasury
+            </Typography>
+            <Typography
+              variant="h5"
+              component="h2"
+              sx={{
+                margin: "1%",
+                color: "#fff",
+                textAlign: "center",
+              }}
+            >
+              About
+            </Typography>
+            <Typography
+              variant="h5"
+              component="h2"
+              sx={{
+                margin: "1%",
+                marginBottom: "10%",
+                color: "#fff",
+                textAlign: "center",
+              }}
+            >
+              Settings
+            </Typography>
+          </Paper>
+        </Grid>
+      )}
     </>
   );
 };

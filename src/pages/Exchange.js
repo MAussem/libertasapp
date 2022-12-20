@@ -42,6 +42,7 @@ class Exchange extends Component {
           }}
         >
           <Button
+            className="btnBuy"
             onClick={(event) => {
               this.setState({ currentForm: "buy" });
             }}
@@ -57,6 +58,7 @@ class Exchange extends Component {
             Buy
           </Button>
           <Button
+            className="btnSell"
             onClick={(event) => {
               this.setState({ currentForm: "sell" });
             }}

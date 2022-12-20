@@ -64,3 +64,10 @@ mark.red {
   color: #fa8128;
   background: none;
 }
+
+@media only screen and (max-width: 600px) {
+  .btnBuy {
+    color: "black";
+    width: "1000px";
+  }
+}

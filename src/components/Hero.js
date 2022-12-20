@@ -71,8 +71,8 @@ const Hero = () => {
 
   return (
     <>
-      <Grid item xs={8} className={classes.hTitle}>
-        {matches && (
+      {matches && (
+        <Grid item xs={12}>
           <Paper
             elevation={10}
             style={{
@@ -117,21 +117,8 @@ const Hero = () => {
                     alignItems: "center",
                   }}
                 >
-                  <img
-                    src="../flame.svg"
-                    alt=""
-                    className="imgT"
-                    style={{
-                      width: 20,
-                    }}
-                  />
+                  <img src="../flame.svg" alt="" className="imgT" />
                 </Box>
-                {/* {active ? <div className='privatize2'>{account}</div> : <Typography variant="subtitle1" component="h2" style={{
-                marginBottom: 10,
-                color: "grey"
-              }}> 
-                Not Connected
-              </Typography>} */}
                 <a
                   href="https://lib-dex.netlify.app/"
                   target="_blank"
@@ -146,29 +133,15 @@ const Hero = () => {
                   </Button>
                 </a>
                 <br />
-                {/* {active ? 
-              <Button variant="outlined" onClick={disconnectMeta} 
-              sx={buttonStyles}> 
-                Disconnect 
-              </Button> :
-              <Button variant="contained" onClick={connectMeta}
-              sx={buttonStyles}>
-                Connect Wallet
-              </Button>
-              } */}
-                <a
-                  href="https://www.dextools.io/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <Link to="./staking">
                   <Button
                     className={classe.buttonS}
                     variant="contained"
                     sx={buttonStyles}
                   >
-                    View Chart
+                    Stake XLB
                   </Button>
-                </a>
+                </Link>
               </Box>
               <Box
                 sx={{
@@ -182,90 +155,88 @@ const Hero = () => {
                   variant="h5"
                   component="h2"
                   style={{
-                    marginRight: 5,
+                    marginTop: "25px",
                     color: "rgb(167, 230, 255)",
+                    textAlign: "center",
                   }}
                 >
-                  Holdings
+                  Staked $XLB
                 </Typography>
                 <Typography
                   className={classes.hTitle}
-                  variant="h2"
+                  variant="h3"
                   component="h2"
                   style={{
-                    marginRight: 5,
                     fontWeight: 700,
                   }}
                 >
-                  $0
+                  $1000
                 </Typography>
                 <Box paddingY={2}>
                   {/* <button onClick={() => fetchBalance()}>click me</button> */}
                   <Typography
                     className={classes.hTitle}
-                    variant="subtitle2"
+                    variant="subtitle1"
                     component="h2"
                     style={{
-                      textAlign: "center",
                       color: "rgb(167, 230, 255)",
+                      textAlign: "center",
+                    }}
+                  >
+                    51294.295 XLB
+                  </Typography>
+                </Box>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}
+              >
+                <Typography
+                  className={classes.hTitle}
+                  variant="h5"
+                  component="h2"
+                  style={{
+                    marginTop: "25px",
+                    color: "rgb(167, 230, 255)",
+                    textAlign: "center",
+                  }}
+                >
+                  Available $XLB
+                </Typography>
+                <Typography
+                  className={classes.hTitle}
+                  variant="h3"
+                  component="h2"
+                  style={{
+                    fontWeight: 700,
+                  }}
+                >
+                  $5,231
+                </Typography>
+                <Box paddingY={2}>
+                  {/* <button onClick={() => fetchBalance()}>click me</button> */}
+                  <Typography
+                    className={classes.hTitle}
+                    variant="subtitle1"
+                    component="h2"
+                    style={{
+                      color: "rgb(167, 230, 255)",
+                      textAlign: "center",
                     }}
                   >
                     {balance}
                   </Typography>
                 </Box>
               </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                }}
-              >
-                <Typography
-                  className={classes.hTitle}
-                  variant="h5"
-                  component="h2"
-                  style={{
-                    color: "rgb(167, 230, 255)",
-                  }}
-                >
-                  Daily Earnings
-                </Typography>
-                <Typography
-                  className={classes.hTitle}
-                  variant="h2"
-                  component="h2"
-                  style={{
-                    marginRight: 5,
-                    fontWeight: 700,
-                  }}
-                >
-                  $0
-                </Typography>
-                <Box paddingY={2}>
-                  <Typography
-                    className={classes.hTitle}
-                    variant="subtitle2"
-                    component="h2"
-                    style={{
-                      textAlign: "center",
-                      color: "rgb(167, 230, 255)",
-                    }}
-                  >
-                    {dailyRoi} XLB
-                  </Typography>
-                </Box>
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              ></Box>
             </Box>
           </Paper>
-        )}
-        {!matches && (
+        </Grid>
+      )}
+      {!matches && (
+        <Grid item xs={8} className={classes.hTitle}>
           <Paper
             elevation={10}
             style={{
@@ -311,12 +282,6 @@ const Hero = () => {
                 >
                   <img src="../flame.svg" alt="" className="imgT" />
                 </Box>
-                {/* {active ? <div className='privatize2'>{account}</div> : <Typography variant="subtitle1" component="h2" style={{
-                marginBottom: 10,
-                color: "grey"
-              }}> 
-                Not Connected
-              </Typography>} */}
                 <a
                   href="https://lib-dex.netlify.app/"
                   target="_blank"
@@ -438,8 +403,8 @@ const Hero = () => {
               </Box>
             </Box>
           </Paper>
-        )}
-      </Grid>
+        </Grid>
+      )}
     </>
   );
 };

@@ -287,20 +287,32 @@ const PriceInfo = () => {
               borderStyle: "double",
               borderColor: "#fa8128",
               background: "rgba(0, 21, 66, 0.651)",
+              padding: 15,
             }}
           >
+            <Typography
+              className={classes.hTitle}
+              variant="h5"
+              component="h2"
+              style={{
+                textAlign: "center",
+                color: "rgb(167, 230, 255)",
+              }}
+            >
+              Price Info
+            </Typography>
+            <hr />
             <Box
               sx={{
-                padding: 3,
                 display: "flex",
-                justifyContent: "space-around",
-                textAlign: "center",
+                flexDirection: "column",
               }}
             >
               <Box
                 sx={{
                   display: "flex",
-                  flexDirection: "column",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
                 }}
               >
                 <Typography
@@ -311,23 +323,24 @@ const PriceInfo = () => {
                     color: "#fff",
                   }}
                 >
-                  XLB PRICE
+                  $XLB Price
                 </Typography>
                 <Typography
                   className={classes.hTitle}
-                  variant="h3"
+                  variant="h5"
                   component="h2"
                   style={{
                     fontWeight: 700,
                   }}
                 >
-                  $0
+                  $0.812
                 </Typography>
               </Box>
               <Box
                 sx={{
                   display: "flex",
-                  flexDirection: "column",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
                 }}
               >
                 <Typography
@@ -342,15 +355,184 @@ const PriceInfo = () => {
                 </Typography>
                 <Typography
                   className={classes.hTitle}
-                  variant="h3"
+                  variant="h5"
                   component="h2"
                   style={{
                     fontWeight: 700,
                   }}
                 >
-                  $0
+                  $294,889,623
                 </Typography>
               </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography
+                  className={classes.hTitle}
+                  variant="h5"
+                  component="h2"
+                  style={{
+                    color: "#fff",
+                  }}
+                >
+                  Total Supply
+                </Typography>
+                <Typography
+                  className={classes.hTitle}
+                  variant="h5"
+                  component="h2"
+                  style={{
+                    fontWeight: 700,
+                  }}
+                >
+                  13,000,000 &#40;$XLB&#41;
+                </Typography>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Typography
+                  className={classes.hTitle}
+                  variant="h5"
+                  component="h2"
+                  style={{
+                    color: "#fff",
+                  }}
+                >
+                  Total Staked
+                </Typography>
+                <Typography
+                  className={classes.hTitle}
+                  variant="h5"
+                  component="h2"
+                  style={{
+                    fontWeight: 700,
+                  }}
+                >
+                  3,023,945 &#40;$XLB&#41;
+                </Typography>
+              </Box>
+            </Box>
+            <hr />
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <Typography
+                className={classes.hTitle}
+                variant="h5"
+                component="h2"
+                style={{
+                  color: "#fff",
+                }}
+              >
+                APR
+              </Typography>
+              <Typography
+                className={classes.hTitle}
+                variant="h5"
+                component="h2"
+                style={{
+                  fontWeight: 700,
+                }}
+              >
+                5% - 9%
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <Typography
+                className={classes.hTitle}
+                variant="h5"
+                component="h2"
+                style={{
+                  color: "#fff",
+                }}
+              >
+                Rewards
+              </Typography>
+              <Typography
+                className={classes.hTitle}
+                variant="h5"
+                component="h2"
+                style={{
+                  fontWeight: 700,
+                }}
+              >
+                $0.00
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <Typography
+                className={classes.hTitle}
+                variant="h5"
+                component="h2"
+                style={{
+                  color: "#fff",
+                }}
+              >
+                Loyalty Points APR
+              </Typography>
+              <Typography
+                className={classes.hTitle}
+                variant="h5"
+                component="h2"
+                style={{
+                  fontWeight: 700,
+                }}
+              >
+                100%
+              </Typography>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <Typography
+                className={classes.hTitle}
+                variant="h5"
+                component="h2"
+                style={{
+                  color: "#fff",
+                }}
+              >
+                Boost Percentage
+              </Typography>
+              <Typography
+                className={classes.hTitle}
+                variant="h5"
+                component="h2"
+                style={{
+                  fontWeight: 700,
+                }}
+              >
+                $0.00
+              </Typography>
             </Box>
           </Paper>
         </Grid>

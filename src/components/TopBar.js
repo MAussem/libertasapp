@@ -147,7 +147,12 @@ const TopBar = () => {
               alignItems: "center",
             }}
           >
-            <img src="../flame.svg" className="imgT" alt="" />
+            <img
+              style={{ marginLeft: "5px", marginTop: "5px" }}
+              src="../flame.svg"
+              className="imgT"
+              alt=""
+            />
             <Typography
               style={{
                 fontSize: 30,
@@ -180,7 +185,7 @@ const TopBar = () => {
               marginRight: 1,
             }}
           >
-            <Box>
+            <Box sx={{ margin: "10px" }}>
               <img src="../flame.svg" className="imgM" alt="" />
             </Box>
             <Link to="/">
@@ -197,7 +202,8 @@ const TopBar = () => {
                 Dashboard
               </Typography>
             </Link>
-            <Link to="./swap">
+            {/* change this back to swap */}
+            <Link to="./">
               <Typography
                 className="dash"
                 onClick={handleClickS}
@@ -310,23 +316,14 @@ const TopBar = () => {
                 Dashboard
               </Typography>
             </Link>
-            {/* <Link to='/calc'>
-        <Typography className="dash" onClick={() => setOpen(!open)}>
-          Calculator
-        </Typography>
-        </Link>
-        <a href="https://app.yuzu-swap.com/#/swap" target="_blank" rel="noreferrer">
-          <Typography className="dash" onClick={() => setOpen(!open)}>
-            Swap
-          </Typography>
-        </a> */}
             <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
               }}
             >
-              <Link to="/calc">
+              {/* change this back to swap */}
+              <Link to="./">
                 <Typography
                   onClick={handleClickC}
                   style={{
@@ -334,28 +331,48 @@ const TopBar = () => {
                     color: isActiveC ? "rgb(167, 230, 255)" : "white",
                   }}
                 >
-                  Calculator
+                  Swap
                 </Typography>
               </Link>
             </Box>
-            {/* <Box
+            <Box
               sx={{
                 display: "flex",
                 flexDirection: "column",
               }}
             >
-              <Typography onClick={() => setOpen(!open)}>Launch Pad</Typography>
-              <Typography
-                variant="body3"
-                className="dashl"
-                style={{
-                  marginLeft: 2,
-                  color: "rgb(167, 230, 255)",
-                }}
-              >
-                coming soon
-              </Typography>
-            </Box> */}
+              <Link to="./dip">
+                <Typography
+                  className="dash"
+                  onClick={handleClickI}
+                  style={{
+                    textDecoration: isActiveI ? "underline" : "none",
+                    color: isActiveI ? "#C8E9E9" : "white",
+                  }}
+                >
+                  Investments
+                </Typography>
+              </Link>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              <Link to="./governance">
+                <Typography
+                  className="dash"
+                  onClick={handleClickG}
+                  style={{
+                    textDecoration: isActiveG ? "underline" : "none",
+                    color: isActiveG ? "#C8E9E9" : "white",
+                  }}
+                >
+                  Governance
+                </Typography>
+              </Link>
+            </Box>
             <Box
               sx={{
                 display: "flex",
@@ -373,20 +390,32 @@ const TopBar = () => {
                 Import Token
               </Button>
             </Box>
-            {isConnected ? (
-              <Button
-                variant="contained"
-                onClick={disconnect}
-                sx={buttonStyles}
-              >
-                Disconnect
-              </Button>
-            ) : (
-              <Button variant="contained" onClick={connect} sx={buttonStyles}>
-                Connect Wallet
-              </Button>
-            )}
-            {isConnected ? <div>{addressFormatted}</div> : <></>}
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              {isConnected ? (
+                <div style={{ marginRight: "20px" }}>{addressFormatted}</div>
+              ) : (
+                <></>
+              )}
+              {isConnected ? (
+                <Button
+                  variant="contained"
+                  onClick={disconnect}
+                  sx={buttonStyles}
+                >
+                  Disconnect
+                </Button>
+              ) : (
+                <Button variant="contained" onClick={connect} sx={buttonStyles}>
+                  Connect Wallet
+                </Button>
+              )}
+            </Box>
           </Box>
         )}
       </Paper>

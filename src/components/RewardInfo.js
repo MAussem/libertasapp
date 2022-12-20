@@ -43,217 +43,431 @@ const RewardInfo = () => {
   const matches = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <>
-      <Grid item xs={4} className={classes.hTitle}>
-        <Paper
-          elevation={10}
-          style={{
-            borderStyle: "double",
-            borderColor: "#fa8128",
-            background: "rgba(0, 21, 66, 0.651)",
-            marginTop: 40,
-            padding: 15,
-          }}
-        >
-          <Typography
-            className={classes.hTitle}
-            variant="h5"
-            component="h2"
+      {!matches && (
+        <Grid item xs={4} className={classes.hTitle}>
+          <Paper
+            elevation={10}
             style={{
-              paddingTop: 10,
-              paddingBottom: 10,
-              textAlign: "center",
-              color: "rgb(167, 230, 255)",
-            }}
-          >
-            Staking Rewards
-          </Typography>
-          <hr />
-          <Box
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              paddingBottom: 10,
-              color: "white",
+              borderStyle: "double",
+              borderColor: "#fa8128",
+              background: "rgba(0, 21, 66, 0.651)",
+              marginTop: 40,
+              padding: 15,
             }}
           >
             <Typography
               className={classes.hTitle}
-              variant="h6"
+              variant="h5"
               component="h2"
               style={{
+                paddingTop: 10,
+                paddingBottom: 10,
+                textAlign: "center",
+                color: "rgb(167, 230, 255)",
+              }}
+            >
+              Staking Rewards
+            </Typography>
+            <hr />
+            <Box
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
                 paddingBottom: 10,
                 color: "white",
               }}
             >
-              $XLB
-            </Typography>
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                $XLB
+              </Typography>
 
-            <Typography
-              className={classes.hTitle}
-              variant="h6"
-              component="h2"
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                0.0000 &#40;$0.00&#41;
+              </Typography>
+            </Box>
+            <Box
               style={{
+                display: "flex",
+                justifyContent: "space-between",
                 paddingBottom: 10,
                 color: "white",
               }}
             >
-              0.0000 &#40;$0.00&#41;
-            </Typography>
-          </Box>
-          <Box
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                $ETH &#40;WETH&#41;
+              </Typography>
+
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                0.0000 &#40;$0.00&#41;
+              </Typography>
+            </Box>
+
+            <Box
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                paddingBottom: 10,
+                color: "white",
+              }}
+            >
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                Loyalty Points
+              </Typography>
+
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                0.0000
+              </Typography>
+            </Box>
+            <Box
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                paddingBottom: 10,
+                color: "white",
+              }}
+            >
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                Staked Loyalty Points
+              </Typography>
+
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                0.0000
+              </Typography>
+            </Box>
+            <Box
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                paddingBottom: 10,
+                color: "white",
+              }}
+            >
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                Total
+              </Typography>
+
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                $0.00
+              </Typography>
+            </Box>
+            <hr />
+            <Box
+              style={{
+                marginTop: 15,
+                display: "flex",
+                justifyContent: "flex-start",
+              }}
+            >
+              <Button
+                className={classe.buttonS}
+                variant="contained"
+                sx={buttonStyles}
+              >
+                Compound
+              </Button>
+              <Button
+                className={classe.buttonS}
+                variant="contained"
+                sx={buttonStyles}
+              >
+                Claim
+              </Button>
+            </Box>
+          </Paper>
+        </Grid>
+      )}
+      {matches && (
+        <Grid item xs={12}>
+          <Paper
+            elevation={10}
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              paddingBottom: 10,
-              color: "white",
+              borderStyle: "double",
+              borderColor: "#fa8128",
+              background: "rgba(0, 21, 66, 0.651)",
+              padding: 15,
             }}
           >
             <Typography
               className={classes.hTitle}
-              variant="h6"
+              variant="h5"
               component="h2"
               style={{
+                paddingTop: 10,
+                paddingBottom: 10,
+                textAlign: "center",
+                color: "rgb(167, 230, 255)",
+              }}
+            >
+              Staking Rewards
+            </Typography>
+            <hr />
+            <Box
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
                 paddingBottom: 10,
                 color: "white",
               }}
             >
-              $ETH &#40;WETH&#41;
-            </Typography>
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                $XLB
+              </Typography>
 
-            <Typography
-              className={classes.hTitle}
-              variant="h6"
-              component="h2"
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                0.0000 &#40;$0.00&#41;
+              </Typography>
+            </Box>
+            <Box
               style={{
+                display: "flex",
+                justifyContent: "space-between",
                 paddingBottom: 10,
                 color: "white",
               }}
             >
-              0.0000 &#40;$0.00&#41;
-            </Typography>
-          </Box>
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                $ETH &#40;WETH&#41;
+              </Typography>
 
-          <Box
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              paddingBottom: 10,
-              color: "white",
-            }}
-          >
-            <Typography
-              className={classes.hTitle}
-              variant="h6"
-              component="h2"
-              style={{
-                paddingBottom: 10,
-                color: "white",
-              }}
-            >
-              Loyalty Points
-            </Typography>
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                0.0000 &#40;$0.00&#41;
+              </Typography>
+            </Box>
 
-            <Typography
-              className={classes.hTitle}
-              variant="h6"
-              component="h2"
+            <Box
               style={{
+                display: "flex",
+                justifyContent: "space-between",
                 paddingBottom: 10,
                 color: "white",
               }}
             >
-              0.0000
-            </Typography>
-          </Box>
-          <Box
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              paddingBottom: 10,
-              color: "white",
-            }}
-          >
-            <Typography
-              className={classes.hTitle}
-              variant="h6"
-              component="h2"
-              style={{
-                paddingBottom: 10,
-                color: "white",
-              }}
-            >
-              Staked Loyalty Points
-            </Typography>
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                Loyalty Points
+              </Typography>
 
-            <Typography
-              className={classes.hTitle}
-              variant="h6"
-              component="h2"
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                0.0000
+              </Typography>
+            </Box>
+            <Box
               style={{
+                display: "flex",
+                justifyContent: "space-between",
                 paddingBottom: 10,
                 color: "white",
               }}
             >
-              0.0000
-            </Typography>
-          </Box>
-          <Box
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              paddingBottom: 10,
-              color: "white",
-            }}
-          >
-            <Typography
-              className={classes.hTitle}
-              variant="h6"
-              component="h2"
-              style={{
-                paddingBottom: 10,
-                color: "white",
-              }}
-            >
-              Total
-            </Typography>
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                Staked Loyalty Points
+              </Typography>
 
-            <Typography
-              className={classes.hTitle}
-              variant="h6"
-              component="h2"
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                0.0000
+              </Typography>
+            </Box>
+            <Box
               style={{
+                display: "flex",
+                justifyContent: "space-between",
                 paddingBottom: 10,
                 color: "white",
               }}
             >
-              $0.00
-            </Typography>
-          </Box>
-          <hr />
-          <Box
-            style={{
-              marginTop: 15,
-              display: "flex",
-              justifyContent: "flex-start",
-            }}
-          >
-            <Button
-              className={classe.buttonS}
-              variant="contained"
-              sx={buttonStyles}
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                Total
+              </Typography>
+
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                $0.00
+              </Typography>
+            </Box>
+            <hr />
+            <Box
+              style={{
+                marginTop: 15,
+                display: "flex",
+                justifyContent: "flex-start",
+              }}
             >
-              Compound
-            </Button>
-            <Button
-              className={classe.buttonS}
-              variant="contained"
-              sx={buttonStyles}
-            >
-              Claim
-            </Button>
-          </Box>
-        </Paper>
-      </Grid>
+              <Button
+                className={classe.buttonS}
+                variant="contained"
+                sx={buttonStyles}
+              >
+                Compound
+              </Button>
+              <Button
+                className={classe.buttonS}
+                variant="contained"
+                sx={buttonStyles}
+              >
+                Claim
+              </Button>
+            </Box>
+          </Paper>
+        </Grid>
+      )}
     </>
   );
 };
