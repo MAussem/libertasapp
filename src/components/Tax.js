@@ -8,7 +8,7 @@ const Tax = () => {
     hTitle: {
       padding: theme.spacing(1),
       [theme.breakpoints.down("md")]: {
-        fontSize: 17,
+        fontSize: [13, "!important"],
       },
     },
   }));
@@ -28,7 +28,7 @@ const Tax = () => {
               borderColor: "#fa8128",
               textAlign: "center",
               padding: 15,
-              background: "rgba(0, 21, 66, 0.651)",
+              background: "rgba(0, 21, 66, 0.95)",
             }}
           >
             <Typography
@@ -181,11 +181,10 @@ const Tax = () => {
           <Paper
             elevation={10}
             style={{
-              borderStyle: "double",
-              borderColor: "#fa8128",
               textAlign: "center",
+              marginTop: 30,
               padding: 15,
-              background: "rgba(0, 21, 66, 0.651)",
+              background: "rgba(0, 21, 66, 0.95)",
             }}
           >
             <Typography
@@ -193,8 +192,8 @@ const Tax = () => {
               variant="h5"
               component="h2"
               style={{
-                paddingTop: 10,
-                paddingBottom: 10,
+                paddingTop: 5,
+                paddingBottom: 15,
                 color: "rgb(167, 230, 255)",
               }}
             >
@@ -205,7 +204,6 @@ const Tax = () => {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                paddingBottom: 10,
                 color: "white",
               }}
             >
@@ -214,7 +212,6 @@ const Tax = () => {
                 variant="h6"
                 component="h2"
                 style={{
-                  paddingBottom: 10,
                   color: "white",
                 }}
               >
@@ -226,7 +223,6 @@ const Tax = () => {
                 variant="h6"
                 component="h2"
                 style={{
-                  paddingBottom: 10,
                   color: "white",
                 }}
               >
@@ -237,7 +233,6 @@ const Tax = () => {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                paddingBottom: 10,
                 color: "white",
               }}
             >
@@ -297,7 +292,6 @@ const Tax = () => {
                 13%
               </Typography>
             </Box>
-            <hr />
             <Box
               style={{
                 display: "flex",

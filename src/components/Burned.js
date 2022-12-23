@@ -24,10 +24,8 @@ const Burned = () => {
           <Paper
             elevation={10}
             style={{
-              borderStyle: "double",
-              borderColor: "#fa8128",
-              marginTop: -20,
-              background: "rgba(0, 21, 66, 0.651)",
+              marginTop: 10,
+              background: "rgba(0, 21, 66, 0.95)",
             }}
           >
             <Box
@@ -67,7 +65,7 @@ const Burned = () => {
               borderStyle: "double",
               borderColor: "#fa8128",
               marginBottom: 50,
-              background: "rgba(0, 21, 66, 0.651)",
+              background: "rgba(0, 21, 66, 0.95)",
             }}
           >
             <Box

@@ -24,7 +24,6 @@ const buttonSty = makeStyles((theme) => ({
 
 const RewardInfo = () => {
   const buttonStyles = {
-    marginRight: "15px",
     fontWeight: 800,
     color: "black",
     borderRadius: "10px",
@@ -48,9 +47,7 @@ const RewardInfo = () => {
           <Paper
             elevation={10}
             style={{
-              borderStyle: "double",
-              borderColor: "#fa8128",
-              background: "rgba(0, 21, 66, 0.651)",
+              background: "rgba(0, 21, 66, 0.95)",
               marginTop: 40,
               padding: 15,
             }}
@@ -61,7 +58,7 @@ const RewardInfo = () => {
               component="h2"
               style={{
                 paddingTop: 10,
-                paddingBottom: 10,
+                paddingBottom: 15,
                 textAlign: "center",
                 color: "rgb(167, 230, 255)",
               }}
@@ -70,11 +67,10 @@ const RewardInfo = () => {
             </Typography>
             <hr />
             <Box
-              style={{
+              sx={{
                 display: "flex",
+                flexDirection: "row",
                 justifyContent: "space-between",
-                paddingBottom: 10,
-                color: "white",
               }}
             >
               <Typography
@@ -83,6 +79,31 @@ const RewardInfo = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
+                  color: "#fff",
+                }}
+              >
+                $XLB APY
+              </Typography>
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+              >
+                30%
+              </Typography>
+            </Box>
+            <Box
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                color: "white",
+              }}
+            >
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
                   color: "white",
                 }}
               >
@@ -102,6 +123,32 @@ const RewardInfo = () => {
               </Typography>
             </Box>
             <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "#fff",
+                }}
+              >
+                Staking Pool Share
+              </Typography>
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+              >
+                1.8%
+              </Typography>
+            </Box>
+            <Box
               style={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -118,7 +165,7 @@ const RewardInfo = () => {
                   color: "white",
                 }}
               >
-                $ETH &#40;WETH&#41;
+                ETH Rewards Collected
               </Typography>
 
               <Typography
@@ -133,7 +180,6 @@ const RewardInfo = () => {
                 0.0000 &#40;$0.00&#41;
               </Typography>
             </Box>
-
             <Box
               style={{
                 display: "flex",
@@ -151,7 +197,7 @@ const RewardInfo = () => {
                   color: "white",
                 }}
               >
-                Loyalty Points
+                Dividends Earned
               </Typography>
 
               <Typography
@@ -163,39 +209,7 @@ const RewardInfo = () => {
                   color: "white",
                 }}
               >
-                0.0000
-              </Typography>
-            </Box>
-            <Box
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                paddingBottom: 10,
-                color: "white",
-              }}
-            >
-              <Typography
-                className={classes.hTitle}
-                variant="h6"
-                component="h2"
-                style={{
-                  paddingBottom: 10,
-                  color: "white",
-                }}
-              >
-                Staked Loyalty Points
-              </Typography>
-
-              <Typography
-                className={classes.hTitle}
-                variant="h6"
-                component="h2"
-                style={{
-                  paddingBottom: 10,
-                  color: "white",
-                }}
-              >
-                0.0000
+                0.0000 &#40;$0.00&#41;
               </Typography>
             </Box>
             <Box
@@ -235,7 +249,7 @@ const RewardInfo = () => {
               style={{
                 marginTop: 15,
                 display: "flex",
-                justifyContent: "flex-start",
+                justifyContent: "space-between",
               }}
             >
               <Button
@@ -249,6 +263,7 @@ const RewardInfo = () => {
                 className={classe.buttonS}
                 variant="contained"
                 sx={buttonStyles}
+                style={{ width: "120px" }}
               >
                 Claim
               </Button>
@@ -263,7 +278,7 @@ const RewardInfo = () => {
             style={{
               borderStyle: "double",
               borderColor: "#fa8128",
-              background: "rgba(0, 21, 66, 0.651)",
+              background: "rgba(0, 21, 66, 0.95)",
               padding: 15,
             }}
           >
@@ -273,7 +288,7 @@ const RewardInfo = () => {
               component="h2"
               style={{
                 paddingTop: 10,
-                paddingBottom: 10,
+                paddingBottom: 15,
                 textAlign: "center",
                 color: "rgb(167, 230, 255)",
               }}
@@ -281,6 +296,38 @@ const RewardInfo = () => {
               Staking Rewards
             </Typography>
             <hr />
+            <Box
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                paddingBottom: 10,
+                color: "white",
+              }}
+            >
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                $XLB APY
+              </Typography>
+
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                30%
+              </Typography>
+            </Box>
             <Box
               style={{
                 display: "flex",
@@ -330,7 +377,39 @@ const RewardInfo = () => {
                   color: "white",
                 }}
               >
-                $ETH &#40;WETH&#41;
+                Staking Pool Share
+              </Typography>
+
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                1.8%
+              </Typography>
+            </Box>
+            <Box
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                paddingBottom: 10,
+                color: "white",
+              }}
+            >
+              <Typography
+                className={classes.hTitle}
+                variant="h6"
+                component="h2"
+                style={{
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                ETH Rewards Collected
               </Typography>
 
               <Typography
@@ -345,7 +424,6 @@ const RewardInfo = () => {
                 0.0000 &#40;$0.00&#41;
               </Typography>
             </Box>
-
             <Box
               style={{
                 display: "flex",
@@ -363,7 +441,7 @@ const RewardInfo = () => {
                   color: "white",
                 }}
               >
-                Loyalty Points
+                Dividends Earned
               </Typography>
 
               <Typography
@@ -375,39 +453,7 @@ const RewardInfo = () => {
                   color: "white",
                 }}
               >
-                0.0000
-              </Typography>
-            </Box>
-            <Box
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                paddingBottom: 10,
-                color: "white",
-              }}
-            >
-              <Typography
-                className={classes.hTitle}
-                variant="h6"
-                component="h2"
-                style={{
-                  paddingBottom: 10,
-                  color: "white",
-                }}
-              >
-                Staked Loyalty Points
-              </Typography>
-
-              <Typography
-                className={classes.hTitle}
-                variant="h6"
-                component="h2"
-                style={{
-                  paddingBottom: 10,
-                  color: "white",
-                }}
-              >
-                0.0000
+                0.0000 &#40;$0.00&#41;
               </Typography>
             </Box>
             <Box
@@ -447,7 +493,7 @@ const RewardInfo = () => {
               style={{
                 marginTop: 15,
                 display: "flex",
-                justifyContent: "flex-start",
+                justifyContent: "space-between",
               }}
             >
               <Button
@@ -461,6 +507,7 @@ const RewardInfo = () => {
                 className={classe.buttonS}
                 variant="contained"
                 sx={buttonStyles}
+                style={{ width: "110px" }}
               >
                 Claim
               </Button>

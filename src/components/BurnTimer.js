@@ -18,9 +18,7 @@ const BurnTimer = () => {
             style={{
               marginTop: 10,
               marginBottom: 50,
-              borderStyle: "double",
-              borderColor: "#fa8128",
-              background: "rgba(0, 21, 66, 0.651)",
+              background: "rgba(0, 21, 66, 0.95)",
             }}
           >
             <Box
@@ -72,7 +70,7 @@ const BurnTimer = () => {
               marginBottom: 50,
               borderStyle: "double",
               borderColor: "#fa8128",
-              background: "rgba(0, 21, 66, 0.651)",
+              background: "rgba(0, 21, 66, 0.95)",
             }}
           >
             <Box
@@ -102,7 +100,7 @@ const BurnTimer = () => {
                 />
               </Box>
               <Typography
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   marginLeft: 25,

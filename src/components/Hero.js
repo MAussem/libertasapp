@@ -59,13 +59,13 @@ const Hero = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
 
-  //const rebaseRate = 1.462306651;
+  //const rebaseRate = 1.46230695;
 
   // const dailyRoi = useMemo(() => {
   //   if (!balanceRaw) return "n/a";
   //   const daily = balanceRaw
   //     .div(ethers.BigNumber.from("100000000000"))
-  //     .mul(ethers.BigNumber.from("1462306651"));
+  //     .mul(ethers.BigNumber.from("146230695"));
   //   return ethers.utils.formatEther(daily.sub(daily.mod(1e14)));
   // }, [balanceRaw]);
 
@@ -78,7 +78,7 @@ const Hero = () => {
             style={{
               borderStyle: "double",
               borderColor: "#fa8128",
-              background: "rgba(0, 21, 66, 0.651)",
+              background: "rgba(0, 21, 66, 0.95)",
               marginTop: 40,
               paddingTop: 30,
               paddingBottom: 30,
@@ -183,7 +183,7 @@ const Hero = () => {
                       textAlign: "center",
                     }}
                   >
-                    51294.295 XLB
+                    51294.295 $XLB
                   </Typography>
                 </Box>
               </Box>
@@ -192,6 +192,7 @@ const Hero = () => {
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
+                  justifyContent: "center",
                 }}
               >
                 <Typography
@@ -199,7 +200,7 @@ const Hero = () => {
                   variant="h5"
                   component="h2"
                   style={{
-                    marginTop: "25px",
+                    marginTop: "23px",
                     color: "rgb(167, 230, 255)",
                     textAlign: "center",
                   }}
@@ -227,7 +228,7 @@ const Hero = () => {
                       textAlign: "center",
                     }}
                   >
-                    {balance}
+                    ${balance}
                   </Typography>
                 </Box>
               </Box>
@@ -236,13 +237,11 @@ const Hero = () => {
         </Grid>
       )}
       {!matches && (
-        <Grid item xs={8} className={classes.hTitle}>
+        <Grid item xs={8}>
           <Paper
             elevation={10}
             style={{
-              borderStyle: "double",
-              borderColor: "#fa8128",
-              background: "rgba(0, 21, 66, 0.651)",
+              background: "rgba(0, 21, 66, 0.95)",
               marginTop: 40,
               paddingBottom: 15,
             }}
