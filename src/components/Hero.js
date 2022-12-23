@@ -225,7 +225,7 @@ const Hero = () => {
                       textAlign: "center",
                     }}
                   >
-                    ${balance}
+                    333,312.878 $XLB
                   </Typography>
                 </Box>
               </Box>
