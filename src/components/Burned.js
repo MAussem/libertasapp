@@ -56,14 +56,11 @@ const Burned = () => {
           </Paper>
         </Grid>
       )}
-
       {matches && (
         <Grid item xs={12}>
           <Paper
             elevation={10}
             style={{
-              borderStyle: "double",
-              borderColor: "#fa8128",
               marginBottom: 50,
               background: "rgba(0, 21, 66, 0.95)",
             }}

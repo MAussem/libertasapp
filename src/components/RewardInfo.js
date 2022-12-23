@@ -276,8 +276,6 @@ const RewardInfo = () => {
           <Paper
             elevation={10}
             style={{
-              borderStyle: "double",
-              borderColor: "#fa8128",
               background: "rgba(0, 21, 66, 0.95)",
               padding: 15,
             }}

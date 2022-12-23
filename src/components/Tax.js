@@ -24,8 +24,6 @@ const Tax = () => {
           <Paper
             elevation={10}
             style={{
-              borderStyle: "double",
-              borderColor: "#fa8128",
               textAlign: "center",
               padding: 15,
               background: "rgba(0, 21, 66, 0.95)",

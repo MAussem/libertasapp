@@ -76,8 +76,6 @@ const Hero = () => {
           <Paper
             elevation={10}
             style={{
-              borderStyle: "double",
-              borderColor: "#fa8128",
               background: "rgba(0, 21, 66, 0.95)",
               marginTop: 40,
               paddingTop: 30,
@@ -88,10 +86,9 @@ const Hero = () => {
               sx={{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-around",
                 alignItems: "center",
               }}
-              padding={1}
+              paddingX={3}
             >
               <Box
                 sx={{
