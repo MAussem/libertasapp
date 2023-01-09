@@ -39,6 +39,18 @@ const DIP = () => {
   return (
     <>
       <ProtocolInfo />
+      <Typography
+        variant="subtitle1"
+        component="h2"
+        sx={{
+          marginTop: "10px",
+          textAlign: "center",
+          color: "#fff",
+          fontWeight: "700",
+        }}
+      >
+        "This is Fictitious Data"
+      </Typography>
       {!matches && (
         <Container maxWidth="xl">
           <Typography
