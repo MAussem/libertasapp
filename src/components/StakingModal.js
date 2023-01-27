@@ -48,7 +48,7 @@ const StakingModal = () => {
   const [lock, setLock] = useState(0);
 
   // Define the address of your deployed contract
-  const contractAddress = "0xb0B75C06647b8059ABD2943Af802D243F5fD344e";
+  // const contractAddress = "0xb0B75C06647b8059ABD2943Af802D243F5fD344e";
 
   // // Use the useContract hook to create a contract instance
   // const contract = useContract(contractAddress, StakingAbi);
