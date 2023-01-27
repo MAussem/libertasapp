@@ -13,7 +13,7 @@ import "./index.css";
 const { provider, webSocketProvider } = configureChains(chains, [
   jsonRpcProvider({
     rpc: (chain) => ({
-      http: "https://testnet.emerald.oasis.dev",
+      http: "https://eth-goerli.g.alchemy.com/v2/v0EPL9x-68Gh10zA-N86BBWudkMSC2yH",
     }),
   }),
   publicProvider(),

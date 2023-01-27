@@ -4,6 +4,14 @@ import { makeStyles } from "@material-ui/core";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 
+import { useAccount } from "wagmi";
+import {
+  useContractStakingRead,
+  useContractStakingWrite,
+} from "../hooks/libertas";
+import { useMemo } from "react";
+import { ethers } from "ethers";
+
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
     padding: theme.spacing(1),
@@ -23,6 +31,21 @@ const buttonSty = makeStyles((theme) => ({
 }));
 
 const RewardInfo = () => {
+  const { address } = useAccount();
+  const { data: earnedBalance } = useContractStakingRead("earned", [address]);
+  const claimReward = useContractStakingWrite("claimReward", [address], {
+    gasLimit: 1000000,
+  });
+
+  const eBalance = useMemo(
+    () =>
+      earnedBalance
+        ? ethers.utils.formatEther(earnedBalance.sub(earnedBalance.mod(1e14))) +
+          " XLB"
+        : "n/a XLB",
+    [earnedBalance]
+  );
+
   const buttonStyles = {
     fontWeight: 800,
     color: "black",
@@ -119,7 +142,8 @@ const RewardInfo = () => {
                   color: "white",
                 }}
               >
-                0.0000 &#40;$0.00&#41;
+                {/* change this 11111 */}
+                {eBalance} &#40;$0.00&#41;
               </Typography>
             </Box>
             <Box
@@ -145,7 +169,7 @@ const RewardInfo = () => {
                 variant="h6"
                 component="h2"
               >
-                1.8%
+                0%
               </Typography>
             </Box>
             <Box
@@ -165,6 +189,7 @@ const RewardInfo = () => {
                   color: "white",
                 }}
               >
+                {/* change this 11111 */}
                 ETH Rewards Collected
               </Typography>
 
@@ -177,6 +202,7 @@ const RewardInfo = () => {
                   color: "white",
                 }}
               >
+                {/* change this 11111 */}
                 0.0000 &#40;$0.00&#41;
               </Typography>
             </Box>
@@ -241,6 +267,7 @@ const RewardInfo = () => {
                   color: "white",
                 }}
               >
+                {/* change this 11111 */}
                 $0.00
               </Typography>
             </Box>
@@ -264,6 +291,7 @@ const RewardInfo = () => {
                 variant="contained"
                 sx={buttonStyles}
                 style={{ width: "120px" }}
+                onClick={claimReward}
               >
                 Claim
               </Button>

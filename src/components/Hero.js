@@ -6,7 +6,7 @@ import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 
 import { useAccount } from "wagmi";
-import { useContractXLBRead } from "../hooks/libertas";
+import { useContractXLBRead, useContractStakingRead } from "../hooks/libertas";
 import { useMemo } from "react";
 import { ethers } from "ethers";
 
@@ -30,7 +30,8 @@ const buttonSty = makeStyles((theme) => ({
 
 const Hero = () => {
   const { address } = useAccount();
-  const { data: balanceRaw } = useContractXLBRead("balanceOf", address);
+  const { data: balanceRaw } = useContractXLBRead("balanceOf", [address]);
+  const { data: stakedBalance } = useContractStakingRead("staked", [address]);
 
   const balance = useMemo(
     () =>
@@ -39,6 +40,15 @@ const Hero = () => {
           " XLB"
         : "n/a XLB",
     [balanceRaw]
+  );
+
+  const sBalance = useMemo(
+    () =>
+      stakedBalance
+        ? ethers.utils.formatEther(stakedBalance.sub(stakedBalance.mod(1e14))) +
+          " XLB"
+        : "n/a XLB",
+    [stakedBalance]
   );
 
   const buttonStyles = {
@@ -167,7 +177,7 @@ const Hero = () => {
                     fontWeight: 700,
                   }}
                 >
-                  $1000
+                  $0
                 </Typography>
                 <Box paddingY={2}>
                   {/* <button onClick={() => fetchBalance()}>click me</button> */}
@@ -339,7 +349,7 @@ const Hero = () => {
                     fontWeight: 700,
                   }}
                 >
-                  $1000
+                  $0
                 </Typography>
                 <Box paddingY={2}>
                   {/* <button onClick={() => fetchBalance()}>click me</button> */}
@@ -351,7 +361,8 @@ const Hero = () => {
                       color: "rgb(167, 230, 255)",
                     }}
                   >
-                    51294.295 XLB
+                    {/* change this 11111 */}
+                    {sBalance}
                   </Typography>
                 </Box>
               </Box>
@@ -381,7 +392,7 @@ const Hero = () => {
                     fontWeight: 700,
                   }}
                 >
-                  $5,231
+                  $0
                 </Typography>
                 <Box paddingY={2}>
                   {/* <button onClick={() => fetchBalance()}>click me</button> */}
