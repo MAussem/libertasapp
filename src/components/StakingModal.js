@@ -14,9 +14,9 @@ import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import { Link } from "react-router-dom";
 
-import { StakingAbi } from "../abi/staking";
+// import { StakingAbi } from "../abi/staking";
 
-import { useAccount, useContract } from "wagmi";
+import { useAccount } from "wagmi";
 import { useContractStakingRead } from "../hooks/libertas";
 import { useMemo } from "react";
 import { ethers } from "ethers";
