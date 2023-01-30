@@ -101,7 +101,7 @@ const PriceInfo = () => {
                     fontWeight: 700,
                   }}
                 >
-                  $294,889,623
+                  $0.0
                 </Typography>
               </Box>
               <Box
@@ -129,7 +129,7 @@ const PriceInfo = () => {
                     fontWeight: 700,
                   }}
                 >
-                  120,000,000 &#40;$XLB&#41;
+                  600,000 &#40;$XLB&#41;
                 </Typography>
               </Box>
               <Box
@@ -157,7 +157,7 @@ const PriceInfo = () => {
                     fontWeight: 700,
                   }}
                 >
-                  160,000,000 &#40;$XLB&#41;
+                  555,000,000 &#40;$XLB&#41;
                 </Typography>
               </Box>
             </Box>
@@ -229,7 +229,7 @@ const PriceInfo = () => {
                   fontWeight: 700,
                 }}
               >
-                $10,414,651 &#40;DAI&#41;
+                $0 &#40;DAI&#41;
               </Typography>
             </Box>
             <Box
@@ -257,7 +257,7 @@ const PriceInfo = () => {
                   fontWeight: 700,
                 }}
               >
-                365 days
+                30 days
               </Typography>
             </Box>
             <Box
@@ -371,7 +371,7 @@ const PriceInfo = () => {
                     fontWeight: 700,
                   }}
                 >
-                  $294,889,623
+                  $0.0
                 </Typography>
               </Box>
               <Box
@@ -399,7 +399,7 @@ const PriceInfo = () => {
                     fontWeight: 700,
                   }}
                 >
-                  120,000,000 &#40;$XLB&#41;
+                  600,000 &#40;$XLB&#41;
                 </Typography>
               </Box>
               <Box
@@ -427,7 +427,7 @@ const PriceInfo = () => {
                     fontWeight: 700,
                   }}
                 >
-                  160,000,000 &#40;$XLB&#41;
+                  555,000,000 &#40;$XLB&#41;
                 </Typography>
               </Box>
             </Box>
@@ -499,7 +499,7 @@ const PriceInfo = () => {
                   fontWeight: 700,
                 }}
               >
-                $10,414,651 &#40;DAI&#41;
+                $0 &#40;DAI&#41;
               </Typography>
             </Box>
             <Box
@@ -527,7 +527,7 @@ const PriceInfo = () => {
                   fontWeight: 700,
                 }}
               >
-                365 days
+                30 days
               </Typography>
             </Box>
             <Box
