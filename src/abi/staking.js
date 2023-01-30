@@ -209,6 +209,25 @@ export const StakingAbi = [
     type: "function",
   },
   {
+    inputs: [
+      {
+        internalType: "address",
+        name: "",
+        type: "address",
+      },
+    ],
+    name: "lockTime",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
     inputs: [],
     name: "name",
     outputs: [
@@ -228,8 +247,20 @@ export const StakingAbi = [
         name: "amount",
         type: "uint256",
       },
+      {
+        internalType: "uint256",
+        name: "lockInDays",
+        type: "uint256",
+      },
     ],
     name: "stake",
+    outputs: [],
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    inputs: [],
+    name: "stakeRewards",
     outputs: [],
     stateMutability: "nonpayable",
     type: "function",

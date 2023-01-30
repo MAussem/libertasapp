@@ -1,20 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
-import {
-  Container,
-  Grid,
-  Paper,
-  Typography,
-  Box,
-  Button,
-  Slider,
-} from "@mui/material";
+import { Container, Grid, Paper, Typography, Box, Button } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import { Link } from "react-router-dom";
 
-// import { StakingAbi } from "../abi/staking";
+import { StakingAbi } from "../abi/staking";
 
 import { useAccount } from "wagmi";
 import { useContractStakingRead } from "../hooks/libertas";
@@ -22,6 +14,10 @@ import { useMemo } from "react";
 import { ethers } from "ethers";
 
 import { getCurrentDate } from "../hooks/currentDate";
+
+import Web3 from "web3";
+
+const contractAddress = "0xd33069d6d59688255784BE48c726aFb9DAFB070A";
 
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
@@ -42,96 +38,108 @@ const buttonSty = makeStyles((theme) => ({
 }));
 
 const StakingModal = () => {
+  const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
   // state
-  const [date, setDate] = useState(getCurrentDate());
-  const [mark, setMark] = useState(0);
-  const [lock, setLock] = useState(0);
+  const [date] = useState(getCurrentDate());
+  // const [mark, setMark] = useState(0);
+  const [lock] = useState(0);
 
-  // Define the address of your deployed contract
-  // const contractAddress = "0xb0B75C06647b8059ABD2943Af802D243F5fD344e";
+  const [amount, setAmount] = useState(0);
+  const [lockInDays, setLockInDays] = useState(0);
+  const [stakeSuccess, setStakeSuccess] = useState(false);
 
-  // // Use the useContract hook to create a contract instance
-  // const contract = useContract(contractAddress, StakingAbi);
+  useEffect(() => {
+    const checkWeb3 = async () => {
+      if (web3.currentProvider.host === "http://localhost:8545") {
+        console.log(
+          "Please connect to a real Ethereum node to interact with this contract"
+        );
+        return;
+      }
+    };
+    checkWeb3();
+  }, [web3.currentProvider.host]);
 
-  // // Use a state variable to store the staked amount
-  // const [stakedAmount, setStakedAmount] = useState(0);
+  const handleStake = async () => {
+    const contract = new web3.eth.Contract(StakingAbi, contractAddress);
+    const accounts = await web3.eth.getAccounts();
+    contract.methods
+      .stake(amount, lockInDays)
+      .send({ from: accounts[0] })
+      .then(() => {
+        setStakeSuccess(true);
+        console.log("Stake successful");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
-  // // Use a state variable to store the amount to stake, taken from the input field
-  // const [amountToStake, setAmountToStake] = useState(0);
-
-  // // Define a function to call the staking function on the contract
-  // const stake = async () => {
-  //   try {
-  //     // Call the stake function on the contract, passing in the amount to stake
-  //     const result = await contract.methods.stake(amountToStake).send();
-
-  //     // Update the staked amount state variable with the returned data
-  //     setStakedAmount(result.amount);
-  //   } catch (error) {
-  //     console.log(error);
+  // const handleDate = () => {
+  //   if (mark === 30) {
+  //     let newDate = new Date();
+  //     newDate.setDate(newDate.getDate() + 30);
+  //     let date = newDate.getDate();
+  //     let month = newDate.getMonth() + 1;
+  //     let year = newDate.getFullYear();
+  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
+  //   }
+  //   if (mark === 60) {
+  //     let newDate = new Date();
+  //     newDate.setDate(newDate.getDate() + 60);
+  //     let date = newDate.getDate();
+  //     let month = newDate.getMonth() + 1;
+  //     let year = newDate.getFullYear();
+  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
+  //   }
+  //   if (mark === 90) {
+  //     let newDate = new Date();
+  //     newDate.setDate(newDate.getDate() + 90);
+  //     let date = newDate.getDate();
+  //     let month = newDate.getMonth() + 1;
+  //     let year = newDate.getFullYear();
+  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
+  //   }
+  //   if (mark === 180) {
+  //     let newDate = new Date();
+  //     newDate.setDate(newDate.getDate() + 180);
+  //     let date = newDate.getDate();
+  //     let month = newDate.getMonth() + 1;
+  //     let year = newDate.getFullYear();
+  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
+  //   }
+  //   if (mark === 365) {
+  //     let newDate = new Date();
+  //     newDate.setDate(newDate.getDate() + 365);
+  //     let date = newDate.getDate();
+  //     let month = newDate.getMonth() + 1;
+  //     let year = newDate.getFullYear();
+  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
   //   }
   // };
 
-  const handleDate = () => {
-    // if input is 30 mark, then add 30 mark to current date
-    // if input is 60 mark, then add 60 mark to current date
-    // if input is 90 mark, then add 90 mark to current date
-    // if input is 180 mark, then add 180 mark to current date
-    // if input is 365 mark, then add 365 mark to current date
-    if (mark === 30) {
-      let newDate = new Date();
-      newDate.setDate(newDate.getDate() + 30);
-      let date = newDate.getDate();
-      let month = newDate.getMonth() + 1;
-      let year = newDate.getFullYear();
-      setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-    }
-    if (mark === 60) {
-      let newDate = new Date();
-      newDate.setDate(newDate.getDate() + 60);
-      let date = newDate.getDate();
-      let month = newDate.getMonth() + 1;
-      let year = newDate.getFullYear();
-      setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-    }
-    if (mark === 90) {
-      let newDate = new Date();
-      newDate.setDate(newDate.getDate() + 90);
-      let date = newDate.getDate();
-      let month = newDate.getMonth() + 1;
-      let year = newDate.getFullYear();
-      setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-    }
-    if (mark === 180) {
-      let newDate = new Date();
-      newDate.setDate(newDate.getDate() + 180);
-      let date = newDate.getDate();
-      let month = newDate.getMonth() + 1;
-      let year = newDate.getFullYear();
-      setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-    }
-    if (mark === 365) {
-      let newDate = new Date();
-      newDate.setDate(newDate.getDate() + 365);
-      let date = newDate.getDate();
-      let month = newDate.getMonth() + 1;
-      let year = newDate.getFullYear();
-      setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-    }
-  };
+  // const handleMark = (event) => {
+  //   // 👇 Get input value from "event"
+  //   setMark(event.target.value);
+  // };
 
-  const handleMark = (event) => {
-    // 👇 Get input value from "event"
-    setMark(event.target.value);
-  };
-
-  const handleLock = (event) => {
-    // 👇 Get input value from "event"
-    setLock(event.target.value);
-  };
+  // const handleLock = (event) => {
+  //   // 👇 Get input value from "event"
+  //   setLock(event.target.value);
+  // };
 
   const { address } = useAccount();
   const { data: balanceRaw } = useContractStakingRead("balanceOf", address);
+  const { data: stakedBalance } = useContractStakingRead("staked", [address]);
+
+  const sBalance = useMemo(
+    () =>
+      stakedBalance
+        ? ethers.utils.formatEther(stakedBalance.sub(stakedBalance.mod(1e14))) +
+          " XLB"
+        : "n/a XLB",
+    [stakedBalance]
+  );
 
   const balance = useMemo(
     () =>
@@ -161,23 +169,23 @@ const StakingModal = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
 
-  const marks = [
-    {
-      value: 30,
-    },
-    {
-      value: 60,
-    },
-    {
-      value: 90,
-    },
-    {
-      value: 180,
-    },
-    {
-      value: 365,
-    },
-  ];
+  // const marks = [
+  //   {
+  //     value: 30,
+  //   },
+  //   {
+  //     value: 60,
+  //   },
+  //   {
+  //     value: 90,
+  //   },
+  //   {
+  //     value: 180,
+  //   },
+  //   {
+  //     value: 365,
+  //   },
+  // ];
 
   return (
     <Container maxWidth="xs">
@@ -291,9 +299,9 @@ const StakingModal = () => {
                   </Typography>
                 </Box>
                 <input
-                  type="text"
-                  defaultValue={0}
-                  onChange={handleLock}
+                  type="number"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
                   style={{
                     marginTop: "2%",
                     marginBottom: "3%",
@@ -307,7 +315,8 @@ const StakingModal = () => {
                     background: "white",
                     borderRadius: "10px",
                   }}
-                ></input>
+                />
+
                 {console.log("lock", lock)}
                 <Typography
                   className={classes.hTitle}
@@ -327,18 +336,25 @@ const StakingModal = () => {
                     alignContent: "center",
                   }}
                 >
-                  <Slider
-                    defaultValue={0}
-                    step={null}
-                    marks={marks}
-                    min={30}
-                    max={365}
-                    valueLabelDisplay="on"
-                    onChange={handleMark}
-                    onChangeCommitted={handleDate}
+                  <input
+                    type="number"
+                    value={lockInDays}
+                    onChange={(e) => setLockInDays(e.target.value)}
+                    style={{
+                      marginTop: "2%",
+                      marginBottom: "3%",
+                      color: "black",
+                      width: "100%",
+                      height: "45px",
+                      fontSize: "20px",
+                      textAlign: "center",
+                      borderStyle: "double",
+                      borderColor: "rgb(167, 230, 255)",
+                      background: "white",
+                      borderRadius: "10px",
+                    }}
                   />
                 </Box>
-                {console.log("mark", mark)}
               </Box>
 
               <Box
@@ -434,7 +450,7 @@ const StakingModal = () => {
                     color: "white",
                   }}
                 >
-                  {lock} $XLB
+                  {sBalance} $XLB
                 </Typography>
               </Box>
               <Box
@@ -466,7 +482,7 @@ const StakingModal = () => {
                     color: "white",
                   }}
                 >
-                  {lock * 1} $sXLB
+                  {sBalance} $sXLB
                 </Typography>
               </Box>
               <Box
@@ -497,7 +513,7 @@ const StakingModal = () => {
                     color: "white",
                   }}
                 >
-                  {mark} days
+                  0 days
                 </Typography>
               </Box>
               <Box
@@ -531,20 +547,24 @@ const StakingModal = () => {
                   {date}
                 </Typography>
               </Box>
-              <Link to="/">
-                <Button
-                  className={classe.buttonS}
-                  variant="contained"
-                  sx={buttonStyles}
-                  type="button"
-                >
-                  Increase amount and lock time
-                </Button>
-              </Link>
+              {/* <Link to="/"> */}
+              <Button
+                className={classe.buttonS}
+                variant="contained"
+                sx={buttonStyles}
+                type="button"
+                onClick={handleStake}
+              >
+                Increase amount and lock time
+              </Button>
+              {/* </Link> */}
+              {stakeSuccess && <p>Staking successful</p>}
             </Paper>
           </Grid>
         </Grid>
       )}
+      {console.log("stakedAmount:", amount)}
+      {console.log("locktime:", lockInDays)}
       {matches && (
         <Grid container spacing={5}>
           <Grid item xs={12}>
