@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
-import {
-  Container,
-  Grid,
-  Paper,
-  Typography,
-  Box,
-  Button,
-  Checkbox,
-} from "@mui/material";
+import { Container, Grid, Paper, Typography, Box, Button } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
@@ -21,17 +13,17 @@ import { useContractStakingRead } from "../hooks/libertas";
 import { useMemo } from "react";
 import { ethers } from "ethers";
 
-// import { getCurrentDate } from "../hooks/currentDate";
+import { getCurrentDate } from "../hooks/currentDate";
 
 import Web3 from "web3";
 
-const contractAddress = "0xd33069d6d59688255784BE48c726aFb9DAFB070A";
+const contractAddress = "0x5B42c868fC7C01DBaE9CA7692574E3962b2a996F";
 
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
     padding: theme.spacing(1),
     [theme.breakpoints.down("md")]: {
-      fontSize: [13, "!important"],
+      fontSize: [17, "!important"],
     },
   },
 }));
@@ -40,39 +32,102 @@ const buttonSty = makeStyles((theme) => ({
   buttonS: {
     padding: theme.spacing(1),
     [theme.breakpoints.down("md")]: {
-      fontSize: [10, "!important"],
+      fontSize: [14, "!important"],
     },
   },
 }));
 
-const StakingModal = () => {
+const Disclaimer1 = ({ sAmount, sLockInDays, sDate }) => {
   const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
   // state
-  // const [date] = useState(getCurrentDate());
+  const [date, setDate] = useState(getCurrentDate());
   // const [mark, setMark] = useState(0);
-  const [lock] = useState(0);
+  // const [lock] = useState(0);
 
-  const [amount] = useState(0);
-  const [lockInDays] = useState(0);
+  // const [amount] = useState(0);
+  // const [lockInDays] = useState(0);
   const [stakeSuccess, setStakeSuccess] = useState(false);
+  const [btnStatus, setBtnStatus] = useState(true);
 
-  useEffect(() => {
-    const checkWeb3 = async () => {
-      if (web3.currentProvider.host === "http://localhost:8545") {
-        console.log(
-          "Please connect to a real Ethereum node to interact with this contract"
-        );
-        return;
+  useEffect(
+    (sLockInDays) => {
+      const checkWeb3 = async () => {
+        if (web3.currentProvider.host === "http://localhost:8545") {
+          console.log(
+            "Please connect to a real Ethereum node to interact with this contract"
+          );
+          return;
+        }
+      };
+
+      const handleDate = () => {
+        if (sLockInDays === 30) {
+          let newDate = new Date();
+          newDate.setDate(newDate.getDate() + 30);
+          let date = newDate.getDate();
+          let month = newDate.getMonth() + 1;
+          let year = newDate.getFullYear();
+          setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
+        }
+        if (sLockInDays === 60) {
+          let newDate = new Date();
+          newDate.setDate(newDate.getDate() + 60);
+          let date = newDate.getDate();
+          let month = newDate.getMonth() + 1;
+          let year = newDate.getFullYear();
+          setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
+        }
+        if (sLockInDays === 90) {
+          let newDate = new Date();
+          newDate.setDate(newDate.getDate() + 90);
+          let date = newDate.getDate();
+          let month = newDate.getMonth() + 1;
+          let year = newDate.getFullYear();
+          setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
+        }
+        if (sLockInDays === 180) {
+          let newDate = new Date();
+          newDate.setDate(newDate.getDate() + 180);
+          let date = newDate.getDate();
+          let month = newDate.getMonth() + 1;
+          let year = newDate.getFullYear();
+          setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
+        }
+        if (sLockInDays === 365) {
+          let newDate = new Date();
+          newDate.setDate(newDate.getDate() + 365);
+          let date = newDate.getDate();
+          let month = newDate.getMonth() + 1;
+          let year = newDate.getFullYear();
+          setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
+        }
+      };
+      handleDate();
+      checkWeb3();
+    },
+    [web3.currentProvider.host]
+  );
+
+  function handleCheckbox(e) {
+    const elements = document.getElementsByName("checkbox");
+    let checkedCount = 0;
+    elements.forEach((element) => {
+      if (element.checked) {
+        checkedCount++;
       }
-    };
-    checkWeb3();
-  }, [web3.currentProvider.host]);
+    });
+    if (checkedCount > 1 || checkedCount === 0) {
+      setBtnStatus(true);
+    } else {
+      setBtnStatus(false);
+    }
+  }
 
   const handleStake = async () => {
     const contract = new web3.eth.Contract(StakingAbi, contractAddress);
     const accounts = await web3.eth.getAccounts();
     contract.methods
-      .stake(amount, lockInDays)
+      .stake(sAmount, sLockInDays)
       .send({ from: accounts[0] })
       .then(() => {
         setStakeSuccess(true);
@@ -144,8 +199,8 @@ const StakingModal = () => {
     () =>
       stakedBalance
         ? ethers.utils.formatEther(stakedBalance.sub(stakedBalance.mod(1e14))) +
-          " XLB"
-        : "n/a XLB",
+          " $XLB"
+        : "n/a $XLB",
     [stakedBalance]
   );
 
@@ -158,7 +213,7 @@ const StakingModal = () => {
   //   [balanceRaw]
   // );
   const buttonStyles = {
-    marginTop: "10px",
+    margin: "10px",
     width: "100%",
     fontWeight: 800,
     color: "black",
@@ -271,11 +326,9 @@ const StakingModal = () => {
                       color: "grey",
                     }}
                   >
-                    {amount} $XLB
+                    {sAmount} $XLB
                   </Typography>
                 </Box>
-
-                {console.log("lock", lock)}
                 <Box
                   style={{
                     display: "flex",
@@ -301,7 +354,7 @@ const StakingModal = () => {
                       color: "grey",
                     }}
                   >
-                    30 Days
+                    {sLockInDays} Days
                   </Typography>
                 </Box>
                 <Box
@@ -343,9 +396,10 @@ const StakingModal = () => {
                     color: "white",
                   }}
                 >
-                  2023-02-30
+                  {date}
                 </Typography>
               </Box>
+              {console.log("date", date)}
               <Box
                 style={{
                   display: "flex",
@@ -358,34 +412,63 @@ const StakingModal = () => {
                   className={classes.hTitle}
                   variant="subtitle1"
                   component="h2"
+                  capitalize
                   style={{
                     paddingBottom: 10,
                     color: "white",
+                    textTransform: "uppercase",
                   }}
                 >
-                  Disclaimer: <Checkbox /> I acknowledge that my $XLB tokens
-                  will be locked for 30 days 2023-02-30 and I will not be able
-                  to unstake my $XLB tokens before the unlock date.
+                  Disclaimer:{" "}
+                  <input
+                    name="checkbox"
+                    type="checkbox"
+                    onChange={handleCheckbox}
+                  />{" "}
+                  I acknowledge that my $XLB tokens will be locked for{" "}
+                  {sLockInDays} days &#40;{date}&#41;. I will not be able to
+                  unstake my $XLB tokens before the unlock date.
                 </Typography>
               </Box>
-              {/* <Link to="/"> */}
-              <Button
-                className={classe.buttonS}
-                variant="contained"
-                sx={buttonStyles}
-                type="button"
-                onClick={handleStake}
+
+              <Box
+                style={{
+                  marginTop: 15,
+                  display: "flex",
+                  justifyContent: "space-around",
+                }}
               >
-                Stake $XLB
-              </Button>
-              {/* </Link> */}
+                <Link to="/staking">
+                  <Button
+                    className={classe.buttonS}
+                    variant="contained"
+                    sx={buttonStyles}
+                    type="button"
+                  >
+                    Cancel
+                  </Button>
+                </Link>
+                <Link to="/">
+                  <Button
+                    className={classe.buttonS}
+                    disabled={btnStatus}
+                    variant="contained"
+                    sx={buttonStyles}
+                    type="button"
+                    onClick={handleStake}
+                  >
+                    Stake $XLB
+                  </Button>
+                </Link>
+              </Box>
+
               {stakeSuccess && <p>Staking successful</p>}
             </Paper>
           </Grid>
         </Grid>
       )}
-      {console.log("stakedAmount:", amount)}
-      {console.log("locktime:", lockInDays)}
+      {console.log("stakedAmount:", sAmount)}
+      {console.log("locktime:", sLockInDays)}
       {matches && (
         <Grid container spacing={5}>
           <Grid item xs={12}>
@@ -467,8 +550,8 @@ const StakingModal = () => {
                 >
                   <Typography
                     className={classes.hTitle}
-                    variant="subtitle2"
-                    component="h2"
+                    variant="h4"
+                    component="h5"
                     style={{
                       color: "white",
                     }}
@@ -708,4 +791,4 @@ const StakingModal = () => {
   );
 };
 
-export default StakingModal;
+export default Disclaimer1;

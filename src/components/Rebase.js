@@ -84,7 +84,7 @@ const Rebase = () => {
             color: "#C8E9E9",
           }}
         >
-          {nextReward} XLB
+          {nextReward} $XLB
         </Typography>
       </Box>
       {/* <button onClick={() => fetchBalance()}>click me</button> */}

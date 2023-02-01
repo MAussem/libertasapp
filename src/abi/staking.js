@@ -244,7 +244,7 @@ export const StakingAbi = [
     inputs: [
       {
         internalType: "uint256",
-        name: "amount",
+        name: "inputAmount",
         type: "uint256",
       },
       {
@@ -311,6 +311,25 @@ export const StakingAbi = [
         internalType: "string",
         name: "",
         type: "string",
+      },
+    ],
+    stateMutability: "view",
+    type: "function",
+  },
+  {
+    inputs: [
+      {
+        internalType: "address",
+        name: "account",
+        type: "address",
+      },
+    ],
+    name: "timeUntilUnstake",
+    outputs: [
+      {
+        internalType: "uint256",
+        name: "",
+        type: "uint256",
       },
     ],
     stateMutability: "view",
@@ -386,7 +405,7 @@ export const StakingAbi = [
     inputs: [
       {
         internalType: "uint256",
-        name: "amount",
+        name: "inputAmount",
         type: "uint256",
       },
     ],

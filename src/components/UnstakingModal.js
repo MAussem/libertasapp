@@ -1,25 +1,23 @@
 import React, { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
-import {
-  Container,
-  Grid,
-  Paper,
-  Typography,
-  Box,
-  Button,
-  Slider,
-} from "@mui/material";
+import { Container, Grid, Paper, Typography, Box, Button } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import { Link } from "react-router-dom";
+
+import { StakingAbi } from "../abi/staking";
 
 import { useAccount } from "wagmi";
 import { useContractStakingRead } from "../hooks/libertas";
 import { useMemo } from "react";
 import { ethers } from "ethers";
 
+// import { getCurrentDate } from "../hooks/currentDate";
+
 import Web3 from "web3";
+
+const contractAddress = "0x5B42c868fC7C01DBaE9CA7692574E3962b2a996F";
 
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
@@ -39,23 +37,12 @@ const buttonSty = makeStyles((theme) => ({
   },
 }));
 
-const StakingModal = ({
-  sAmount,
-  setSAmount,
-  sLockInDays,
-  setSLockInDays,
-  setSDate,
-}) => {
+const UnstakingModal = () => {
   const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
   // state
-  // const [date] = useState(getCurrentDate());
-  // const [mark, setMark] = useState(0);
-  const [lock] = useState(0);
-  const [timeLeft] = useState(0);
-
-  // const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState(0);
+  const [setStakeSuccess] = useState(false);
   const [inputStatus, setInputStatus] = useState(0);
-  // const [stakeSuccess] = useState(false);
 
   useEffect(() => {
     const checkWeb3 = async () => {
@@ -69,70 +56,23 @@ const StakingModal = ({
     checkWeb3();
   }, [web3.currentProvider.host]);
 
-  // const handleTimeLeft = (event) => {
-  //   setTimeLeft(event.target.value);
-  // };
-
-  // const handleDate = () => {
-  //   if (mark === 30) {
-  //     let newDate = new Date();
-  //     newDate.setDate(newDate.getDate() + 30);
-  //     let date = newDate.getDate();
-  //     let month = newDate.getMonth() + 1;
-  //     let year = newDate.getFullYear();
-  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-  //   }
-  //   if (mark === 60) {
-  //     let newDate = new Date();
-  //     newDate.setDate(newDate.getDate() + 60);
-  //     let date = newDate.getDate();
-  //     let month = newDate.getMonth() + 1;
-  //     let year = newDate.getFullYear();
-  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-  //   }
-  //   if (mark === 90) {
-  //     let newDate = new Date();
-  //     newDate.setDate(newDate.getDate() + 90);
-  //     let date = newDate.getDate();
-  //     let month = newDate.getMonth() + 1;
-  //     let year = newDate.getFullYear();
-  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-  //   }
-  //   if (mark === 180) {
-  //     let newDate = new Date();
-  //     newDate.setDate(newDate.getDate() + 180);
-  //     let date = newDate.getDate();
-  //     let month = newDate.getMonth() + 1;
-  //     let year = newDate.getFullYear();
-  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-  //   }
-  //   if (mark === 365) {
-  //     let newDate = new Date();
-  //     newDate.setDate(newDate.getDate() + 365);
-  //     let date = newDate.getDate();
-  //     let month = newDate.getMonth() + 1;
-  //     let year = newDate.getFullYear();
-  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-  //   }
-  // };
-
-  // const handleMark = (event) => {
-  //   // 👇 Get input value from "event"
-  //   setMark(event.target.value);
-  // };
-
-  // const handleMD = () => {
-  //   handleMark();
-  //   handleDate();
-  // };
-
-  // const handleLock = (event) => {
-  //   // 👇 Get input value from "event"
-  //   setLock(event.target.value);
-  // };
+  const handleUnstake = async () => {
+    const contract = new web3.eth.Contract(StakingAbi, contractAddress);
+    const accounts = await web3.eth.getAccounts();
+    contract.methods
+      .unstake(amount)
+      .send({ from: accounts[0] })
+      .then(() => {
+        setStakeSuccess(true);
+        console.log("Stake successful");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
   const { address } = useAccount();
-  const { data: balanceRaw } = useContractStakingRead("balanceOf", address);
+  // const { data: balanceRaw } = useContractStakingRead("balanceOf", address);
   const { data: stakedBalance } = useContractStakingRead("staked", [address]);
 
   const sBalance = useMemo(
@@ -144,14 +84,14 @@ const StakingModal = ({
     [stakedBalance]
   );
 
-  const balance = useMemo(
-    () =>
-      balanceRaw
-        ? ethers.utils.formatEther(balanceRaw.sub(balanceRaw.mod(1e14))) +
-          " $XLB"
-        : "n/a $XLB",
-    [balanceRaw]
-  );
+  // const balance = useMemo(
+  //   () =>
+  //     balanceRaw
+  //       ? ethers.utils.formatEther(balanceRaw.sub(balanceRaw.mod(1e14))) +
+  //         " $XLB"
+  //       : "n/a $XLB",
+  //   [balanceRaw]
+  // );
   const buttonStyles = {
     marginTop: "10px",
     width: "100%",
@@ -171,25 +111,6 @@ const StakingModal = ({
   const classes = fontStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
-
-  const marks = [
-    { value: 5 },
-    {
-      value: 30,
-    },
-    {
-      value: 60,
-    },
-    {
-      value: 90,
-    },
-    {
-      value: 180,
-    },
-    {
-      value: 365,
-    },
-  ];
 
   return (
     <Container maxWidth="xs">
@@ -220,7 +141,7 @@ const StakingModal = ({
                     color: "rgb(167, 230, 255)",
                   }}
                 >
-                  Stake
+                  Unstake
                 </Typography>
                 <Typography
                   className={classes.hTitle}
@@ -301,13 +222,13 @@ const StakingModal = ({
                       color: "grey",
                     }}
                   >
-                    Balance: {balance}
+                    Balance: {sBalance}
                   </Typography>
                 </Box>
                 <input
                   type="number"
-                  value={sAmount}
-                  onChange={(e) => setSAmount(e.target.value)}
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
                   onInput={(event) => setInputStatus(event.target.value)}
                   style={{
                     marginTop: "2%",
@@ -323,55 +244,6 @@ const StakingModal = ({
                     borderRadius: "10px",
                   }}
                 />
-
-                {console.log("lock", lock)}
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle2"
-                  component="h2"
-                  style={{
-                    color: "white",
-                  }}
-                >
-                  Stake Duration &#40;30, 60, 90, 180, 365&#41;
-                </Typography>
-                <Box
-                  sx={{
-                    width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignContent: "center",
-                  }}
-                >
-                  <Slider
-                    defaultValue={5}
-                    step={null}
-                    marks={marks}
-                    min={5}
-                    max={365}
-                    valueLabelDisplay="on"
-                    onChange={(e) => setSLockInDays(e.target.value)}
-                  />
-                  {/* <input
-                    type="number"
-                    value={sLockInDays}
-                    onChange={(e) => setSLockInDays(e.target.value)}
-                    onInput={handleDate}
-                    style={{
-                      marginTop: "2%",
-                      marginBottom: "3%",
-                      color: "black",
-                      width: "100%",
-                      height: "45px",
-                      fontSize: "20px",
-                      textAlign: "center",
-                      borderStyle: "double",
-                      borderColor: "rgb(167, 230, 255)",
-                      background: "white",
-                      borderRadius: "10px",
-                    }}
-                  /> */}
-                </Box>
               </Box>
 
               <Box
@@ -534,24 +406,23 @@ const StakingModal = ({
                 </Typography>
                 
               </Box> */}
-              {console.log("time left", timeLeft)}
-              <Link to="/disclaimer">
+              <Link to="/">
                 <Button
                   disabled={!inputStatus}
                   className={classe.buttonS}
                   variant="contained"
                   sx={buttonStyles}
                   type="button"
+                  onClick={handleUnstake}
                 >
-                  Stake $XLB
+                  Unstake $XLB
                 </Button>
               </Link>
             </Paper>
           </Grid>
         </Grid>
       )}
-      {console.log("stakedAmount:", sAmount)}
-      {console.log("locktime:", sLockInDays)}
+      {console.log("stakedAmount:", amount)}
       {matches && (
         <Grid container spacing={5}>
           <Grid item xs={12}>
@@ -677,33 +548,6 @@ const StakingModal = ({
                     textAlign: "center",
                     borderStyle: "double",
                     borderColor: "rgb(167, 230, 255)",
-                    background: "white",
-                    borderRadius: "10px",
-                  }}
-                ></input>
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle2"
-                  component="h2"
-                  style={{
-                    color: "white",
-                  }}
-                >
-                  Stake Duration &#40;max 27 months&#41;
-                </Typography>
-                <input
-                  type="text"
-                  defaultValue="0.0"
-                  style={{
-                    marginTop: "2%",
-                    marginBottom: "3%",
-                    color: "black",
-                    width: "100%",
-                    height: "45px",
-                    fontSize: "20px",
-                    textAlign: "center",
-                    borderStyle: "double",
-                    borderColor: "#fa8128",
                     background: "white",
                     borderRadius: "10px",
                   }}
@@ -844,7 +688,7 @@ const StakingModal = ({
                   sx={buttonStyles}
                   type="button"
                 >
-                  Stake $XLB
+                  Unstake $XLB
                 </Button>
               </Link>
             </Paper>
@@ -855,4 +699,4 @@ const StakingModal = ({
   );
 };
 
-export default StakingModal;
+export default UnstakingModal;

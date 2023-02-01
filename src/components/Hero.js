@@ -37,8 +37,8 @@ const Hero = () => {
     () =>
       balanceRaw
         ? ethers.utils.formatEther(balanceRaw.sub(balanceRaw.mod(1e14))) +
-          " XLB"
-        : "n/a XLB",
+          " $XLB"
+        : "n/a $XLB",
     [balanceRaw]
   );
 
@@ -46,8 +46,8 @@ const Hero = () => {
     () =>
       stakedBalance
         ? ethers.utils.formatEther(stakedBalance.sub(stakedBalance.mod(1e14))) +
-          " XLB"
-        : "n/a XLB",
+          " $XLB"
+        : "n/a $XLB",
     [stakedBalance]
   );
 
@@ -136,7 +136,7 @@ const Hero = () => {
                     variant="contained"
                     sx={buttonStyles}
                   >
-                    Buy XLB
+                    Buy $XLB
                   </Button>
                 </a>
                 <br />
@@ -146,7 +146,7 @@ const Hero = () => {
                     variant="contained"
                     sx={buttonStyles}
                   >
-                    Stake XLB
+                    Stake $XLB
                   </Button>
                 </Link>
               </Box>
@@ -298,7 +298,7 @@ const Hero = () => {
                     variant="contained"
                     sx={buttonStyles}
                   >
-                    Buy XLB
+                    Buy $XLB
                   </Button>
                 </a>
                 <br />
@@ -318,7 +318,7 @@ const Hero = () => {
                     variant="contained"
                     sx={buttonStyles}
                   >
-                    Stake XLB
+                    Stake $XLB
                   </Button>
                 </Link>
               </Box>

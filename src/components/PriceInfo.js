@@ -73,7 +73,7 @@ const PriceInfo = () => {
                     fontWeight: 700,
                   }}
                 >
-                  $0.812
+                  $0.0
                 </Typography>
               </Box>
               <Box
@@ -129,7 +129,8 @@ const PriceInfo = () => {
                     fontWeight: 700,
                   }}
                 >
-                  600,000 &#40;$XLB&#41;
+                  {/* change this 1111 */}
+                  0.0 &#40;$XLB&#41;
                 </Typography>
               </Box>
               <Box
@@ -257,7 +258,7 @@ const PriceInfo = () => {
                   fontWeight: 700,
                 }}
               >
-                30 days
+                {/* change this 111 */}0 days
               </Typography>
             </Box>
             <Box
@@ -285,7 +286,8 @@ const PriceInfo = () => {
                   fontWeight: 700,
                 }}
               >
-                10%
+                {/* change this 111 */}
+                0%
               </Typography>
             </Box>
           </Paper>
@@ -343,7 +345,7 @@ const PriceInfo = () => {
                     fontWeight: 700,
                   }}
                 >
-                  $0.812
+                  $0.0
                 </Typography>
               </Box>
               <Box
@@ -399,7 +401,8 @@ const PriceInfo = () => {
                     fontWeight: 700,
                   }}
                 >
-                  600,000 &#40;$XLB&#41;
+                  {/* change this 1111 */}
+                  0.0 &#40;$XLB&#41;
                 </Typography>
               </Box>
               <Box
@@ -527,7 +530,7 @@ const PriceInfo = () => {
                   fontWeight: 700,
                 }}
               >
-                30 days
+                {/* change this 111 */}0 days
               </Typography>
             </Box>
             <Box
@@ -555,7 +558,8 @@ const PriceInfo = () => {
                   fontWeight: 700,
                 }}
               >
-                10%
+                {/* change this 111 */}
+                0%
               </Typography>
             </Box>
           </Paper>

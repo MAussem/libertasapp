@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Grid, Paper, Typography, Box, Button } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import { useTheme } from "@mui/material/styles";
@@ -8,13 +9,10 @@ import { useMediaQuery } from "@mui/material";
 import Web3 from "web3";
 import { StakingAbi } from "../abi/staking";
 
-// import { useAccount } from "wagmi";
-// import {
-//   useContractStakingRead,
-//   useContractStakingWrite,
-// } from "../hooks/libertas";
-// import { useMemo } from "react";
-// import { ethers } from "ethers";
+import { useAccount } from "wagmi";
+import { useContractStakingRead } from "../hooks/libertas";
+import { useMemo } from "react";
+import { ethers } from "ethers";
 
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
@@ -37,6 +35,8 @@ const buttonSty = makeStyles((theme) => ({
 const RewardInfo = () => {
   const [web3, setWeb3] = useState(null);
   const [contractInstance, setContractInstance] = useState(null);
+  const { address } = useAccount();
+  const { data: earnedBalance } = useContractStakingRead("earned", [address]);
   // const [contract, setContract] = useState(null);
 
   useEffect(() => {
@@ -45,7 +45,7 @@ const RewardInfo = () => {
       const web3 = new Web3(window.ethereum);
       setWeb3(web3);
 
-      const contractAddress = "0xd33069d6d59688255784BE48c726aFb9DAFB070A";
+      const contractAddress = "0x5B42c868fC7C01DBaE9CA7692574E3962b2a996F";
       const contractInstance = new web3.eth.Contract(
         StakingAbi,
         contractAddress
@@ -64,23 +64,14 @@ const RewardInfo = () => {
     console.log(result);
   };
 
-  const handleStakeRewards = async () => {
-    try {
-      const accounts = await web3.eth.getAccounts();
-      await contractInstance.methods.stakeRewards().send({ from: accounts[0] });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  // const eBalance = useMemo(
-  //   () =>
-  //     earnedBalance
-  //       ? ethers.utils.formatEther(earnedBalance.sub(earnedBalance.mod(1e14))) +
-  //         " XLB"
-  //       : "n/a XLB",
-  //   [earnedBalance]
-  // );
+  const eBalance = useMemo(
+    () =>
+      earnedBalance
+        ? ethers.utils.formatEther(earnedBalance.sub(earnedBalance.mod(1e14))) +
+          " $XLB"
+        : "n/a $XLB",
+    [earnedBalance]
+  );
 
   const buttonStyles = {
     fontWeight: 800,
@@ -166,7 +157,7 @@ const RewardInfo = () => {
                   color: "white",
                 }}
               >
-                $XLB
+                $XLB Earned
               </Typography>
 
               <Typography
@@ -178,7 +169,7 @@ const RewardInfo = () => {
                   color: "white",
                 }}
               >
-                {/* change this 11111 */}0 &#40;$0.00&#41;
+                {eBalance} &#40;$0.00&#41;
               </Typography>
             </Box>
             <Box
@@ -314,14 +305,15 @@ const RewardInfo = () => {
                 justifyContent: "space-between",
               }}
             >
-              <Button
-                className={classe.buttonS}
-                variant="contained"
-                sx={buttonStyles}
-                onClick={handleStakeRewards}
-              >
-                Compound
-              </Button>
+              <Link to="/disclaimer2">
+                <Button
+                  className={classe.buttonS}
+                  variant="contained"
+                  sx={buttonStyles}
+                >
+                  Compound
+                </Button>
+              </Link>
 
               <Button
                 className={classe.buttonS}
@@ -332,14 +324,18 @@ const RewardInfo = () => {
               >
                 Claim
               </Button>
-              <Button
-                disabled
-                className={classe.buttonS}
-                variant="contained"
-                sx={buttonStyles}
-              >
-                UnStake
-              </Button>
+              <div className="image">
+                <Link to="/unstaking">
+                  <Button
+                    // disabled
+                    className={classe.buttonS}
+                    variant="contained"
+                    sx={buttonStyles}
+                  >
+                    UnStake
+                  </Button>
+                </Link>
+              </div>
             </Box>
           </Paper>
         </Grid>
@@ -416,7 +412,7 @@ const RewardInfo = () => {
                   color: "white",
                 }}
               >
-                $XLB
+                $XLB Earned
               </Typography>
 
               <Typography

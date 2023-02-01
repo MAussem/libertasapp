@@ -37,6 +37,16 @@ a:link {
   text-decoration: none;
 }
 
+.image:hover:after {
+  position: absolute;
+  content: "x days, x hours, x minutes, x seconds until you can unstake";
+  right: 80px;
+  top: 540px;
+  padding: 5px;
+  background-color: black;
+  color: white;
+}
+
 /* .dash1 {
   padding-bottom: 10px;
   color: rgb(167, 230, 255);

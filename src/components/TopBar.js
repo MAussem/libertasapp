@@ -100,8 +100,8 @@ const TopBar = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
 
-  const tokenAddress = "0x4B034645BC8B43A300739f83AEaCdbF0E1a90a38";
-  const tokenSymbol = "XLB";
+  const tokenAddress = "0x5B42c868fC7C01DBaE9CA7692574E3962b2a996F";
+  const tokenSymbol = "$XLB";
   const tokenDecimals = 18;
   const tokenImage = "https://i.postimg.cc/4N1vYmjT/libertas-torch.png";
 
@@ -203,7 +203,7 @@ const TopBar = () => {
               </Typography>
             </Link>
             {/* change this back to swap */}
-            <Link to="./">
+            <Link to="./tokenfaucet">
               <Typography
                 className="dash"
                 onClick={handleClickS}
@@ -213,7 +213,7 @@ const TopBar = () => {
                   fontWeight: 700,
                 }}
               >
-                Swap
+                Token Faucet
               </Typography>
             </Link>
             <Box
