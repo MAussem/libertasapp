@@ -17,7 +17,7 @@ import { getCurrentDate } from "../hooks/currentDate";
 
 import Web3 from "web3";
 
-const contractAddress = "0x71d7BcF1E072F9385763318afFc1B4fB6832EdBE";
+const contractAddress = "0x322956CCa92ED7A2fb8794dB31362dD8C1166FED";
 
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
