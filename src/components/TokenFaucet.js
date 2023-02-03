@@ -63,7 +63,7 @@ const TokenFaucet = (props) => {
           type: "function",
         },
       ];
-      const TokenFaucetAddress = "0xad8DF3abBa8E0eC79658556ec6080A826E7a8DBb";
+      const TokenFaucetAddress = "0x8ecdDfEA0f7e2EFB101B806769F027e85509E7c3";
       const contractInstance = new web3.eth.Contract(
         TokenFaucetABI,
         TokenFaucetAddress

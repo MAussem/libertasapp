@@ -45,7 +45,7 @@ const RewardInfo = () => {
       const web3 = new Web3(window.ethereum);
       setWeb3(web3);
 
-      const contractAddress = "0x5B42c868fC7C01DBaE9CA7692574E3962b2a996F";
+      const contractAddress = "0x71d7BcF1E072F9385763318afFc1B4fB6832EdBE";
       const contractInstance = new web3.eth.Contract(
         StakingAbi,
         contractAddress

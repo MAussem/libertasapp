@@ -100,7 +100,7 @@ const TopBar = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
 
-  const tokenAddress = "0x5B42c868fC7C01DBaE9CA7692574E3962b2a996F";
+  const tokenAddress = "0x71d7BcF1E072F9385763318afFc1B4fB6832EdBE";
   const tokenSymbol = "$XLB";
   const tokenDecimals = 18;
   const tokenImage = "https://i.postimg.cc/4N1vYmjT/libertas-torch.png";
