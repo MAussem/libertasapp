@@ -13,11 +13,11 @@ import { useContractStakingRead } from "../hooks/libertas";
 import { useMemo } from "react";
 import { ethers } from "ethers";
 
-import { getCurrentDate } from "../hooks/currentDate";
+// import { getCurrentDate } from "../hooks/currentDate";
 
 import Web3 from "web3";
 
-const contractAddress = "0x322956CCa92ED7A2fb8794dB31362dD8C1166FED";
+const contractAddress = "0x31b41E3b75358a7ffbC031dE7F1e435DDCc8729b";
 
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
@@ -37,76 +37,51 @@ const buttonSty = makeStyles((theme) => ({
   },
 }));
 
-const Disclaimer2 = ({ sAmount, sLockInDays, sDate }) => {
-  const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
-  // state
-  const [date, setDate] = useState(getCurrentDate());
-  // const [mark, setMark] = useState(0);
-  // const [lock] = useState(0);
-
-  // const [amount] = useState(0);
-  // const [lockInDays] = useState(0);
+const Disclaimer2 = () => {
+  const [web3, setWeb3] = useState(null);
+  // const [contractInstance, setContractInstance] = useState(null);
   const [setStakeRewards] = useState(false);
   const [btnStatus, setBtnStatus] = useState(true);
+  const [timeUntilUnstake, setTimeUntilUnstake] = useState(0);
 
-  useEffect(
-    (sLockInDays) => {
-      const checkWeb3 = async () => {
-        if (web3.currentProvider.host === "http://localhost:8545") {
-          console.log(
-            "Please connect to a real Ethereum node to interact with this contract"
-          );
-          return;
-        }
-      };
+  useEffect(() => {
+    // Check if the user has metamask installed and is logged in
+    if (window.ethereum) {
+      const web3 = new Web3(window.ethereum);
+      setWeb3(web3);
 
-      const handleDate = () => {
-        if (sLockInDays === 30) {
-          let newDate = new Date();
-          newDate.setDate(newDate.getDate() + 30);
-          let date = newDate.getDate();
-          let month = newDate.getMonth() + 1;
-          let year = newDate.getFullYear();
-          setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-        }
-        if (sLockInDays === 60) {
-          let newDate = new Date();
-          newDate.setDate(newDate.getDate() + 60);
-          let date = newDate.getDate();
-          let month = newDate.getMonth() + 1;
-          let year = newDate.getFullYear();
-          setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-        }
-        if (sLockInDays === 90) {
-          let newDate = new Date();
-          newDate.setDate(newDate.getDate() + 90);
-          let date = newDate.getDate();
-          let month = newDate.getMonth() + 1;
-          let year = newDate.getFullYear();
-          setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-        }
-        if (sLockInDays === 180) {
-          let newDate = new Date();
-          newDate.setDate(newDate.getDate() + 180);
-          let date = newDate.getDate();
-          let month = newDate.getMonth() + 1;
-          let year = newDate.getFullYear();
-          setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-        }
-        if (sLockInDays === 365) {
-          let newDate = new Date();
-          newDate.setDate(newDate.getDate() + 365);
-          let date = newDate.getDate();
-          let month = newDate.getMonth() + 1;
-          let year = newDate.getFullYear();
-          setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-        }
+      const contractAddress = "0x31b41E3b75358a7ffbC031dE7F1e435DDCc8729b";
+      const contractInstance = new web3.eth.Contract(
+        StakingAbi,
+        contractAddress
+      );
+      // setContractInstance(contractInstance);
+      const getTimeUntilUnstake = async () => {
+        const account = await web3.eth.getAccounts();
+        const time = await contractInstance.methods
+          .timeUntilUnstake(account[0])
+          .call();
+        setTimeUntilUnstake(time);
       };
-      handleDate();
-      checkWeb3();
-    },
-    [web3.currentProvider.host]
-  );
+      getTimeUntilUnstake();
+    } else {
+      console.log("You need to install metamask");
+    }
+  }, []);
+
+  function secondsToDhms(seconds) {
+    seconds = Number(seconds);
+    var d = Math.floor(seconds / (3600 * 24));
+    var h = Math.floor((seconds % (3600 * 24)) / 3600);
+    var m = Math.floor((seconds % 3600) / 60);
+
+    var dDisplay = d > 0 ? d + (d === 1 ? " day, " : " days, ") : "";
+    var hDisplay = h > 0 ? h + (h === 1 ? " hr, " : " hrs, ") : "";
+    var mDisplay = m > 0 ? m + (m === 1 ? " min " : " mins ") : "";
+    return dDisplay + hDisplay + mDisplay;
+  }
+
+  const displayTimeUntilUnstake = secondsToDhms(timeUntilUnstake);
 
   function handleCheckbox(e) {
     const elements = document.getElementsByName("checkbox");
@@ -131,65 +106,12 @@ const Disclaimer2 = ({ sAmount, sLockInDays, sDate }) => {
       .send({ from: accounts[0] })
       .then(() => {
         setStakeRewards(true);
-        console.log("Stake successful");
+        // console.log("Stake successful");
       })
       .catch((error) => {
         console.error(error);
       });
   };
-
-  // const handleDate = () => {
-  //   if (mark === 30) {
-  //     let newDate = new Date();
-  //     newDate.setDate(newDate.getDate() + 30);
-  //     let date = newDate.getDate();
-  //     let month = newDate.getMonth() + 1;
-  //     let year = newDate.getFullYear();
-  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-  //   }
-  //   if (mark === 60) {
-  //     let newDate = new Date();
-  //     newDate.setDate(newDate.getDate() + 60);
-  //     let date = newDate.getDate();
-  //     let month = newDate.getMonth() + 1;
-  //     let year = newDate.getFullYear();
-  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-  //   }
-  //   if (mark === 90) {
-  //     let newDate = new Date();
-  //     newDate.setDate(newDate.getDate() + 90);
-  //     let date = newDate.getDate();
-  //     let month = newDate.getMonth() + 1;
-  //     let year = newDate.getFullYear();
-  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-  //   }
-  //   if (mark === 180) {
-  //     let newDate = new Date();
-  //     newDate.setDate(newDate.getDate() + 180);
-  //     let date = newDate.getDate();
-  //     let month = newDate.getMonth() + 1;
-  //     let year = newDate.getFullYear();
-  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-  //   }
-  //   if (mark === 365) {
-  //     let newDate = new Date();
-  //     newDate.setDate(newDate.getDate() + 365);
-  //     let date = newDate.getDate();
-  //     let month = newDate.getMonth() + 1;
-  //     let year = newDate.getFullYear();
-  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-  //   }
-  // };
-
-  // const handleMark = (event) => {
-  //   // 👇 Get input value from "event"
-  //   setMark(event.target.value);
-  // };
-
-  // const handleLock = (event) => {
-  //   // 👇 Get input value from "event"
-  //   setLock(event.target.value);
-  // };
 
   const { address } = useAccount();
   // const { data: balanceRaw } = useContractStakingRead("balanceOf", address);
@@ -204,14 +126,6 @@ const Disclaimer2 = ({ sAmount, sLockInDays, sDate }) => {
     [earnedBalance]
   );
 
-  // const balance = useMemo(
-  //   () =>
-  //     balanceRaw
-  //       ? ethers.utils.formatEther(balanceRaw.sub(balanceRaw.mod(1e14))) +
-  //         " XLB"
-  //       : "n/a XLB",
-  //   [balanceRaw]
-  // );
   const buttonStyles = {
     margin: "10px",
     width: "100%",
@@ -231,24 +145,6 @@ const Disclaimer2 = ({ sAmount, sLockInDays, sDate }) => {
   const classes = fontStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
-
-  // const marks = [
-  //   {
-  //     value: 30,
-  //   },
-  //   {
-  //     value: 60,
-  //   },
-  //   {
-  //     value: 90,
-  //   },
-  //   {
-  //     value: 180,
-  //   },
-  //   {
-  //     value: 365,
-  //   },
-  // ];
 
   return (
     <Container maxWidth="md">
@@ -385,7 +281,7 @@ const Disclaimer2 = ({ sAmount, sLockInDays, sDate }) => {
                     color: "white",
                   }}
                 >
-                  Unlock Date
+                  Unlock Time
                 </Typography>
 
                 <Typography
@@ -397,10 +293,10 @@ const Disclaimer2 = ({ sAmount, sLockInDays, sDate }) => {
                     color: "white",
                   }}
                 >
-                  {date}
+                  {displayTimeUntilUnstake}
                 </Typography>
               </Box>
-              {console.log("date", date)}
+              {/* {console.log("date", date)} */}
               <Box
                 style={{
                   display: "flex",
@@ -420,16 +316,16 @@ const Disclaimer2 = ({ sAmount, sLockInDays, sDate }) => {
                     textTransform: "uppercase",
                   }}
                 >
-                  Disclaimer:{" "}
+                  Disclaimer:
                   <input
                     name="checkbox"
                     type="checkbox"
                     onChange={handleCheckbox}
-                  />{" "}
+                  />
                   I acknowledge that my $XLB reward tokens will be locked for
-                  the rest of the current staking period &#40;{date}&#41; and I
-                  will not be able to unstake my $XLB tokens before the unlock
-                  date.
+                  the rest of the current staking period &#40;
+                  {displayTimeUntilUnstake}&#41; and I will not be able to
+                  unstake my $XLB tokens before the unlock time has expired.
                 </Typography>
               </Box>
 
@@ -440,7 +336,7 @@ const Disclaimer2 = ({ sAmount, sLockInDays, sDate }) => {
                   justifyContent: "space-around",
                 }}
               >
-                <Link to="/staking">
+                <Link to="/">
                   <Button
                     className={classe.buttonS}
                     variant="contained"
@@ -467,8 +363,8 @@ const Disclaimer2 = ({ sAmount, sLockInDays, sDate }) => {
           </Grid>
         </Grid>
       )}
-      {console.log("stakedAmount:", sAmount)}
-      {console.log("locktime:", sLockInDays)}
+      {/* {console.log("stakedAmount:", sAmount)}
+      {console.log("locktime:", sLockInDays)} */}
       {matches && (
         <Grid container spacing={5}>
           <Grid item xs={12}>

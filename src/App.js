@@ -27,11 +27,17 @@ const App = () => {
   const [sAmount, setSAmount] = useState(0);
   const [sLockInDays, setSLockInDays] = useState(0);
   const [sDate, setSDate] = useState("");
+
   return (
     <BrowserRouter>
       <TopBar setReloadBalance={setReloadBalance} />
       <Routes>
-        <Route path="/" element={<Home reloadBalance={reloadBalance} />} />
+        <Route
+          path="/"
+          element={
+            <Home reloadBalance={reloadBalance} sLockInDays={sLockInDays} />
+          }
+        />
         <Route path="/calc" element={<Calculator />} />
         <Route path="/test" element={<Test />}></Route>
         <Route path="/tokenfaucet" element={<TokenFaucet />}></Route>
@@ -69,13 +75,7 @@ const App = () => {
         ></Route>
         <Route
           path="/disclaimer2"
-          element={
-            <Disclaimer2
-              sAmount={sAmount}
-              sLockInDays={sLockInDays}
-              sDate={sDate}
-            />
-          }
+          element={<Disclaimer2 sLockInDays={sLockInDays} />}
         ></Route>
         <Route path="/defi-agg" element={<SubPage1 />}></Route>
         <Route path="/dex" element={<SubPage2 />}></Route>

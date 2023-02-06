@@ -49,9 +49,9 @@ const StakingModal = ({
   const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
   // state
   // const [date] = useState(getCurrentDate());
-  // const [mark, setMark] = useState(0);
-  const [lock] = useState(0);
-  const [timeLeft] = useState(0);
+  const [mark, setMark] = useState(0);
+  // const [lock] = useState(0);
+  // const [timeLeft] = useState(0);
 
   // const [amount, setAmount] = useState(0);
   const [inputStatus, setInputStatus] = useState(0);
@@ -73,53 +73,54 @@ const StakingModal = ({
   //   setTimeLeft(event.target.value);
   // };
 
-  // const handleDate = () => {
-  //   if (mark === 30) {
-  //     let newDate = new Date();
-  //     newDate.setDate(newDate.getDate() + 30);
-  //     let date = newDate.getDate();
-  //     let month = newDate.getMonth() + 1;
-  //     let year = newDate.getFullYear();
-  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-  //   }
-  //   if (mark === 60) {
-  //     let newDate = new Date();
-  //     newDate.setDate(newDate.getDate() + 60);
-  //     let date = newDate.getDate();
-  //     let month = newDate.getMonth() + 1;
-  //     let year = newDate.getFullYear();
-  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-  //   }
-  //   if (mark === 90) {
-  //     let newDate = new Date();
-  //     newDate.setDate(newDate.getDate() + 90);
-  //     let date = newDate.getDate();
-  //     let month = newDate.getMonth() + 1;
-  //     let year = newDate.getFullYear();
-  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-  //   }
-  //   if (mark === 180) {
-  //     let newDate = new Date();
-  //     newDate.setDate(newDate.getDate() + 180);
-  //     let date = newDate.getDate();
-  //     let month = newDate.getMonth() + 1;
-  //     let year = newDate.getFullYear();
-  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-  //   }
-  //   if (mark === 365) {
-  //     let newDate = new Date();
-  //     newDate.setDate(newDate.getDate() + 365);
-  //     let date = newDate.getDate();
-  //     let month = newDate.getMonth() + 1;
-  //     let year = newDate.getFullYear();
-  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-  //   }
-  // };
+  const handleDate = () => {
+    if (mark === 30) {
+      let newDate = new Date();
+      newDate.setSDate(newDate.getDate() + 30);
+      let date = newDate.getDate();
+      let month = newDate.getMonth() + 1;
+      let year = newDate.getFullYear();
+      setSDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
+    }
+    if (mark === 60) {
+      let newDate = new Date();
+      newDate.setSDate(newDate.getDate() + 60);
+      let date = newDate.getDate();
+      let month = newDate.getMonth() + 1;
+      let year = newDate.getFullYear();
+      setSDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
+    }
+    if (mark === 90) {
+      let newDate = new Date();
+      newDate.setSDate(newDate.getDate() + 90);
+      let date = newDate.getDate();
+      let month = newDate.getMonth() + 1;
+      let year = newDate.getFullYear();
+      setSDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
+    }
+    if (mark === 180) {
+      let newDate = new Date();
+      newDate.setSDate(newDate.getDate() + 180);
+      let date = newDate.getDate();
+      let month = newDate.getMonth() + 1;
+      let year = newDate.getFullYear();
+      setSDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
+    }
+    if (mark === 365) {
+      let newDate = new Date();
+      newDate.setSDate(newDate.getDate() + 365);
+      let date = newDate.getDate();
+      let month = newDate.getMonth() + 1;
+      let year = newDate.getFullYear();
+      setSDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
+    }
+  };
 
-  // const handleMark = (event) => {
-  //   // 👇 Get input value from "event"
-  //   setMark(event.target.value);
-  // };
+  const handleMark = (event) => {
+    // 👇 Get input value from "event"
+    setMark(event.target.value);
+    handleDate();
+  };
 
   // const handleMD = () => {
   //   handleMark();
@@ -173,7 +174,6 @@ const StakingModal = ({
   const matches = useMediaQuery(theme.breakpoints.down("md"));
 
   const marks = [
-    { value: 5 },
     {
       value: 30,
     },
@@ -324,7 +324,7 @@ const StakingModal = ({
                   }}
                 />
 
-                {console.log("lock", lock)}
+                {/* {console.log("lock", lock)} */}
                 <Typography
                   className={classes.hTitle}
                   variant="subtitle2"
@@ -344,14 +344,16 @@ const StakingModal = ({
                   }}
                 >
                   <Slider
-                    defaultValue={5}
+                    defaultValue={30}
                     step={null}
                     marks={marks}
-                    min={5}
+                    min={30}
                     max={365}
                     valueLabelDisplay="on"
+                    onChangeCommitted={handleMark}
                     onChange={(e) => setSLockInDays(e.target.value)}
                   />
+                  {/* {console.log("mark", mark)} */}
                   {/* <input
                     type="number"
                     value={sLockInDays}
@@ -534,7 +536,7 @@ const StakingModal = ({
                 </Typography>
                 
               </Box> */}
-              {console.log("time left", timeLeft)}
+              {/* {console.log("time left", timeLeft)} */}
               <Link to="/disclaimer">
                 <Button
                   disabled={!inputStatus}
@@ -550,8 +552,8 @@ const StakingModal = ({
           </Grid>
         </Grid>
       )}
-      {console.log("stakedAmount:", sAmount)}
-      {console.log("locktime:", sLockInDays)}
+      {/* {console.log("stakedAmount:", sAmount)}
+      {console.log("locktime:", sLockInDays)} */}
       {matches && (
         <Grid container spacing={5}>
           <Grid item xs={12}>

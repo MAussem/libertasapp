@@ -180,7 +180,7 @@ const Tax = () => {
             elevation={10}
             style={{
               textAlign: "center",
-              marginTop: 30,
+              marginTop: 0,
               padding: 15,
               background: "rgba(0, 21, 66, 0.95)",
             }}

@@ -25,7 +25,7 @@ const PriceInfo = () => {
             elevation={10}
             style={{
               background: "rgba(0, 21, 66, 0.95)",
-              marginTop: "-205px",
+              marginTop: "-195px",
               padding: 15,
             }}
           >

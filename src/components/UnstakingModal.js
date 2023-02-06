@@ -17,7 +17,7 @@ import { ethers } from "ethers";
 
 import Web3 from "web3";
 
-const contractAddress = "0x322956CCa92ED7A2fb8794dB31362dD8C1166FED";
+const contractAddress = "0x31b41E3b75358a7ffbC031dE7F1e435DDCc8729b";
 
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
@@ -64,7 +64,7 @@ const UnstakingModal = () => {
       .send({ from: accounts[0] })
       .then(() => {
         setStakeSuccess(true);
-        console.log("Stake successful");
+        // console.log("Stake successful");
       })
       .catch((error) => {
         console.error(error);
@@ -422,7 +422,7 @@ const UnstakingModal = () => {
           </Grid>
         </Grid>
       )}
-      {console.log("stakedAmount:", amount)}
+      {/* {console.log("stakedAmount:", amount)} */}
       {matches && (
         <Grid container spacing={5}>
           <Grid item xs={12}>

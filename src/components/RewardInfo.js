@@ -37,6 +37,7 @@ const RewardInfo = () => {
   const [contractInstance, setContractInstance] = useState(null);
   const { address } = useAccount();
   const { data: earnedBalance } = useContractStakingRead("earned", [address]);
+  const [timeUntilUnstake, setTimeUntilUnstake] = useState(0);
   // const [contract, setContract] = useState(null);
 
   useEffect(() => {
@@ -45,16 +46,26 @@ const RewardInfo = () => {
       const web3 = new Web3(window.ethereum);
       setWeb3(web3);
 
-      const contractAddress = "0x322956CCa92ED7A2fb8794dB31362dD8C1166FED";
+      const contractAddress = "0x31b41E3b75358a7ffbC031dE7F1e435DDCc8729b";
       const contractInstance = new web3.eth.Contract(
         StakingAbi,
         contractAddress
       );
       setContractInstance(contractInstance);
+      const getTimeUntilUnstake = async () => {
+        const account = await web3.eth.getAccounts();
+        const time = await contractInstance.methods
+          .timeUntilUnstake(account[0])
+          .call();
+        setTimeUntilUnstake(time);
+      };
+      getTimeUntilUnstake();
     } else {
       console.log("You need to install metamask");
     }
   }, []);
+
+  const displayTimeUntilUnstake = secondsToDhms(timeUntilUnstake);
 
   const handleClaim = async () => {
     const accounts = await web3.eth.getAccounts();
@@ -90,6 +101,18 @@ const RewardInfo = () => {
   const classes = fontStyles();
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
+
+  function secondsToDhms(seconds) {
+    seconds = Number(seconds);
+    var d = Math.floor(seconds / (3600 * 24));
+    var h = Math.floor((seconds % (3600 * 24)) / 3600);
+    var m = Math.floor((seconds % 3600) / 60);
+
+    var dDisplay = d > 0 ? d + (d === 1 ? " day, " : " days, ") : "";
+    var hDisplay = h > 0 ? h + (h === 1 ? " hr, " : " hrs, ") : "";
+    var mDisplay = m > 0 ? m + (m === 1 ? " min " : " mins ") : "";
+    return dDisplay + hDisplay + mDisplay;
+  }
   return (
     <>
       {!matches && (
@@ -125,7 +148,7 @@ const RewardInfo = () => {
             >
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   paddingBottom: 10,
@@ -136,7 +159,7 @@ const RewardInfo = () => {
               </Typography>
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
               >
                 30%
@@ -151,7 +174,7 @@ const RewardInfo = () => {
             >
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   color: "white",
@@ -162,7 +185,7 @@ const RewardInfo = () => {
 
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   paddingBottom: 10,
@@ -181,7 +204,7 @@ const RewardInfo = () => {
             >
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   paddingBottom: 10,
@@ -192,7 +215,7 @@ const RewardInfo = () => {
               </Typography>
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
               >
                 0%
@@ -202,13 +225,13 @@ const RewardInfo = () => {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                paddingBottom: 10,
+                // paddingBottom: 10,
                 color: "white",
               }}
             >
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   paddingBottom: 10,
@@ -221,7 +244,7 @@ const RewardInfo = () => {
 
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   paddingBottom: 10,
@@ -236,13 +259,13 @@ const RewardInfo = () => {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                paddingBottom: 10,
+                // paddingBottom: 10,
                 color: "white",
               }}
             >
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   paddingBottom: 10,
@@ -254,7 +277,7 @@ const RewardInfo = () => {
 
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   paddingBottom: 10,
@@ -264,6 +287,7 @@ const RewardInfo = () => {
                 0.0000 &#40;$0.00&#41;
               </Typography>
             </Box>
+
             <Box
               style={{
                 display: "flex",
@@ -274,7 +298,7 @@ const RewardInfo = () => {
             >
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   paddingBottom: 10,
@@ -286,7 +310,7 @@ const RewardInfo = () => {
 
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   paddingBottom: 10,
@@ -300,7 +324,40 @@ const RewardInfo = () => {
             <hr />
             <Box
               style={{
-                marginTop: 15,
+                display: "flex",
+                justifyContent: "space-between",
+                // paddingBottom: 10,
+                color: "white",
+              }}
+            >
+              <Typography
+                className={classes.hTitle}
+                variant="subtitle1"
+                component="h2"
+                style={{
+                  // paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                Time Until Unstake
+              </Typography>
+
+              <Typography
+                className={classes.hTitle}
+                variant="subtitle1"
+                component="h2"
+                style={{
+                  // paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                {displayTimeUntilUnstake}
+                {console.log("timeUntilUnstake", timeUntilUnstake)}
+              </Typography>
+            </Box>
+            <Box
+              style={{
+                marginTop: 5,
                 display: "flex",
                 justifyContent: "space-between",
               }}
@@ -324,18 +381,16 @@ const RewardInfo = () => {
               >
                 Claim
               </Button>
-              <div className="image">
-                <Link to="/unstaking">
-                  <Button
-                    // disabled
-                    className={classe.buttonS}
-                    variant="contained"
-                    sx={buttonStyles}
-                  >
-                    UnStake
-                  </Button>
-                </Link>
-              </div>
+              <Link to="/unstaking">
+                <Button
+                  disabled={timeUntilUnstake !== 0}
+                  className={classe.buttonS}
+                  variant="contained"
+                  sx={buttonStyles}
+                >
+                  UnStake
+                </Button>
+              </Link>
             </Box>
           </Paper>
         </Grid>
@@ -373,7 +428,7 @@ const RewardInfo = () => {
             >
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   paddingBottom: 10,
@@ -385,7 +440,7 @@ const RewardInfo = () => {
 
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   paddingBottom: 10,
@@ -405,7 +460,7 @@ const RewardInfo = () => {
             >
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   paddingBottom: 10,
@@ -417,7 +472,7 @@ const RewardInfo = () => {
 
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   paddingBottom: 10,
@@ -437,7 +492,7 @@ const RewardInfo = () => {
             >
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   paddingBottom: 10,
@@ -449,7 +504,7 @@ const RewardInfo = () => {
 
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   paddingBottom: 10,
@@ -469,7 +524,7 @@ const RewardInfo = () => {
             >
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   paddingBottom: 10,
@@ -481,7 +536,7 @@ const RewardInfo = () => {
 
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   paddingBottom: 10,
@@ -501,7 +556,7 @@ const RewardInfo = () => {
             >
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   paddingBottom: 10,
@@ -513,7 +568,7 @@ const RewardInfo = () => {
 
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   paddingBottom: 10,
@@ -533,7 +588,7 @@ const RewardInfo = () => {
             >
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   paddingBottom: 10,
@@ -545,7 +600,7 @@ const RewardInfo = () => {
 
               <Typography
                 className={classes.hTitle}
-                variant="h6"
+                variant="subtitle1"
                 component="h2"
                 style={{
                   paddingBottom: 10,

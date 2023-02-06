@@ -9,7 +9,7 @@ const TreasuryInfo = () => {
     addressOrName: addresses.treasury,
     token: addresses.WROSE,
   });
-  console.log(balance);
+  // console.log(balance);
 
   const balanceFormatted = useMemo(
     () => (balance ? balance.formatted.split(".")[0] + " ROSE" : "n/a"),

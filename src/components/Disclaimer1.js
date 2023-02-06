@@ -17,7 +17,7 @@ import { getCurrentDate } from "../hooks/currentDate";
 
 import Web3 from "web3";
 
-const contractAddress = "0x322956CCa92ED7A2fb8794dB31362dD8C1166FED";
+const contractAddress = "0x31b41E3b75358a7ffbC031dE7F1e435DDCc8729b";
 
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
@@ -37,7 +37,7 @@ const buttonSty = makeStyles((theme) => ({
   },
 }));
 
-const Disclaimer1 = ({ sAmount, sLockInDays, sDate }) => {
+const Disclaimer1 = ({ sAmount, sLockInDays }) => {
   const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
   // state
   const [date, setDate] = useState(getCurrentDate());
@@ -49,64 +49,61 @@ const Disclaimer1 = ({ sAmount, sLockInDays, sDate }) => {
   const [stakeSuccess, setStakeSuccess] = useState(false);
   const [btnStatus, setBtnStatus] = useState(true);
 
-  useEffect(
-    (sLockInDays) => {
-      const checkWeb3 = async () => {
-        if (web3.currentProvider.host === "http://localhost:8545") {
-          console.log(
-            "Please connect to a real Ethereum node to interact with this contract"
-          );
-          return;
-        }
-      };
+  useEffect(() => {
+    const checkWeb3 = async () => {
+      if (web3.currentProvider.host === "http://localhost:8545") {
+        console.log(
+          "Please connect to a real Ethereum node to interact with this contract"
+        );
+        return;
+      }
+    };
 
-      const handleDate = () => {
-        if (sLockInDays === 30) {
-          let newDate = new Date();
-          newDate.setDate(newDate.getDate() + 30);
-          let date = newDate.getDate();
-          let month = newDate.getMonth() + 1;
-          let year = newDate.getFullYear();
-          setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-        }
-        if (sLockInDays === 60) {
-          let newDate = new Date();
-          newDate.setDate(newDate.getDate() + 60);
-          let date = newDate.getDate();
-          let month = newDate.getMonth() + 1;
-          let year = newDate.getFullYear();
-          setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-        }
-        if (sLockInDays === 90) {
-          let newDate = new Date();
-          newDate.setDate(newDate.getDate() + 90);
-          let date = newDate.getDate();
-          let month = newDate.getMonth() + 1;
-          let year = newDate.getFullYear();
-          setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-        }
-        if (sLockInDays === 180) {
-          let newDate = new Date();
-          newDate.setDate(newDate.getDate() + 180);
-          let date = newDate.getDate();
-          let month = newDate.getMonth() + 1;
-          let year = newDate.getFullYear();
-          setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-        }
-        if (sLockInDays === 365) {
-          let newDate = new Date();
-          newDate.setDate(newDate.getDate() + 365);
-          let date = newDate.getDate();
-          let month = newDate.getMonth() + 1;
-          let year = newDate.getFullYear();
-          setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-        }
-      };
-      handleDate();
-      checkWeb3();
-    },
-    [web3.currentProvider.host]
-  );
+    const handleDate = () => {
+      if (sLockInDays === 30) {
+        let newDate = new Date();
+        newDate.setDate(newDate.getDate() + 30);
+        let date = newDate.getDate();
+        let month = newDate.getMonth() + 1;
+        let year = newDate.getFullYear();
+        setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
+      }
+      if (sLockInDays === 60) {
+        let newDate = new Date();
+        newDate.setDate(newDate.getDate() + 60);
+        let date = newDate.getDate();
+        let month = newDate.getMonth() + 1;
+        let year = newDate.getFullYear();
+        setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
+      }
+      if (sLockInDays === 90) {
+        let newDate = new Date();
+        newDate.setDate(newDate.getDate() + 90);
+        let date = newDate.getDate();
+        let month = newDate.getMonth() + 1;
+        let year = newDate.getFullYear();
+        setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
+      }
+      if (sLockInDays === 180) {
+        let newDate = new Date();
+        newDate.setDate(newDate.getDate() + 180);
+        let date = newDate.getDate();
+        let month = newDate.getMonth() + 1;
+        let year = newDate.getFullYear();
+        setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
+      }
+      if (sLockInDays === 365) {
+        let newDate = new Date();
+        newDate.setDate(newDate.getDate() + 365);
+        let date = newDate.getDate();
+        let month = newDate.getMonth() + 1;
+        let year = newDate.getFullYear();
+        setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
+      }
+    };
+    handleDate();
+    checkWeb3();
+  }, [sLockInDays, web3.currentProvider.host]);
 
   function handleCheckbox(e) {
     const elements = document.getElementsByName("checkbox");
@@ -131,7 +128,7 @@ const Disclaimer1 = ({ sAmount, sLockInDays, sDate }) => {
       .send({ from: accounts[0] })
       .then(() => {
         setStakeSuccess(true);
-        console.log("Stake successful");
+        // console.log("Stake successful");
       })
       .catch((error) => {
         console.error(error);
@@ -399,7 +396,7 @@ const Disclaimer1 = ({ sAmount, sLockInDays, sDate }) => {
                   {date}
                 </Typography>
               </Box>
-              {console.log("date", date)}
+              {/* {console.log("date", date)} */}
               <Box
                 style={{
                   display: "flex",
@@ -467,8 +464,8 @@ const Disclaimer1 = ({ sAmount, sLockInDays, sDate }) => {
           </Grid>
         </Grid>
       )}
-      {console.log("stakedAmount:", sAmount)}
-      {console.log("locktime:", sLockInDays)}
+      {/* {console.log("stakedAmount:", sAmount)}
+      {console.log("locktime:", sLockInDays)} */}
       {matches && (
         <Grid container spacing={5}>
           <Grid item xs={12}>
