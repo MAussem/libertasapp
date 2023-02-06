@@ -352,7 +352,6 @@ const RewardInfo = () => {
                 }}
               >
                 {displayTimeUntilUnstake}
-                {console.log("timeUntilUnstake", timeUntilUnstake)}
               </Typography>
             </Box>
             <Box
