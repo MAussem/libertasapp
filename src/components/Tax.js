@@ -71,7 +71,7 @@ const Tax = () => {
                   color: "white",
                 }}
               >
-                13%
+                7%
               </Typography>
             </Box>
             <Box
@@ -103,7 +103,7 @@ const Tax = () => {
                   color: "white",
                 }}
               >
-                20%
+                10%
               </Typography>
             </Box>
             <Box
@@ -224,7 +224,7 @@ const Tax = () => {
                   color: "white",
                 }}
               >
-                13%
+                7%
               </Typography>
             </Box>
             <Box
@@ -255,7 +255,7 @@ const Tax = () => {
                   color: "white",
                 }}
               >
-                20%
+                10%
               </Typography>
             </Box>
             <Box
