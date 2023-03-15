@@ -9,7 +9,7 @@ contract LibStake is ERC20 {
   mapping(address => uint256) public staked;
   mapping(address => uint256) public stakedFromTS;
 
-  constructor() ERC20("Libertas", "$XLB") {
+  constructor() ERC20("Libertas", "XLB") {
     _mint(msg.sender, 555000000000000000000000000);
   }
 

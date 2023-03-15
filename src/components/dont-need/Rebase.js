@@ -4,7 +4,7 @@ import "react-circular-progressbar/dist/styles.css";
 import React from "react";
 
 import { useAccount } from "wagmi";
-import { useContractXLBRead } from "../hooks/libertas";
+import { useContractXLBRead } from "../../hooks/libertas";
 import { useMemo } from "react";
 import { ethers } from "ethers";
 
@@ -84,7 +84,7 @@ const Rebase = () => {
             color: "#C8E9E9",
           }}
         >
-          {nextReward} $XLB
+          {nextReward} XLB
         </Typography>
       </Box>
       {/* <button onClick={() => fetchBalance()}>click me</button> */}

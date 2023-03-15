@@ -6,24 +6,23 @@ import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import { Link } from "react-router-dom";
 
-import { StakingAbi } from "../abi/staking";
-
 import { useAccount } from "wagmi";
-import { useContractStakingRead } from "../hooks/libertas";
+import {
+  useContractXLBRead,
+  useContractStaking60Read,
+} from "../../hooks/libertas";
 import { useMemo } from "react";
 import { ethers } from "ethers";
 
-// import { getCurrentDate } from "../hooks/currentDate";
-
 import Web3 from "web3";
-
-const contractAddress = "0x31b41E3b75358a7ffbC031dE7F1e435DDCc8729b";
+import { StakingAbi } from "../../abi/staking";
+import { XLBAbi } from "../../abi/xlb";
 
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
     padding: theme.spacing(1),
     [theme.breakpoints.down("md")]: {
-      fontSize: [17, "!important"],
+      fontSize: [15, "!important"],
     },
   },
 }));
@@ -37,97 +36,101 @@ const buttonSty = makeStyles((theme) => ({
   },
 }));
 
-const Disclaimer2 = () => {
-  const [web3, setWeb3] = useState(null);
-  // const [contractInstance, setContractInstance] = useState(null);
-  const [setStakeRewards] = useState(false);
-  const [btnStatus, setBtnStatus] = useState(true);
-  const [timeUntilUnstake, setTimeUntilUnstake] = useState(0);
+const StakingModal60 = ({ sAmount, setSAmount }) => {
+  const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
+  // state
+  const [inputStatus, setInputStatus] = useState(0);
+  const [daysLeftInPool, setDaysLeftInPool] = useState(0);
+  const [inputValue, setInputValue] = useState(0);
+  const [approved, setApproved] = useState(false);
 
-  useEffect(() => {
-    // Check if the user has metamask installed and is logged in
-    if (window.ethereum) {
-      const web3 = new Web3(window.ethereum);
-      setWeb3(web3);
-
-      const contractAddress = "0x31b41E3b75358a7ffbC031dE7F1e435DDCc8729b";
-      const contractInstance = new web3.eth.Contract(
-        StakingAbi,
-        contractAddress
-      );
-      // setContractInstance(contractInstance);
-      const getTimeUntilUnstake = async () => {
-        const account = await web3.eth.getAccounts();
-        const time = await contractInstance.methods
-          .timeUntilUnstake(account[0])
-          .call();
-        setTimeUntilUnstake(time);
-      };
-      getTimeUntilUnstake();
-    } else {
-      console.log("You need to install metamask");
-    }
-  }, []);
-
-  function secondsToDhms(seconds) {
-    seconds = Number(seconds);
-    var d = Math.floor(seconds / (3600 * 24));
-    var h = Math.floor((seconds % (3600 * 24)) / 3600);
-    var m = Math.floor((seconds % 3600) / 60);
-
-    var dDisplay = d > 0 ? d + (d === 1 ? " day, " : " days, ") : "";
-    var hDisplay = h > 0 ? h + (h === 1 ? " hr, " : " hrs, ") : "";
-    var mDisplay = m > 0 ? m + (m === 1 ? " min " : " mins ") : "";
-    return dDisplay + hDisplay + mDisplay;
-  }
-
-  const displayTimeUntilUnstake = secondsToDhms(timeUntilUnstake);
-
-  function handleCheckbox(e) {
-    const elements = document.getElementsByName("checkbox");
-    let checkedCount = 0;
-    elements.forEach((element) => {
-      if (element.checked) {
-        checkedCount++;
-      }
-    });
-    if (checkedCount > 1 || checkedCount === 0) {
-      setBtnStatus(true);
-    } else {
-      setBtnStatus(false);
-    }
-  }
-
-  const handleStakeRewards = async () => {
-    const contract = new web3.eth.Contract(StakingAbi, contractAddress);
-    const accounts = await web3.eth.getAccounts();
-    contract.methods
-      .stakeRewards()
-      .send({ from: accounts[0] })
-      .then(() => {
-        setStakeRewards(true);
-        // console.log("Stake successful");
-      })
-      .catch((error) => {
-        console.error(error);
+  const handleApprove = async () => {
+    try {
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
       });
+
+      const weiValue = ethers.utils.parseEther(inputValue.toString()); // Convert input value to wei
+
+      await tokenContract.methods
+        .approve(stakingContract.options.address, weiValue)
+        .send({ from: accounts[0] });
+      setApproved(true);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const { address } = useAccount();
-  // const { data: balanceRaw } = useContractStakingRead("balanceOf", address);
-  const { data: earnedBalance } = useContractStakingRead("earned", [address]);
-
-  const eBalance = useMemo(
-    () =>
-      earnedBalance
-        ? ethers.utils.formatEther(earnedBalance.sub(earnedBalance.mod(1e14))) +
-          " $XLB"
-        : "n/a $XLB",
-    [earnedBalance]
+  const handleStake = async () => {
+    try {
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      await stakingContract.methods
+        .stake(inputValue)
+        .send({ from: accounts[0] });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  console.log("inputValue", inputValue);
+  const tokenContractAddress = "0xE33c8c9A563714Cab40f090748e3eBD8a218D556";
+  const tokenContract = new web3.eth.Contract(XLBAbi, tokenContractAddress);
+  const stakingContractAddress = "0x5E42A2317C5E986423a8D0936edc98FcC21734d8";
+  const stakingContract = new web3.eth.Contract(
+    StakingAbi,
+    stakingContractAddress
   );
 
+  useEffect(() => {
+    const checkWeb3 = async () => {
+      if (web3.currentProvider.host === "http://localhost:8545") {
+        console.log(
+          "Please connect to a real Ethereum node to interact with this contract"
+        );
+        return;
+      }
+
+      const result = await stakingContract.methods.daysLeftInPool().call();
+      setDaysLeftInPool(result);
+    };
+    checkWeb3();
+  }, [web3.currentProvider.host, stakingContract.methods]);
+
+  const { address } = useAccount();
+  const { data: balanceRaw } = useContractXLBRead("balanceOf", address);
+  const { data: stakedBalance } = useContractStaking60Read("stakedTokens", [
+    address,
+  ]);
+
+  const sBalance = useMemo(
+    () =>
+      stakedBalance
+        ? ethers.utils.formatEther(stakedBalance.sub(stakedBalance.mod(1e14))) +
+          " XLB"
+        : "n/a XLB",
+    [stakedBalance]
+  );
+
+  const vPower = useMemo(
+    () =>
+      stakedBalance
+        ? ethers.utils.formatEther(stakedBalance.sub(stakedBalance.mod(1e14))) +
+          " sXLB"
+        : "n/a sXLB",
+    [stakedBalance]
+  );
+
+  const balance = useMemo(
+    () =>
+      balanceRaw
+        ? ethers.utils.formatEther(balanceRaw.sub(balanceRaw.mod(1e14))) +
+          " XLB"
+        : "n/a XLB",
+    [balanceRaw]
+  );
   const buttonStyles = {
-    margin: "10px",
+    marginTop: "10px",
     width: "100%",
     fontWeight: 800,
     color: "black",
@@ -146,8 +149,26 @@ const Disclaimer2 = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
 
+  // const marks = [
+  //   {
+  //     value: 30,
+  //   },
+  //   {
+  //     value: 60,
+  //   },
+  //   {
+  //     value: 90,
+  //   },
+  //   {
+  //     value: 180,
+  //   },
+  //   {
+  //     value: 365,
+  //   },
+  // ];
+
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="xs">
       {!matches && (
         <Grid container spacing={5}>
           <Grid item xs={12}>
@@ -155,7 +176,7 @@ const Disclaimer2 = () => {
               elevation={10}
               style={{
                 background: "rgba(0, 21, 66, 0.95)",
-                marginTop: 40,
+                marginTop: 130,
                 padding: 15,
               }}
             >
@@ -175,7 +196,7 @@ const Disclaimer2 = () => {
                     color: "rgb(167, 230, 255)",
                   }}
                 >
-                  Stake Rewards
+                  60 Day Staking Pool
                 </Typography>
                 <Typography
                   className={classes.hTitle}
@@ -186,10 +207,42 @@ const Disclaimer2 = () => {
                     color: "#fff",
                   }}
                 >
-                  $XLB
+                  XLB
                 </Typography>
               </Box>
               <hr />
+              {/* <Box
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                <Typography
+                  className={classes.hTitle}
+                  variant="h6"
+                  component="h2"
+                  style={{
+                    textDecoration: "underline",
+                    fontWeight: 700,
+                  }}
+                >
+                  Stake
+                </Typography>
+
+                <Typography
+                  className={classes.hTitle}
+                  variant="h6"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "grey",
+                  }}
+                >
+                  Unstake
+                </Typography>
+              </Box> */}
               <Box
                 style={{
                   display: "flex",
@@ -206,62 +259,46 @@ const Disclaimer2 = () => {
                 >
                   <Typography
                     className={classes.hTitle}
-                    variant="subtitle1"
+                    variant="subtitle2"
                     component="h2"
                     style={{
+                      marginTop: "2%",
                       color: "white",
                     }}
                   >
-                    Amount to be Staked
+                    Select Amount
                   </Typography>
                   <Typography
                     className={classes.hTitle}
-                    variant="subtitle1"
+                    variant="subtitle2"
                     component="h2"
                     style={{
+                      marginTop: "2%",
                       color: "grey",
                     }}
                   >
-                    {eBalance}
+                    Balance: {balance}
                   </Typography>
                 </Box>
-                {/* <Box
+                <input
+                  type="number"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onInput={(event) => setInputStatus(event.target.value)}
                   style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    color: "white",
-                  }}
-                >
-                  <Typography
-                    className={classes.hTitle}
-                    variant="subtitle1"
-                    component="h2"
-                    style={{
-                      color: "white",
-                    }}
-                  >
-                    Time Period Chosen
-                  </Typography>
-                  <Typography
-                    className={classes.hTitle}
-                    variant="subtitle1"
-                    component="h2"
-                    style={{
-                      color: "grey",
-                    }}
-                  >
-                    
-                    {sLockInDays} Days
-                  </Typography>
-                </Box> */}
-                <Box
-                  sx={{
+                    marginTop: "2%",
+                    marginBottom: "3%",
+                    color: "black",
                     width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignContent: "center",
+                    height: "45px",
+                    fontSize: "20px",
+                    textAlign: "center",
+                    borderStyle: "double",
+                    borderColor: "rgb(167, 230, 255)",
+                    background: "white",
+                    borderRadius: "10px",
                   }}
-                ></Box>
+                />
               </Box>
 
               <Box
@@ -281,7 +318,7 @@ const Disclaimer2 = () => {
                     color: "white",
                   }}
                 >
-                  Unlock Time
+                  XLB APR
                 </Typography>
 
                 <Typography
@@ -293,10 +330,9 @@ const Disclaimer2 = () => {
                     color: "white",
                   }}
                 >
-                  {displayTimeUntilUnstake}
+                  30%
                 </Typography>
               </Box>
-              {/* {console.log("date", date)} */}
               <Box
                 style={{
                   display: "flex",
@@ -309,56 +345,181 @@ const Disclaimer2 = () => {
                   className={classes.hTitle}
                   variant="subtitle1"
                   component="h2"
-                  capitalize
                   style={{
                     paddingBottom: 10,
                     color: "white",
-                    textTransform: "uppercase",
                   }}
                 >
-                  Disclaimer:
-                  <input
-                    name="checkbox"
-                    type="checkbox"
-                    onChange={handleCheckbox}
-                  />
-                  I acknowledge that my $XLB reward tokens will be locked for
-                  the rest of the current staking period &#40;
-                  {displayTimeUntilUnstake}&#41; and I will not be able to
-                  unstake my $XLB tokens before the unlock time has expired.
+                  Annualized ETH Reward
+                </Typography>
+
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                  }}
+                >
+                  6.88%
                 </Typography>
               </Box>
-
               <Box
                 style={{
-                  marginTop: 15,
                   display: "flex",
-                  justifyContent: "space-around",
+                  justifyContent: "space-between",
+                  paddingBottom: 10,
+                  color: "white",
                 }}
               >
-                <Link to="/">
-                  <Button
-                    className={classe.buttonS}
-                    variant="contained"
-                    sx={buttonStyles}
-                    type="button"
-                  >
-                    Cancel
-                  </Button>
-                </Link>
-                <Link to="/">
-                  <Button
-                    className={classe.buttonS}
-                    disabled={btnStatus}
-                    variant="contained"
-                    sx={buttonStyles}
-                    type="button"
-                    onClick={handleStakeRewards}
-                  >
-                    Compound $XLB
-                  </Button>
-                </Link>
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                  }}
+                >
+                  Staked Amount
+                </Typography>
+
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                  }}
+                >
+                  {sBalance}
+                </Typography>
               </Box>
+              <Box
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                  }}
+                >
+                  Voting Power
+                </Typography>
+
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                  }}
+                >
+                  {vPower}
+                </Typography>
+              </Box>
+              <Box
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                  }}
+                >
+                  Days Left in Pool
+                </Typography>
+
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                  }}
+                >
+                  {daysLeftInPool}
+                </Typography>
+              </Box>
+              {/* <Box
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                  }}
+                >
+                  Time Left
+                </Typography>
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                  }}
+                >
+                  {sLockInDays} days
+                </Typography>
+                
+              </Box> */}
+              {/* {console.log("time left", timeLeft)} */}
+              {/* <Link to="/disclaimer"> */}
+              {!approved && (
+                <Button
+                  disabled={!inputStatus}
+                  className={classe.buttonS}
+                  variant="contained"
+                  sx={buttonStyles}
+                  type="button"
+                  onClick={handleApprove}
+                >
+                  Approve XLB
+                </Button>
+              )}
+              {approved && (
+                <Button
+                  disabled={!inputStatus}
+                  className={classe.buttonS}
+                  variant="contained"
+                  sx={buttonStyles}
+                  type="button"
+                  onClick={handleStake}
+                >
+                  Stake XLB
+                </Button>
+              )}
+              {/* </Link> */}
             </Paper>
           </Grid>
         </Grid>
@@ -395,7 +556,7 @@ const Disclaimer2 = () => {
                     color: "rgb(167, 230, 255)",
                   }}
                 >
-                  Stake Rewards
+                  Stake
                 </Typography>
                 <Typography
                   className={classes.hTitle}
@@ -406,7 +567,7 @@ const Disclaimer2 = () => {
                     color: "#fff",
                   }}
                 >
-                  $XLB
+                  XLB
                 </Typography>
               </Box>
               <hr />
@@ -427,7 +588,19 @@ const Disclaimer2 = () => {
                     fontWeight: 700,
                   }}
                 >
-                  Stake Rewards
+                  Stake
+                </Typography>
+
+                <Typography
+                  className={classes.hTitle}
+                  variant="h6"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "grey",
+                  }}
+                >
+                  Unstake
                 </Typography>
               </Box>
               <Box
@@ -446,13 +619,13 @@ const Disclaimer2 = () => {
                 >
                   <Typography
                     className={classes.hTitle}
-                    variant="h4"
-                    component="h5"
+                    variant="subtitle2"
+                    component="h2"
                     style={{
                       color: "white",
                     }}
                   >
-                    Amount to be Staked
+                    Select Amount
                   </Typography>
                   <Typography
                     className={classes.hTitle}
@@ -462,7 +635,7 @@ const Disclaimer2 = () => {
                       color: "grey",
                     }}
                   >
-                    {eBalance}
+                    Balance: 0.00
                   </Typography>
                 </Box>
                 <input
@@ -560,7 +733,7 @@ const Disclaimer2 = () => {
                     color: "white",
                   }}
                 >
-                  Locked Amount
+                  Staked Amount
                 </Typography>
 
                 <Typography
@@ -572,7 +745,7 @@ const Disclaimer2 = () => {
                     color: "white",
                   }}
                 >
-                  0.00 $XLB
+                  0.00 XLB
                 </Typography>
               </Box>
               <Box
@@ -607,7 +780,7 @@ const Disclaimer2 = () => {
                   0.00 $sXLB
                 </Typography>
               </Box>
-              <Box
+              {/* <Box
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
@@ -637,38 +810,7 @@ const Disclaimer2 = () => {
                 >
                   0 mark
                 </Typography>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  paddingBottom: 10,
-                  color: "white",
-                }}
-              >
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  Lock Until
-                </Typography>
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  12/14/2023
-                </Typography>
-              </Box>
+              </Box> */}
               <Link to="/">
                 <Button
                   className={classe.buttonS}
@@ -676,7 +818,7 @@ const Disclaimer2 = () => {
                   sx={buttonStyles}
                   type="button"
                 >
-                  Stake $XLB
+                  Stake XLB
                 </Button>
               </Link>
             </Paper>
@@ -687,4 +829,4 @@ const Disclaimer2 = () => {
   );
 };
 
-export default Disclaimer2;
+export default StakingModal60;

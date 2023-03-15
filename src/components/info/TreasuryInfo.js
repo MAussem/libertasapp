@@ -1,5 +1,5 @@
 import { Grid, Paper, Typography, Box } from "@mui/material";
-import { useAddresses } from "../hooks/libertas";
+import { useAddresses } from "../../hooks/libertas";
 import { useMemo } from "react";
 import { useBalance } from "wagmi";
 

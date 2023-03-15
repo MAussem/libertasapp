@@ -1,22 +1,19 @@
 import { Container, Grid } from "@mui/material";
-import Burned from "../components/Burned";
-import BurnTimer from "../components/BurnTimer";
-import Hero from "../components/Hero";
-import PriceInfo from "../components/PriceInfo";
-import Tax from "../components/Tax";
-// import InterestCalc from "../components/InterestCalc";
-import RewardInfo from "../components/RewardInfo";
+import Burned from "../components/dashboard/Burned";
+import BurnTimer from "../components/dashboard/BurnTimer";
+import Hero from "../components/dashboard/Hero";
+import PriceInfo from "../components/dashboard/PriceInfo";
+import Tax from "../components/dashboard/Tax";
+import StakingInfo from "../components/dashboard/StakingInfo";
 
 const Home = () => {
   return (
     <Container maxWidth="xl">
-      <Grid container spacing={5}>
+      <Grid container direction="row" spacing={2}>
         <Hero />
-        <RewardInfo />
+        <StakingInfo />
         <PriceInfo />
-
         <Tax />
-        {/* <InterestCalc /> */}
         <Burned />
         <BurnTimer />
       </Grid>

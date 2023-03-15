@@ -1,4 +1,4 @@
-export const StakingAbi = [
+export const Staking365Abi = [
   {
     inputs: [
       {

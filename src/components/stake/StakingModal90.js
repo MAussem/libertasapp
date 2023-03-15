@@ -6,24 +6,23 @@ import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import { Link } from "react-router-dom";
 
-import { StakingAbi } from "../abi/staking";
-
 import { useAccount } from "wagmi";
-import { useContractStakingRead } from "../hooks/libertas";
+import {
+  useContractXLBRead,
+  useContractStaking90Read,
+} from "../../hooks/libertas";
 import { useMemo } from "react";
 import { ethers } from "ethers";
 
-import { getCurrentDate } from "../hooks/currentDate";
-
 import Web3 from "web3";
-
-const contractAddress = "0x31b41E3b75358a7ffbC031dE7F1e435DDCc8729b";
+import { StakingAbi } from "../../abi/staking";
+import { XLBAbi } from "../../abi/xlb";
 
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
     padding: theme.spacing(1),
     [theme.breakpoints.down("md")]: {
-      fontSize: [17, "!important"],
+      fontSize: [15, "!important"],
     },
   },
 }));
@@ -37,17 +36,51 @@ const buttonSty = makeStyles((theme) => ({
   },
 }));
 
-const Disclaimer1 = ({ sAmount, sLockInDays }) => {
+const StakingModal90 = ({ sAmount, setSAmount }) => {
   const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
   // state
-  const [date, setDate] = useState(getCurrentDate());
-  // const [mark, setMark] = useState(0);
-  // const [lock] = useState(0);
+  const [inputStatus, setInputStatus] = useState(0);
+  const [daysLeftInPool, setDaysLeftInPool] = useState(0);
+  const [inputValue, setInputValue] = useState(0);
+  const [approved, setApproved] = useState(false);
 
-  // const [amount] = useState(0);
-  // const [lockInDays] = useState(0);
-  const [stakeSuccess, setStakeSuccess] = useState(false);
-  const [btnStatus, setBtnStatus] = useState(true);
+  const handleApprove = async () => {
+    try {
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+
+      const weiValue = ethers.utils.parseEther(inputValue.toString()); // Convert input value to wei
+
+      await tokenContract.methods
+        .approve(stakingContract.options.address, weiValue)
+        .send({ from: accounts[0] });
+      setApproved(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleStake = async () => {
+    try {
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      await stakingContract.methods
+        .stake(inputValue)
+        .send({ from: accounts[0] });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  console.log("inputValue", inputValue);
+  const tokenContractAddress = "0xE33c8c9A563714Cab40f090748e3eBD8a218D556";
+  const tokenContract = new web3.eth.Contract(XLBAbi, tokenContractAddress);
+  const stakingContractAddress = "0xCe385e1f19989fE92D6484a103768733d5edf6D1";
+  const stakingContract = new web3.eth.Contract(
+    StakingAbi,
+    stakingContractAddress
+  );
 
   useEffect(() => {
     const checkWeb3 = async () => {
@@ -57,160 +90,47 @@ const Disclaimer1 = ({ sAmount, sLockInDays }) => {
         );
         return;
       }
-    };
 
-    const handleDate = () => {
-      if (sLockInDays === 30) {
-        let newDate = new Date();
-        newDate.setDate(newDate.getDate() + 30);
-        let date = newDate.getDate();
-        let month = newDate.getMonth() + 1;
-        let year = newDate.getFullYear();
-        setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-      }
-      if (sLockInDays === 60) {
-        let newDate = new Date();
-        newDate.setDate(newDate.getDate() + 60);
-        let date = newDate.getDate();
-        let month = newDate.getMonth() + 1;
-        let year = newDate.getFullYear();
-        setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-      }
-      if (sLockInDays === 90) {
-        let newDate = new Date();
-        newDate.setDate(newDate.getDate() + 90);
-        let date = newDate.getDate();
-        let month = newDate.getMonth() + 1;
-        let year = newDate.getFullYear();
-        setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-      }
-      if (sLockInDays === 180) {
-        let newDate = new Date();
-        newDate.setDate(newDate.getDate() + 180);
-        let date = newDate.getDate();
-        let month = newDate.getMonth() + 1;
-        let year = newDate.getFullYear();
-        setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-      }
-      if (sLockInDays === 365) {
-        let newDate = new Date();
-        newDate.setDate(newDate.getDate() + 365);
-        let date = newDate.getDate();
-        let month = newDate.getMonth() + 1;
-        let year = newDate.getFullYear();
-        setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-      }
+      const result = await stakingContract.methods.daysLeftInPool().call();
+      setDaysLeftInPool(result);
     };
-    handleDate();
     checkWeb3();
-  }, [sLockInDays, web3.currentProvider.host]);
-
-  function handleCheckbox(e) {
-    const elements = document.getElementsByName("checkbox");
-    let checkedCount = 0;
-    elements.forEach((element) => {
-      if (element.checked) {
-        checkedCount++;
-      }
-    });
-    if (checkedCount > 1 || checkedCount === 0) {
-      setBtnStatus(true);
-    } else {
-      setBtnStatus(false);
-    }
-  }
-
-  const handleStake = async () => {
-    const contract = new web3.eth.Contract(StakingAbi, contractAddress);
-    const accounts = await web3.eth.getAccounts();
-    contract.methods
-      .stake(sAmount, sLockInDays)
-      .send({ from: accounts[0] })
-      .then(() => {
-        setStakeSuccess(true);
-        // console.log("Stake successful");
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
-
-  // const handleDate = () => {
-  //   if (mark === 30) {
-  //     let newDate = new Date();
-  //     newDate.setDate(newDate.getDate() + 30);
-  //     let date = newDate.getDate();
-  //     let month = newDate.getMonth() + 1;
-  //     let year = newDate.getFullYear();
-  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-  //   }
-  //   if (mark === 60) {
-  //     let newDate = new Date();
-  //     newDate.setDate(newDate.getDate() + 60);
-  //     let date = newDate.getDate();
-  //     let month = newDate.getMonth() + 1;
-  //     let year = newDate.getFullYear();
-  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-  //   }
-  //   if (mark === 90) {
-  //     let newDate = new Date();
-  //     newDate.setDate(newDate.getDate() + 90);
-  //     let date = newDate.getDate();
-  //     let month = newDate.getMonth() + 1;
-  //     let year = newDate.getFullYear();
-  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-  //   }
-  //   if (mark === 180) {
-  //     let newDate = new Date();
-  //     newDate.setDate(newDate.getDate() + 180);
-  //     let date = newDate.getDate();
-  //     let month = newDate.getMonth() + 1;
-  //     let year = newDate.getFullYear();
-  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-  //   }
-  //   if (mark === 365) {
-  //     let newDate = new Date();
-  //     newDate.setDate(newDate.getDate() + 365);
-  //     let date = newDate.getDate();
-  //     let month = newDate.getMonth() + 1;
-  //     let year = newDate.getFullYear();
-  //     setDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-  //   }
-  // };
-
-  // const handleMark = (event) => {
-  //   // 👇 Get input value from "event"
-  //   setMark(event.target.value);
-  // };
-
-  // const handleLock = (event) => {
-  //   // 👇 Get input value from "event"
-  //   setLock(event.target.value);
-  // };
+  }, [web3.currentProvider.host, stakingContract.methods]);
 
   const { address } = useAccount();
-  // const { data: balanceRaw } = useContractStakingRead("balanceOf", address);
-  const { data: stakedBalance } = useContractStakingRead("staked", [address]);
+  const { data: balanceRaw } = useContractXLBRead("balanceOf", address);
+  const { data: stakedBalance } = useContractStaking90Read("stakedTokens", [
+    address,
+  ]);
 
   const sBalance = useMemo(
     () =>
       stakedBalance
         ? ethers.utils.formatEther(stakedBalance.sub(stakedBalance.mod(1e14))) +
-          " $XLB"
-        : "n/a $XLB",
+          " XLB"
+        : "n/a XLB",
     [stakedBalance]
   );
 
-  // const balance = useMemo(
-  //   () =>
-  //     balanceRaw
-  //       ? ethers.utils.formatEther(balanceRaw.sub(balanceRaw.mod(1e14))) +
-  //         " XLB"
-  //       : "n/a XLB",
-  //   [balanceRaw]
-  // );
+  const vPower = useMemo(
+    () =>
+      stakedBalance
+        ? ethers.utils.formatEther(stakedBalance.sub(stakedBalance.mod(1e14))) +
+          " sXLB"
+        : "n/a sXLB",
+    [stakedBalance]
+  );
+
+  const balance = useMemo(
+    () =>
+      balanceRaw
+        ? ethers.utils.formatEther(balanceRaw.sub(balanceRaw.mod(1e14))) +
+          " XLB"
+        : "n/a XLB",
+    [balanceRaw]
+  );
   const buttonStyles = {
-    margin: "10px",
+    marginTop: "10px",
     width: "100%",
     fontWeight: 800,
     color: "black",
@@ -229,26 +149,8 @@ const Disclaimer1 = ({ sAmount, sLockInDays }) => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
 
-  // const marks = [
-  //   {
-  //     value: 30,
-  //   },
-  //   {
-  //     value: 60,
-  //   },
-  //   {
-  //     value: 90,
-  //   },
-  //   {
-  //     value: 180,
-  //   },
-  //   {
-  //     value: 365,
-  //   },
-  // ];
-
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="xs">
       {!matches && (
         <Grid container spacing={5}>
           <Grid item xs={12}>
@@ -256,7 +158,7 @@ const Disclaimer1 = ({ sAmount, sLockInDays }) => {
               elevation={10}
               style={{
                 background: "rgba(0, 21, 66, 0.95)",
-                marginTop: 40,
+                marginTop: 130,
                 padding: 15,
               }}
             >
@@ -276,7 +178,7 @@ const Disclaimer1 = ({ sAmount, sLockInDays }) => {
                     color: "rgb(167, 230, 255)",
                   }}
                 >
-                  Stake
+                  90 Day Staking Pool
                 </Typography>
                 <Typography
                   className={classes.hTitle}
@@ -287,10 +189,42 @@ const Disclaimer1 = ({ sAmount, sLockInDays }) => {
                     color: "#fff",
                   }}
                 >
-                  $XLB
+                  XLB
                 </Typography>
               </Box>
               <hr />
+              {/* <Box
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                <Typography
+                  className={classes.hTitle}
+                  variant="h6"
+                  component="h2"
+                  style={{
+                    textDecoration: "underline",
+                    fontWeight: 700,
+                  }}
+                >
+                  Stake
+                </Typography>
+
+                <Typography
+                  className={classes.hTitle}
+                  variant="h6"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "grey",
+                  }}
+                >
+                  Unstake
+                </Typography>
+              </Box> */}
               <Box
                 style={{
                   display: "flex",
@@ -307,61 +241,46 @@ const Disclaimer1 = ({ sAmount, sLockInDays }) => {
                 >
                   <Typography
                     className={classes.hTitle}
-                    variant="subtitle1"
+                    variant="subtitle2"
                     component="h2"
                     style={{
+                      marginTop: "2%",
                       color: "white",
                     }}
                   >
-                    Amount to be Staked
+                    Select Amount
                   </Typography>
                   <Typography
                     className={classes.hTitle}
-                    variant="subtitle1"
+                    variant="subtitle2"
                     component="h2"
                     style={{
+                      marginTop: "2%",
                       color: "grey",
                     }}
                   >
-                    {sAmount} $XLB
+                    Balance: {balance}
                   </Typography>
                 </Box>
-                <Box
+                <input
+                  type="number"
+                  value={inputValue}
+                  onChange={(e) => setInputValue(e.target.value)}
+                  onInput={(event) => setInputStatus(event.target.value)}
                   style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    color: "white",
-                  }}
-                >
-                  <Typography
-                    className={classes.hTitle}
-                    variant="subtitle1"
-                    component="h2"
-                    style={{
-                      color: "white",
-                    }}
-                  >
-                    Time Period Chosen
-                  </Typography>
-                  <Typography
-                    className={classes.hTitle}
-                    variant="subtitle1"
-                    component="h2"
-                    style={{
-                      color: "grey",
-                    }}
-                  >
-                    {sLockInDays} Days
-                  </Typography>
-                </Box>
-                <Box
-                  sx={{
+                    marginTop: "2%",
+                    marginBottom: "3%",
+                    color: "black",
                     width: "100%",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignContent: "center",
+                    height: "45px",
+                    fontSize: "20px",
+                    textAlign: "center",
+                    borderStyle: "double",
+                    borderColor: "rgb(167, 230, 255)",
+                    background: "white",
+                    borderRadius: "10px",
                   }}
-                ></Box>
+                />
               </Box>
 
               <Box
@@ -381,7 +300,7 @@ const Disclaimer1 = ({ sAmount, sLockInDays }) => {
                     color: "white",
                   }}
                 >
-                  Unlock Date
+                  XLB APR
                 </Typography>
 
                 <Typography
@@ -393,10 +312,9 @@ const Disclaimer1 = ({ sAmount, sLockInDays }) => {
                     color: "white",
                   }}
                 >
-                  {date}
+                  30%
                 </Typography>
               </Box>
-              {/* {console.log("date", date)} */}
               <Box
                 style={{
                   display: "flex",
@@ -409,57 +327,181 @@ const Disclaimer1 = ({ sAmount, sLockInDays }) => {
                   className={classes.hTitle}
                   variant="subtitle1"
                   component="h2"
-                  capitalize
                   style={{
                     paddingBottom: 10,
                     color: "white",
-                    textTransform: "uppercase",
                   }}
                 >
-                  Disclaimer:{" "}
-                  <input
-                    name="checkbox"
-                    type="checkbox"
-                    onChange={handleCheckbox}
-                  />{" "}
-                  I acknowledge that my $XLB tokens will be locked for{" "}
-                  {sLockInDays} days &#40;{date}&#41;. I will not be able to
-                  unstake my $XLB tokens before the unlock date.
+                  Annualized ETH Reward
+                </Typography>
+
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                  }}
+                >
+                  7.93%
                 </Typography>
               </Box>
-
               <Box
                 style={{
-                  marginTop: 15,
                   display: "flex",
-                  justifyContent: "space-around",
+                  justifyContent: "space-between",
+                  paddingBottom: 10,
+                  color: "white",
                 }}
               >
-                <Link to="/staking">
-                  <Button
-                    className={classe.buttonS}
-                    variant="contained"
-                    sx={buttonStyles}
-                    type="button"
-                  >
-                    Cancel
-                  </Button>
-                </Link>
-                <Link to="/">
-                  <Button
-                    className={classe.buttonS}
-                    disabled={btnStatus}
-                    variant="contained"
-                    sx={buttonStyles}
-                    type="button"
-                    onClick={handleStake}
-                  >
-                    Stake $XLB
-                  </Button>
-                </Link>
-              </Box>
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                  }}
+                >
+                  Staked Amount
+                </Typography>
 
-              {stakeSuccess && <p>Staking successful</p>}
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                  }}
+                >
+                  {sBalance}
+                </Typography>
+              </Box>
+              <Box
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                  }}
+                >
+                  Voting Power
+                </Typography>
+
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                  }}
+                >
+                  {vPower}
+                </Typography>
+              </Box>
+              <Box
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                  }}
+                >
+                  Days Left in Pool
+                </Typography>
+
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                  }}
+                >
+                  {daysLeftInPool}
+                </Typography>
+              </Box>
+              {/* <Box
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                  }}
+                >
+                  Time Left
+                </Typography>
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                  }}
+                >
+                  {sLockInDays} days
+                </Typography>
+                
+              </Box> */}
+              {/* {console.log("time left", timeLeft)} */}
+              {/* <Link to="/disclaimer"> */}
+              {!approved && (
+                <Button
+                  disabled={!inputStatus}
+                  className={classe.buttonS}
+                  variant="contained"
+                  sx={buttonStyles}
+                  type="button"
+                  onClick={handleApprove}
+                >
+                  Approve XLB
+                </Button>
+              )}
+              {approved && (
+                <Button
+                  disabled={!inputStatus}
+                  className={classe.buttonS}
+                  variant="contained"
+                  sx={buttonStyles}
+                  type="button"
+                  onClick={handleStake}
+                >
+                  Stake XLB
+                </Button>
+              )}
+              {/* </Link> */}
             </Paper>
           </Grid>
         </Grid>
@@ -507,7 +549,7 @@ const Disclaimer1 = ({ sAmount, sLockInDays }) => {
                     color: "#fff",
                   }}
                 >
-                  $XLB
+                  XLB
                 </Typography>
               </Box>
               <hr />
@@ -530,6 +572,18 @@ const Disclaimer1 = ({ sAmount, sLockInDays }) => {
                 >
                   Stake
                 </Typography>
+
+                <Typography
+                  className={classes.hTitle}
+                  variant="h6"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "grey",
+                  }}
+                >
+                  Unstake
+                </Typography>
               </Box>
               <Box
                 style={{
@@ -547,13 +601,13 @@ const Disclaimer1 = ({ sAmount, sLockInDays }) => {
                 >
                   <Typography
                     className={classes.hTitle}
-                    variant="h4"
-                    component="h5"
+                    variant="subtitle2"
+                    component="h2"
                     style={{
                       color: "white",
                     }}
                   >
-                    Amount to be Staked
+                    Select Amount
                   </Typography>
                   <Typography
                     className={classes.hTitle}
@@ -563,7 +617,7 @@ const Disclaimer1 = ({ sAmount, sLockInDays }) => {
                       color: "grey",
                     }}
                   >
-                    {sBalance} $XLB
+                    Balance: 0.00
                   </Typography>
                 </Box>
                 <input
@@ -661,7 +715,7 @@ const Disclaimer1 = ({ sAmount, sLockInDays }) => {
                     color: "white",
                   }}
                 >
-                  Locked Amount
+                  Staked Amount
                 </Typography>
 
                 <Typography
@@ -673,7 +727,7 @@ const Disclaimer1 = ({ sAmount, sLockInDays }) => {
                     color: "white",
                   }}
                 >
-                  0.00 $XLB
+                  0.00 XLB
                 </Typography>
               </Box>
               <Box
@@ -708,7 +762,7 @@ const Disclaimer1 = ({ sAmount, sLockInDays }) => {
                   0.00 $sXLB
                 </Typography>
               </Box>
-              <Box
+              {/* <Box
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
@@ -738,38 +792,7 @@ const Disclaimer1 = ({ sAmount, sLockInDays }) => {
                 >
                   0 mark
                 </Typography>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  paddingBottom: 10,
-                  color: "white",
-                }}
-              >
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  Lock Until
-                </Typography>
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  12/14/2023
-                </Typography>
-              </Box>
+              </Box> */}
               <Link to="/">
                 <Button
                   className={classe.buttonS}
@@ -777,7 +800,7 @@ const Disclaimer1 = ({ sAmount, sLockInDays }) => {
                   sx={buttonStyles}
                   type="button"
                 >
-                  Stake $XLB
+                  Stake XLB
                 </Button>
               </Link>
             </Paper>
@@ -788,4 +811,4 @@ const Disclaimer1 = ({ sAmount, sLockInDays }) => {
   );
 };
 
-export default Disclaimer1;
+export default StakingModal90;

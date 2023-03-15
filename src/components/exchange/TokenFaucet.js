@@ -63,7 +63,7 @@ const TokenFaucet = (props) => {
           type: "function",
         },
       ];
-      const TokenFaucetAddress = "0x54d2B04da6680FCe2A2B8feBeCA035C12B57D6c1";
+      const TokenFaucetAddress = "0xEB4a65Da70003d5a96933407AD05989344c11ac8";
       const contractInstance = new web3.eth.Contract(
         TokenFaucetABI,
         TokenFaucetAddress
@@ -111,7 +111,7 @@ const TokenFaucet = (props) => {
               padding: 15,
             }}
           >
-            <h1>$XLB Token Faucet</h1>
+            <h1>XLB Token Faucet</h1>
             <br />
             <p>YOU MAY ONLY CLAIM ONCE PER DAY</p>
             <br />
@@ -122,7 +122,7 @@ const TokenFaucet = (props) => {
               type="button"
               onClick={handleClaim}
             >
-              Claim 100 $XLB Tokens
+              Claim 100 XLB Tokens
             </Button>
           </Paper>
         </Grid>

@@ -1,23 +1,16 @@
-import React, { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import { Container, Grid, Paper, Typography, Box, Button } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import { Link } from "react-router-dom";
-
-import { StakingAbi } from "../abi/staking";
-
-import { useAccount } from "wagmi";
-import { useContractStakingRead } from "../hooks/libertas";
-import { useMemo } from "react";
-import { ethers } from "ethers";
-
-// import { getCurrentDate } from "../hooks/currentDate";
-
+import { StakingAbi } from "../../abi/staking";
+import { Staking60Abi } from "../../abi/staking60";
+import { Staking90Abi } from "../../abi/staking90";
+import { Staking180Abi } from "../../abi/staking180";
+import { Staking365Abi } from "../../abi/staking365";
 import Web3 from "web3";
-
-const contractAddress = "0x31b41E3b75358a7ffbC031dE7F1e435DDCc8729b";
 
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
@@ -37,33 +30,38 @@ const buttonSty = makeStyles((theme) => ({
   },
 }));
 
-const UnstakingModal = () => {
-  const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
-  // state
-  const [amount, setAmount] = useState(0);
-  const [setStakeSuccess] = useState(false);
-  const [inputStatus, setInputStatus] = useState(0);
+const PoolOptionCompound = () => {
+  const [web3, setWeb3] = useState(null);
+  const [setStakeRewards] = useState(false);
+  const [setStakeRewards60] = useState(false);
+  const [setStakeRewards90] = useState(false);
+  const [setStakeRewards180] = useState(false);
+  const [setStakeRewards365] = useState(false);
 
   useEffect(() => {
-    const checkWeb3 = async () => {
-      if (web3.currentProvider.host === "http://localhost:8545") {
-        console.log(
-          "Please connect to a real Ethereum node to interact with this contract"
-        );
-        return;
-      }
-    };
-    checkWeb3();
-  }, [web3.currentProvider.host]);
+    // Check if the user has metamask installed and is logged in
+    if (window.ethereum) {
+      const web3 = new Web3(window.ethereum);
+      setWeb3(web3);
+    } else {
+      console.log("You need to install metamask");
+    }
+  }, []);
 
-  const handleUnstake = async () => {
+  const contractAddress = "0xF31907EC1Cd3997B62021404fc134598bfEEeeAb";
+  const contractAddress60 = "0x5E42A2317C5E986423a8D0936edc98FcC21734d8";
+  const contractAddress90 = "0xCe385e1f19989fE92D6484a103768733d5edf6D1";
+  const contractAddress180 = "0x3fBB8132A6d83469Db6B46585E7a766fd5244AC9";
+  const contractAddress365 = "0xE6be8D502A5104eD2f85eb27A5eDB914AB827F78";
+
+  const handleStakeRewards = async () => {
     const contract = new web3.eth.Contract(StakingAbi, contractAddress);
     const accounts = await web3.eth.getAccounts();
     contract.methods
-      .unstake(amount)
+      .stakeRewards()
       .send({ from: accounts[0] })
       .then(() => {
-        setStakeSuccess(true);
+        setStakeRewards(true);
         // console.log("Stake successful");
       })
       .catch((error) => {
@@ -71,27 +69,66 @@ const UnstakingModal = () => {
       });
   };
 
-  const { address } = useAccount();
-  // const { data: balanceRaw } = useContractStakingRead("balanceOf", address);
-  const { data: stakedBalance } = useContractStakingRead("staked", [address]);
+  const handleStakeRewards60 = async () => {
+    const contract = new web3.eth.Contract(Staking60Abi, contractAddress60);
+    const accounts = await web3.eth.getAccounts();
+    contract.methods
+      .stakeRewards()
+      .send({ from: accounts[0] })
+      .then(() => {
+        setStakeRewards60(true);
+        // console.log("Stake successful");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
-  const sBalance = useMemo(
-    () =>
-      stakedBalance
-        ? ethers.utils.formatEther(stakedBalance.sub(stakedBalance.mod(1e14))) +
-          " $XLB"
-        : "n/a $XLB",
-    [stakedBalance]
-  );
+  const handleStakeRewards90 = async () => {
+    const contract = new web3.eth.Contract(Staking90Abi, contractAddress90);
+    const accounts = await web3.eth.getAccounts();
+    contract.methods
+      .stakeRewards()
+      .send({ from: accounts[0] })
+      .then(() => {
+        setStakeRewards90(true);
+        // console.log("Stake successful");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
 
-  // const balance = useMemo(
-  //   () =>
-  //     balanceRaw
-  //       ? ethers.utils.formatEther(balanceRaw.sub(balanceRaw.mod(1e14))) +
-  //         " $XLB"
-  //       : "n/a $XLB",
-  //   [balanceRaw]
-  // );
+  const handleStakeRewards180 = async () => {
+    const contract = new web3.eth.Contract(Staking180Abi, contractAddress180);
+    const accounts = await web3.eth.getAccounts();
+    contract.methods
+      .stakeRewards()
+      .send({ from: accounts[0] })
+      .then(() => {
+        setStakeRewards180(true);
+        // console.log("Stake successful");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const handleStakeRewards365 = async () => {
+    const contract = new web3.eth.Contract(Staking365Abi, contractAddress365);
+    const accounts = await web3.eth.getAccounts();
+    contract.methods
+      .stakeRewards()
+      .send({ from: accounts[0] })
+      .then(() => {
+        setStakeRewards365(true);
+        // console.log("Stake successful");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   const buttonStyles = {
     marginTop: "10px",
     width: "100%",
@@ -128,7 +165,7 @@ const UnstakingModal = () => {
               <Box
                 style={{
                   display: "flex",
-                  justifyContent: "space-between",
+                  justifyContent: "center",
                   color: "white",
                 }}
               >
@@ -138,291 +175,92 @@ const UnstakingModal = () => {
                   component="h2"
                   style={{
                     paddingTop: 10,
+                    paddingBottom: 10,
                     color: "rgb(167, 230, 255)",
+                    textAlign: "center",
                   }}
                 >
-                  Unstake
-                </Typography>
-                <Typography
-                  className={classes.hTitle}
-                  variant="h6"
-                  component="h2"
-                  style={{
-                    paddingTop: 10,
-                    color: "#fff",
-                  }}
-                >
-                  $XLB
+                  Choose a Staking Pool to Compound Your Rewards
                 </Typography>
               </Box>
               <hr />
-              {/* <Box
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  paddingBottom: 10,
-                  color: "white",
-                }}
-              >
-                <Typography
-                  className={classes.hTitle}
-                  variant="h6"
-                  component="h2"
-                  style={{
-                    textDecoration: "underline",
-                    fontWeight: 700,
-                  }}
-                >
-                  Stake
-                </Typography>
-
-                <Typography
-                  className={classes.hTitle}
-                  variant="h6"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "grey",
-                  }}
-                >
-                  Unstake
-                </Typography>
-              </Box> */}
-              <Box
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  color: "white",
-                }}
-              >
-                <Box
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    color: "white",
-                  }}
-                >
-                  <Typography
-                    className={classes.hTitle}
-                    variant="subtitle2"
-                    component="h2"
-                    style={{
-                      marginTop: "2%",
-                      color: "white",
-                    }}
-                  >
-                    Select Amount
-                  </Typography>
-                  <Typography
-                    className={classes.hTitle}
-                    variant="subtitle2"
-                    component="h2"
-                    style={{
-                      marginTop: "2%",
-                      color: "grey",
-                    }}
-                  >
-                    Balance: {sBalance}
-                  </Typography>
-                </Box>
-                <input
-                  type="number"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                  onInput={(event) => setInputStatus(event.target.value)}
-                  style={{
-                    marginTop: "2%",
-                    marginBottom: "3%",
-                    color: "black",
-                    width: "100%",
-                    height: "45px",
-                    fontSize: "20px",
-                    textAlign: "center",
-                    borderStyle: "double",
-                    borderColor: "rgb(167, 230, 255)",
-                    background: "white",
-                    borderRadius: "10px",
-                  }}
-                />
-              </Box>
-
-              <Box
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  paddingBottom: 10,
-                  color: "white",
-                }}
-              >
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  $XLB APR
-                </Typography>
-
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  30%
-                </Typography>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  paddingBottom: 10,
-                  color: "white",
-                }}
-              >
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  ETH APR
-                </Typography>
-
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  0%
-                </Typography>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  paddingBottom: 10,
-                  color: "white",
-                }}
-              >
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  Staked Amount
-                </Typography>
-
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  {sBalance} $XLB
-                </Typography>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  paddingBottom: 10,
-                  color: "white",
-                }}
-              >
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  Voting Power
-                </Typography>
-
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  {sBalance} $sXLB
-                </Typography>
-              </Box>
-              {/* <Box
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  paddingBottom: 10,
-                  color: "white",
-                }}
-              >
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  Time Left
-                </Typography>
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  {sLockInDays} days
-                </Typography>
-                
-              </Box> */}
+              <br />
               <Link to="/">
                 <Button
-                  disabled={!inputStatus}
+                  onClick={handleStakeRewards}
                   className={classe.buttonS}
                   variant="contained"
                   sx={buttonStyles}
                   type="button"
-                  onClick={handleUnstake}
+                  style={{
+                    marginBottom: 10,
+                  }}
                 >
-                  Unstake $XLB
+                  Compound Into 30 Day Pool
+                </Button>
+              </Link>
+              <Link to="/">
+                <Button
+                  onClick={handleStakeRewards60}
+                  className={classe.buttonS}
+                  variant="contained"
+                  sx={buttonStyles}
+                  type="button"
+                  style={{
+                    marginBottom: 10,
+                  }}
+                >
+                  Compound Into 60 Day Pool
+                </Button>
+              </Link>
+              <Link to="/">
+                <Button
+                  onClick={handleStakeRewards90}
+                  className={classe.buttonS}
+                  variant="contained"
+                  sx={buttonStyles}
+                  type="button"
+                  style={{
+                    marginBottom: 10,
+                  }}
+                >
+                  Compound Into 90 Day Pool
+                </Button>
+              </Link>
+              <Link to="/">
+                <Button
+                  onClick={handleStakeRewards180}
+                  className={classe.buttonS}
+                  variant="contained"
+                  sx={buttonStyles}
+                  type="button"
+                  style={{
+                    marginBottom: 10,
+                  }}
+                >
+                  Compound Into 180 Day Pool
+                </Button>
+              </Link>
+              <Link to="/">
+                <Button
+                  onClick={handleStakeRewards365}
+                  className={classe.buttonS}
+                  variant="contained"
+                  sx={buttonStyles}
+                  type="button"
+                  style={{
+                    marginBottom: 10,
+                  }}
+                >
+                  Compound Into 365 Day Pool
                 </Button>
               </Link>
             </Paper>
           </Grid>
         </Grid>
       )}
-      {/* {console.log("stakedAmount:", amount)} */}
+      {/* {console.log("stakedAmount:", sAmount)}
+      {console.log("locktime:", sLockInDays)} */}
       {matches && (
         <Grid container spacing={5}>
           <Grid item xs={12}>
@@ -464,7 +302,7 @@ const UnstakingModal = () => {
                     color: "#fff",
                   }}
                 >
-                  $XLB
+                  XLB
                 </Typography>
               </Box>
               <hr />
@@ -552,6 +390,33 @@ const UnstakingModal = () => {
                     borderRadius: "10px",
                   }}
                 ></input>
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle2"
+                  component="h2"
+                  style={{
+                    color: "white",
+                  }}
+                >
+                  Stake Duration &#40;max 27 months&#41;
+                </Typography>
+                <input
+                  type="text"
+                  defaultValue="0.0"
+                  style={{
+                    marginTop: "2%",
+                    marginBottom: "3%",
+                    color: "black",
+                    width: "100%",
+                    height: "45px",
+                    fontSize: "20px",
+                    textAlign: "center",
+                    borderStyle: "double",
+                    borderColor: "#fa8128",
+                    background: "white",
+                    borderRadius: "10px",
+                  }}
+                ></input>
               </Box>
 
               <Box
@@ -615,7 +480,7 @@ const UnstakingModal = () => {
                     color: "white",
                   }}
                 >
-                  0.00 $XLB
+                  0.00 XLB
                 </Typography>
               </Box>
               <Box
@@ -688,7 +553,7 @@ const UnstakingModal = () => {
                   sx={buttonStyles}
                   type="button"
                 >
-                  Unstake $XLB
+                  30 Day Pool
                 </Button>
               </Link>
             </Paper>
@@ -699,4 +564,4 @@ const UnstakingModal = () => {
   );
 };
 
-export default UnstakingModal;
+export default PoolOptionCompound;

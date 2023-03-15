@@ -100,8 +100,8 @@ const TopBar = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
 
-  const tokenAddress = "0x31b41E3b75358a7ffbC031dE7F1e435DDCc8729b";
-  const tokenSymbol = "$XLB";
+  const tokenAddress = "0xE33c8c9A563714Cab40f090748e3eBD8a218D556";
+  const tokenSymbol = "XLB";
   const tokenDecimals = 18;
   const tokenImage = "https://i.postimg.cc/4N1vYmjT/libertas-torch.png";
 
@@ -214,6 +214,19 @@ const TopBar = () => {
                 }}
               >
                 Token Faucet
+              </Typography>
+            </Link>
+            <Link to="/pools">
+              <Typography
+                className="dash"
+                style={{
+                  textDecoration: isActiveC ? "underline" : "none",
+                  color: isActiveC ? "#C8E9E9" : "white",
+                  fontWeight: 700,
+                }}
+                onClick={handleClickC}
+              >
+                Pools
               </Typography>
             </Link>
             <Box

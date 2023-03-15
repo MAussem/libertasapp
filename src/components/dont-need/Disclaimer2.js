@@ -1,31 +1,29 @@
 import React, { useState, useEffect } from "react";
 // import { Link } from "react-router-dom";
-import {
-  Container,
-  Grid,
-  Paper,
-  Typography,
-  Box,
-  Button,
-  Slider,
-} from "@mui/material";
+import { Container, Grid, Paper, Typography, Box, Button } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 import { Link } from "react-router-dom";
 
+import { StakingAbi } from "../../abi/staking";
+
 import { useAccount } from "wagmi";
-import { useContractStakingRead } from "../hooks/libertas";
+import { useContractStaking30Read } from "../../hooks/libertas";
 import { useMemo } from "react";
 import { ethers } from "ethers";
 
+// import { getCurrentDate } from "../hooks/currentDate";
+
 import Web3 from "web3";
+
+const contractAddress = "0x31b41E3b75358a7ffbC031dE7F1e435DDCc8729b";
 
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
     padding: theme.spacing(1),
     [theme.breakpoints.down("md")]: {
-      fontSize: [15, "!important"],
+      fontSize: [17, "!important"],
     },
   },
 }));
@@ -39,122 +37,97 @@ const buttonSty = makeStyles((theme) => ({
   },
 }));
 
-const StakingModal = ({
-  sAmount,
-  setSAmount,
-  sLockInDays,
-  setSLockInDays,
-  setSDate,
-}) => {
-  const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
-  // state
-  // const [date] = useState(getCurrentDate());
-  const [mark, setMark] = useState(0);
-  // const [lock] = useState(0);
-  // const [timeLeft] = useState(0);
-
-  // const [amount, setAmount] = useState(0);
-  const [inputStatus, setInputStatus] = useState(0);
-  // const [stakeSuccess] = useState(false);
+const Disclaimer2 = () => {
+  const [web3, setWeb3] = useState(null);
+  // const [contractInstance, setContractInstance] = useState(null);
+  const [setStakeRewards] = useState(false);
+  const [btnStatus, setBtnStatus] = useState(true);
+  const [timeUntilUnstake, setTimeUntilUnstake] = useState(0);
 
   useEffect(() => {
-    const checkWeb3 = async () => {
-      if (web3.currentProvider.host === "http://localhost:8545") {
-        console.log(
-          "Please connect to a real Ethereum node to interact with this contract"
-        );
-        return;
+    // Check if the user has metamask installed and is logged in
+    if (window.ethereum) {
+      const web3 = new Web3(window.ethereum);
+      setWeb3(web3);
+
+      const contractAddress = "0x31b41E3b75358a7ffbC031dE7F1e435DDCc8729b";
+      const contractInstance = new web3.eth.Contract(
+        StakingAbi,
+        contractAddress
+      );
+      // setContractInstance(contractInstance);
+      const getTimeUntilUnstake = async () => {
+        const account = await web3.eth.getAccounts();
+        const time = await contractInstance.methods
+          .timeUntilUnstake(account[0])
+          .call();
+        setTimeUntilUnstake(time);
+      };
+      getTimeUntilUnstake();
+    } else {
+      console.log("You need to install metamask");
+    }
+  }, []);
+
+  function secondsToDhms(seconds) {
+    seconds = Number(seconds);
+    var d = Math.floor(seconds / (3600 * 24));
+    var h = Math.floor((seconds % (3600 * 24)) / 3600);
+    var m = Math.floor((seconds % 3600) / 60);
+
+    var dDisplay = d > 0 ? d + (d === 1 ? " day, " : " days, ") : "";
+    var hDisplay = h > 0 ? h + (h === 1 ? " hr, " : " hrs, ") : "";
+    var mDisplay = m > 0 ? m + (m === 1 ? " min " : " mins ") : "";
+    return dDisplay + hDisplay + mDisplay;
+  }
+
+  const displayTimeUntilUnstake = secondsToDhms(timeUntilUnstake);
+
+  function handleCheckbox(e) {
+    const elements = document.getElementsByName("checkbox");
+    let checkedCount = 0;
+    elements.forEach((element) => {
+      if (element.checked) {
+        checkedCount++;
       }
-    };
-    checkWeb3();
-  }, [web3.currentProvider.host]);
+    });
+    if (checkedCount > 1 || checkedCount === 0) {
+      setBtnStatus(true);
+    } else {
+      setBtnStatus(false);
+    }
+  }
 
-  // const handleTimeLeft = (event) => {
-  //   setTimeLeft(event.target.value);
-  // };
-
-  const handleDate = () => {
-    if (mark === 30) {
-      let newDate = new Date();
-      newDate.setSDate(newDate.getDate() + 30);
-      let date = newDate.getDate();
-      let month = newDate.getMonth() + 1;
-      let year = newDate.getFullYear();
-      setSDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-    }
-    if (mark === 60) {
-      let newDate = new Date();
-      newDate.setSDate(newDate.getDate() + 60);
-      let date = newDate.getDate();
-      let month = newDate.getMonth() + 1;
-      let year = newDate.getFullYear();
-      setSDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-    }
-    if (mark === 90) {
-      let newDate = new Date();
-      newDate.setSDate(newDate.getDate() + 90);
-      let date = newDate.getDate();
-      let month = newDate.getMonth() + 1;
-      let year = newDate.getFullYear();
-      setSDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-    }
-    if (mark === 180) {
-      let newDate = new Date();
-      newDate.setSDate(newDate.getDate() + 180);
-      let date = newDate.getDate();
-      let month = newDate.getMonth() + 1;
-      let year = newDate.getFullYear();
-      setSDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-    }
-    if (mark === 365) {
-      let newDate = new Date();
-      newDate.setSDate(newDate.getDate() + 365);
-      let date = newDate.getDate();
-      let month = newDate.getMonth() + 1;
-      let year = newDate.getFullYear();
-      setSDate(`${year}/${month < 10 ? `0${month}` : `${month}`}/${date}`);
-    }
+  const handleStakeRewards = async () => {
+    const contract = new web3.eth.Contract(StakingAbi, contractAddress);
+    const accounts = await web3.eth.getAccounts();
+    contract.methods
+      .stakeRewards()
+      .send({ from: accounts[0] })
+      .then(() => {
+        setStakeRewards(true);
+        // console.log("Stake successful");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
-
-  const handleMark = (event) => {
-    // 👇 Get input value from "event"
-    setMark(event.target.value);
-    handleDate();
-  };
-
-  // const handleMD = () => {
-  //   handleMark();
-  //   handleDate();
-  // };
-
-  // const handleLock = (event) => {
-  //   // 👇 Get input value from "event"
-  //   setLock(event.target.value);
-  // };
 
   const { address } = useAccount();
-  const { data: balanceRaw } = useContractStakingRead("balanceOf", address);
-  const { data: stakedBalance } = useContractStakingRead("staked", [address]);
+  // const { data: balanceRaw } = useContractStakingRead("balanceOf", address);
+  const { data: earnedBalance } = useContractStaking30Read("earned", [address]);
 
-  const sBalance = useMemo(
+  const eBalance = useMemo(
     () =>
-      stakedBalance
-        ? ethers.utils.formatEther(stakedBalance.sub(stakedBalance.mod(1e14))) +
-          " $XLB"
-        : "n/a $XLB",
-    [stakedBalance]
+      earnedBalance
+        ? ethers.utils.formatEther(earnedBalance.sub(earnedBalance.mod(1e14))) +
+          " XLB"
+        : "n/a XLB",
+    [earnedBalance]
   );
 
-  const balance = useMemo(
-    () =>
-      balanceRaw
-        ? ethers.utils.formatEther(balanceRaw.sub(balanceRaw.mod(1e14))) +
-          " $XLB"
-        : "n/a $XLB",
-    [balanceRaw]
-  );
   const buttonStyles = {
-    marginTop: "10px",
+    margin: "10px",
     width: "100%",
     fontWeight: 800,
     color: "black",
@@ -173,26 +146,8 @@ const StakingModal = ({
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
 
-  const marks = [
-    {
-      value: 30,
-    },
-    {
-      value: 60,
-    },
-    {
-      value: 90,
-    },
-    {
-      value: 180,
-    },
-    {
-      value: 365,
-    },
-  ];
-
   return (
-    <Container maxWidth="xs">
+    <Container maxWidth="md">
       {!matches && (
         <Grid container spacing={5}>
           <Grid item xs={12}>
@@ -200,7 +155,7 @@ const StakingModal = ({
               elevation={10}
               style={{
                 background: "rgba(0, 21, 66, 0.95)",
-                marginTop: 130,
+                marginTop: 40,
                 padding: 15,
               }}
             >
@@ -220,7 +175,7 @@ const StakingModal = ({
                     color: "rgb(167, 230, 255)",
                   }}
                 >
-                  Stake
+                  Stake Rewards
                 </Typography>
                 <Typography
                   className={classes.hTitle}
@@ -231,42 +186,10 @@ const StakingModal = ({
                     color: "#fff",
                   }}
                 >
-                  $XLB
+                  XLB
                 </Typography>
               </Box>
               <hr />
-              {/* <Box
-                style={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  paddingBottom: 10,
-                  color: "white",
-                }}
-              >
-                <Typography
-                  className={classes.hTitle}
-                  variant="h6"
-                  component="h2"
-                  style={{
-                    textDecoration: "underline",
-                    fontWeight: 700,
-                  }}
-                >
-                  Stake
-                </Typography>
-
-                <Typography
-                  className={classes.hTitle}
-                  variant="h6"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "grey",
-                  }}
-                >
-                  Unstake
-                </Typography>
-              </Box> */}
               <Box
                 style={{
                   display: "flex",
@@ -283,58 +206,54 @@ const StakingModal = ({
                 >
                   <Typography
                     className={classes.hTitle}
-                    variant="subtitle2"
+                    variant="subtitle1"
                     component="h2"
                     style={{
-                      marginTop: "2%",
                       color: "white",
                     }}
                   >
-                    Select Amount
+                    Amount to be Staked
                   </Typography>
                   <Typography
                     className={classes.hTitle}
-                    variant="subtitle2"
+                    variant="subtitle1"
                     component="h2"
                     style={{
-                      marginTop: "2%",
                       color: "grey",
                     }}
                   >
-                    Balance: {balance}
+                    {eBalance}
                   </Typography>
                 </Box>
-                <input
-                  type="number"
-                  value={sAmount}
-                  onChange={(e) => setSAmount(e.target.value)}
-                  onInput={(event) => setInputStatus(event.target.value)}
+                {/* <Box
                   style={{
-                    marginTop: "2%",
-                    marginBottom: "3%",
-                    color: "black",
-                    width: "100%",
-                    height: "45px",
-                    fontSize: "20px",
-                    textAlign: "center",
-                    borderStyle: "double",
-                    borderColor: "rgb(167, 230, 255)",
-                    background: "white",
-                    borderRadius: "10px",
-                  }}
-                />
-
-                {/* {console.log("lock", lock)} */}
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle2"
-                  component="h2"
-                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
                     color: "white",
                   }}
                 >
-                  Stake Duration &#40;30, 60, 90, 180, 365&#41;
-                </Typography>
+                  <Typography
+                    className={classes.hTitle}
+                    variant="subtitle1"
+                    component="h2"
+                    style={{
+                      color: "white",
+                    }}
+                  >
+                    Time Period Chosen
+                  </Typography>
+                  <Typography
+                    className={classes.hTitle}
+                    variant="subtitle1"
+                    component="h2"
+                    style={{
+                      color: "grey",
+                    }}
+                  >
+                    
+                    {sLockInDays} Days
+                  </Typography>
+                </Box> */}
                 <Box
                   sx={{
                     width: "100%",
@@ -342,212 +261,104 @@ const StakingModal = ({
                     justifyContent: "center",
                     alignContent: "center",
                   }}
+                ></Box>
+              </Box>
+
+              <Box
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                  }}
                 >
-                  <Slider
-                    defaultValue={30}
-                    step={null}
-                    marks={marks}
-                    min={30}
-                    max={365}
-                    valueLabelDisplay="on"
-                    onChangeCommitted={handleMark}
-                    onChange={(e) => setSLockInDays(e.target.value)}
+                  Unlock Time
+                </Typography>
+
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                  }}
+                >
+                  {displayTimeUntilUnstake}
+                </Typography>
+              </Box>
+              {/* {console.log("date", date)} */}
+              <Box
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  capitalize
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  Disclaimer:
+                  <input
+                    name="checkbox"
+                    type="checkbox"
+                    onChange={handleCheckbox}
                   />
-                  {/* {console.log("mark", mark)} */}
-                  {/* <input
-                    type="number"
-                    value={sLockInDays}
-                    onChange={(e) => setSLockInDays(e.target.value)}
-                    onInput={handleDate}
-                    style={{
-                      marginTop: "2%",
-                      marginBottom: "3%",
-                      color: "black",
-                      width: "100%",
-                      height: "45px",
-                      fontSize: "20px",
-                      textAlign: "center",
-                      borderStyle: "double",
-                      borderColor: "rgb(167, 230, 255)",
-                      background: "white",
-                      borderRadius: "10px",
-                    }}
-                  /> */}
-                </Box>
+                  I acknowledge that my XLB reward tokens will be locked for the
+                  rest of the current staking period &#40;
+                  {displayTimeUntilUnstake}&#41; and I will not be able to
+                  unstake my XLB tokens before the unlock time has expired.
+                </Typography>
               </Box>
 
               <Box
                 style={{
+                  marginTop: 15,
                   display: "flex",
-                  justifyContent: "space-between",
-                  paddingBottom: 10,
-                  color: "white",
+                  justifyContent: "space-around",
                 }}
               >
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  $XLB APR
-                </Typography>
-
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  30%
-                </Typography>
+                <Link to="/">
+                  <Button
+                    className={classe.buttonS}
+                    variant="contained"
+                    sx={buttonStyles}
+                    type="button"
+                  >
+                    Cancel
+                  </Button>
+                </Link>
+                <Link to="/">
+                  <Button
+                    className={classe.buttonS}
+                    disabled={btnStatus}
+                    variant="contained"
+                    sx={buttonStyles}
+                    type="button"
+                    onClick={handleStakeRewards}
+                  >
+                    Compound XLB
+                  </Button>
+                </Link>
               </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  paddingBottom: 10,
-                  color: "white",
-                }}
-              >
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  ETH APR
-                </Typography>
-
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  0%
-                </Typography>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  paddingBottom: 10,
-                  color: "white",
-                }}
-              >
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  Staked Amount
-                </Typography>
-
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  {sBalance} $XLB
-                </Typography>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  paddingBottom: 10,
-                  color: "white",
-                }}
-              >
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  Voting Power
-                </Typography>
-
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  {sBalance} $sXLB
-                </Typography>
-              </Box>
-              {/* <Box
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  paddingBottom: 10,
-                  color: "white",
-                }}
-              >
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  Time Left
-                </Typography>
-                <Typography
-                  className={classes.hTitle}
-                  variant="subtitle1"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "white",
-                  }}
-                >
-                  {sLockInDays} days
-                </Typography>
-                
-              </Box> */}
-              {/* {console.log("time left", timeLeft)} */}
-              <Link to="/disclaimer">
-                <Button
-                  disabled={!inputStatus}
-                  className={classe.buttonS}
-                  variant="contained"
-                  sx={buttonStyles}
-                  type="button"
-                >
-                  Stake $XLB
-                </Button>
-              </Link>
             </Paper>
           </Grid>
         </Grid>
@@ -584,7 +395,7 @@ const StakingModal = ({
                     color: "rgb(167, 230, 255)",
                   }}
                 >
-                  Stake
+                  Stake Rewards
                 </Typography>
                 <Typography
                   className={classes.hTitle}
@@ -595,7 +406,7 @@ const StakingModal = ({
                     color: "#fff",
                   }}
                 >
-                  $XLB
+                  XLB
                 </Typography>
               </Box>
               <hr />
@@ -616,19 +427,7 @@ const StakingModal = ({
                     fontWeight: 700,
                   }}
                 >
-                  Stake
-                </Typography>
-
-                <Typography
-                  className={classes.hTitle}
-                  variant="h6"
-                  component="h2"
-                  style={{
-                    paddingBottom: 10,
-                    color: "grey",
-                  }}
-                >
-                  Unstake
+                  Stake Rewards
                 </Typography>
               </Box>
               <Box
@@ -647,13 +446,13 @@ const StakingModal = ({
                 >
                   <Typography
                     className={classes.hTitle}
-                    variant="subtitle2"
-                    component="h2"
+                    variant="h4"
+                    component="h5"
                     style={{
                       color: "white",
                     }}
                   >
-                    Select Amount
+                    Amount to be Staked
                   </Typography>
                   <Typography
                     className={classes.hTitle}
@@ -663,7 +462,7 @@ const StakingModal = ({
                       color: "grey",
                     }}
                   >
-                    Balance: 0.00
+                    {eBalance}
                   </Typography>
                 </Box>
                 <input
@@ -761,7 +560,7 @@ const StakingModal = ({
                     color: "white",
                   }}
                 >
-                  Staked Amount
+                  Locked Amount
                 </Typography>
 
                 <Typography
@@ -773,7 +572,7 @@ const StakingModal = ({
                     color: "white",
                   }}
                 >
-                  0.00 $XLB
+                  0.00 XLB
                 </Typography>
               </Box>
               <Box
@@ -808,7 +607,7 @@ const StakingModal = ({
                   0.00 $sXLB
                 </Typography>
               </Box>
-              {/* <Box
+              <Box
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
@@ -838,7 +637,38 @@ const StakingModal = ({
                 >
                   0 mark
                 </Typography>
-              </Box> */}
+              </Box>
+              <Box
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  paddingBottom: 10,
+                  color: "white",
+                }}
+              >
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                  }}
+                >
+                  Lock Until
+                </Typography>
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                    color: "white",
+                  }}
+                >
+                  12/14/2023
+                </Typography>
+              </Box>
               <Link to="/">
                 <Button
                   className={classe.buttonS}
@@ -846,7 +676,7 @@ const StakingModal = ({
                   sx={buttonStyles}
                   type="button"
                 >
-                  Stake $XLB
+                  Stake XLB
                 </Button>
               </Link>
             </Paper>
@@ -857,4 +687,4 @@ const StakingModal = ({
   );
 };
 
-export default StakingModal;
+export default Disclaimer2;

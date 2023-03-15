@@ -6,9 +6,10 @@ import { useTheme } from "@mui/material/styles";
 import { useMediaQuery } from "@mui/material";
 
 import { useAccount } from "wagmi";
-import { useContractXLBRead, useContractStakingRead } from "../hooks/libertas";
+import { useContractXLBRead } from "../../hooks/libertas";
 import { useMemo } from "react";
 import { ethers } from "ethers";
+import ETHInfo from "../info/ETHInfo";
 
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
@@ -31,24 +32,14 @@ const buttonSty = makeStyles((theme) => ({
 const Hero = () => {
   const { address } = useAccount();
   const { data: balanceRaw } = useContractXLBRead("balanceOf", [address]);
-  const { data: stakedBalance } = useContractStakingRead("staked", [address]);
 
   const balance = useMemo(
     () =>
       balanceRaw
         ? ethers.utils.formatEther(balanceRaw.sub(balanceRaw.mod(1e14))) +
-          " $XLB"
-        : "n/a $XLB",
+          " XLB"
+        : "n/a XLB",
     [balanceRaw]
-  );
-
-  const sBalance = useMemo(
-    () =>
-      stakedBalance
-        ? ethers.utils.formatEther(stakedBalance.sub(stakedBalance.mod(1e14))) +
-          " $XLB"
-        : "n/a $XLB",
-    [stakedBalance]
   );
 
   const buttonStyles = {
@@ -69,16 +60,6 @@ const Hero = () => {
   const theme = useTheme();
   const matches = useMediaQuery(theme.breakpoints.down("md"));
 
-  //const rebaseRate = 1.46230695;
-
-  // const dailyRoi = useMemo(() => {
-  //   if (!balanceRaw) return "n/a";
-  //   const daily = balanceRaw
-  //     .div(ethers.BigNumber.from("100000000000"))
-  //     .mul(ethers.BigNumber.from("146230695"));
-  //   return ethers.utils.formatEther(daily.sub(daily.mod(1e14)));
-  // }, [balanceRaw]);
-
   return (
     <>
       {matches && (
@@ -90,6 +71,7 @@ const Hero = () => {
               marginTop: 40,
               paddingTop: 30,
               paddingBottom: 30,
+              marginBottom: 30,
             }}
           >
             <Box
@@ -136,17 +118,17 @@ const Hero = () => {
                     variant="contained"
                     sx={buttonStyles}
                   >
-                    Buy $XLB
+                    Buy XLB
                   </Button>
                 </a>
                 <br />
-                <Link to="./staking">
+                <Link to="./pools">
                   <Button
                     className={classe.buttonS}
                     variant="contained"
                     sx={buttonStyles}
                   >
-                    Stake $XLB
+                    Stake XLB
                   </Button>
                 </Link>
               </Box>
@@ -167,7 +149,7 @@ const Hero = () => {
                     textAlign: "center",
                   }}
                 >
-                  Staked $XLB
+                  Total Staked XLB
                 </Typography>
                 <Typography
                   className={classes.hTitle}
@@ -190,7 +172,7 @@ const Hero = () => {
                       textAlign: "center",
                     }}
                   >
-                    51294.295 $XLB
+                    51294.295 XLB
                   </Typography>
                 </Box>
               </Box>
@@ -212,7 +194,7 @@ const Hero = () => {
                     textAlign: "center",
                   }}
                 >
-                  Available $XLB
+                  Available XLB
                 </Typography>
                 <Typography
                   className={classes.hTitle}
@@ -235,7 +217,7 @@ const Hero = () => {
                       textAlign: "center",
                     }}
                   >
-                    333,312.878 $XLB
+                    333,312.878 XLB
                   </Typography>
                 </Box>
               </Box>
@@ -249,8 +231,9 @@ const Hero = () => {
             elevation={10}
             style={{
               background: "rgba(0, 21, 66, 0.95)",
-              marginTop: 40,
+              marginTop: 30,
               paddingBottom: 15,
+              marginBottom: 30,
             }}
           >
             <Box
@@ -288,37 +271,23 @@ const Hero = () => {
                 >
                   <img src="../flame.svg" alt="" className="imgT" />
                 </Box>
-                <a
-                  href="https://lib-dex.netlify.app/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
+                <Link to="./tokenfaucet">
                   <Button
                     className={classe.buttonS}
                     variant="contained"
                     sx={buttonStyles}
                   >
-                    Buy $XLB
+                    Buy XLB
                   </Button>
-                </a>
+                </Link>
                 <br />
-                {/* {active ? 
-              <Button variant="outlined" onClick={disconnectMeta} 
-              sx={buttonStyles}> 
-                Disconnect 
-              </Button> :
-              <Button variant="contained" onClick={connectMeta}
-              sx={buttonStyles}>
-                Connect Wallet
-              </Button>
-              } */}
-                <Link to="./staking">
+                <Link to="./pools">
                   <Button
                     className={classe.buttonS}
                     variant="contained"
                     sx={buttonStyles}
                   >
-                    Stake $XLB
+                    Stake XLB
                   </Button>
                 </Link>
               </Box>
@@ -339,7 +308,7 @@ const Hero = () => {
                     color: "rgb(167, 230, 255)",
                   }}
                 >
-                  Staked $XLB
+                  Available ETH
                 </Typography>
                 <Typography
                   className={classes.hTitle}
@@ -361,8 +330,7 @@ const Hero = () => {
                       color: "rgb(167, 230, 255)",
                     }}
                   >
-                    {/* change this 11111 */}
-                    {sBalance}
+                    <ETHInfo />
                   </Typography>
                 </Box>
               </Box>
@@ -382,7 +350,7 @@ const Hero = () => {
                     color: "rgb(167, 230, 255)",
                   }}
                 >
-                  Available $XLB
+                  Available XLB
                 </Typography>
                 <Typography
                   className={classes.hTitle}

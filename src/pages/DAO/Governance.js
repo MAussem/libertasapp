@@ -1,6 +1,6 @@
 import { Container, Grid } from "@mui/material";
-import GovUserInfo from "../../components/GovUserInfo";
-import Proposals from "../../components/Proposals";
+import GovUserInfo from "../../components/gov/GovUserInfo";
+import Proposals from "../../components/gov/Proposals";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
