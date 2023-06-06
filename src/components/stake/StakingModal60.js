@@ -17,9 +17,11 @@ import { ethers } from "ethers";
 import Web3 from "web3";
 import { StakingAbi } from "../../abi/staking";
 import { XLBAbi } from "../../abi/xlb";
+import GridTop from "../Grid";
 
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
+    color: "#fff",
     padding: theme.spacing(1),
     [theme.breakpoints.down("md")]: {
       fontSize: [15, "!important"],
@@ -169,13 +171,14 @@ const StakingModal60 = ({ sAmount, setSAmount }) => {
 
   return (
     <Container maxWidth="xs">
+      <GridTop />
       {!matches && (
         <Grid container spacing={5}>
           <Grid item xs={12}>
             <Paper
               elevation={10}
               style={{
-                background: "rgba(0, 21, 66, 0.95)",
+                background: "#000",
                 marginTop: 130,
                 padding: 15,
               }}
@@ -193,7 +196,6 @@ const StakingModal60 = ({ sAmount, setSAmount }) => {
                   component="h2"
                   style={{
                     paddingTop: 10,
-                    color: "rgb(167, 230, 255)",
                   }}
                 >
                   60 Day Staking Pool
@@ -274,7 +276,7 @@ const StakingModal60 = ({ sAmount, setSAmount }) => {
                     component="h2"
                     style={{
                       marginTop: "2%",
-                      color: "grey",
+                      color: "blueviolet",
                     }}
                   >
                     Balance: {balance}

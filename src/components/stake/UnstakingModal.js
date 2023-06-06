@@ -16,11 +16,13 @@ import { ethers } from "ethers";
 // import { getCurrentDate } from "../hooks/currentDate";
 
 import Web3 from "web3";
+import GridTop from "../Grid";
 
 const contractAddress = "0x31b41E3b75358a7ffbC031dE7F1e435DDCc8729b";
 
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
+    color: "#fff",
     padding: theme.spacing(1),
     [theme.breakpoints.down("md")]: {
       fontSize: [15, "!important"],
@@ -114,13 +116,14 @@ const UnstakingModal = () => {
 
   return (
     <Container maxWidth="xs">
+      <GridTop />
       {!matches && (
         <Grid container spacing={5}>
           <Grid item xs={12}>
             <Paper
               elevation={10}
               style={{
-                background: "rgba(0, 21, 66, 0.95)",
+                background: "#000",
                 marginTop: 130,
                 padding: 15,
               }}
@@ -138,7 +141,6 @@ const UnstakingModal = () => {
                   component="h2"
                   style={{
                     paddingTop: 10,
-                    color: "rgb(167, 230, 255)",
                   }}
                 >
                   Unstake
@@ -219,7 +221,7 @@ const UnstakingModal = () => {
                     component="h2"
                     style={{
                       marginTop: "2%",
-                      color: "grey",
+                      color: "blueviolet",
                     }}
                   >
                     Balance: {sBalance}
