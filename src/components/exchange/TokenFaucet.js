@@ -8,7 +8,7 @@ import { useMediaQuery } from "@mui/material";
 import { useAccount } from "wagmi";
 import {
   useContractXLBRead,
-  useContractStaking30Read,
+  // useContractStaking30Read,
 } from "../../hooks/libertas";
 import { useMemo } from "react";
 import { ethers } from "ethers";
@@ -100,30 +100,31 @@ const TokenFaucet = ({ sAmount, setSAmount }) => {
     };
     checkWeb3();
   }, [web3.currentProvider.host, stakingContract.methods]);
+  console.log(daysLeftInPool);
 
   const { address } = useAccount();
   const { data: balanceRaw } = useContractXLBRead("balanceOf", address);
-  const { data: stakedBalance } = useContractStaking30Read("stakedTokens", [
-    address,
-  ]);
+  // const { data: stakedBalance } = useContractStaking30Read("stakedTokens", [
+  //   address,
+  // ]);
 
-  const sBalance = useMemo(
-    () =>
-      stakedBalance
-        ? ethers.utils.formatEther(stakedBalance.sub(stakedBalance.mod(1e14))) +
-          " XLB"
-        : "n/a XLB",
-    [stakedBalance]
-  );
+  // const sBalance = useMemo(
+  //   () =>
+  //     stakedBalance
+  //       ? ethers.utils.formatEther(stakedBalance.sub(stakedBalance.mod(1e14))) +
+  //         " XLB"
+  //       : "n/a XLB",
+  //   [stakedBalance]
+  // );
 
-  const vPower = useMemo(
-    () =>
-      stakedBalance
-        ? ethers.utils.formatEther(stakedBalance.sub(stakedBalance.mod(1e14))) +
-          " sXLB"
-        : "n/a sXLB",
-    [stakedBalance]
-  );
+  // const vPower = useMemo(
+  //   () =>
+  //     stakedBalance
+  //       ? ethers.utils.formatEther(stakedBalance.sub(stakedBalance.mod(1e14))) +
+  //         " sXLB"
+  //       : "n/a sXLB",
+  //   [stakedBalance]
+  // );
 
   const balance = useMemo(
     () =>
@@ -303,7 +304,6 @@ const TokenFaucet = ({ sAmount, setSAmount }) => {
                     backgroundPosition: inputSwap ? "490px" : "485px",
                     borderRadius: "10px",
                     paddingLeft: inputSwap ? "400px" : "400px",
-                    borderRadius: "10px",
                   }}
                   placeholder={inputSwap ? "XLB" : "ETH"}
                 />
