@@ -6,9 +6,11 @@ import { useMediaQuery } from "@mui/material";
 import { Link } from "react-router-dom";
 import TablePool from "./TablePool";
 import RewardInfo from "./RewardInfo";
+import GridTop from "../Grid";
 
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
+    color: "#fff",
     padding: theme.spacing(1),
     [theme.breakpoints.down("md")]: {
       fontSize: [15, "!important"],
@@ -58,14 +60,16 @@ const PoolOption = () => {
 
   return (
     <Container maxWidth="xl">
+      <GridTop />
       {!matches && (
         <Grid container spacing={5}>
           <Grid item xs={4}>
             <Paper
               elevation={10}
               style={{
-                background: "rgba(0, 21, 66, 0.95)",
-                marginTop: 40,
+                background: "#000",
+                marginTop: 20,
+                marginLeft: -80,
                 padding: 15,
               }}
             >
@@ -73,7 +77,6 @@ const PoolOption = () => {
                 style={{
                   display: "flex",
                   justifyContent: "center",
-                  color: "white",
                 }}
               >
                 <Button
@@ -104,11 +107,12 @@ const PoolOption = () => {
             </Paper>
           </Grid>
           {showAvailablePools ? (
-            <Grid item xs={12}>
+            <Grid container spacing={5}>
               <Paper
                 elevation={10}
                 style={{
-                  background: "rgba(0, 21, 66, 0.95)",
+                  background: "#000",
+                  marginTop: 60,
                   padding: 15,
                 }}
               >
@@ -116,7 +120,6 @@ const PoolOption = () => {
                   style={{
                     display: "flex",
                     justifyContent: "center",
-                    color: "white",
                   }}
                 >
                   <Typography
@@ -126,7 +129,7 @@ const PoolOption = () => {
                     style={{
                       paddingTop: 10,
                       paddingBottom: 10,
-                      color: "rgb(167, 230, 255)",
+
                       textAlign: "center",
                     }}
                   >
@@ -162,7 +165,6 @@ const PoolOption = () => {
                 style={{
                   display: "flex",
                   justifyContent: "space-between",
-                  color: "white",
                 }}
               >
                 <Typography
@@ -194,7 +196,6 @@ const PoolOption = () => {
                   display: "flex",
                   justifyContent: "flex-start",
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 <Typography
@@ -225,23 +226,19 @@ const PoolOption = () => {
                 style={{
                   display: "flex",
                   flexDirection: "column",
-                  color: "white",
                 }}
               >
                 <Box
                   style={{
                     display: "flex",
                     justifyContent: "space-between",
-                    color: "white",
                   }}
                 >
                   <Typography
                     className={classes.hTitle}
                     variant="subtitle2"
                     component="h2"
-                    style={{
-                      color: "white",
-                    }}
+                    style={{}}
                   >
                     Select Amount
                   </Typography>
@@ -277,9 +274,7 @@ const PoolOption = () => {
                   className={classes.hTitle}
                   variant="subtitle2"
                   component="h2"
-                  style={{
-                    color: "white",
-                  }}
+                  style={{}}
                 >
                   Stake Duration &#40;max 27 months&#41;
                 </Typography>
@@ -307,7 +302,6 @@ const PoolOption = () => {
                   display: "flex",
                   justifyContent: "space-between",
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 <Typography
@@ -316,7 +310,6 @@ const PoolOption = () => {
                   component="h2"
                   style={{
                     paddingBottom: 10,
-                    color: "white",
                   }}
                 >
                   APY
@@ -328,7 +321,6 @@ const PoolOption = () => {
                   component="h2"
                   style={{
                     paddingBottom: 10,
-                    color: "white",
                   }}
                 >
                   5% - 9%
@@ -339,7 +331,6 @@ const PoolOption = () => {
                   display: "flex",
                   justifyContent: "space-between",
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 <Typography
@@ -348,7 +339,6 @@ const PoolOption = () => {
                   component="h2"
                   style={{
                     paddingBottom: 10,
-                    color: "white",
                   }}
                 >
                   Staked Amount
@@ -360,7 +350,6 @@ const PoolOption = () => {
                   component="h2"
                   style={{
                     paddingBottom: 10,
-                    color: "white",
                   }}
                 >
                   0.00 XLB
@@ -371,7 +360,6 @@ const PoolOption = () => {
                   display: "flex",
                   justifyContent: "space-between",
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 <Typography
@@ -380,7 +368,6 @@ const PoolOption = () => {
                   component="h2"
                   style={{
                     paddingBottom: 10,
-                    color: "white",
                   }}
                 >
                   Voting Power
@@ -392,7 +379,6 @@ const PoolOption = () => {
                   component="h2"
                   style={{
                     paddingBottom: 10,
-                    color: "white",
                   }}
                 >
                   0.00 $sXLB
@@ -403,7 +389,7 @@ const PoolOption = () => {
                   display: "flex",
                   justifyContent: "space-between",
                   paddingBottom: 10,
-                  color: "white",
+                  
                 }}
               >
                 <Typography
@@ -412,7 +398,7 @@ const PoolOption = () => {
                   component="h2"
                   style={{
                     paddingBottom: 10,
-                    color: "white",
+                    
                   }}
                 >
                   Time Left
@@ -423,7 +409,7 @@ const PoolOption = () => {
                   component="h2"
                   style={{
                     paddingBottom: 10,
-                    color: "white",
+                    
                   }}
                 >
                   0 mark

@@ -1,6 +1,7 @@
 import { Box, Paper, Typography, Grid, Button } from "@mui/material";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import GridTop from "../Grid";
 
 const GovUserInfo = () => {
   const theme = useTheme();
@@ -23,6 +24,7 @@ const GovUserInfo = () => {
 
   return (
     <>
+      <GridTop />
       {!matches && (
         <Grid item xs={3}>
           <Paper
@@ -33,10 +35,9 @@ const GovUserInfo = () => {
               flexDirection: "column",
               alignItems: "center",
               marginTop: "33%",
-              borderStyle: "double",
-              borderColor: "#fa8128",
+
               borderRadius: "10px",
-              background: "rgba(0, 21, 66, 0.651)",
+              background: "#000",
             }}
           >
             <Box
@@ -138,8 +139,7 @@ const GovUserInfo = () => {
               flexDirection: "column",
               alignItems: "center",
               marginTop: "13%",
-              borderStyle: "double",
-              borderColor: "#fa8128",
+
               borderRadius: "10px",
               background: "rgba(0, 21, 66, 0.651)",
             }}

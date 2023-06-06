@@ -18,7 +18,7 @@ const BurnTimer = () => {
             style={{
               marginTop: 10,
               marginBottom: 50,
-              background: "rgba(0, 21, 66, 0.95)",
+              background: "#000",
             }}
           >
             <Box
@@ -42,8 +42,8 @@ const BurnTimer = () => {
                   text={`${percentage}`}
                   styles={buildStyles({
                     textColor: "#fff",
-                    pathColor: "rgba(255, 0, 0, 0.1)",
-                    trailColor: "rgb(140, 230, 270)",
+                    pathColor: "blueviolet",
+                    trailColor: "blueviolet",
                   })}
                 />
               </Box>
@@ -52,7 +52,7 @@ const BurnTimer = () => {
                 component="h2"
                 style={{
                   marginRight: 25,
-                  color: "rgb(167, 230, 255)",
+                  color: "#fff",
                 }}
               >
                 Count Down to Next Burn
@@ -68,7 +68,7 @@ const BurnTimer = () => {
             style={{
               marginTop: -50,
               marginBottom: 50,
-              background: "rgba(0, 21, 66, 0.95)",
+              background: "#000",
             }}
           >
             <Box
@@ -92,8 +92,8 @@ const BurnTimer = () => {
                   text={`${percentage}`}
                   styles={buildStyles({
                     textColor: "#fff",
-                    pathColor: "rgba(255, 0, 0, 0.1)",
-                    trailColor: "rgb(140, 230, 270)",
+                    pathColor: "blueviolet",
+                    trailColor: "blueviolet",
                   })}
                 />
               </Box>
@@ -102,7 +102,7 @@ const BurnTimer = () => {
                 component="h2"
                 style={{
                   marginLeft: 25,
-                  color: "rgb(167, 230, 255)",
+                  color: "#fff",
                 }}
               >
                 Count Down to Next Burn

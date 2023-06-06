@@ -92,6 +92,7 @@ const StakingInfo = () => {
   );
   const fontStyles = makeStyles((theme) => ({
     hTitle: {
+      color: "#fff",
       padding: theme.spacing(0),
       [theme.breakpoints.down("md")]: {
         fontSize: [13, "!important"],
@@ -101,7 +102,7 @@ const StakingInfo = () => {
   const useStylesLink = makeStyles({
     hTitle: {
       "& a": {
-        color: "white",
+        color: "blueviolet",
         textDecoration: "none",
         "&:hover": {
           textDecoration: "underline",
@@ -134,7 +135,6 @@ const StakingInfo = () => {
               style={{
                 paddingTop: 10,
                 paddingBottom: 10,
-                color: "rgb(167, 230, 255)",
               }}
             >
               Tax
@@ -145,7 +145,6 @@ const StakingInfo = () => {
                 display: "flex",
                 justifyContent: "space-between",
                 paddingBottom: 10,
-                color: "white",
               }}
             >
               <Typography
@@ -154,7 +153,6 @@ const StakingInfo = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 Buy Tax
@@ -166,7 +164,6 @@ const StakingInfo = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 7%
@@ -177,7 +174,6 @@ const StakingInfo = () => {
                 display: "flex",
                 justifyContent: "space-between",
                 paddingBottom: 10,
-                color: "white",
               }}
             >
               <Typography
@@ -186,7 +182,6 @@ const StakingInfo = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 Sell Tax
@@ -198,7 +193,6 @@ const StakingInfo = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 10%
@@ -209,7 +203,6 @@ const StakingInfo = () => {
                 display: "flex",
                 justifyContent: "space-between",
                 paddingBottom: 10,
-                color: "white",
               }}
             >
               <Typography
@@ -218,7 +211,6 @@ const StakingInfo = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 Transfer Tax
@@ -230,7 +222,6 @@ const StakingInfo = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 10%
@@ -242,7 +233,6 @@ const StakingInfo = () => {
                 display: "flex",
                 justifyContent: "space-between",
                 paddingBottom: 10,
-                color: "white",
               }}
             >
               <Typography
@@ -251,7 +241,6 @@ const StakingInfo = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 Max Tokens Per Sell
@@ -263,7 +252,6 @@ const StakingInfo = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 $25,000
@@ -280,7 +268,7 @@ const StakingInfo = () => {
               textAlign: "center",
               marginTop: 30,
               padding: 15,
-              background: "rgba(0, 21, 66, 0.95)",
+              background: "#000",
             }}
           >
             <Typography
@@ -290,7 +278,6 @@ const StakingInfo = () => {
               style={{
                 paddingTop: 5,
                 paddingBottom: 15,
-                color: "rgb(167, 230, 255)",
               }}
             >
               My Voting Power
@@ -300,7 +287,6 @@ const StakingInfo = () => {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                color: "white",
               }}
             >
               <Typography
@@ -309,7 +295,6 @@ const StakingInfo = () => {
                 component="h2"
                 style={{
                   marginTop: 15,
-                  color: "white",
                   paddingBottom: 70,
                 }}
               >
@@ -322,7 +307,6 @@ const StakingInfo = () => {
               style={{
                 display: "flex",
                 justifyContent: "space-around",
-                color: "white",
               }}
             >
               <Box
@@ -330,7 +314,6 @@ const StakingInfo = () => {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "flex-start",
-                  color: "white",
                 }}
               >
                 <Typography
@@ -339,7 +322,6 @@ const StakingInfo = () => {
                   component="h2"
                   style={{
                     paddingBottom: 10,
-                    color: "white",
                   }}
                 >
                   My Locked XLB
@@ -351,7 +333,6 @@ const StakingInfo = () => {
                   component="h2"
                   style={{
                     paddingBottom: 10,
-                    color: "rgb(167, 230, 255)",
                   }}
                 >
                   {Number(sBalance.replace(" XLB", "")) +
@@ -367,7 +348,6 @@ const StakingInfo = () => {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "flex-start",
-                  color: "white",
                 }}
               >
                 <Typography
@@ -376,7 +356,6 @@ const StakingInfo = () => {
                   component="h2"
                   style={{
                     paddingBottom: 10,
-                    color: "white",
                   }}
                 >
                   My sXLB Balance
@@ -388,7 +367,6 @@ const StakingInfo = () => {
                   component="h2"
                   style={{
                     paddingBottom: 10,
-                    color: "rgb(167, 230, 255)",
                   }}
                 >
                   {Number(sBalance.replace(" XLB", "")) +
@@ -404,7 +382,7 @@ const StakingInfo = () => {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                color: "white",
+                
               }}
             >
               <Typography
@@ -413,7 +391,7 @@ const StakingInfo = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
+                  
                 }}
               >
                 Sell Tax
@@ -425,7 +403,7 @@ const StakingInfo = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
+                  
                 }}
               >
                 10%
@@ -436,7 +414,7 @@ const StakingInfo = () => {
                 display: "flex",
                 justifyContent: "space-between",
                 paddingBottom: 10,
-                color: "white",
+                
               }}
             >
               <Typography
@@ -445,7 +423,7 @@ const StakingInfo = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
+                  
                 }}
               >
                 Transfer Tax
@@ -457,7 +435,7 @@ const StakingInfo = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
+                  
                 }}
               >
                 10%
@@ -468,7 +446,7 @@ const StakingInfo = () => {
                 display: "flex",
                 justifyContent: "space-between",
                 paddingBottom: 10,
-                color: "white",
+                
               }}
             >
               <Typography
@@ -477,7 +455,7 @@ const StakingInfo = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
+                  
                 }}
               >
                 Max Tokens Per Sell
@@ -489,7 +467,7 @@ const StakingInfo = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
+                  
                 }}
               >
                 $25,000

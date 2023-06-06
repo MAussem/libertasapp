@@ -82,6 +82,7 @@ const PriceInfo = () => {
 
   const fontStyles = makeStyles((theme) => ({
     hTitle: {
+      color: "#fff",
       padding: theme.spacing(1),
       [theme.breakpoints.down("md")]: {
         fontSize: [13, "!important"],
@@ -175,7 +176,7 @@ const PriceInfo = () => {
           <Paper
             elevation={10}
             style={{
-              background: "rgba(0, 21, 66, 0.95)",
+              background: "#000",
               padding: 15,
               marginTop: -18,
             }}
@@ -186,7 +187,6 @@ const PriceInfo = () => {
               component="h2"
               style={{
                 textAlign: "center",
-                color: "rgb(167, 230, 255)",
                 paddingTop: 5,
                 paddingBottom: 15,
               }}
@@ -211,9 +211,6 @@ const PriceInfo = () => {
                   className={classes.hTitle}
                   variant="h6"
                   component="h2"
-                  style={{
-                    color: "#fff",
-                  }}
                 >
                   XLB Price
                 </Typography>
@@ -240,7 +237,6 @@ const PriceInfo = () => {
                   variant="h6"
                   component="h2"
                   style={{
-                    color: "#fff",
                     paddingBottom: 10,
                   }}
                 >
@@ -270,7 +266,6 @@ const PriceInfo = () => {
                   variant="h6"
                   component="h2"
                   style={{
-                    color: "#fff",
                     paddingBottom: 10,
                   }}
                 >
@@ -300,7 +295,6 @@ const PriceInfo = () => {
                   component="h2"
                   style={{
                     paddingBottom: 10,
-                    color: "#fff",
                   }}
                 >
                   Total Supply
@@ -345,7 +339,7 @@ const PriceInfo = () => {
                 variant="h6"
                 component="h2"
                 style={{
-                  color: "#fff",
+                  
                 }}
               >
                 Staked XLB Value
@@ -373,7 +367,7 @@ const PriceInfo = () => {
                 variant="h6"
                 component="h2"
                 style={{
-                  color: "#fff",
+                  
                 }}
               >
                 Staking Pool Size
@@ -401,7 +395,7 @@ const PriceInfo = () => {
                 variant="h6"
                 component="h2"
                 style={{
-                  color: "#fff",
+                  
                 }}
               >
                 Staking Pool Option 1
@@ -429,7 +423,7 @@ const PriceInfo = () => {
                 variant="h6"
                 component="h2"
                 style={{
-                  color: "#fff",
+                  
                 }}
               >
                 Staking Pool Option 2
@@ -457,7 +451,7 @@ const PriceInfo = () => {
                 variant="h6"
                 component="h2"
                 style={{
-                  color: "#fff",
+                  
                 }}
               >
                 Staking Pool Option 3
@@ -485,7 +479,7 @@ const PriceInfo = () => {
                 variant="h6"
                 component="h2"
                 style={{
-                  color: "#fff",
+                  
                 }}
               >
                 Staking Pool Option 4
@@ -513,7 +507,7 @@ const PriceInfo = () => {
                 variant="h6"
                 component="h2"
                 style={{
-                  color: "#fff",
+                  
                 }}
               >
                 Staking Pool Option 5
@@ -541,7 +535,7 @@ const PriceInfo = () => {
                 variant="h6"
                 component="h2"
                 style={{
-                  color: "#fff",
+                  
                 }}
               >
                 Annualized ETH Reward 30 Day
@@ -569,7 +563,7 @@ const PriceInfo = () => {
                 variant="h6"
                 component="h2"
                 style={{
-                  color: "#fff",
+                  
                 }}
               >
                 Annualized ETH Reward 60 Day
@@ -597,7 +591,7 @@ const PriceInfo = () => {
                 variant="h6"
                 component="h2"
                 style={{
-                  color: "#fff",
+                  
                 }}
               >
                 Annualized ETH Reward 90 Day
@@ -626,7 +620,7 @@ const PriceInfo = () => {
                 variant="h6"
                 component="h2"
                 style={{
-                  color: "#fff",
+                  
                 }}
               >
                 Annualized ETH Reward 180 Day
@@ -655,7 +649,7 @@ const PriceInfo = () => {
                 variant="h6"
                 component="h2"
                 style={{
-                  color: "#fff",
+                  
                 }}
               >
                 Annualized ETH Reward 365 Day
@@ -713,9 +707,6 @@ const PriceInfo = () => {
                   className={classes.hTitle}
                   variant="h6"
                   component="h2"
-                  style={{
-                    color: "#fff",
-                  }}
                 >
                   XLB Price
                 </Typography>
@@ -741,9 +732,6 @@ const PriceInfo = () => {
                   className={classes.hTitle}
                   variant="h6"
                   component="h2"
-                  style={{
-                    color: "#fff",
-                  }}
                 >
                   Market Cap
                 </Typography>
@@ -769,9 +757,6 @@ const PriceInfo = () => {
                   className={classes.hTitle}
                   variant="h6"
                   component="h2"
-                  style={{
-                    color: "#fff",
-                  }}
                 >
                   Total Staked
                 </Typography>
@@ -798,9 +783,6 @@ const PriceInfo = () => {
                   className={classes.hTitle}
                   variant="h6"
                   component="h2"
-                  style={{
-                    color: "#fff",
-                  }}
                 >
                   Total Supply
                 </Typography>
@@ -842,9 +824,7 @@ const PriceInfo = () => {
                 className={classes.hTitle}
                 variant="h6"
                 component="h2"
-                style={{
-                  color: "#fff",
-                }}
+                style={{}}
               >
                 Staked XLB value
               </Typography>
@@ -870,9 +850,7 @@ const PriceInfo = () => {
                 className={classes.hTitle}
                 variant="h6"
                 component="h2"
-                style={{
-                  color: "#fff",
-                }}
+                style={{}}
               >
                 Staking Pool Size
               </Typography>
@@ -898,9 +876,7 @@ const PriceInfo = () => {
                 className={classes.hTitle}
                 variant="h6"
                 component="h2"
-                style={{
-                  color: "#fff",
-                }}
+                style={{}}
               >
                 Staking Pool Option
               </Typography>
@@ -926,9 +902,7 @@ const PriceInfo = () => {
                 className={classes.hTitle}
                 variant="h6"
                 component="h2"
-                style={{
-                  color: "#fff",
-                }}
+                style={{}}
               >
                 Annualized Reward
               </Typography>

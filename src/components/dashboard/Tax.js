@@ -6,6 +6,7 @@ import { useMediaQuery } from "@mui/material";
 const Tax = () => {
   const fontStyles = makeStyles((theme) => ({
     hTitle: {
+      color: "#000",
       padding: theme.spacing(1),
       [theme.breakpoints.down("md")]: {
         fontSize: [13, "!important"],
@@ -26,7 +27,7 @@ const Tax = () => {
             style={{
               textAlign: "center",
               padding: 15,
-              background: "rgba(0, 21, 66, 0.95)",
+              background: "#fff",
             }}
           >
             <Typography
@@ -36,7 +37,6 @@ const Tax = () => {
               style={{
                 paddingTop: 10,
                 paddingBottom: 10,
-                color: "rgb(167, 230, 255)",
               }}
             >
               Tax
@@ -47,7 +47,6 @@ const Tax = () => {
                 display: "flex",
                 justifyContent: "space-between",
                 paddingBottom: 10,
-                color: "white",
               }}
             >
               <Typography
@@ -56,7 +55,6 @@ const Tax = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 Buy Tax
@@ -68,7 +66,6 @@ const Tax = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 7%
@@ -79,7 +76,6 @@ const Tax = () => {
                 display: "flex",
                 justifyContent: "space-between",
                 paddingBottom: 10,
-                color: "white",
               }}
             >
               <Typography
@@ -88,7 +84,6 @@ const Tax = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 Sell Tax
@@ -100,7 +95,6 @@ const Tax = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 10%
@@ -111,7 +105,6 @@ const Tax = () => {
                 display: "flex",
                 justifyContent: "space-between",
                 paddingBottom: 10,
-                color: "white",
               }}
             >
               <Typography
@@ -120,7 +113,6 @@ const Tax = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 Transfer Tax
@@ -132,7 +124,6 @@ const Tax = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 10%
@@ -144,7 +135,6 @@ const Tax = () => {
                 display: "flex",
                 justifyContent: "space-between",
                 paddingBottom: 10,
-                color: "white",
               }}
             >
               <Typography
@@ -153,7 +143,6 @@ const Tax = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 Max Tokens Per Sell
@@ -165,7 +154,6 @@ const Tax = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 $25,000
@@ -182,7 +170,7 @@ const Tax = () => {
               textAlign: "center",
               marginTop: -18,
               padding: 15,
-              background: "rgba(0, 21, 66, 0.95)",
+              background: "#fff",
             }}
           >
             <Typography
@@ -192,7 +180,6 @@ const Tax = () => {
               style={{
                 paddingTop: 5,
                 paddingBottom: 15,
-                color: "rgb(167, 230, 255)",
               }}
             >
               Tax
@@ -202,16 +189,12 @@ const Tax = () => {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                color: "white",
               }}
             >
               <Typography
                 className={classes.hTitle}
                 variant="h6"
                 component="h2"
-                style={{
-                  color: "white",
-                }}
               >
                 Buy Tax
               </Typography>
@@ -220,9 +203,6 @@ const Tax = () => {
                 className={classes.hTitle}
                 variant="h6"
                 component="h2"
-                style={{
-                  color: "white",
-                }}
               >
                 7%
               </Typography>
@@ -231,7 +211,6 @@ const Tax = () => {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                color: "white",
               }}
             >
               <Typography
@@ -240,7 +219,6 @@ const Tax = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 Sell Tax
@@ -252,7 +230,6 @@ const Tax = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 10%
@@ -262,7 +239,6 @@ const Tax = () => {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                color: "white",
               }}
             >
               <Typography
@@ -271,7 +247,6 @@ const Tax = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 Transfer Tax
@@ -283,7 +258,6 @@ const Tax = () => {
                 component="h2"
                 style={{
                   paddingBottom: 10,
-                  color: "white",
                 }}
               >
                 10%
@@ -293,17 +267,13 @@ const Tax = () => {
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-
-                color: "white",
               }}
             >
               <Typography
                 className={classes.hTitle}
                 variant="h6"
                 component="h2"
-                style={{
-                  color: "white",
-                }}
+                style={{}}
               >
                 Max Tokens Per Sell
               </Typography>
@@ -312,9 +282,7 @@ const Tax = () => {
                 className={classes.hTitle}
                 variant="h6"
                 component="h2"
-                style={{
-                  color: "white",
-                }}
+                style={{}}
               >
                 $25,000
               </Typography>

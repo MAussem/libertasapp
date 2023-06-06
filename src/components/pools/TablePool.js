@@ -120,7 +120,7 @@ export default function BasicTable() {
     <TableContainer
       component={Paper}
       sx={{
-        background: "rgba(0, 21, 66, 0.95)",
+        background: "#000",
         cursor: "pointer",
       }}
     >
@@ -181,7 +181,7 @@ export default function BasicTable() {
               </TableCell>
               <TableCell
                 align="right"
-                sx={{ color: "white", fontSize: "1.2rem" }}
+                sx={{ color: "blueviolet", fontSize: "1.2rem" }}
               >
                 {row.token}
               </TableCell>
@@ -203,7 +203,7 @@ export default function BasicTable() {
               </TableCell>
               <TableCell
                 align="right"
-                sx={{ color: "white", fontSize: "1.2rem" }}
+                sx={{ color: "blueviolet", fontSize: "1.2rem" }}
               >
                 {row.ethRewards}
               </TableCell>

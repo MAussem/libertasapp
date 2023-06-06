@@ -2,6 +2,7 @@ import { Box, Container, Paper, Typography, Button } from "@mui/material";
 import { makeStyles } from "@material-ui/core";
 import { useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import GridTop from "../../components/Grid";
 
 const ProtocolInfo = () => {
   const theme = useTheme();
@@ -35,6 +36,7 @@ const ProtocolInfo = () => {
 
   return (
     <Container maxWidth="md">
+      <GridTop />
       {matches && (
         <Paper
           elevation={10}
@@ -159,10 +161,9 @@ const ProtocolInfo = () => {
             marginTop: 40,
             paddingTop: 30,
             paddingBottom: 30,
-            borderStyle: "double",
-            borderColor: "#fa8128",
+
             borderRadius: "10px",
-            background: "rgba(0, 21, 66, 0.651)",
+            background: "#000",
           }}
         >
           <Box
@@ -218,7 +219,7 @@ const ProtocolInfo = () => {
                   style={{
                     marginTop: "10%",
                     textAlign: "center",
-                    color: "#C8E9E9",
+                    color: "blueviolet",
                   }}
                 >
                   Total Treasury Investment: <br /> $652,432,412
@@ -229,7 +230,7 @@ const ProtocolInfo = () => {
                   style={{
                     marginTop: "30%",
                     textAlign: "center",
-                    color: "#C8E9E9",
+                    color: "blueviolet",
                   }}
                 >
                   Restricted Reserves: 7.5M
@@ -247,7 +248,7 @@ const ProtocolInfo = () => {
                   style={{
                     marginTop: "10%",
                     textAlign: "center",
-                    color: "#C8E9E9",
+                    color: "blueviolet",
                   }}
                 >
                   Average Expected Returns: <br /> x12
@@ -258,7 +259,7 @@ const ProtocolInfo = () => {
                   style={{
                     marginTop: "30%",
                     textAlign: "center",
-                    color: "#C8E9E9",
+                    color: "blueviolet",
                   }}
                 >
                   Stable Coin Holdings: 8M

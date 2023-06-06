@@ -13,6 +13,7 @@ import ETHInfo from "../info/ETHInfo";
 
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
+    color: "#000",
     padding: theme.spacing(1),
     [theme.breakpoints.down("md")]: {
       fontSize: [13, "!important"],
@@ -230,7 +231,7 @@ const Hero = () => {
           <Paper
             elevation={10}
             style={{
-              background: "rgba(0, 21, 66, 0.95)",
+              background: "#fff",
               marginTop: 30,
               paddingBottom: 15,
               marginBottom: 30,
@@ -305,7 +306,6 @@ const Hero = () => {
                   component="h2"
                   style={{
                     marginTop: "25px",
-                    color: "rgb(167, 230, 255)",
                   }}
                 >
                   Available ETH
@@ -316,6 +316,7 @@ const Hero = () => {
                   component="h2"
                   style={{
                     fontWeight: 700,
+                    color: "blueviolet",
                   }}
                 >
                   $0
@@ -326,9 +327,6 @@ const Hero = () => {
                     className={classes.hTitle}
                     variant="subtitle1"
                     component="h2"
-                    style={{
-                      color: "rgb(167, 230, 255)",
-                    }}
                   >
                     <ETHInfo />
                   </Typography>
@@ -347,7 +345,6 @@ const Hero = () => {
                   component="h2"
                   style={{
                     marginTop: "25px",
-                    color: "rgb(167, 230, 255)",
                   }}
                 >
                   Available XLB
@@ -357,6 +354,7 @@ const Hero = () => {
                   variant="h3"
                   component="h2"
                   style={{
+                    color: "blueviolet",
                     fontWeight: 700,
                   }}
                 >
@@ -368,9 +366,6 @@ const Hero = () => {
                     className={classes.hTitle}
                     variant="subtitle1"
                     component="h2"
-                    style={{
-                      color: "rgb(167, 230, 255)",
-                    }}
                   >
                     {balance}
                   </Typography>

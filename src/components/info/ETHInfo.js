@@ -22,7 +22,7 @@ function ETHInfo() {
   return (
     <div
       style={{
-        color: "rgb(167, 230, 255)",
+        color: "#000",
       }}
     >
       {balance} ETH

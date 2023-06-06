@@ -27,6 +27,7 @@ import StakingModal60 from "./components/stake/StakingModal60";
 import StakingModal90 from "./components/stake/StakingModal90";
 import StakingModal180 from "./components/stake/StakingModal180";
 import StakingModal365 from "./components/stake/StakingModal365";
+import Dex from "./components/exchange/Dex";
 
 const App = () => {
   const [reloadBalance, setReloadBalance] = useState(0);
@@ -50,6 +51,7 @@ const App = () => {
         <Route path="/pools" element={<PoolOption />}></Route>
         {/* <Route path="/poolsclaim" element={<PoolOptionClaim />}></Route>
         <Route path="/poolscompound" element={<PoolOptionCompound />}></Route> */}
+        <Route path="/dex" element={<Dex />}></Route>
         <Route
           path="/staking30"
           element={

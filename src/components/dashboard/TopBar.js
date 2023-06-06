@@ -135,7 +135,7 @@ const TopBar = () => {
       <Paper
         elevation={10}
         style={{
-          background: "rgba(0, 21, 66, 0.651)",
+          background: "rgba(255, 255, 255, 0.068)",
         }}
       >
         {matches && (
@@ -158,6 +158,7 @@ const TopBar = () => {
                 fontSize: 30,
                 fontWeight: 700,
                 marginRight: -40,
+                color: "black",
               }}
             >
               Libertas
@@ -167,7 +168,7 @@ const TopBar = () => {
               style={{
                 fontSize: 30,
                 fontWeight: 700,
-                color: "rgba(0, 21, 66, 0.651)",
+                color: "black",
               }}
             >
               Finance
@@ -194,7 +195,7 @@ const TopBar = () => {
                 style={{
                   marginLeft: -100,
                   textDecoration: isActiveD ? "underline" : "none",
-                  color: isActiveD ? "#C8E9E9" : "white",
+                  color: isActiveD ? "blueviolet" : "black",
                   fontWeight: 700,
                 }}
                 onClick={handleClickD}
@@ -209,11 +210,11 @@ const TopBar = () => {
                 onClick={handleClickS}
                 style={{
                   textDecoration: isActiveS ? "underline" : "none",
-                  color: isActiveS ? "#C8E9E9" : "white",
+                  color: isActiveS ? "blueviolet" : "black",
                   fontWeight: 700,
                 }}
               >
-                Token Faucet
+                DEX
               </Typography>
             </Link>
             <Link to="/pools">
@@ -221,7 +222,7 @@ const TopBar = () => {
                 className="dash"
                 style={{
                   textDecoration: isActiveC ? "underline" : "none",
-                  color: isActiveC ? "#C8E9E9" : "white",
+                  color: isActiveC ? "blueviolet" : "black",
                   fontWeight: 700,
                 }}
                 onClick={handleClickC}
@@ -241,7 +242,7 @@ const TopBar = () => {
                   onClick={handleClickI}
                   style={{
                     textDecoration: isActiveI ? "underline" : "none",
-                    color: isActiveI ? "#C8E9E9" : "white",
+                    color: isActiveI ? "blueviolet" : "black",
                     fontWeight: 700,
                   }}
                 >
@@ -261,7 +262,7 @@ const TopBar = () => {
                   onClick={handleClickG}
                   style={{
                     textDecoration: isActiveG ? "underline" : "none",
-                    color: isActiveG ? "#C8E9E9" : "white",
+                    color: isActiveG ? "blueviolet" : "black",
                     fontWeight: 700,
                   }}
                 >
@@ -297,6 +298,7 @@ const TopBar = () => {
                 className="privatize"
                 style={{
                   fontWeight: 700,
+                  color: "blueviolet",
                 }}
               >
                 {addressFormatted}

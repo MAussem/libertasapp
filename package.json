@@ -12,7 +12,6 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.1.1",
     "@testing-library/user-event": "^13.5.0",
-    "contracts": "file.../../0623-test/artifacts/contracts/Token.sol",
     "ethers": "^5.6.9",
     "react": "^18.1.0",
     "react-circular-progressbar": "^2.0.4",
@@ -26,7 +25,7 @@
     "web3": "^1.7.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

@@ -11,11 +11,30 @@ body {
   overflow-x: hidden;
 }
 
-body {
+/* body {
   background: url("./background-image/bgh.jpeg");
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+} */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(10, 10vw);
+  grid-template-rows: repeat(10, 10vw);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.grid-cell {
+  border: 1px solid rgba(128, 128, 128, 0.1);
+}
+
+.highlighted {
+  background-color: rgba(128, 128, 128, 0.1);
 }
 
 .title {

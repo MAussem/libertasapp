@@ -58,7 +58,7 @@ const DIP = () => {
             component="h2"
             sx={{
               marginTop: "5%",
-              color: "#fff",
+              color: "#000",
               fontWeight: "700",
             }}
           >
@@ -74,10 +74,9 @@ const DIP = () => {
                 justifyContent: "space-around",
                 alignItems: "center",
                 marginTop: "2%",
-                borderStyle: "double",
-                borderColor: "#fa8128",
+
                 borderRadius: "10px",
-                background: "rgba(0, 21, 66, 0.651)",
+                background: "#000",
               }}
             >
               <Box
@@ -98,7 +97,7 @@ const DIP = () => {
                   variant="subtitle1"
                   component="h2"
                   sx={{
-                    color: "#fff",
+                    color: "blueviolet",
                     fontWeight: "700",
                   }}
                 >
@@ -119,7 +118,7 @@ const DIP = () => {
                 variant="subtitle1"
                 component="h2"
                 sx={{
-                  color: "#fff",
+                  color: "blueviolet",
                   fontWeight: "700",
                 }}
               >
@@ -153,10 +152,9 @@ const DIP = () => {
                 justifyContent: "space-around",
                 alignItems: "center",
                 marginTop: "5%",
-                borderStyle: "double",
-                borderColor: "#fa8128",
+
                 borderRadius: "10px",
-                background: "rgba(0, 21, 66, 0.651)",
+                background: "#000",
               }}
             >
               <Box
@@ -177,7 +175,7 @@ const DIP = () => {
                   variant="subtitle1"
                   component="h2"
                   sx={{
-                    color: "#fff",
+                    color: "blueviolet",
                     fontWeight: "700",
                   }}
                 >
@@ -198,7 +196,7 @@ const DIP = () => {
                 variant="subtitle1"
                 component="h2"
                 sx={{
-                  color: "#fff",
+                  color: "blueviolet",
                   fontWeight: "700",
                 }}
               >
@@ -230,7 +228,7 @@ const DIP = () => {
               component="h2"
               sx={{
                 marginTop: "5%",
-                color: "#fff",
+                color: "#000",
                 fontWeight: "700",
               }}
             >
@@ -244,10 +242,9 @@ const DIP = () => {
                 justifyContent: "space-around",
                 alignItems: "center",
                 marginTop: "2%",
-                borderStyle: "double",
-                borderColor: "#fa8128",
+
                 borderRadius: "10px",
-                background: "rgba(0, 21, 66, 0.651)",
+                background: "#000",
               }}
             >
               <Box
@@ -268,7 +265,7 @@ const DIP = () => {
                   variant="subtitle1"
                   component="h2"
                   sx={{
-                    color: "#fff",
+                    color: "blueviolet",
                     fontWeight: "700",
                   }}
                 >
@@ -289,7 +286,7 @@ const DIP = () => {
                 variant="subtitle1"
                 component="h2"
                 sx={{
-                  color: "#fff",
+                  color: "blueviolet",
                   fontWeight: "700",
                 }}
               >
@@ -323,10 +320,9 @@ const DIP = () => {
                 justifyContent: "space-around",
                 alignItems: "center",
                 marginTop: "5%",
-                borderStyle: "double",
-                borderColor: "#fa8128",
+
                 borderRadius: "10px",
-                background: "rgba(0, 21, 66, 0.651)",
+                background: "#000",
               }}
             >
               <Box
@@ -347,7 +343,7 @@ const DIP = () => {
                   variant="subtitle1"
                   component="h2"
                   sx={{
-                    color: "#fff",
+                    color: "blueviolet",
                     fontWeight: "700",
                   }}
                 >
@@ -368,7 +364,7 @@ const DIP = () => {
                 variant="subtitle1"
                 component="h2"
                 sx={{
-                  color: "#fff",
+                  color: "blueviolet",
                   fontWeight: "700",
                 }}
               >
@@ -402,10 +398,9 @@ const DIP = () => {
                 justifyContent: "space-around",
                 alignItems: "center",
                 marginTop: "5%",
-                borderStyle: "double",
-                borderColor: "#fa8128",
+
                 borderRadius: "10px",
-                background: "rgba(0, 21, 66, 0.651)",
+                background: "#000",
               }}
             >
               <Box
@@ -426,7 +421,7 @@ const DIP = () => {
                   variant="subtitle1"
                   component="h2"
                   sx={{
-                    color: "#fff",
+                    color: "blueviolet",
                     fontWeight: "700",
                   }}
                 >
@@ -447,7 +442,7 @@ const DIP = () => {
                 variant="subtitle1"
                 component="h2"
                 sx={{
-                  color: "#fff",
+                  color: "blueviolet",
                   fontWeight: "700",
                 }}
               >
@@ -479,7 +474,7 @@ const DIP = () => {
               component="h2"
               sx={{
                 marginTop: "5%",
-                color: "#fff",
+                color: "#000",
                 fontWeight: "700",
               }}
             >
@@ -494,10 +489,9 @@ const DIP = () => {
                 justifyContent: "space-around",
                 alignItems: "center",
                 marginTop: "2%",
-                borderStyle: "double",
-                borderColor: "#fa8128",
+
                 borderRadius: "10px",
-                background: "rgba(0, 21, 66, 0.651)",
+                background: "#000",
               }}
             >
               <Box
@@ -518,7 +512,7 @@ const DIP = () => {
                   variant="subtitle1"
                   component="h2"
                   sx={{
-                    color: "#fff",
+                    color: "blueviolet",
                     fontWeight: "700",
                   }}
                 >
@@ -539,7 +533,7 @@ const DIP = () => {
                 variant="subtitle1"
                 component="h2"
                 sx={{
-                  color: "#fff",
+                  color: "blueviolet",
                   fontWeight: "700",
                 }}
               >
@@ -574,10 +568,9 @@ const DIP = () => {
                 alignItems: "center",
                 marginTop: "5%",
                 marginBottom: "10%",
-                borderStyle: "double",
-                borderColor: "#fa8128",
+
                 borderRadius: "10px",
-                background: "rgba(0, 21, 66, 0.651)",
+                background: "#000",
               }}
             >
               <Box
@@ -598,7 +591,7 @@ const DIP = () => {
                   variant="subtitle1"
                   component="h2"
                   sx={{
-                    color: "#fff",
+                    color: "blueviolet",
                     fontWeight: "700",
                   }}
                 >
@@ -619,7 +612,7 @@ const DIP = () => {
                 variant="subtitle1"
                 component="h2"
                 sx={{
-                  color: "#fff",
+                  color: "blueviolet",
                   fontWeight: "700",
                 }}
               >
@@ -671,10 +664,9 @@ const DIP = () => {
                 justifyContent: "space-around",
                 alignItems: "center",
                 marginTop: "2%",
-                borderStyle: "double",
-                borderColor: "#fa8128",
+
                 borderRadius: "10px",
-                background: "rgba(0, 21, 66, 0.651)",
+                background: "#000",
               }}
             >
               <Box
@@ -745,10 +737,9 @@ const DIP = () => {
                 justifyContent: "space-around",
                 alignItems: "center",
                 marginTop: "4%",
-                borderStyle: "double",
-                borderColor: "#fa8128",
+
                 borderRadius: "10px",
-                background: "rgba(0, 21, 66, 0.651)",
+                background: "#000",
               }}
             >
               <Box
@@ -830,10 +821,9 @@ const DIP = () => {
                 justifyContent: "space-around",
                 alignItems: "center",
                 marginTop: "2%",
-                borderStyle: "double",
-                borderColor: "#fa8128",
+
                 borderRadius: "10px",
-                background: "rgba(0, 21, 66, 0.651)",
+                background: "#000",
               }}
             >
               <Box
@@ -903,10 +893,9 @@ const DIP = () => {
                 justifyContent: "space-around",
                 alignItems: "center",
                 marginTop: "4%",
-                borderStyle: "double",
-                borderColor: "#fa8128",
+
                 borderRadius: "10px",
-                background: "rgba(0, 21, 66, 0.651)",
+                background: "#000",
               }}
             >
               <Box
@@ -976,10 +965,9 @@ const DIP = () => {
                 justifyContent: "space-around",
                 alignItems: "center",
                 marginTop: "4%",
-                borderStyle: "double",
-                borderColor: "#fa8128",
+
                 borderRadius: "10px",
-                background: "rgba(0, 21, 66, 0.651)",
+                background: "#000",
               }}
             >
               <Box
@@ -1062,10 +1050,9 @@ const DIP = () => {
                 justifyContent: "space-around",
                 alignItems: "center",
                 marginTop: "2%",
-                borderStyle: "double",
-                borderColor: "#fa8128",
+
                 borderRadius: "10px",
-                background: "rgba(0, 21, 66, 0.651)",
+                background: "#000",
               }}
             >
               <Box
@@ -1136,10 +1123,9 @@ const DIP = () => {
                 alignItems: "center",
                 marginTop: "4%",
                 marginBottom: "10%",
-                borderStyle: "double",
-                borderColor: "#fa8128",
+
                 borderRadius: "10px",
-                background: "rgba(0, 21, 66, 0.651)",
+                background: "#000",
               }}
             >
               <Box

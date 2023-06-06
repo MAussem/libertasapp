@@ -24,12 +24,9 @@ const Proposals = () => {
     flexDirection: "column",
     alignItems: "flex-start",
     marginTop: "3%",
-    borderStyle: "double",
-    borderColor: "#fa7f2856",
     borderRadius: "10px",
-    background: "rgba(0, 21, 66, 0.651)",
+    background: "#000",
     "&:hover": {
-      borderColor: "#fa8128",
       cursor: "pointer",
     },
   };

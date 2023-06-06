@@ -20,6 +20,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import { Select, MenuItem } from "@mui/material";
 
 import { useAccount } from "wagmi";
 import {
@@ -34,6 +35,7 @@ import { ethers } from "ethers";
 
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
+    color: "#fff",
     padding: theme.spacing(1),
     [theme.breakpoints.down("md")]: {
       fontSize: [13, "!important"],
@@ -67,6 +69,20 @@ const RewardInfo = () => {
   const [setStakeRewards90] = useState(false);
   const [setStakeRewards180] = useState(false);
   const [setStakeRewards365] = useState(false);
+  const [selectedEarned, setSelectedEarned] = useState(
+    "Earned XLB Current Pool"
+  );
+  const [selectedETH, setSelectedETH] = useState("Earned ETH Current Pool");
+  const [selectedLocked, setSelectedLocked] = useState(
+    "Locked XLB Current Pool"
+  );
+  const [selectedDaysLeft, setSelectedDaysLeft] = useState(
+    "Days Left Current Pool"
+  );
+  const earnedOptionsXLB = ["Earned XLB Current Pool", "Earned XLB Past Pool"];
+  const earnedOptionsETH = ["Earned ETH Current Pool", "Earned ETH Past Pool"];
+  const lockedOptions = ["Locked XLB Current Pool", "Locked XLB Past Pool"];
+  const optionsDaysLeft = ["Days Left Current Pool", "Days Left Past Pool"];
 
   const { address } = useAccount();
   const { data: earnedBalance } = useContractStaking30Read("earned", [address]);
@@ -413,20 +429,28 @@ const RewardInfo = () => {
   function createData(
     id,
     daysLeft,
+    daysLeftPast,
     days,
     xlbRewards,
+    xlbRewardsPast,
     ethRewards,
+    ethRewardsPast,
     staked,
+    stakedPast,
     cInstance,
     tvl
   ) {
     return {
       id,
       daysLeft,
+      daysLeftPast,
       days,
       xlbRewards,
+      xlbRewardsPast,
       ethRewards,
+      ethRewardsPast,
       staked,
+      stakedPast,
       cInstance,
       tvl,
     };
@@ -435,9 +459,13 @@ const RewardInfo = () => {
   const rows = [
     createData(
       1,
+      "24",
       daysLeftInPool,
       "30",
+      "0",
       eBalance,
+      "0",
+      "0",
       "0",
       sBalance,
       contractInstance,
@@ -446,40 +474,56 @@ const RewardInfo = () => {
     createData(
       2,
       daysLeftInPool60,
+      "Not started yet",
       "60",
       eBalance60,
       "0",
+      "0",
+      "0",
       sBalance60,
+      "0",
       contractInstance60,
       sTotalStaked60
     ),
     createData(
       3,
       daysLeftInPool90,
+      "Not started yet",
       "90",
       eBalance90,
       "0",
+      "0",
+      "0",
       sBalance90,
+      "0",
       contractInstance90,
       sTotalStaked90
     ),
     createData(
       4,
       daysLeftInPool180,
+      "Not started yet",
       "180",
       eBalance180,
       "0",
+      "0",
+      "0",
       sBalance180,
+      "0",
       contractInstance180,
       sTotalStaked180
     ),
     createData(
       5,
       daysLeftInPool365,
+      "Not started yet",
       "365",
       eBalance365,
       "0",
+      "0",
+      "0",
       sBalance365,
+      "0",
       contractInstance365,
       sTotalStaked365
     ),
@@ -508,150 +552,257 @@ const RewardInfo = () => {
     <>
       {!matches && (
         <Grid container spacing={5}>
-          <Grid item xs={12}>
-            <Paper
-              elevation={10}
+          <Paper
+            elevation={10}
+            style={{
+              background: "#000",
+              marginTop: 60,
+              marginBottom: 40,
+              padding: 15,
+            }}
+          >
+            <Box
               style={{
-                background: "rgba(0, 21, 66, 0.95)",
-                marginTop: 40,
-                marginBottom: 40,
-                padding: 15,
+                display: "flex",
+                justifyContent: "center",
+                color: "white",
               }}
             >
-              <Box
+              <Typography
+                className={classes.hTitle}
+                variant="h5"
+                component="h2"
                 style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  color: "white",
+                  paddingTop: 10,
+                  paddingBottom: 10,
+
+                  textAlign: "center",
                 }}
               >
-                <Typography
-                  className={classes.hTitle}
-                  variant="h5"
-                  component="h2"
-                  style={{
-                    paddingTop: 10,
-                    paddingBottom: 10,
-                    color: "rgb(167, 230, 255)",
-                    textAlign: "center",
-                  }}
-                >
-                  Click to Claim or Your Compound XLB
-                </Typography>
-              </Box>
-              <hr />
-              <TableContainer
-                component={Paper}
-                sx={{
-                  background: "rgba(0, 21, 66, 0.95)",
-                  cursor: "pointer",
-                }}
+                Click to Claim or Your Compound XLB
+              </Typography>
+            </Box>
+            <hr />
+            <TableContainer
+              component={Paper}
+              sx={{
+                background: "#000",
+                cursor: "pointer",
+              }}
+            >
+              <Table
+                sx={{ minWidth: 650, fontSize: "1.2rem" }}
+                aria-label="simple table"
               >
-                <Table
-                  sx={{ minWidth: 650, fontSize: "1.2rem" }}
-                  aria-label="simple table"
-                >
-                  <TableHead>
-                    <TableRow>
-                      <TableCell sx={{ color: "white", fontSize: "1.2rem" }}>
-                        {" "}
-                        Days
-                      </TableCell>
-                      <TableCell
-                        align="right"
-                        sx={{ color: "white", fontSize: "1.2rem" }}
+                <TableHead>
+                  <TableRow>
+                    <TableCell sx={{ color: "white", fontSize: "1.2rem" }}>
+                      Days
+                    </TableCell>
+                    <TableCell
+                      align="right"
+                      sx={{ color: "white", fontSize: "1.2rem" }}
+                    >
+                      <Select
+                        value={selectedDaysLeft}
+                        onChange={(e) => setSelectedDaysLeft(e.target.value)}
+                        sx={{
+                          color: "white",
+                          fontSize: "1.2rem",
+                          background: "#000",
+                        }}
                       >
-                        Days Left in Pool
-                      </TableCell>
-                      <TableCell
-                        align="right"
-                        sx={{ color: "white", fontSize: "1.2rem" }}
+                        {optionsDaysLeft.map((option) => (
+                          <MenuItem
+                            key={option}
+                            value={option}
+                            style={{
+                              background: "#000",
+                            }}
+                          >
+                            {option}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </TableCell>
+                    <TableCell
+                      align="right"
+                      sx={{ color: "white", fontSize: "1.2rem" }}
+                    >
+                      <Select
+                        value={selectedEarned}
+                        onChange={(e) => setSelectedEarned(e.target.value)}
+                        sx={{
+                          color: "white",
+                          fontSize: "1.2rem",
+                          background: "#000",
+                        }}
                       >
-                        Amount Earned XLB
-                      </TableCell>
-                      <TableCell
-                        align="right"
-                        sx={{ color: "white", fontSize: "1.2rem" }}
+                        {earnedOptionsXLB.map((option) => (
+                          <MenuItem
+                            key={option}
+                            value={option}
+                            style={{
+                              background: "#000",
+                            }}
+                          >
+                            {option}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </TableCell>
+                    <TableCell
+                      align="right"
+                      sx={{ color: "white", fontSize: "1.2rem" }}
+                    >
+                      <Select
+                        value={selectedETH}
+                        onChange={(e) => setSelectedETH(e.target.value)}
+                        sx={{
+                          color: "white",
+                          fontSize: "1.2rem",
+                          background: "#000",
+                        }}
                       >
-                        Amount Earned ETH
-                      </TableCell>
-                      <TableCell
-                        align="right"
-                        sx={{ color: "white", fontSize: "1.2rem" }}
+                        {earnedOptionsETH.map((option) => (
+                          <MenuItem
+                            key={option}
+                            value={option}
+                            style={{
+                              background: "#000",
+                            }}
+                          >
+                            {option}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </TableCell>
+                    <TableCell
+                      align="right"
+                      sx={{ color: "white", fontSize: "1.2rem" }}
+                    >
+                      <Select
+                        value={selectedLocked}
+                        onChange={(e) => setSelectedLocked(e.target.value)}
+                        sx={{
+                          color: "white",
+                          fontSize: "1.2rem",
+                          background: "#000",
+                        }}
                       >
-                        Locked Amount
-                      </TableCell>
-                      <TableCell
+                        {lockedOptions.map((option) => (
+                          <MenuItem
+                            key={option}
+                            value={option}
+                            style={{
+                              background: "#000",
+                            }}
+                          >
+                            {option}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </TableCell>
+                    {/* <TableCell
                         align="right"
                         sx={{ color: "white", fontSize: "1.2rem" }}
                       >
                         Total Value Locked
+                      </TableCell> */}
+                    <TableCell
+                      align="right"
+                      sx={{ color: "white", fontSize: "1.2rem" }}
+                    ></TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {rows.map((row) => (
+                    <TableRow
+                      hover
+                      key={`row-${row.id}`}
+                      sx={{
+                        "&:last-child td, &:last-child th": { border: 0 },
+                      }}
+                    >
+                      <TableCell
+                        component="th"
+                        scope="row"
+                        sx={{ color: "blueviolet", fontSize: "1.2rem" }}
+                      >
+                        {row.days}
                       </TableCell>
                       <TableCell
                         align="right"
                         sx={{ color: "white", fontSize: "1.2rem" }}
-                      ></TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {rows.map((row) => (
-                      <TableRow
-                        hover
-                        key={`row-${row.id}`}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                        // onClick={() => handleRowClick(row.days)}
                       >
-                        <TableCell
-                          component="th"
-                          scope="row"
-                          sx={{ color: "white", fontSize: "1.2rem" }}
-                        >
-                          {row.days}
-                        </TableCell>
-                        <TableCell
-                          align="right"
-                          sx={{ color: "white", fontSize: "1.2rem" }}
-                        >
-                          {row.daysLeft}
-                        </TableCell>
-                        <TableCell
-                          align="right"
-                          sx={{ color: "white", fontSize: "1.2rem" }}
-                        >
-                          {row.xlbRewards}
-                        </TableCell>
-                        <TableCell
-                          align="right"
-                          sx={{ color: "white", fontSize: "1.2rem" }}
-                        >
-                          {row.ethRewards}
-                        </TableCell>
-                        <TableCell
-                          align="right"
-                          sx={{ color: "white", fontSize: "1.2rem" }}
-                        >
-                          {row.staked}
-                        </TableCell>
-                        <TableCell
+                        {selectedDaysLeft === "Days Left Current Pool"
+                          ? row.daysLeft
+                          : row.daysLeftPast}
+                      </TableCell>
+                      <TableCell
+                        align="right"
+                        sx={{ color: "white", fontSize: "1.2rem" }}
+                      >
+                        {selectedEarned === "Earned XLB Current Pool"
+                          ? row.xlbRewards
+                          : row.xlbRewardsPast}
+                      </TableCell>
+                      <TableCell
+                        align="right"
+                        sx={{ color: "blueviolet", fontSize: "1.2rem" }}
+                      >
+                        {selectedETH === "Earned ETH"
+                          ? row.ethRewards
+                          : row.ethRewardsPast}
+                      </TableCell>
+                      <TableCell
+                        align="right"
+                        sx={{ color: "white", fontSize: "1.2rem" }}
+                      >
+                        {selectedLocked === "Locked XLB Current Pool"
+                          ? row.staked
+                          : row.stakedPast}
+                      </TableCell>
+                      {/* <TableCell
                           align="right"
                           sx={{ color: "white", fontSize: "1.2rem" }}
                         >
                           {row.tvl}
-                        </TableCell>
-                        <TableCell
-                          align="right"
-                          sx={{ color: "white", fontSize: "1.2rem" }}
+                        </TableCell> */}
+                      <TableCell
+                        align="right"
+                        sx={{ color: "white", fontSize: "1.2rem" }}
+                      >
+                        <Box
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            marginTop: 10,
+                            marginLeft: 40,
+                          }}
                         >
-                          <Box
+                          <Button
+                            className={classe.buttonS}
+                            variant="contained"
+                            sx={buttonStyles}
+                            type="button"
+                            disabled={
+                              (selectedEarned === "Earned XLB Current Pool" &&
+                                row.xlbRewards === "0") ||
+                              (selectedEarned === "Earned XLB Past Pool" &&
+                                row.xlbRewardsPast === "0")
+                            }
                             style={{
-                              display: "flex",
-                              flexDirection: "column",
-                              marginTop: 10,
-                              marginLeft: 40,
+                              marginBottom: 10,
                             }}
+                            onClick={() => handleClaim(row.cInstance)}
                           >
+                            Claim Rewards {row.days} Days
+                          </Button>
+                          {(selectedDaysLeft === "Days Left Current Pool" &&
+                            row.daysLeft === "0") ||
+                          (selectedDaysLeft === "Days Left Past Pool" &&
+                            row.daysLeftPast === "0") ? (
                             <Button
                               className={classe.buttonS}
                               variant="contained"
@@ -660,15 +811,24 @@ const RewardInfo = () => {
                               style={{
                                 marginBottom: 10,
                               }}
-                              onClick={() => handleClaim(row.cInstance)}
+                              // onClick={() =>
+                              //   handleUnstake(row.contractInstance)
+                              // }
                             >
-                              Claim Rewards {row.days} Days
+                              Unstake {row.days} Days
                             </Button>
+                          ) : (
                             <Button
                               className={classe.buttonS}
                               variant="contained"
                               sx={buttonStyles}
                               type="button"
+                              disabled={
+                                (selectedEarned === "Earned XLB Current Pool" &&
+                                  row.xlbRewards === "0") ||
+                                (selectedEarned === "Earned XLB Past Pool" &&
+                                  row.xlbRewardsPast === "0")
+                              }
                               style={{
                                 marginBottom: 10,
                               }}
@@ -696,15 +856,15 @@ const RewardInfo = () => {
                             >
                               Compound Rewards {row.days} Days
                             </Button>
-                          </Box>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Paper>
-          </Grid>
+                          )}
+                        </Box>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Paper>
         </Grid>
       )}
       {matches && (
@@ -712,7 +872,7 @@ const RewardInfo = () => {
           <Paper
             elevation={10}
             style={{
-              background: "rgba(0, 21, 66, 0.95)",
+              background: "#000",
               padding: 15,
             }}
           >

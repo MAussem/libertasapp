@@ -6,6 +6,7 @@ import { useMediaQuery } from "@mui/material";
 const Burned = () => {
   const fontStyles = makeStyles((theme) => ({
     hTitle: {
+      color: "#000",
       padding: theme.spacing(1),
       [theme.breakpoints.down("md")]: {
         fontSize: [17, "!important"],
@@ -25,7 +26,7 @@ const Burned = () => {
             elevation={10}
             style={{
               marginTop: 10,
-              background: "rgba(0, 21, 66, 0.95)",
+              background: "#fff",
             }}
           >
             <Box
@@ -38,7 +39,7 @@ const Burned = () => {
                 variant="h5"
                 component="h2"
                 style={{
-                  color: "rgb(167, 230, 255)",
+                  color: "#000",
                 }}
               >
                 &#128293; Total Tokens Burned To Date &#128293;
@@ -47,6 +48,7 @@ const Burned = () => {
                 variant="h2"
                 component="h2"
                 style={{
+                  color: "blueviolet",
                   fontWeight: 700,
                 }}
               >
@@ -62,7 +64,7 @@ const Burned = () => {
             elevation={10}
             style={{
               marginBottom: 50,
-              background: "rgba(0, 21, 66, 0.95)",
+              background: "#fff",
             }}
           >
             <Box
@@ -75,7 +77,7 @@ const Burned = () => {
                 variant="subtitle1"
                 component="h2"
                 style={{
-                  color: "rgb(167, 230, 255)",
+                  color: "#000",
                 }}
               >
                 &#128293; Total Tokens Burned To Date &#128293;
@@ -85,6 +87,7 @@ const Burned = () => {
                 variant="h2"
                 component="h2"
                 style={{
+                  color: "blueviolet",
                   fontWeight: 700,
                 }}
               >
