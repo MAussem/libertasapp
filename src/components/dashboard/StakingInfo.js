@@ -123,9 +123,10 @@ const StakingInfo = () => {
           <Paper
             elevation={10}
             style={{
+              marginTop: "-25px",
               textAlign: "center",
               padding: 15,
-              background: "rgba(0, 21, 66, 0.95)",
+              background: "#000",
             }}
           >
             <Typography
@@ -133,129 +134,107 @@ const StakingInfo = () => {
               variant="h5"
               component="h2"
               style={{
-                paddingTop: 10,
-                paddingBottom: 10,
+                paddingTop: 5,
+                paddingBottom: 15,
               }}
             >
-              Tax
+              My Voting Power
             </Typography>
             <hr />
             <Box
               style={{
                 display: "flex",
                 justifyContent: "space-between",
-                paddingBottom: 10,
               }}
             >
               <Typography
-                className={classes.hTitle}
-                variant="h6"
+                className={classesL.hTitle}
+                variant="subtitle2"
                 component="h2"
                 style={{
-                  paddingBottom: 10,
+                  marginTop: 15,
+                  paddingBottom: 70,
                 }}
               >
-                Buy Tax
-              </Typography>
-
-              <Typography
-                className={classes.hTitle}
-                variant="h6"
-                component="h2"
-                style={{
-                  paddingBottom: 10,
-                }}
-              >
-                7%
+                <a href="https://libertas-finance.gitbook.io/libertasfinance/">
+                  Learn more on Libertas Finance governance &#8594;
+                </a>
               </Typography>
             </Box>
             <Box
               style={{
                 display: "flex",
-                justifyContent: "space-between",
-                paddingBottom: 10,
+                justifyContent: "space-around",
               }}
             >
-              <Typography
-                className={classes.hTitle}
-                variant="h6"
-                component="h2"
+              <Box
                 style={{
-                  paddingBottom: 10,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-start",
                 }}
               >
-                Sell Tax
-              </Typography>
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                  }}
+                >
+                  My Locked XLB
+                </Typography>
 
-              <Typography
-                className={classes.hTitle}
-                variant="h6"
-                component="h2"
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                  }}
+                >
+                  {Number(sBalance.replace(" XLB", "")) +
+                    Number(sBalance60.replace(" XLB", "")) +
+                    Number(sBalance90.replace(" XLB", "")) +
+                    Number(sBalance180.replace(" XLB", "")) +
+                    Number(sBalance365.replace(" XLB", ""))}{" "}
+                  XLB
+                </Typography>
+              </Box>
+              <Box
                 style={{
-                  paddingBottom: 10,
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-start",
                 }}
               >
-                10%
-              </Typography>
-            </Box>
-            <Box
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                paddingBottom: 10,
-              }}
-            >
-              <Typography
-                className={classes.hTitle}
-                variant="h6"
-                component="h2"
-                style={{
-                  paddingBottom: 10,
-                }}
-              >
-                Transfer Tax
-              </Typography>
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                  }}
+                >
+                  My sXLB Balance
+                </Typography>
 
-              <Typography
-                className={classes.hTitle}
-                variant="h6"
-                component="h2"
-                style={{
-                  paddingBottom: 10,
-                }}
-              >
-                10%
-              </Typography>
-            </Box>
-            <hr />
-            <Box
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                paddingBottom: 10,
-              }}
-            >
-              <Typography
-                className={classes.hTitle}
-                variant="h6"
-                component="h2"
-                style={{
-                  paddingBottom: 10,
-                }}
-              >
-                Max Tokens Per Sell
-              </Typography>
-
-              <Typography
-                className={classes.hTitle}
-                variant="h6"
-                component="h2"
-                style={{
-                  paddingBottom: 10,
-                }}
-              >
-                $25,000
-              </Typography>
+                <Typography
+                  className={classes.hTitle}
+                  variant="subtitle1"
+                  component="h2"
+                  style={{
+                    paddingBottom: 10,
+                  }}
+                >
+                  {Number(sBalance.replace(" XLB", "")) +
+                    Number(sBalance60.replace(" XLB", "")) +
+                    Number(sBalance90.replace(" XLB", "")) +
+                    Number(sBalance180.replace(" XLB", "")) +
+                    Number(sBalance365.replace(" XLB", ""))}{" "}
+                  sXLB
+                </Typography>
+              </Box>
             </Box>
           </Paper>
         </Grid>

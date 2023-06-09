@@ -32,6 +32,7 @@ const TopBar = () => {
   const [isActiveS, setIsActiveS] = useState(false);
   const [isActiveI, setIsActiveI] = useState(false);
   const [isActiveG, setIsActiveG] = useState(false);
+  const [isActiveP, setIsActiveP] = useState(false);
 
   const [open, setOpen] = useState(false);
 
@@ -41,6 +42,7 @@ const TopBar = () => {
     setIsActiveS(false);
     setIsActiveI(false);
     setIsActiveG(false);
+    setIsActiveP(false);
   };
 
   const handleClickC = () => {
@@ -49,6 +51,7 @@ const TopBar = () => {
     setIsActiveS(false);
     setIsActiveI(false);
     setIsActiveG(false);
+    setIsActiveP(false);
   };
 
   const handleClickS = () => {
@@ -57,6 +60,7 @@ const TopBar = () => {
     setIsActiveC(false);
     setIsActiveI(false);
     setIsActiveG(false);
+    setIsActiveP(false);
   };
 
   const handleClickI = () => {
@@ -65,10 +69,21 @@ const TopBar = () => {
     setIsActiveC(false);
     setIsActiveS(false);
     setIsActiveG(false);
+    setIsActiveP(false);
   };
 
   const handleClickG = () => {
     setIsActiveG(true);
+    setIsActiveD(false);
+    setIsActiveC(false);
+    setIsActiveS(false);
+    setIsActiveI(false);
+    setIsActiveP(false);
+  };
+
+  const handleClickP = () => {
+    setIsActiveP(true);
+    setIsActiveG(false);
     setIsActiveD(false);
     setIsActiveC(false);
     setIsActiveS(false);
@@ -88,11 +103,11 @@ const TopBar = () => {
   };
 
   const hamburger = (
-    <CgMenu size="40px" color="#C8E9E9" onClick={() => setOpen(!open)} />
+    <CgMenu size="40px" color="black" onClick={() => setOpen(!open)} />
   );
 
   const closeButton = (
-    <CgClose size="40px" color="#C8E9E9" onClick={() => setOpen(!open)} />
+    <CgClose size="40px" color="black" onClick={() => setOpen(!open)} />
   );
 
   // const closeMobileMenu = () => setOpen(false);
@@ -325,7 +340,7 @@ const TopBar = () => {
                 onClick={handleClickD}
                 style={{
                   textDecoration: isActiveD ? "underline" : "none",
-                  color: isActiveD ? "rgb(167, 230, 255)" : "white",
+                  color: isActiveD ? "blueviolet" : "#000",
                 }}
               >
                 Dashboard
@@ -337,16 +352,35 @@ const TopBar = () => {
                 flexDirection: "column",
               }}
             >
-              {/* change this back to swap */}
+              {/* add tokenfaucet back to Link */}
               <Link to="./">
                 <Typography
                   onClick={handleClickC}
                   style={{
                     textDecoration: isActiveC ? "underline" : "none",
-                    color: isActiveC ? "rgb(167, 230, 255)" : "white",
+                    color: isActiveC ? "blueviolet" : "#000",
                   }}
                 >
-                  Swap
+                  DEX
+                </Typography>
+              </Link>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              {/* add pools back to LiNK */}
+              <Link to="./">
+                <Typography
+                  onClick={handleClickP}
+                  style={{
+                    textDecoration: isActiveP ? "underline" : "none",
+                    color: isActiveP ? "blueviolet" : "#000",
+                  }}
+                >
+                  Pools
                 </Typography>
               </Link>
             </Box>
@@ -362,7 +396,7 @@ const TopBar = () => {
                   onClick={handleClickI}
                   style={{
                     textDecoration: isActiveI ? "underline" : "none",
-                    color: isActiveI ? "#C8E9E9" : "white",
+                    color: isActiveI ? "#C8E9E9" : "#000",
                   }}
                 >
                   Investments
@@ -381,7 +415,7 @@ const TopBar = () => {
                   onClick={handleClickG}
                   style={{
                     textDecoration: isActiveG ? "underline" : "none",
-                    color: isActiveG ? "#C8E9E9" : "white",
+                    color: isActiveG ? "#C8E9E9" : "#000",
                   }}
                 >
                   Governance

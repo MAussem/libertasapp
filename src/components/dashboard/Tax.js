@@ -27,7 +27,7 @@ const Tax = () => {
             style={{
               textAlign: "center",
               padding: 15,
-              background: "#fff",
+              background: "#000",
             }}
           >
             <Typography
@@ -37,6 +37,7 @@ const Tax = () => {
               style={{
                 paddingTop: 10,
                 paddingBottom: 10,
+                color: "#fff",
               }}
             >
               Tax
@@ -54,6 +55,7 @@ const Tax = () => {
                 variant="h6"
                 component="h2"
                 style={{
+                  color: "#fff",
                   paddingBottom: 10,
                 }}
               >
@@ -65,6 +67,7 @@ const Tax = () => {
                 variant="h6"
                 component="h2"
                 style={{
+                  color: "#fff",
                   paddingBottom: 10,
                 }}
               >
@@ -83,6 +86,7 @@ const Tax = () => {
                 variant="h6"
                 component="h2"
                 style={{
+                  color: "#fff",
                   paddingBottom: 10,
                 }}
               >
@@ -94,6 +98,7 @@ const Tax = () => {
                 variant="h6"
                 component="h2"
                 style={{
+                  color: "#fff",
                   paddingBottom: 10,
                 }}
               >
@@ -112,6 +117,7 @@ const Tax = () => {
                 variant="h6"
                 component="h2"
                 style={{
+                  color: "#fff",
                   paddingBottom: 10,
                 }}
               >
@@ -123,6 +129,7 @@ const Tax = () => {
                 variant="h6"
                 component="h2"
                 style={{
+                  color: "#fff",
                   paddingBottom: 10,
                 }}
               >
@@ -142,6 +149,7 @@ const Tax = () => {
                 variant="h6"
                 component="h2"
                 style={{
+                  color: "#fff",
                   paddingBottom: 10,
                 }}
               >
@@ -153,6 +161,7 @@ const Tax = () => {
                 variant="h6"
                 component="h2"
                 style={{
+                  color: "#fff",
                   paddingBottom: 10,
                 }}
               >

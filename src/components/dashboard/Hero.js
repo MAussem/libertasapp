@@ -68,7 +68,7 @@ const Hero = () => {
           <Paper
             elevation={10}
             style={{
-              background: "rgba(0, 21, 66, 0.95)",
+              background: "#fff",
               marginTop: 40,
               paddingTop: 30,
               paddingBottom: 30,
@@ -138,6 +138,7 @@ const Hero = () => {
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
+                  marginRight: "20px",
                 }}
               >
                 <Typography
@@ -146,17 +147,18 @@ const Hero = () => {
                   component="h2"
                   style={{
                     marginTop: "25px",
-                    color: "rgb(167, 230, 255)",
+                    color: "#000",
                     textAlign: "center",
                   }}
                 >
-                  Total Staked XLB
+                  Available ETH
                 </Typography>
                 <Typography
                   className={classes.hTitle}
                   variant="h3"
                   component="h2"
                   style={{
+                    color: "blueviolet",
                     fontWeight: 700,
                   }}
                 >
@@ -169,11 +171,11 @@ const Hero = () => {
                     variant="subtitle1"
                     component="h2"
                     style={{
-                      color: "rgb(167, 230, 255)",
+                      color: "#000",
                       textAlign: "center",
                     }}
                   >
-                    51294.295 XLB
+                    <ETHInfo />
                   </Typography>
                 </Box>
               </Box>
@@ -191,7 +193,7 @@ const Hero = () => {
                   component="h2"
                   style={{
                     marginTop: "23px",
-                    color: "rgb(167, 230, 255)",
+                    color: "#000",
                     textAlign: "center",
                   }}
                 >
@@ -202,10 +204,11 @@ const Hero = () => {
                   variant="h3"
                   component="h2"
                   style={{
+                    color: "blueviolet",
                     fontWeight: 700,
                   }}
                 >
-                  $5,231
+                  $0
                 </Typography>
                 <Box paddingY={2}>
                   {/* <button onClick={() => fetchBalance()}>click me</button> */}
@@ -214,11 +217,11 @@ const Hero = () => {
                     variant="subtitle1"
                     component="h2"
                     style={{
-                      color: "rgb(167, 230, 255)",
+                      color: "#000",
                       textAlign: "center",
                     }}
                   >
-                    333,312.878 XLB
+                    {balance}
                   </Typography>
                 </Box>
               </Box>

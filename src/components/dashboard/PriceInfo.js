@@ -674,7 +674,7 @@ const PriceInfo = () => {
           <Paper
             elevation={10}
             style={{
-              background: "rgba(0, 21, 66, 0.95)",
+              background: "#fff",
               padding: 15,
             }}
           >
@@ -683,11 +683,11 @@ const PriceInfo = () => {
               variant="h5"
               component="h2"
               style={{
+                color: "#000",
                 textAlign: "center",
-                color: "rgb(167, 230, 255)",
               }}
             >
-              Price Info
+              General Token Information
             </Typography>
             <hr />
             <Box
@@ -707,6 +707,9 @@ const PriceInfo = () => {
                   className={classes.hTitle}
                   variant="h6"
                   component="h2"
+                  style={{
+                    color: "#000",
+                  }}
                 >
                   XLB Price
                 </Typography>
@@ -715,6 +718,7 @@ const PriceInfo = () => {
                   variant="h6"
                   component="h2"
                   style={{
+                    color: "#000",
                     fontWeight: 700,
                   }}
                 >
@@ -732,6 +736,9 @@ const PriceInfo = () => {
                   className={classes.hTitle}
                   variant="h6"
                   component="h2"
+                  style={{
+                    color: "#000",
+                  }}
                 >
                   Market Cap
                 </Typography>
@@ -740,6 +747,7 @@ const PriceInfo = () => {
                   variant="h6"
                   component="h2"
                   style={{
+                    color: "#000",
                     fontWeight: 700,
                   }}
                 >
@@ -757,6 +765,9 @@ const PriceInfo = () => {
                   className={classes.hTitle}
                   variant="h6"
                   component="h2"
+                  style={{
+                    color: "#000",
+                  }}
                 >
                   Total Staked
                 </Typography>
@@ -765,6 +776,7 @@ const PriceInfo = () => {
                   variant="h6"
                   component="h2"
                   style={{
+                    color: "#000",
                     fontWeight: 700,
                   }}
                 >
@@ -783,6 +795,9 @@ const PriceInfo = () => {
                   className={classes.hTitle}
                   variant="h6"
                   component="h2"
+                  style={{
+                    color: "#000",
+                  }}
                 >
                   Total Supply
                 </Typography>
@@ -791,132 +806,13 @@ const PriceInfo = () => {
                   variant="h6"
                   component="h2"
                   style={{
+                    color: "#000",
                     fontWeight: 700,
                   }}
                 >
                   555,000,000 &#40;XLB&#41;
                 </Typography>
               </Box>
-            </Box>
-
-            <Typography
-              className={classes.hTitle}
-              variant="h5"
-              component="h2"
-              style={{
-                paddingTop: 20,
-                paddingBottom: 15,
-                textAlign: "center",
-                color: "rgb(167, 230, 255)",
-              }}
-            >
-              Snapshots Taken at the Time of Staking
-            </Typography>
-            <hr />
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Typography
-                className={classes.hTitle}
-                variant="h6"
-                component="h2"
-                style={{}}
-              >
-                Staked XLB value
-              </Typography>
-              <Typography
-                className={classes.hTitle}
-                variant="h6"
-                component="h2"
-                style={{
-                  fontWeight: 700,
-                }}
-              >
-                $0.00
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Typography
-                className={classes.hTitle}
-                variant="h6"
-                component="h2"
-                style={{}}
-              >
-                Staking Pool Size
-              </Typography>
-              <Typography
-                className={classes.hTitle}
-                variant="h6"
-                component="h2"
-                style={{
-                  fontWeight: 700,
-                }}
-              >
-                $0 &#40;DAI&#41;
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Typography
-                className={classes.hTitle}
-                variant="h6"
-                component="h2"
-                style={{}}
-              >
-                Staking Pool Option
-              </Typography>
-              <Typography
-                className={classes.hTitle}
-                variant="h6"
-                component="h2"
-                style={{
-                  fontWeight: 700,
-                }}
-              >
-                {/* change this 111 */}0 days
-              </Typography>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-              }}
-            >
-              <Typography
-                className={classes.hTitle}
-                variant="h6"
-                component="h2"
-                style={{}}
-              >
-                Annualized Reward
-              </Typography>
-              <Typography
-                className={classes.hTitle}
-                variant="h6"
-                component="h2"
-                style={{
-                  fontWeight: 700,
-                }}
-              >
-                {/* change this 111 */}
-                0%
-              </Typography>
             </Box>
           </Paper>
         </Grid>
