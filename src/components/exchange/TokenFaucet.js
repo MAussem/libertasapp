@@ -19,6 +19,7 @@ import { XLBAbi } from "../../abi/xlb";
 
 import { RiSwapFill } from "react-icons/ri";
 import GridTop from "../Grid";
+import ETHInfo from "../info/ETHInfo";
 
 const fontStyles = makeStyles((theme) => ({
   hTitle: {
@@ -237,9 +238,16 @@ const TokenFaucet = ({ sAmount, setSAmount }) => {
                     style={{
                       marginTop: "2%",
                       color: "blueviolet",
+                      display: "flex",
                     }}
                   >
-                    Balance: {balance}
+                    {inputSwap ? (
+                      <>Balance: {balance}</>
+                    ) : (
+                      <>
+                        Balance:&nbsp; <ETHInfo color="blueviolet" />
+                      </>
+                    )}
                   </Typography>
                 </Box>
                 <input
@@ -259,14 +267,14 @@ const TokenFaucet = ({ sAmount, setSAmount }) => {
                     borderColor: "rgb(167, 230, 255)",
                     background: "white",
                     backgroundImage: `url(../${
-                      inputSwap ? "eth.svg" : "flame.svg"
+                      inputSwap ? "flame.svg" : "eth.svg"
                     })`,
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: inputSwap ? "485px" : "490px",
                     borderRadius: "10px",
                     paddingLeft: inputSwap ? "400px" : "400px",
                   }}
-                  placeholder={inputSwap ? "ETH" : "XLB"}
+                  placeholder={inputSwap ? "XLB" : "ETH"}
                 />
                 <div
                   onClick={() => setInputSwap(!inputSwap)}
@@ -298,14 +306,14 @@ const TokenFaucet = ({ sAmount, setSAmount }) => {
                     borderColor: "rgb(167, 230, 255)",
                     background: "white",
                     backgroundImage: `url(../${
-                      inputSwap ? "flame.svg" : "eth.svg"
+                      inputSwap ? "eth.svg" : "flame.svg"
                     })`,
                     backgroundRepeat: "no-repeat",
                     backgroundPosition: inputSwap ? "490px" : "485px",
                     borderRadius: "10px",
                     paddingLeft: inputSwap ? "400px" : "400px",
                   }}
-                  placeholder={inputSwap ? "XLB" : "ETH"}
+                  placeholder={inputSwap ? "ETH" : "XLB"}
                 />
               </Box>
               {!approved && (

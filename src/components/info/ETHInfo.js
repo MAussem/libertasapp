@@ -3,7 +3,7 @@ import Web3 from "web3";
 
 const web3 = new Web3(window.ethereum);
 
-function ETHInfo() {
+function ETHInfo({ color }) {
   const [balance, setBalance] = useState("");
 
   useEffect(() => {
@@ -22,7 +22,7 @@ function ETHInfo() {
   return (
     <div
       style={{
-        color: "#000",
+        color: color,
       }}
     >
       {balance} ETH

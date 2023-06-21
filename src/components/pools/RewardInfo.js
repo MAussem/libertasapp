@@ -596,7 +596,12 @@ const RewardInfo = () => {
               >
                 <TableHead>
                   <TableRow>
-                    <TableCell sx={{ color: "white", fontSize: "1.2rem" }}>
+                    <TableCell
+                      sx={{
+                        color: "white",
+                        fontSize: "1.2rem",
+                      }}
+                    >
                       Days
                     </TableCell>
                     <TableCell
@@ -725,6 +730,7 @@ const RewardInfo = () => {
                       }}
                     >
                       <TableCell
+                        align="right"
                         component="th"
                         scope="row"
                         sx={{ color: "blueviolet", fontSize: "1.2rem" }}
