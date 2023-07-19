@@ -103,11 +103,11 @@ const TopBar = () => {
   };
 
   const hamburger = (
-    <CgMenu size="40px" color="black" onClick={() => setOpen(!open)} />
+    <CgMenu size="40px" color="#fff" onClick={() => setOpen(!open)} />
   );
 
   const closeButton = (
-    <CgClose size="40px" color="black" onClick={() => setOpen(!open)} />
+    <CgClose size="40px" color="#fff" onClick={() => setOpen(!open)} />
   );
 
   // const closeMobileMenu = () => setOpen(false);
@@ -150,7 +150,7 @@ const TopBar = () => {
       <Paper
         elevation={10}
         style={{
-          background: "rgba(255, 255, 255, 0.068)",
+          background: "#000",
         }}
       >
         {matches && (
@@ -173,10 +173,10 @@ const TopBar = () => {
                 fontSize: 30,
                 fontWeight: 700,
                 marginRight: -40,
-                color: "black",
+                color: "#fff",
               }}
             >
-              Libertas
+              Libertas&nbsp;
             </Typography>
             <Typography
               className="title"

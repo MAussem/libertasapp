@@ -88,6 +88,7 @@ const Hero = () => {
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
+                  marginRight: "20px",
                 }}
               >
                 <Typography
@@ -103,7 +104,7 @@ const Hero = () => {
                   sx={{
                     display: "flex",
                     flexDirection: "row",
-                    justifyContent: "space-around",
+                    justifyContent: "center",
                     alignItems: "center",
                   }}
                 >
@@ -138,7 +139,7 @@ const Hero = () => {
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",
-                  marginRight: "20px",
+                  marginRight: "30px",
                 }}
               >
                 <Typography

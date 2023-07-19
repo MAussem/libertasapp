@@ -25,7 +25,7 @@ function ETHInfo({ color }) {
         color: color,
       }}
     >
-      {balance} ETH
+      {balance} n/a ETH
     </div>
   );
 }
