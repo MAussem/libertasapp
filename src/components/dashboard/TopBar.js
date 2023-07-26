@@ -210,7 +210,7 @@ const TopBar = () => {
                 style={{
                   marginLeft: -100,
                   textDecoration: isActiveD ? "underline" : "none",
-                  color: isActiveD ? "blueviolet" : "black",
+                  color: isActiveD ? "blueviolet" : "white",
                   fontWeight: 700,
                 }}
                 onClick={handleClickD}
@@ -225,7 +225,7 @@ const TopBar = () => {
                 onClick={handleClickS}
                 style={{
                   textDecoration: isActiveS ? "underline" : "none",
-                  color: isActiveS ? "blueviolet" : "black",
+                  color: isActiveS ? "blueviolet" : "white",
                   fontWeight: 700,
                 }}
               >
@@ -237,7 +237,7 @@ const TopBar = () => {
                 className="dash"
                 style={{
                   textDecoration: isActiveC ? "underline" : "none",
-                  color: isActiveC ? "blueviolet" : "black",
+                  color: isActiveC ? "blueviolet" : "white",
                   fontWeight: 700,
                 }}
                 onClick={handleClickC}
@@ -257,7 +257,7 @@ const TopBar = () => {
                   onClick={handleClickI}
                   style={{
                     textDecoration: isActiveI ? "underline" : "none",
-                    color: isActiveI ? "blueviolet" : "black",
+                    color: isActiveI ? "blueviolet" : "white",
                     fontWeight: 700,
                   }}
                 >
@@ -277,7 +277,7 @@ const TopBar = () => {
                   onClick={handleClickG}
                   style={{
                     textDecoration: isActiveG ? "underline" : "none",
-                    color: isActiveG ? "blueviolet" : "black",
+                    color: isActiveG ? "blueviolet" : "white",
                     fontWeight: 700,
                   }}
                 >
