@@ -579,7 +579,7 @@ const RewardInfo = () => {
                   textAlign: "center",
                 }}
               >
-                Click to Claim or Your Compound XLB
+                Click to Claim or Compound Your XLB
               </Typography>
             </Box>
             <hr />
